@@ -3,14 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Mail\SendCodeMail;
+use App\Trait\HasRolesAndPermissions;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+final class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions;
+
+    public const RECORDS_PER_PAGE = 10;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'enable_2fa',
     ];
 
     /**
@@ -40,6 +48,35 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
+
+    /**
+     * Creates a 2FA code for the user
+     * @return void
+     */
+    public function generateCode()
+    {
+        $code = rand(100000, 999999);
+
+        UserCode::updateOrCreate(
+            ['user_id' => auth()->id()],
+            ['code' => $code]
+        );
+
+        try {
+
+            $details = [
+                'title' => __('Login code'),
+                'code' => $code
+            ];
+
+            // Send the code in email
+            Mail::to(auth()->user()->email)->send(new SendCodeMail($details));
+
+
+        } catch (\Exception $e) {
+            info("Error: ".$e->getMessage());
+            exit;
+        }
+    }
 }
