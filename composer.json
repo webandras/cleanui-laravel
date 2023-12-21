@@ -6,13 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "doctrine/dbal": "^3.6.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.2.1",
+        "livewire/livewire": "^2.12.3",
+        "spatie/laravel-csp": "^2.8"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8.1",
         "fakerphp/faker": "^1.9.1",
+        "kkomelin/laravel-translatable-string-exporter": "^1.21",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
