@@ -2,13 +2,21 @@
 
 namespace Tests\Unit\App\Utils;
 
-use App\Utils\Utils;
+use App\Interface\Services\ImageServiceInterface;
+use App\Services\ImageService;
 use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {
-    use Utils;
+    private ImageService $imageService;
 
+    public function __construct(string $name, ImageServiceInterface $imageService)
+    {
+        parent::__construct($name);
+        $this->imageService = $imageService;
+    }
+
+    // TODO: replace test img url and path
     private string $imageUrl = 'https://kizombamagyarorszag.hu/storage/photos/shares/dikanza-semba-angola-min.jpg';
     private string $absolutePath = '/storage/photos/shares/dikanza-semba-angola-min.jpg';
 
@@ -20,7 +28,7 @@ class UtilsTest extends TestCase
      */
     public function test_get_absolute_path_from_image_url(): void
     {
-        $absolutePath = $this->getImageAbsolutePath($this->imageUrl);
+        $absolutePath = $this->imageService->getImageAbsolutePath($this->imageUrl);
         $this->assertEquals($this->absolutePath, $absolutePath);
     }
 
