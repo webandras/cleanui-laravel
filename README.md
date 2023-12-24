@@ -59,7 +59,7 @@ php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
 
 **Laravel Clean UI** is a modification / extension for the Laravel UI.
 
-Copyright (c) András Gulácsi (MIT license).
+(MIT license).
 
 
 =================================================
