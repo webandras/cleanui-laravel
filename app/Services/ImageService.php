@@ -9,6 +9,9 @@ class ImageService implements ImageServiceInterface
 
     public function getImageAbsolutePath(string $imageUrl, int $offset = 3): string
     {
+        if ($imageUrl === '') {
+            return '';
+        }
         $parts = explode('/', $imageUrl);
         $parts = array_slice($parts, $offset);
 
