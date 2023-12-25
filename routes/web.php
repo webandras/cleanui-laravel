@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,13 +105,40 @@ Route::group(
             ->name('role-permission.manage');
         /* Roles and Permissions END */
 
+
+        /* Tags */
+        Route::get('tags/manage', [TagController::class, 'index'])->name('tag.manage');
+        /* Tags END */
+
+
+        /* Categories */
+        Route::get('categories/manage', [CategoryController::class, 'index'])->name('category.manage');
+
+        Route::get('category/selected/{category}', [CategoryController::class, 'getSelected'])
+            ->name('category.selected');
+        /* Categories END */
+
+
+        /* Posts */
+        Route::post('post', [PostController::class, 'store'])->name('post.store');
+        Route::get('post/create', [PostController::class, 'create'])->name('post.create');
+        Route::get('posts/manage', [PostController::class, 'index'])->name('post.manage');
+
+        Route::get(
+            'post/{post}', [PostController::class, 'edit'])->name('post.edit');
+
+        Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
+        Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+        /* Posts END */
+
+
     }
 );
 
 
 // for super admins, simple admins, and editors
 Route::group(
-    ['middleware' => ['auth', 'verified', '2fa', 'role:super-administrator|administrator|editor'], 'prefix' => 'admin'],
+    ['middleware' => ['auth', 'verified', '2fa'], 'prefix' => 'admin'],
     function () {
 
         /* Account/Users */
@@ -124,7 +154,7 @@ Route::group(
 
 
 Route::group(
-    ['middleware' => ['auth', 'verified', 'role:super-administrator|administrator|editor']],
+    ['middleware' => ['auth', 'verified']],
     function () {
 
         /* 2fa endpoints for authenticated users */
