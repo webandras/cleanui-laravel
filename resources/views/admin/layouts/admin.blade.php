@@ -46,6 +46,8 @@
 
     <x-global::banner/>
 
+    @yield('banner')
+
     @yield('search')
 
     <div class="container">
