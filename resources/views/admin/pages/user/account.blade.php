@@ -89,11 +89,7 @@
 
                 </fieldset>
 
-                @if ($user->can('manage-account'))
-                    <button type="submit" class="primary">
-                        <i class="fa-regular fa-floppy-disk margin-right-0-5"></i>{{ __("Save changes") }}</button>
-                @endif
-
+                <button type="submit" class="primary"><i class="fa-regular fa-floppy-disk margin-right-0-5"></i>{{ __("Save changes") }}</button>
             </form>
 
             <hr>
@@ -105,7 +101,6 @@
                 {{ __('This action cannot be undone. It will permanently erase your account with all of your data.') }}
             </div>
 
-            @if ($user->can('manage-account'))
                 <div x-data="modalData">
 
                     <button @click="openModal()" class="danger">
@@ -150,9 +145,8 @@
 
                     </x-global::form-modal>
                 </div>
-            @endif
-
 
         </div>
+
     </main>
 @endsection
