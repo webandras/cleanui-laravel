@@ -1,4 +1,6 @@
 @if ($paginator->hasPages())
+    @php $paginator->setPageName($pageName);
+    @endphp
 
     <div class="bar pagination fs-14 margin-top-bottom-1">
 
