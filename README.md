@@ -1,13 +1,30 @@
 # Laravel Clean UI starter
 
-**Laravel UI** provides a very simple authentication starter pack that is a far better starting point for a Laravel app
+**Laravel UI** provides a very simple authentication starter pack that is a far better starting point for my Laravel
+apps
 in my opinion. I prefer this over the bloated starter packs like Breeze, or Jetstream.
 
 Laravel Clean.UI is a modification of the Laravel UI, where I removed Bootstrap and replaced it with my Clean.ui CSS
-library with some extra JS codes. It is intended for a fullstack Laravel app with the usual blade templates/views, and Livewire.
+library with some extra JS codes. It is intended for a fullstack Laravel app with the usual blade templates/views, and
+Livewire.
 
-_Disclaimer: This project is under development, not 100% ready..._
+It includes a demo blog as an example with posts, post tags, and post categories. However, it will not contain more
+example codes to keep this starter slim.
 
+In the project, I try to use good practices when organizing the codes (like the usage of service and repository classes,
+use cleaner codes...)
+
+_Disclaimer: This project is under development, not 100% ready._
+
+## Todos
+
+- TODO: Posts and hierarchical category management should be reworked.
+- TODO: Add documentation
+- TODO: Add the public-facing side of the demo blog, after the admin-side is finalized
+- TODO: Add a solution for file upload (mostly image upload). In one live website, I used the laravel-filemanager package, but
+  not sure that I will use it here as well. Now, image uploads are not working because laravel-filemanager is removed.
+- TODO: Add sample images for seeders to set cover images for posts, and categories. Tags will not have images in the demo.
+- TODO: Add a menu point for the /home route to access the Clean UI library with some pre-defined UI components
 
 ## Installation
 
@@ -31,15 +48,14 @@ php artisan ui bootstrap --auth
 7. Add Composer dependencies (see the example config file). Install packages afterwards
 8. Install npm packages. Use your Laravel app as usual (npm run dev, php artisan serve)
 
-
 ## Updating laravel/ui
 
-When updating `laravel/ui`, do not run `php artisan ui bootstrap --auth` again, because it will overwrite your custom auth controllers and views.
-
+When updating `laravel/ui`, do not run `php artisan ui bootstrap --auth` again, because it will overwrite your custom
+auth controllers and views.
 
 ## Other configuration
 
-Currently, **mews/purifier** and **tinymce** are not installed and set up for this starter.
+Currently, **mews/purifier** and **tinymce** are not installed and set up for this starter. **TODO!**
 
 - **mews/purifier**
   https://packagist.org/packages/mews/purifier
@@ -60,7 +76,6 @@ php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
 **Laravel Clean UI** is a modification / extension for the Laravel UI.
 
 (MIT license).
-
 
 =================================================
 
