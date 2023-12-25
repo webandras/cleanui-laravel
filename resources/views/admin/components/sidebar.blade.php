@@ -28,6 +28,37 @@
                     @endif
                 @else
                     <!-- Custom links -->
+                    @role('super-administrator|administrator')
+
+                    <!-- Manage posts/articles link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('post.manage') ? 'active' : '' }}"
+                           href="{{ route('post.manage') }}"
+                        >
+                            <i class="fa-regular fa-newspaper"></i>{{ __('Manage posts') }}
+                        </a>
+                    </li>
+
+
+                    <!-- Manage categories link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('category.manage') ? 'active' : '' }}"
+                           href="{{ route('category.manage') }}"
+                        >
+                            <i class="fa-solid fa-folder-open"></i>{{ __('Manage categories') }}
+                        </a>
+                    </li>
+
+
+                    <!-- Manage tags link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
+                           href="{{ route('tag.manage') }}"
+                        >
+                            <i class="fa-solid fa-tags"></i>{{ __('Manage tags') }}
+                        </a>
+                    </li>
+                    @endrole
 
                     @role('super-administrator')
                     <!-- Manage users link -->

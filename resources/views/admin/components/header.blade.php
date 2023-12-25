@@ -14,6 +14,36 @@
                             <i class="fa fa-tachometer" aria-hidden="true"></i>{{ __('Dashboard') }}
                         </a>
 
+                        @role('super-administrator|administrator')
+
+                        <!-- Manage posts/articles link -->
+                        <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
+                           href="{{ route('post.manage') }}"
+                        >
+                            <i class="fa-regular fa-newspaper"></i>
+                            <span>{{ __('Posts') }}</span>
+                        </a>
+
+
+                        <!-- Manage categories link -->
+                        <a class="fs-14 {{ request()->routeIs('category.manage') ? 'active' : '' }}"
+                           href="{{ route('category.manage') }}"
+                        >
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span>{{ __('Categories') }}</span>
+                        </a>
+
+
+                        <!-- Manage tags link -->
+                        <a class="fs-14 {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
+                           href="{{ route('tag.manage') }}"
+                        >
+                            <i class="fa-solid fa-tags"></i>
+                            <span>{{ __('Tags') }}</span>
+                        </a>
+
+                        @endrole
+
                         <div
                             x-data="dropdownData"
                             class="dropdown-click"
