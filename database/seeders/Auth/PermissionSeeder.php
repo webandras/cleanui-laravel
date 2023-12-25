@@ -36,5 +36,19 @@ class PermissionSeeder extends Seeder {
         $managePermissions->slug = 'manage-permissions';
         $managePermissions->save();
 
+        $manageCats      = new Permission();
+        $manageCats->name = 'Manage Categories';
+        $manageCats->slug = 'manage-categories';
+        $manageCats->save();
+
+        $managePosts      = new Permission();
+        $managePosts->name = 'Manage Posts';
+        $managePosts->slug = 'manage-posts';
+        $managePosts->save();
+
+        $manageTags     = new Permission();
+        $manageTags->name = 'Manage Tags';
+        $manageTags->slug = 'manage-tags';
+        $manageTags->save();
     }
 }

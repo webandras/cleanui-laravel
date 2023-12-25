@@ -22,5 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesPermissionsPivotSeeder::class);
         $this->call(UserSeeder::class);
         // Seeders for users, authorization END
+
+        // BLOG
+        $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(PostSeeder::class);
+        $this->call(PostTagsCategoriesSeeder::class);
     }
 }
