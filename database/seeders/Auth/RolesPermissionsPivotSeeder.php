@@ -47,15 +47,19 @@ class RolesPermissionsPivotSeeder extends Seeder
         $roles = $this->getPermissionBySlug('manage-roles')->id;
         $permissions = $this->getPermissionBySlug('manage-permissions')->id;
 
+        $categories = $this->getPermissionBySlug('manage-categories')->id;
+        $posts = $this->getPermissionBySlug('manage-posts')->id;
+        $tags = $this->getPermissionBySlug('manage-tags')->id;
+
 
         // Add permissions to the superadmin
         $admin = $this->getRoleBySlug('super-administrator');
         $admin->permissions()->sync([
-            $account, $users, $roles, $permissions]);
+            $account, $users, $roles, $permissions, $categories, $posts, $tags]);
 
         // Add permissions to the admin
         $admin2 = $this->getRoleBySlug('administrator');
-        $admin2->permissions()->sync([$account]);
+        $admin2->permissions()->sync([$account, $categories, $posts, $tags]);
 
         // Add permissions to the admin
         $customer = $this->getRoleBySlug('customer');
