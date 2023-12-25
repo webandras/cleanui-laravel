@@ -9,11 +9,12 @@ interface ModelRepositoryInterface
 {
 
     /**
-     * @param  string  $modelClass
-     * @param  int  $perPage
+     * @param string $modelClass
+     * @param int $perPage
+     * @param string $pageName
      * @return LengthAwarePaginator
      */
-    public function paginateEntities(string $modelClass, int $perPage): LengthAwarePaginator;
+    public function paginateEntities(string $modelClass, int $perPage, string $pageName = 'page'): LengthAwarePaginator;
 
 
     /**
@@ -29,6 +30,14 @@ interface ModelRepositoryInterface
      * @return bool
      */
     public function deleteEntity(Model $model): bool;
+
+
+    /**
+     * @param string $modelClass
+     * @param array $ids
+     * @return bool
+     */
+    public function deleteSelectedEntities(string $modelClass, array $ids): bool;
 
 
     /**
