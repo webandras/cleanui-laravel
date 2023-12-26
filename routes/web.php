@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\TagController;
@@ -132,6 +133,8 @@ Route::group(
         /* Posts END */
 
 
+        Route::get(
+            'file-manager', [FileManagerController::class, 'index'])->name('filemanager');
     }
 );
 

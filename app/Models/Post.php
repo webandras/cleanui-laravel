@@ -14,6 +14,9 @@ class Post extends Model implements  PostInterface
 {
     use HasFactory;
 
+    /**
+     * Post statuses (enum in the table)
+     */
     public const STATUSES = [
         'draft',
         'under-review',
@@ -69,6 +72,7 @@ class Post extends Model implements  PostInterface
         return $this->belongsToMany(Tag::class, 'posts_tags');
     }
 
+
     /**
      * Get post statuses with translatable labels
      * @return array
@@ -109,6 +113,7 @@ class Post extends Model implements  PostInterface
 
         return $postStatusColors;
     }
+
 
     /**
      * Gets the slug from the post title

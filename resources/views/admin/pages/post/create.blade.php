@@ -144,10 +144,9 @@
 
                         <div class="flex flex-row flex-nowrap margin-top-1 margin-bottom-2">
                             <div>
-                                <a id="lfm" data-input="cover_image_url" data-preview="holder"
-                                   class="button info margin-top-0">
+                                <button id="lfm" class="button info margin-top-0">
                                     <i class="fa-solid fa-image"></i> {{ __('Choose') }}
-                                </a>
+                                </button>
                             </div>
 
                             <input id="cover_image_url"
@@ -170,7 +169,8 @@
                     <div>
 
                         <div class="mb-5">
-                            <label for="categories" class="bold {{ $errors->has('categories') ? 'border border-red' : '' }}">
+                            <label for="categories"
+                                   class="bold {{ $errors->has('categories') ? 'border border-red' : '' }}">
                                 {{ __('Assign categories (optional)') }}
                             </label>
 
@@ -213,6 +213,19 @@
 
 @push('scripts')
     <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", function() {
+
+            document.getElementById('lfm').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+        });
+        // set file link
+        function fmSetLink($url) {
+            document.getElementById('cover_image_url').value = $url;
+        }
+
         jQuery(document).ready(function ($) {
             // Switcher
             $('#is_highlighted').simpleSwitch();

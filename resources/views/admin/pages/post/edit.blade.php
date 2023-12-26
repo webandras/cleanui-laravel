@@ -158,10 +158,9 @@
                         @endif
                         <div class="flex flex-row flex-nowrap margin-top-1 margin-bottom-2">
                             <div>
-                                <a id="lfm" data-input="cover_image_url" data-preview="holder"
-                                   class="button info margin-top-0">
+                                <button type="button" id="lfm" class="button info margin-top-0">
                                     <i class="fa-solid fa-image"></i> {{ __('Choose') }}
-                                </a>
+                                </button>
                             </div>
 
                             <input id="cover_image_url"
@@ -230,15 +229,20 @@
 
 @push('scripts')
     <script nonce="{{ csp_nonce() }}">
-        var route_prefix = "/filemanager";
-    </script>
-    <script
-        nonce="{{ csp_nonce() }}">{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/stand-alone-button.js')) !!}</script>
-    <script nonce="{{ csp_nonce() }}" type="module">
-        jQuery(document).ready(function ($) {
-            $('#lfm').filemanager('image', {prefix: route_prefix});
-            // $('#lfm').filemanager('file', {prefix: route_prefix});
+        document.addEventListener("DOMContentLoaded", function() {
 
+            document.getElementById('lfm').addEventListener('click', (event) => {
+                event.preventDefault();
+
+                window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            });
+        });
+        // set file link
+        function fmSetLink($url) {
+            document.getElementById('cover_image_url').value = $url;
+        }
+
+        jQuery(document).ready(function ($) {
             // Switcher
             $('#is_highlighted').simpleSwitch();
 

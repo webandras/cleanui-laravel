@@ -58,8 +58,13 @@
                                        title="{{ __('Highlighted post') }}"></i>
                                 @endif
                             </h2>
-                            <span
-                                class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
+                            <small>/{{ $post->slug }}</small>
+
+                            <div class="flex flex-row margin-top-0-5">
+                                 <span class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
+                                 <span class="fs-12 medium">{{ $post->created_at }}</span>
+                            </div>
+
                             <br>
 
                             @isset ($post->cover_image_url)
@@ -68,12 +73,12 @@
                             @endisset
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
 
-                            <small>/{{ $post->slug }}</small>
-                            <div class="padding-top-0-5">
+                            <hr class="divider">
+                            <div class="padding-bottom-0-5">
                                 @if($post->categories->count() > 0)
                                     @foreach($post->categories as $cat)
                                         <span
-                                            class="badge fs-14 gray-60 text-white">{{ $cat->name }}</span>
+                                            class="badge fs-12 gray-60 text-white">{{ $cat->name }}</span>
                                     @endforeach
                                 @else
                                     <p class="fs-14">{{__('No associated category.')}}</p>

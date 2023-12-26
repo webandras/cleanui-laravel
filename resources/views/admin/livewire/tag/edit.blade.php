@@ -69,11 +69,11 @@
 
                 <div class="flex flex-row flex-nowrap">
                     <div>
-                        <a id="lfm-tag-{{ $tag->id }}"
+                        <button type="button" id="lfm-tag-{{ $tag->id }}"
                            data-input="cover-image-url-tag-{{ $tag->id }}"
                            class="button info margin-top-0">
                             <i class="fa-solid fa-image"></i> {{ __('Choose') }}
-                        </a>
+                        </button>
                     </div>
 
 
@@ -99,6 +99,28 @@
                 </button>
             </div>
         </form>
+
+        <script nonce="{{ csp_nonce() }}">
+            document.addEventListener('livewire:load', function () {
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.getElementById('lfm-tag-{{ $tag->id }}').addEventListener('click', (event) => {
+                        event.preventDefault();
+
+                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+                    });
+                });
+
+
+                // set file link
+                function fmSetLink($url) {
+                    // trigger input value change by JS. Livewire only updates the property on keyboard input event!
+                @this.cover_image_url = $url;
+                }
+
+            });
+
+        </script>
 
     </x-global::form-modal>
 </div>

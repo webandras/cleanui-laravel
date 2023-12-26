@@ -121,18 +121,19 @@
 
         <script nonce="{{ csp_nonce() }}">
             document.addEventListener('livewire:load', function () {
-                lfm(
-                    'lfm-new-{{ $category->id }}',
-                    'image',
-                    {
-                        type: 'image',
-                        prefix: route_prefix
-                    },
-                    function (file_path) {
-                        // trigger input value change by JS. Livewire only updates the property on keyboard input event!
-                    @this.cover_image_url = file_path;
-                    }
-                );
+
+                    document.getElementById('lfm-new-{{ $category->id }}').addEventListener('click', (event) => {
+                        event.preventDefault();
+
+                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+                    });
+
+                // set file link
+                function fmSetLink($url) {
+                    // trigger input value change by JS. Livewire only updates the property on keyboard input event!
+                    @this.cover_image_url = $url;
+                }
+
             });
         </script>
 
