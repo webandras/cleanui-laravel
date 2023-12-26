@@ -21,9 +21,11 @@ _Disclaimer: This project is under development, not 100% ready._
 - TODO: Posts and hierarchical category management should be reworked.
 - TODO: Add documentation
 - TODO: Add the public-facing side of the demo blog, after the admin-side is finalized
-- TODO: Add a solution for file upload (mostly image upload). In one live website, I used the laravel-filemanager package, but
+- TODO: Add a solution for file upload (mostly image upload). In one live website, I used the laravel-filemanager
+  package, but
   not sure that I will use it here as well. Now, image uploads are not working because laravel-filemanager is removed.
-- TODO: Add sample images for seeders to set cover images for posts, and categories. Tags will not have images in the demo.
+- TODO: Add sample images for seeders to set cover images for posts, and categories. Tags will not have images in the
+  demo.
 - TODO: Add a menu point for the /home route to access the Clean UI library with some pre-defined UI components
 
 ## Installation
@@ -55,7 +57,7 @@ auth controllers and views.
 
 ## Other configuration
 
-Currently, **mews/purifier** and **tinymce** are not installed and set up for this starter. **TODO!**
+**mews/purifier** and **tinymce** are installed
 
 - **mews/purifier**
   https://packagist.org/packages/mews/purifier
@@ -63,6 +65,19 @@ Currently, **mews/purifier** and **tinymce** are not installed and set up for th
 ```bash
 php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
 ```
+
+To enable iframe-embed support for YouTube and Vimeo (can be extended for other video sharing platforms),
+vopy `_for_htmlpurifier/MyIframe.php` to `vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/` folder
+This line should be present in `config/purifier.php` file (which is there by default in this starter):
+
+```php
+'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()),
+```
+
+One disadvantage of this solution is that you can't cache config with this class instantiation present in the file.
+Currently, I don't know any workaround to avoid this problem.
+
+If you do not want to have these embeds enabled, remove this line from the config!
 
 - **tinymce**
   https://www.tiny.cloud/docs/tinymce/6/laravel-tiny-cloud/
