@@ -45,7 +45,7 @@
 
 
         <div class="actions margin-left-auto">
-            <button type="button"  wire:click="toggleArchiveModal"
+            <button type="button" wire:click="toggleArchiveModal"
                     class="info fs-14">
                 {{ __('Archive selected') }}
             </button>
@@ -56,7 +56,7 @@
                     title="{{ __('Archive tag(s)?') }}"
                     :id="'archive-confirm-modal'"
                 >
-                    <button type="button"  wire:click="archiveTags"
+                    <button type="button" wire:click="archiveTags"
                             class="info fs-14">
                         <span wire:loading wire:target="archiveTags" class="animate-spin">&#9696;</span>
                         <span wire:loading.remove wire:target="archiveTags">{{ __('Archive selected') }}</span>
@@ -64,7 +64,6 @@
                 </x-global::modal>
             </div>
         </div>
-
 
 
     </div>
@@ -93,8 +92,9 @@
             <tbody>
             @foreach($tags as $tag)
                 <tr>
-                    <td><input type="checkbox" value="{{ $tag->id }}" wire:model.defer="selectedIds" name="selectedIds"></td>
-                    <td><b>{{ $tag->name }}</b></td>
+                    <td><input type="checkbox" value="{{ $tag->id }}" wire:model.defer="selectedIds" name="selectedIds">
+                    </td>
+                    <td><b>{{ $tag->name }}</b><br><small>{{ $tag->created_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>
                     <td>
                         <div class="flex flex-row">

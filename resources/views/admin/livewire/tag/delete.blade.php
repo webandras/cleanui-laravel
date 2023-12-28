@@ -14,7 +14,7 @@
     @endif
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to archive it?') }}"
-                        id="{{ $modalId }}">
+                          id="{{ $modalId }}">
         <form wire:submit.prevent="deleteTag">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">

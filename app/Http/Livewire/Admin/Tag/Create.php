@@ -10,12 +10,15 @@ use App\Support\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
     use InteractsWithBanner;
     use AuthorizesRequests;
+    use WithFileUploads;
     use Reactive;
+
 
     // used by blade / alpinejs
     /**
@@ -23,15 +26,18 @@ class Create extends Component
      */
     public $modalId;
 
+
     /**
      * @var bool
      */
     public bool $isModalOpen;
 
+
     /**
      * @var bool
      */
     public bool $hasSmallButton;
+
 
     // inputs
     /**
@@ -39,15 +45,30 @@ class Create extends Component
      */
     public string $name;
 
+
     /**
      * @var string
      */
     public string $slug;
 
+
+    /**
+     * @var int
+     */
+    public int $iteration = 0;
+
+
     /**
      * @var string|null
      */
-    public ?string $cover_image_url;
+    public ?string $cover_image_url = '';
+
+
+    /**
+     * @var
+     */
+    public $cover_image;
+
 
     /**
      * @var array|string[]
@@ -56,6 +77,7 @@ class Create extends Component
         'name' => 'required|string|min:1|max:255',
         'slug' => 'required|string|unique:tags',
         'cover_image_url' => 'nullable|string',
+        'cover_image' => 'nullable|image|max:2048',
     ];
 
 
@@ -126,8 +148,9 @@ class Create extends Component
                 $tag['name'] = $this->name;
                 $tag['slug'] = $this->slug;
 
-                if (isset($this->cover_image_url)) {
-                    $tag['cover_image_url'] = $this->imageService->getImageAbsolutePath($this->cover_image_url);
+                if (isset($this->cover_image)) {
+                    $this->cover_image_url = $this->cover_image->store('images');
+                    $tag['cover_image_url'] = '/storage/' . $this->cover_image_url;
                 }
 
                 $this->tagRepository->createEntity('Tag', $tag);

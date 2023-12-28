@@ -1,15 +1,13 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen'),
-    coverImage: $wire.entangle('cover_image_url'),
-    isValidUrl: function(urlString) {
-        try {
-            return Boolean(new URL(urlString));
-        }
-        catch(e){
-            return false;
-        }
-    }
-}">
+        isUploading: false,
+        progress: 0,
+        isModalOpen: $wire.entangle('isModalOpen')
+    }"
+     x-on:livewire-upload-start="isUploading = true"
+     x-on:livewire-upload-finish="isUploading = false"
+     x-on:livewire-upload-error="isUploading = false"
+     x-on:livewire-upload-progress="progress = $event.detail.progress"
+>
 
     @if ($hasSmallButton)
         <button @click="isModalOpen = true" class="info margin-top-0" title="{{ __('Edit tag') }}">
@@ -58,34 +56,41 @@
                 <!-- Cover Image Url -->
                 <label for="cover_image_url">{{ __('Cover Image (optional)') }}</label>
 
-                <template x-if="isValidUrl(coverImage)">
+                @if (isset($cover_image))
                     <div class="relative" style="width: fit-content">
-                        <img x-bind:src="coverImage" alt="{{ __('Cover image') }}"
+                        Photo Preview:
+                        <img src="{{ $cover_image->temporaryUrl() }}" alt="{{ __('Photo Preview:') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
-                        <button @click="coverImage = ''" class="close-button absolute topright margin-top-0-5 margin-right-0-5"><i
-                                class="fa fa-trash-alt"></i></button>
-                    </div>
-                </template>
-
-                <div class="flex flex-row flex-nowrap">
-                    <div>
-                        <button type="button" id="lfm-tag-{{ $tag->id }}"
-                           data-input="cover-image-url-tag-{{ $tag->id }}"
-                           class="button info margin-top-0">
-                            <i class="fa-solid fa-image"></i> {{ __('Choose') }}
-                        </button>
                     </div>
 
+                @else
+                    <div class="relative" style="width: fit-content">
+                        <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
+                             class="card card-4 margin-bottom-1 image-preview"/>
+                    </div>
+                @endif
 
-                    <input
-                        id="cover-image-url-tag-{{ $tag->id }}"
-                        class="small-input {{ $errors->has('cover_image_url') ? ' border border-red' : '' }}"
-                        type="text"
-                        wire:model.lazy="cover_image_url"
-                        name="cover_image_url"
-                    />
+                <input
+                    id="cover-image-upload-{{ $iteration }}"
+                    class="{{ $errors->has('cover_image') ? ' border border-red' : '' }}"
+                    type="file"
+                    wire:model="cover_image"
+                    name="cover_image"
+                />
+
+                <div wire:loading wire:target="cover_image">Uploading...</div>
+
+                <!-- Progress Bar -->
+                <div x-show="isUploading">
+                    <div class="gray-20 margin-bottom-top-0-5">
+                        <div class="box green" x-bind:value="progress" style="width:1%; height: 22px"
+                             :style="{ width: (progress + '%') }"
+                             x-text="progress">0
+                        </div>
+                    </div>
                 </div>
-                <x-global::input-error for="cover_image_url"/>
+
+                <x-global::input-error for="cover_image"/>
 
             </fieldset>
 
@@ -94,33 +99,11 @@
                     <span wire:loading wire:target="updateTag" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="updateTag">{{ __('Update') }}</span>
                 </button>
-                <button type="button" class="primary alt" @click="isModalOpen = false">
+                <button type="button" class="primary alt" wire:click="initialize">
                     {{ __('Cancel') }}
                 </button>
             </div>
         </form>
-
-        <script nonce="{{ csp_nonce() }}">
-            document.addEventListener('livewire:load', function () {
-
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.getElementById('lfm-tag-{{ $tag->id }}').addEventListener('click', (event) => {
-                        event.preventDefault();
-
-                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-                    });
-                });
-
-
-                // set file link
-                function fmSetLink($url) {
-                    // trigger input value change by JS. Livewire only updates the property on keyboard input event!
-                @this.cover_image_url = $url;
-                }
-
-            });
-
-        </script>
 
     </x-global::form-modal>
 </div>

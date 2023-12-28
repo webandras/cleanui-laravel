@@ -18,19 +18,23 @@ trait Reactive
      *
      * @return void
      */
-    private function initialize(): void
+    public function initialize(): void
     {
         $this->isModalOpen = false;
+        if (isset($this->iteration)) {
+            $this->iteration++;
+        }
 
         if (isset($this->tag)) {
-            $this->name = $this->tag->name;
-            $this->slug = $this->tag->slug;
+            $this->name            = $this->tag->name;
+            $this->slug            = $this->tag->slug;
             $this->cover_image_url = $this->tag->cover_image_url;
+            $this->cover_image     = null;
         } else {
-            $this->name = '';
-            $this->slug = '';
+            $this->name            = '';
+            $this->slug            = '';
             $this->cover_image_url = '';
-            $this->filterKeyword = '';
+            $this->filterKeyword   = '';
         }
     }
 
