@@ -17,21 +17,21 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $imagePaths = [
-            '/storage/photos/1/maura_mazambi.jpg',
-            '/storage/photos/shares/bonga-semba-music-min.jpg',
-            '/storage/photos/shares/dikanza.jpg',
-            '/images/placeholder.png'
+            '/images/img_forest.jpg',
+            '/images/img_lights.jpg',
+            '/images/img_mountains.jpg',
+            '/images/img_snowtops.jpg',
         ];
 
 
         return [
-            'title' => $this->faker->words(3, true),
-            'status' => 'published',
-            'slug' => $this->faker->slug(),
-            'content' => $this->faker->randomHtml(),
-            'excerpt' => $this->faker->realText(200),
-            'is_highlighted' => $this->faker->numberBetween(0, 1),
-            'cover_image_url' => $this->faker->randomElement($imagePaths)
+            'title'           => $this->faker->words(3, true),
+            'status'          => 'published',
+            'slug'            => $this->faker->slug(),
+            'content'         => $this->faker->randomHtml(),
+            'excerpt'         => $this->faker->realText(200),
+            'is_highlighted'  => $this->faker->numberBetween(0, 1),
+            'cover_image_url' => $this->faker->randomElement($imagePaths),
         ];
     }
 }
