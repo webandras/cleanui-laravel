@@ -30,6 +30,15 @@
                     <!-- Custom links -->
                     @role('super-administrator|administrator')
 
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                           href="{{ route('home') }}"
+                        >
+                            <i class="fa-solid fa-book"></i>{{ __('Demo components') }}
+                        </a>
+                    </li>
+
+
                     <!-- Manage posts/articles link -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('post.manage') ? 'active' : '' }}"

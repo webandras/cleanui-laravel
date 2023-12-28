@@ -11,6 +11,37 @@
                 <ul class="dashboard-card-grid">
                     <!-- Custom links -->
 
+                    @role('super-administrator|administrator')
+                    <!-- Demo components link -->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('home') }}">
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            {{ __('Demo components') }}
+                        </a>
+                    </li>
+
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('post.manage') }}">
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            {{ __('Manage posts') }}
+                        </a>
+                    </li>
+
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('category.manage') }}">
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            {{ __('Manage categories') }}
+                        </a>
+                    </li>
+
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('tag.manage') }}">
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            {{ __('Manage tags') }}
+                        </a>
+                    </li>
+                    @endrole
+
                     @role('super-administrator')
                     <!-- Manage users link -->
                     <li class="card text-center glassmorphic">

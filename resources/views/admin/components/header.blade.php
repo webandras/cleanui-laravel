@@ -16,6 +16,14 @@
 
                         @role('super-administrator|administrator')
 
+                        <!-- Demo components link -->
+                        <a class="fs-14 {{ request()->routeIs('home') ? 'active' : '' }}"
+                           href="{{ route('home') }}"
+                        >
+                            <i class="fa-regular fa-book"></i>
+                            <span>{{ __('Components') }}</span>
+                        </a>
+
                         <!-- Manage posts/articles link -->
                         <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
                            href="{{ route('post.manage') }}"
@@ -55,7 +63,7 @@
                                 <i class="fa fa-caret-down"></i>
                             </a>
 
-                            <div x-show="openDropdown" x-cloak class="dropdown-content card padding-0-5">
+                            <div x-show="openDropdown" x-cloak class="dropdown-content card padding-1">
 
                                 <a class="fs-14 dropdown-item"
                                    href="{{ route('user.account', auth()->id()) }}"
@@ -67,7 +75,7 @@
 
                                 <a
                                     id="logout-form-admin-header-trigger"
-                                    class="fs-14 dropdown-item"
+                                    class="fs-14 dropdown-item margin-bottom-0"
                                     href="#"
                                     role="button"
                                     onclick="triggerLogout('logout-form-admin-header')"
