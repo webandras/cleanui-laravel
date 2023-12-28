@@ -1,58 +1,23 @@
 @extends('admin.layouts.admin')
 
-@section('head')
-    <script src="{{ asset('/js/jquery.3.2.1.min.js') }}"></script>
-    <script nonce="{{ csp_nonce() }}">
-        const route_prefix = "/filemanager";
-        const lfm = function (id, type, options, livewireImageCallback) {
-            let button = document.getElementById(id);
+<script nonce="{{ csp_nonce() }}">
+        /*
+        * Need these global definitions to have multiple single image upload buttons on one page!
+        **/
+        // input
+        let inputId = '';
 
-            button.addEventListener('click', function () {
-                var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
-                var target_input = document.getElementById(button.getAttribute('data-input'));
-                var target_preview = document.getElementById(button.getAttribute('data-preview'));
 
-                // laravel-filemanager window
-                window.open(route_prefix + '?type=' + options.type || 'image', 'FileManager', 'width=900,height=600');
+        // set file link
+        function fmSetLink($url) {
+            let currentInput = document.getElementById(inputId)
 
-                // This will run when we click on the use button
-                window.SetUrl = function (items) {
-                    var file_path = items.map(function (item) {
-                        return item.url;
-                    }).join(',');
+            currentInput.value = $url;
 
-                    // set the value of the desired input to image url
-                    target_input.value = file_path;
+            currentInput.dispatchEvent(new Event('input'))
+        }
 
-                    // update livewire property
-                    // Reason: https://forum.laravel-livewire.com/t/data-binding-not-working-with-value-changed-by-js/989
-                    livewireImageCallback(file_path)
-
-                    // target_input.dispatchEvent(new Event('input'));
-
-                    // Create forms needs an image preview
-                    if (target_preview !== null) {
-
-                        // clear previous preview
-                        target_preview.innerHtml = '';
-
-                        // set or change the preview image src
-                        items.forEach(function (item) {
-                            let img = document.createElement('img')
-                            img.setAttribute('style', 'height: 5rem')
-                            img.setAttribute('src', item.thumb_url)
-                            target_preview.appendChild(img);
-                        });
-
-                        // trigger change event
-                        target_preview.dispatchEvent(new Event('change'));
-                    }
-                };
-            });
-        };
-
-    </script>
-@endsection
+</script>
 
 @section('content')
 
@@ -85,17 +50,14 @@
                 @foreach ($categories as $category)
                     <li>
                         <div
-                            class="{{ $selectedCategory->id === $category->id ? 'flex active-category' : 'flex inactive-category' }}">
+                            class="flex inactive-category">
 
-                            <div class="padding-0-5" style="
-
-">
+                            <div class="padding-0-5 category-title">
                                 @if (count($category->categories) > 0)
-
-                                    <span class="caret caret-down"></span>
+                                    <span class="caret"></span>
                                 @endif
                                 <h2 class="fs-16 margin-top-bottom-0">
-                                    <a class="underline" href="{{ route('category.selected', $category->id)}}">
+                                    <a class="underline" href="#">
                                         {{ $category->name }}
                                     </a>
                                 </h2>
@@ -123,10 +85,9 @@
 
                         </div>
 
-                        <ul class="no-bullets margin-top-bottom-0 padding-left-2 padding-right-0 nested active">
+                        <ul class="no-bullets margin-top-bottom-0 padding-left-2 padding-right-0 nested">
                             @foreach ($category->categories as $childCategory)
-                                <x-admin::child-category-list :childCategory="$childCategory"
-                                                             :selectedCategory="$selectedCategory">
+                                <x-admin::child-category-list :childCategory="$childCategory">
                                 </x-admin::child-category-list>
                             @endforeach
                         </ul>

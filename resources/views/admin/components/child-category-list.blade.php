@@ -1,12 +1,12 @@
 <li>
-    <div class="{{ $selectedCategory->id === $childCategory->id ? 'flex active-category' : 'flex inactive-category' }}">
+    <div class="flex inactive-category">
 
-        <div class="padding-0-5">
+        <div class="padding-0-5 category-title">
             @if (count($childCategory->categories) > 0)
-                <span class="caret caret-down"></span>
+                <span class="caret"></span>
             @endif
             <h3 class="fs-16 margin-top-bottom-0">
-                <a href="{{ route('category.selected', $childCategory->id)}}">
+                <a href="#">
                     {{ $childCategory->name }}
                 </a>
             </h3>
@@ -35,11 +35,10 @@
     </div>
 
 
-    <ul class="no-bullets padding-left-1-5 margin-top-0 margin-bottom-0 padding-bottom-0-5 padding-right-0 nested active">
+    <ul class="no-bullets padding-left-1-5 margin-top-0 margin-bottom-0 padding-bottom-0 padding-right-0 nested">
         @if (count($childCategory->categories) > 0)
             @foreach ($childCategory->categories as $childCategory)
-                <x-admin::child-category-list :childCategory="$childCategory"
-                                       :selectedCategory="$selectedCategory"></x-admin::child-category-list>
+                <x-admin::child-category-list :childCategory="$childCategory"></x-admin::child-category-list>
             @endforeach
         @endif
     </ul>

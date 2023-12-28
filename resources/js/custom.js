@@ -1,12 +1,15 @@
-const toggler = document.getElementsByClassName("caret");
+const toggler = document.getElementsByClassName("category-title");
+
 if (toggler) {
     let i;
 
     for (i = 0; i < toggler.length; i++) {
         toggler[i].addEventListener("click", function () {
-            this.parentElement.parentElement.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-            this.parentElement.parentElement.classList.toggle("active-list-item");
+            this.parentElement.parentElement.querySelector(".nested").classList.toggle("active");
+            if(this.firstChild.nextSibling.classList.contains("caret")) {
+                this.firstChild.nextSibling.classList.toggle("caret-down");
+            }
+            //this.parentElement.parentElement.classList.toggle("active-list-item");
         });
     }
 }

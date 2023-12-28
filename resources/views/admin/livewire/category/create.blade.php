@@ -9,15 +9,16 @@
             return false;
         }
     }
-}">
+}"
+>
 
     @if ($hasSmallButton)
-        <button @click="isModalOpen = true" class="success alt" title="{{ __('New subcategory') }}">
+        <button @click="isModalOpen = true" class="success alt" title="{{ __('Subcategory') }}">
             <i class="fa fa-plus"></i>
         </button>
     @else
         <button @click="isModalOpen = true" class="success alt">
-            <i class="fa fa-plus"></i>{{ __('New subcategory') }}
+            <i class="fa fa-plus"></i>{{ __('Subcategory') }}
         </button>
     @endif
 
@@ -75,7 +76,8 @@
                 <div class="relative" style="width: fit-content">
                     <img x-bind:src="coverImage" alt="{{ __('Cover image') }}"
                          class="card card-4 margin-bottom-1 image-preview"/>
-                    <button @click="coverImage = ''" class="close-button absolute topright margin-top-0-5 margin-right-0-5"><i
+                    <button @click="coverImage = ''"
+                            class="close-button absolute topright margin-top-0-5 margin-right-0-5"><i
                             class="fa fa-trash-alt"></i></button>
                 </div>
             </template>
@@ -122,18 +124,15 @@
         <script nonce="{{ csp_nonce() }}">
             document.addEventListener('livewire:load', function () {
 
-                    document.getElementById('lfm-new-{{ $category->id }}').addEventListener('click', (event) => {
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.getElementById('lfm-new-{{ $categoryId }}').addEventListener('click', (event) => {
                         event.preventDefault();
+
+                        inputId = 'cover-image-url-new-{{$categoryId}}';
 
                         window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
                     });
-
-                // set file link
-                function fmSetLink($url) {
-                    // trigger input value change by JS. Livewire only updates the property on keyboard input event!
-                    @this.cover_image_url = $url;
-                }
-
+                });
             });
         </script>
 

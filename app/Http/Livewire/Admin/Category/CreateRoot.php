@@ -24,7 +24,7 @@ class CreateRoot extends Component
     // inputs
     public string $name;
     public string $slug;
-    public ?string $cover_image_url;
+    public ?string $cover_image_url = '';
 
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',
@@ -65,7 +65,6 @@ class CreateRoot extends Component
 
         $this->name = '';
         $this->slug = '';
-        $this->cover_image_url = '';
     }
 
 

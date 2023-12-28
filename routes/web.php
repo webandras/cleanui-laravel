@@ -114,9 +114,6 @@ Route::group(
 
         /* Categories */
         Route::get('categories/manage', [CategoryController::class, 'index'])->name('category.manage');
-
-        Route::get('category/selected/{category}', [CategoryController::class, 'getSelected'])
-            ->name('category.selected');
         /* Categories END */
 
 

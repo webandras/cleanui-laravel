@@ -64,14 +64,15 @@
                     <div class="relative" style="width: fit-content">
                         <img x-bind:src="coverImage" alt="{{ __('Cover image') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
-                        <button @click="coverImage = ''" class="close-button absolute topright margin-top-0-5 margin-right-0-5"><i
+                        <button @click="coverImage = ''"
+                                class="close-button absolute topright margin-top-0-5 margin-right-0-5"><i
                                 class="fa fa-trash-alt"></i></button>
                     </div>
                 </template>
 
                 <div class="flex flex-row flex-nowrap">
                     <div>
-                        <a id="lfm-{{ $category->id }}"
+                        <a id="lfm-edit-{{ $category->id }}"
                            data-input="cover-image-url-{{ $category->id }}"
                            class="button info margin-top-0 fs-14">
                             <i class="fa-solid fa-image"></i> {{ __('Choose') }}
@@ -84,7 +85,7 @@
                         class="small-input {{ $errors->has('cover_image_url') ? ' border border-red' : '' }}"
                         type="text"
                         readonly
-                        wire:model.lazy="cover_image_url"
+                        wire:model="cover_image_url"
                         name="cover_image_url"
                     />
 
@@ -110,19 +111,17 @@
 
         <script nonce="{{ csp_nonce() }}">
             document.addEventListener('livewire:load', function () {
-                // trigger input value change by JS. Livewire only updates the property on keyboard input event!
-                lfm(
-                    'lfm-{{ $category->id }}',
-                    'image',
-                    {
-                        type: 'image',
-                        prefix: route_prefix
-                    },
-                    function (file_path) {
-                        // trigger input value change by JS. Livewire only updates the property on keyboard input event!
-                    @this.cover_image_url
-                        = file_path;
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.getElementById('lfm-edit-{{ $category->id }}').addEventListener('click', (event) => {
+                        event.preventDefault();
+
+                        inputId = 'cover-image-url-{{ $category->id }}';
+
+                        window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
                     });
+                });
+
             });
         </script>
 

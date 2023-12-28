@@ -49,7 +49,6 @@ class CategoryController extends Controller
 
         return view('admin.pages.category.manage')->with([
             'categories' => $categories,
-            'selectedCategory' => $selectedCategory,
             'parentCategories' => array_reverse($parentCategories, true),
         ]);
     }

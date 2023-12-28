@@ -16,17 +16,57 @@ class Create extends Component
     use AuthorizesRequests;
 
     // used by blade / alpinejs
+    /**
+     * @var
+     */
     public $modalId;
+
+
+    /**
+     * @var bool
+     */
     public bool $isModalOpen;
+
+
+    /**
+     * @var bool
+     */
     public bool $hasSmallButton;
 
     // inputs
+    /**
+     * @var string
+     */
     public string $name;
+
+
+    /**
+     * @var string
+     */
     public string $slug;
+
+
+    /**
+     * @var string|null
+     */
     public ?string $cover_image_url;
+
+
+    /**
+     * @var
+     */
     public $category;
+
+
+    /**
+     * @var int
+     */
     public int $categoryId;
 
+
+    /**
+     * @var array|string[]
+     */
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',
         'slug' => 'required|string|unique:categories',
@@ -39,6 +79,7 @@ class Create extends Component
      * @var CategoryRepositoryInterface
      */
     private CategoryRepositoryInterface $categoryRepository;
+
 
     /**
      * @var ImageServiceInterface
@@ -58,6 +99,13 @@ class Create extends Component
     }
 
 
+    /**
+     * @param  string  $modalId
+     * @param $category
+     * @param  bool  $hasSmallButton
+     *
+     * @return void
+     */
     public function mount(string $modalId, $category, bool $hasSmallButton = false)
     {
         $this->modalId = $modalId;
@@ -66,17 +114,25 @@ class Create extends Component
 
         $this->name = '';
         $this->slug = '';
-        $this->cover_image_url = '';
+        //$this->cover_image_url = '';
         $this->category = $category;
         $this->categoryId = $category->id;
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function render()
     {
         return view('admin.livewire.category.create');
     }
 
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function createCategory()
     {
         $this->authorize('create', Category::class);
@@ -106,6 +162,10 @@ class Create extends Component
         return redirect()->route('category.manage');
     }
 
+
+    /**
+     * @return void
+     */
     public function initialize() {
         $this->name = '';
         $this->cover_image_url = '';
