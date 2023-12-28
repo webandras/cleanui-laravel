@@ -51,27 +51,34 @@
                             @endif
                         </td>
                         <td>
-                            <h2 class="padding-right-0-5 h3 margin-top-bottom-0">
-                                {{ $post->title }}
-                                @if ($post->is_highlighted)
-                                    <i class="fa-regular fa-star goldenrod"
-                                       title="{{ __('Highlighted post') }}"></i>
-                                @endif
-                            </h2>
-                            <small>/{{ $post->slug }}</small>
+                            <div class="flex flex-row" style="row-gap: 1em;justify-content: space-between;">
+                                <div>
+                                    <h2 class="padding-right-0-5 h3 margin-top-bottom-0">
+                                        {{ $post->title }}
+                                        @if ($post->is_highlighted)
+                                            <i class="fa-regular fa-star goldenrod"
+                                               title="{{ __('Highlighted post') }}"></i>
+                                        @endif
+                                    </h2>
+                                    <small>/{{ $post->slug }}</small>
 
-                            <div class="flex flex-row margin-top-0-5">
-                                <span
-                                    class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
-                                <span class="fs-12 medium">{{ $post->created_at }}</span>
+                                    <div class="flex flex-row margin-top-0-5">
+                                        <span class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
+                                        <span class="fs-12 medium">{{ $post->created_at }}</span>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    @isset ($post->cover_image_url)
+                                        <img src="{{ asset($post->cover_image_url) }}"
+                                             alt="{{__('Cover image preview') }}"
+                                             class="hover-opacity border" width="140px">
+                                    @endisset
+
+                                </div>
                             </div>
 
-                            <br>
-
-                            @isset ($post->cover_image_url)
-                                <img src="{{ asset($post->cover_image_url) }}" alt="{{__('Cover image preview') }}"
-                                     class="hover-opacity border" width="140px">
-                            @endisset
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
 
                             <hr class="divider">
