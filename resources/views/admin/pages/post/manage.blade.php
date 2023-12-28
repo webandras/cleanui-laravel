@@ -61,15 +61,16 @@
                             <small>/{{ $post->slug }}</small>
 
                             <div class="flex flex-row margin-top-0-5">
-                                 <span class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
-                                 <span class="fs-12 medium">{{ $post->created_at }}</span>
+                                <span
+                                    class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
+                                <span class="fs-12 medium">{{ $post->created_at }}</span>
                             </div>
 
                             <br>
 
                             @isset ($post->cover_image_url)
                                 <img src="{{ asset($post->cover_image_url) }}" alt="{{__('Cover image preview') }}"
-                                     class="hover-opacity border margin-top-1" width="140px">
+                                     class="hover-opacity border" width="140px">
                             @endisset
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
 
@@ -111,9 +112,9 @@
 
                                     <!-- Delete post -->
                                     <livewire:admin.post.delete title="{{ __('Delete post') }}"
-                                                          :post="$post"
-                                                          :hasSmallButton="false"
-                                                          :modalId="'m-delete-post-' . $post->id"
+                                                                :post="$post"
+                                                                :hasSmallButton="false"
+                                                                :modalId="'m-delete-post-' . $post->id"
                                     >
                                     </livewire:admin.post.delete>
                                 @endif
