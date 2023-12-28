@@ -1843,7 +1843,7 @@
                     dropText: '[_t_ File(s)]'
                 },
                 childTemplate: '<div class="col s6 m6 l6"></div>',
-                imageClass: 'img-fluid mt-3 round',
+                imageClass: 'img-fluid margin-bottom-1 round',
             });
 
             $('#gallery').clean_dropzone({
@@ -1852,7 +1852,7 @@
                 dropzoneTemplate: '<div class="clean-dropzone"><div class="clean-dropzone-area"></div><div class="clean-dropzone-message"></div><div class="clean-dropzone-preview mt-0"></div></div>',
                 parentTemplate: '<div class="row-padding justify-content-center align-items-center"></div>',
                 childTemplate: '<div class="col s6 m6 l6"></div>',
-                imageClass: 'img-fluid mt-3 round',
+                imageClass: 'img-fluid margin-bottom-1 round',
                 noneColorClass: 'alert secondary',
                 language: {
                     emptyText: '[Drop Files Here or Click To Upload]',
