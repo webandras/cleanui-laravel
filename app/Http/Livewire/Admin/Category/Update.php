@@ -102,6 +102,6 @@ class Update extends Component
         );
 
         $this->banner(__('Category successfully updated.'));
-        return redirect()->route('category.selected', $this->categoryId)->with(['selectedCategory' => $this->category]);
+        return redirect()->route('category.manage');
     }
 }
