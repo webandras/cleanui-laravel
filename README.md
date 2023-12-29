@@ -87,8 +87,8 @@ php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
 ```
 
 To enable iframe-embed support for YouTube and Vimeo (can be extended for other video sharing platforms),
-vopy `_for_htmlpurifier/MyIframe.php` to `vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/` folder
-This line should be present in `config/purifier.php` file (which is there by default in this starter):
+copy `_for_htmlpurifier/MyIframe.php` to `vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/` folder. This line
+should be present in `config/purifier.php` file (which is there by default in this starter):
 
 ```php
 'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()),
