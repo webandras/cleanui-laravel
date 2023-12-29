@@ -22,7 +22,7 @@ class UserTest extends TestCase
     protected function assert_if_user_has_permission_to_routes(User $user, Role $role) {
         DB::transaction(function () use ($user, $role) {
             foreach ($role->permissions as $permission) {
-                $this->assertEquals(true, $user->hasPermissionThroughRole($permission));
+                $this->assertTrue($user->hasPermissionThroughRole($permission));
             }
 
             if (isset($permission)) {
@@ -42,7 +42,7 @@ class UserTest extends TestCase
                 }
             }
 
-        }, 1);
+        });
 
     }
 

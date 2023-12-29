@@ -113,7 +113,7 @@ class Create extends Component
     {
         $this->modalId = $modalId;
         $this->isModalOpen = false;
-        $this->hasSmallButton = $hasSmallButton || false;
+        $this->hasSmallButton = $hasSmallButton;
 
         $this->initialize();
     }

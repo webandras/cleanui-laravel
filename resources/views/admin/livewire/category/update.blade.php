@@ -38,6 +38,7 @@
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
+                       id="name"
                 >
 
                 <div
@@ -49,7 +50,8 @@
                 <input wire:model.defer="slug"
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
-                       name="name"
+                       name="slug"
+                       id="slug"
                 >
                 <div
                     class="{{ $errors->has('slug') ? 'error-message' : '' }}">
@@ -80,6 +82,7 @@
                     </div>
 
 
+                    <label for="cover-image-url-{{ $category->id }}" class="sr-only">{{ __('Cover image') }}</label>
                     <input
                         id="cover-image-url-{{ $category->id }}"
                         class="small-input {{ $errors->has('cover_image_url') ? ' border border-red' : '' }}"

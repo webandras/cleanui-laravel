@@ -28,8 +28,8 @@ class HTMLPurifier_Filter_MyIframe extends HTMLPurifier_Filter
     public function preFilter($html, $config, $context)
     {
         $html = preg_replace('#<iframe#i', '<img class="MyIframe"', $html);
-        $html = preg_replace('#</iframe>#i', '</img>', $html);
-        return $html;
+
+        return preg_replace('#</iframe>#i', '</img>', $html);
     }
 
     /**
@@ -50,9 +50,9 @@ class HTMLPurifier_Filter_MyIframe extends HTMLPurifier_Filter
      * @param  array  $matches
      * @return string
      */
-    protected function postFilterCallback($matches)
+    protected function postFilterCallback($matches): string
     {
-// Domain Whitelist
+        // Domain Whitelist
         $youTubeMatch = preg_match('#src="https?://www.youtube(-nocookie)?.com/#i', $matches[1]);
         $vimeoMatch = preg_match('#src="http://player.vimeo.com/#i', $matches[1]);
         if ($youTubeMatch || $vimeoMatch) {

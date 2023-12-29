@@ -94,7 +94,9 @@
             <tbody>
             @foreach($archivedTags as $tag)
                 <tr>
-                    <td><input type="checkbox" value="{{ $tag->id }}" wire:model="selectedIds" name="selectedIds"></td>
+                    <td>
+                        <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
+                        <input type="checkbox" value="{{ $tag->id }}" wire:model="selectedIds" name="selectedIds" id="selectedIds"></td>
                     <td><b>{{ $tag->name }}</b><br><small>Archived at: {{ $tag->deleted_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>
                     <td>

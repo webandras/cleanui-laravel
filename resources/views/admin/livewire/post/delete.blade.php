@@ -14,16 +14,18 @@
     @endif
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete?') }}"
-                        id="{{ $modalId }}">
+                          id="{{ $modalId }}">
         <form wire:submit.prevent="deletePost">
             <h2 class="h3">{{ $title }}</h2>
             <hr class="divider">
 
+            <label for="postId" class="sr-only">{{ __('Post Id') }}</label>
             <input wire:model.defer="postId"
                    disabled
                    type="number"
                    class="hidden"
                    name="postId"
+                   id="postId"
             >
 
             <div class="actions">

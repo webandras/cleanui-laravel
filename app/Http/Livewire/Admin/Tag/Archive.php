@@ -201,6 +201,7 @@ class Archive extends Component
      *
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function restoreTags(): void
     {
@@ -224,6 +225,7 @@ class Archive extends Component
      *
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function destroyTags(): void
     {

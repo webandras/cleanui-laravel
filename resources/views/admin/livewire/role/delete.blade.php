@@ -19,11 +19,13 @@
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 
+            <label for="roleId" class="sr-only">{{ __('Role Id') }}</label>
             <input wire:model.defer="roleId"
                    disabled
                    type="number"
                    class="hidden"
                    name="roleId"
+                   id="roleId"
                    value="{{ $roleId }}"
             >
 

@@ -16,28 +16,36 @@
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('home') }}">
                             <i class="fa-regular fa-book" aria-hidden="true"></i>
-                            {{ __('Demo components') }}
+                            {{ __('Demo Components') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('post.manage') }}">
                             <i class="fa-regular fa-book" aria-hidden="true"></i>
-                            {{ __('Manage posts') }}
+                            {{ __('Manage Posts') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('category.manage') }}">
                             <i class="fa-regular fa-book" aria-hidden="true"></i>
-                            {{ __('Manage categories') }}
+                            {{ __('Manage Categories') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('tag.manage') }}">
                             <i class="fa-regular fa-book" aria-hidden="true"></i>
-                            {{ __('Manage tags') }}
+                            {{ __('Manage Tags') }}
+                        </a>
+                    </li>
+
+
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('filemanager') }}">
+                            <i class="fa-solid fa-photo-film" aria-hidden="true"></i>
+                            {{ __('Media Library') }}
                         </a>
                     </li>
                     @endrole
@@ -47,7 +55,7 @@
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('user.manage') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            {{ __('Manage users') }}
+                            {{ __('Manage Users') }}
                         </a>
                     </li>
 

@@ -35,6 +35,7 @@
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
+                       id="name"
                 >
                 <div
                     class="{{ $errors->has('name') ? 'error-message' : '' }}">
@@ -46,6 +47,7 @@
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                        name="slug"
+                       id="slug"
                 >
                 <div
                     class="{{ $errors->has('slug') ? 'error-message' : '' }}">

@@ -27,6 +27,7 @@
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
+                    id="name"
                     value=""
                 >
 
@@ -40,7 +41,8 @@
                 <input
                     wire:model.defer="email"
                     type="email"
-                    name="name"
+                    name="email"
+                    id="email"
                     value=""
                     readonly
                 >
@@ -56,6 +58,7 @@
                     type="text"
                     class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                     name="password"
+                    id="password"
                     value=""
                 >
 

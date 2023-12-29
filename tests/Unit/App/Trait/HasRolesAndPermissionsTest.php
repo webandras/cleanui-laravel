@@ -36,7 +36,7 @@ class HasRolesAndPermissionsTest extends TestCase
      */
     public function test_user_exists(): void
     {
-        $hasUser = $this->user ? true : false;
+        $hasUser = (bool) $this->user;
         $this->assertTrue($hasUser);
     }
 

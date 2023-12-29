@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Interface\Entities\TagInterface;
 use App\Interface\Repository\TagRepositoryInterface;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,7 +17,7 @@ class TagRepository implements TagRepositoryInterface
     public function getPaginatedTags(): LengthAwarePaginator
     {
         return Tag::orderBy('created_at', 'DESC')
-            ->paginate(Tag::RECORDS_PER_PAGE)
+            ->paginate(TagInterface::RECORDS_PER_PAGE)
             ->withQueryString();
     }
 

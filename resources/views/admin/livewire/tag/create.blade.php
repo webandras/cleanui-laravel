@@ -33,6 +33,7 @@
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
+                    id="name"
                     value=""
                 >
 
@@ -47,6 +48,7 @@
                     type="text"
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
+                    id="slug"
                     value=""
                 >
 

@@ -6,6 +6,7 @@ use App\Interface\Repository\CategoryRepositoryInterface;
 use App\Interface\Services\ImageServiceInterface;
 use App\Models\Category;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -74,6 +75,9 @@ class CreateRoot extends Component
     }
 
 
+    /**
+     * @throws AuthorizationException
+     */
     public function createCategory()
     {
         $this->authorize('create', Category::class);

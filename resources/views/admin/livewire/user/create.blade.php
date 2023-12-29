@@ -27,6 +27,7 @@
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
+                    id="name"
                     value=""
                 >
 
@@ -41,7 +42,8 @@
                     wire:model.defer="email"
                     type="email"
                     class="{{ $errors->has('email') ? 'border border-red' : '' }}"
-                    name="name"
+                    name="email"
+                    id="email"
                     value=""
                 >
 
@@ -56,6 +58,7 @@
                     type="text"
                     class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                     name="password"
+                    id="password"
                     value=""
                 >
 

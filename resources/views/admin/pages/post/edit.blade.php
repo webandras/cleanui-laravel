@@ -68,7 +68,7 @@
                     <div class="mb-5">
                         <label for="content" class="bold">{{ __('Body') }}<span class="text-red">*</span></label>
                         <div>
-                                <textarea name="content" rows="5" id="update-content-editor"
+                                <textarea name="content" id="content" rows="5" id="update-content-editor"
                                           class="{{ $errors->has('content') ? 'border border-red' : '' }}"
                                 >
                                     {!! $post->content !!}

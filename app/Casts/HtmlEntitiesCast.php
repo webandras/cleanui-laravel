@@ -13,9 +13,10 @@ class HtmlEntitiesCast implements CastsAttributes
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
+     *
      * @return mixed
      */
-    public function get($model, string $key, $value, array $attributes)
+    public function get(\Illuminate\Database\Eloquent\Model $model, string $key, mixed $value, array $attributes)
     {
         return $value;
     }
@@ -27,9 +28,10 @@ class HtmlEntitiesCast implements CastsAttributes
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
-     * @return mixed
+     *
+     * @return string
      */
-    public function set($model, string $key, $value, array $attributes)
+    public function set(\Illuminate\Database\Eloquent\Model $model, string $key, mixed $value, array $attributes): string
     {
         return htmlentities($value);
     }

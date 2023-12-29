@@ -63,7 +63,7 @@ class Edit extends Component
     ) {
         $this->modalId = $modalId;
         $this->isModalOpen = false;
-        $this->hasSmallButton = $hasSmallButton || false;
+        $this->hasSmallButton = $hasSmallButton;
 
         $this->user = $user;
         $this->userId = $this->user->id;

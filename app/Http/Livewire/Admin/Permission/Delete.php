@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Permission;
 use App\Interface\Services\RolePermissionServiceInterface;
 use App\Models\Permission;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -62,6 +63,9 @@ class Delete extends Component
     }
 
 
+    /**
+     * @throws AuthorizationException
+     */
     public function deletePermission()
     {
         $this->authorize('delete', [Permission::class, $this->permission]);

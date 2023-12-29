@@ -36,6 +36,7 @@
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
+                    id="name"
                     value=""
                 >
 
@@ -50,6 +51,7 @@
                     type="text"
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
+                    id="slug"
                     value=""
                 >
 
@@ -59,12 +61,14 @@
 
             </fieldset>
 
+            <label for="categoryId" class="sr-only">{{ __('Category Id') }}</label>
             <input
                 wire:model.defer="categoryId"
                 disabled
                 type="number"
                 class="hidden"
                 name="categoryId"
+                id="categoryId"
                 value="{{ $categoryId }}"
             >
 
@@ -92,6 +96,7 @@
                     </a>
                 </div>
 
+                <label for="cover-image-url-new-{{$categoryId}}" class="sr-only">{{ __('Cover image') }}</label>
                 <input id="cover-image-url-new-{{$categoryId}}"
                        class="small-input {{ $errors->has('cover_image_url') ? ' border border-red' : '' }}"
                        type="text"

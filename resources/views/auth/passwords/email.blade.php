@@ -21,6 +21,7 @@
                     type="email"
                     class="form-control @error('email') border border-dark-red @enderror"
                     name="email"
+                    id="email"
                     value="{{ old('email') }}"
                     required
                     autocomplete="email"

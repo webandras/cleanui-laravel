@@ -60,7 +60,7 @@
 
                     <!-- Post content / text editor -->
                     <div class="mb-5">
-                        <label for="content" class="bold">{{ __('Body') }}<span class="text-red">*</span></label>
+                        <label for="update-content-editor" class="bold">{{ __('Body') }}<span class="text-red">*</span></label>
                         <div>
                                 <textarea name="content" rows="5" id="update-content-editor"
                                           class="{{ $errors->has('content') ? 'border border-red' : '' }}"
@@ -213,7 +213,7 @@
 
 @push('scripts')
     <script nonce="{{ csp_nonce() }}">
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById('lfm').addEventListener('click', (event) => {
                 event.preventDefault();
@@ -221,6 +221,7 @@
                 window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
             });
         });
+
         // set file link
         function fmSetLink($url) {
             document.getElementById('cover_image_url').value = $url;

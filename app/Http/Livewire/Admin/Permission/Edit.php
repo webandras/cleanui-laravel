@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Permission;
 use App\Interface\Services\RolePermissionServiceInterface;
 use App\Models\Permission;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,7 +57,7 @@ class Edit extends Component
     {
         $this->modalId = $modalId;
         $this->isModalOpen = false;
-        $this->hasSmallButton = $hasSmallButton || false;
+        $this->hasSmallButton = $hasSmallButton;
 
         $this->permission = $permission;
         $this->permissionId = $this->permission->id;
@@ -73,6 +74,9 @@ class Edit extends Component
         return view('admin.livewire.permission.edit');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function updatePermission()
     {
         $this->authorize('update', [Permission::class, $this->permission]);

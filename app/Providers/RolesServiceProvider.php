@@ -20,7 +20,8 @@ class RolesServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot() {
+    public function boot(): void
+    {
         // php artisan cache:clear
         // php artisan config:clear
         // php artisan view:clear

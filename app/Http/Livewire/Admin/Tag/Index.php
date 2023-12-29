@@ -30,6 +30,13 @@ class Index extends Component
      */
     protected $tags;
 
+
+    /**
+     * @var
+     */
+    protected $archivedTags = null;
+
+
     /**
      * Custom pagination pageName parameter
      * @var string
@@ -75,7 +82,7 @@ class Index extends Component
 
 
     /**
-     * @param ModelRepositoryInterface $tagRepository
+     * @param  ModelRepositoryInterface  $tagRepository
      *
      * @return void
      */
@@ -92,9 +99,9 @@ class Index extends Component
     public function mount(): void
     {
         //$this->initialize();
-        $this->tags = null;
+        $this->tags         = null;
         $this->archivedTags = null;
-        $this->selectedIds = [];
+        $this->selectedIds  = [];
     }
 
 
@@ -150,8 +157,8 @@ class Index extends Component
      */
     public function resetFilters(): void
     {
-        $this->resetPage('page');
-        $this->filterOn = false;
+        $this->resetPage();
+        $this->filterOn      = false;
         $this->filterKeyword = '';
         $this->initialize();
     }
@@ -162,29 +169,30 @@ class Index extends Component
      */
     public function filterTags(): void
     {
-        $this->resetPage('page');
+        $this->resetPage();
 
-        $this->tags = $this->getFilteredPaginatedTags($this->filterKeyword);
+        $this->tags        = $this->getFilteredPaginatedTags($this->filterKeyword);
         $this->selectedIds = [];
-        $this->filterOn = true;
+        $this->filterOn    = true;
     }
 
 
     /**
-     * @param string $keyword
+     * @param  string  $keyword
+     *
      * @return LengthAwarePaginator
      */
     public function getFilteredPaginatedTags(string $keyword): LengthAwarePaginator
     {
         /* has the search keyword in name */
         if ($keyword !== '') {
-            $q = Tag::where('name', 'LIKE', '%' . $keyword . '%');
+            $q = Tag::where('name', 'LIKE', '%'.$keyword.'%');
         } else {
             $q = Tag::all();
         }
 
         return $q->orderBy('id', 'desc')
-            ->paginate(TagInterface::RECORDS_PER_PAGE);
+                 ->paginate(TagInterface::RECORDS_PER_PAGE);
     }
 
 
@@ -193,17 +201,18 @@ class Index extends Component
      *
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function archiveTags(): void
     {
         $count = sizeof($this->selectedIds);
-        $ids = $this->selectedIds;
-        $tag = Tag::first();
+        $ids   = $this->selectedIds;
+        $tag   = Tag::first();
         $this->authorize('restore', [Tag::class, $tag]);
 
         $this->tagRepository->deleteSelectedEntities('Tag', $ids);
         $this->toggleArchiveModal();
-        $this->banner(__($count . ' tags archived.'));
+        $this->banner(__($count.' tags archived.'));
         $this->initialize();
         $this->triggerOnAlert();
 
@@ -220,7 +229,7 @@ class Index extends Component
      */
     public function toggleArchiveModal(): void
     {
-        $this->isArchiveConfirmOpen = !$this->isArchiveConfirmOpen;
+        $this->isArchiveConfirmOpen = ! $this->isArchiveConfirmOpen;
     }
 
 }

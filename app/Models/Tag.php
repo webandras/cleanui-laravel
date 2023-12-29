@@ -26,7 +26,7 @@ class Tag extends Model implements TagInterface
         'category_id'
     ];
 
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
     /**
      * The attributes that should be cast.

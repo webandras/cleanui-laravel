@@ -37,6 +37,7 @@
                         type="text"
                         class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                         name="name"
+                        id="name"
                         value="{{ $user->name ?? old('name') }}"
                     >
 
@@ -50,6 +51,7 @@
                     <input
                         type="email"
                         name="email"
+                        id="email"
                         value="{{ $user->email }}"
                         readonly
                     >
@@ -64,6 +66,7 @@
                         type="text"
                         class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                         name="password"
+                        id="password"
                         value="{{ old('password') }}"
                     >
 
@@ -74,6 +77,7 @@
                     <div class="checkbox-container">
                         <label for="enable2fa">
                             <input name="enable2fa"
+                                   id="enable2fa"
                                    type="checkbox"
                                    value="1"
                                 {{ old('enable2fa', $user->enable_2fa !== 0 ? 'checked' : '') }}
@@ -127,10 +131,11 @@
 
 
                             <!-- Password -->
-                            <label for="password">{{ __('Password') }}<span class="text-red">*</span></label>
+                            <label for="password-2">{{ __('Password') }}<span class="text-red">*</span></label>
                             <input
                                 type="text"
                                 name="password"
+                                id="password-2"
                                 value=""
                             >
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Role;
 use App\Interface\Services\RolePermissionServiceInterface;
 use App\Models\Role;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,7 +57,7 @@ class Edit extends Component
     {
         $this->modalId = $modalId;
         $this->isModalOpen = false;
-        $this->hasSmallButton = $hasSmallButton || false;
+        $this->hasSmallButton = $hasSmallButton;
 
         $this->role = $role;
         $this->roleId = $this->role->id;
@@ -75,6 +76,9 @@ class Edit extends Component
         return view('admin.livewire.role.edit');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function updateRole()
     {
         $this->authorize('update', [Role::class, $this->role]);

@@ -72,9 +72,9 @@ class UserPolicy
      * @param  User  $user
      * @param  User  $model
      *
-     * @return Response|bool
+     * @return bool
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, User $model): bool
     {
         if (!$user->hasRoles('super-administrator') && $model->hasRoles('super-administrator')) {
             return false;

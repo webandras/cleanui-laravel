@@ -92,7 +92,9 @@
             <tbody>
             @foreach($tags as $tag)
                 <tr>
-                    <td><input type="checkbox" value="{{ $tag->id }}" wire:model.defer="selectedIds" name="selectedIds">
+                    <td>
+                        <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
+                        <input type="checkbox" value="{{ $tag->id }}" wire:model.defer="selectedIds" name="selectedIds" id="selectedIds">
                     </td>
                     <td><b>{{ $tag->name }}</b><br><small>{{ $tag->created_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>

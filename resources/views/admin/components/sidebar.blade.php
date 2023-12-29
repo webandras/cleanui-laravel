@@ -34,7 +34,7 @@
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                            href="{{ route('home') }}"
                         >
-                            <i class="fa-solid fa-book"></i>{{ __('Demo components') }}
+                            <i class="fa-solid fa-book"></i>{{ __('Demo Components') }}
                         </a>
                     </li>
 
@@ -44,7 +44,7 @@
                         <a class="nav-link {{ request()->routeIs('post.manage') ? 'active' : '' }}"
                            href="{{ route('post.manage') }}"
                         >
-                            <i class="fa-regular fa-newspaper"></i>{{ __('Manage posts') }}
+                            <i class="fa-regular fa-newspaper"></i>{{ __('Manage Posts') }}
                         </a>
                     </li>
 
@@ -54,7 +54,7 @@
                         <a class="nav-link {{ request()->routeIs('category.manage') ? 'active' : '' }}"
                            href="{{ route('category.manage') }}"
                         >
-                            <i class="fa-solid fa-folder-open"></i>{{ __('Manage categories') }}
+                            <i class="fa-solid fa-folder-open"></i>{{ __('Manage Categories') }}
                         </a>
                     </li>
 
@@ -64,7 +64,17 @@
                         <a class="nav-link {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
                            href="{{ route('tag.manage') }}"
                         >
-                            <i class="fa-solid fa-tags"></i>{{ __('Manage tags') }}
+                            <i class="fa-solid fa-tags"></i>{{ __('Manage Tags') }}
+                        </a>
+                    </li>
+
+
+                    <!-- Media library link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('filemanager') ? 'active' : '' }}"
+                           href="{{ route('filemanager') }}"
+                        >
+                            <i class="fa-solid fa-photo-film"></i>{{ __('Media Library') }}
                         </a>
                     </li>
                     @endrole
@@ -75,7 +85,7 @@
                         <a class="nav-link {{ request()->routeIs('user.manage') ? 'active' : '' }}"
                            href="{{ route('user.manage') }}"
                         >
-                            <i class="fa fa-users" aria-hidden="true"></i>{{ __('Manage users') }}
+                            <i class="fa fa-users" aria-hidden="true"></i>{{ __('Manage Users') }}
                         </a>
                     </li>
 

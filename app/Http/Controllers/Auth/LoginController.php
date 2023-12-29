@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -96,11 +96,14 @@ class LoginController extends Controller
      * The user has logged out of the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return mixed
+     *
+     * @return void
      */
     protected function loggedOut(Request $request)
     {
         request()->session()->flash('flash.banner', __('Successful logout!'));
         request()->session()->flash('flash.bannerStyle', 'success');
+
+        return;
     }
 }

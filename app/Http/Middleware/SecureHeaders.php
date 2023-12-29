@@ -8,7 +8,7 @@ class SecureHeaders
     // Enumerate headers which you do not want in your application's responses.
     // Great starting point would be to go check out @Scott_Helme's:
     // https://securityheaders.com/
-    private $unwantedHeaderList = [
+    private array $unwantedHeaderList = [
         'X-Powered-By',
         'Server',
     ];
@@ -25,7 +25,7 @@ class SecureHeaders
         return $response;
     }
 
-    private function removeUnwantedHeaders($headerList)
+    private function removeUnwantedHeaders($headerList): void
     {
         foreach ($headerList as $header) {
             header_remove($header);

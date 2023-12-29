@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Role;
 use App\Interface\Services\RolePermissionServiceInterface;
 use App\Models\Role;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -51,11 +52,11 @@ class Create extends Component
     }
 
 
-    public function mount(Collection $permissions, bool $hasSmallButton = false,)
+    public function mount(Collection $permissions, bool $hasSmallButton = false)
     {
         $this->modalId = 'm-new-role';
         $this->isModalOpen = false;
-        $this->hasSmallButton = $hasSmallButton || false;
+        $this->hasSmallButton = $hasSmallButton;
 
         $this->name = '';
         $this->slug = '';
@@ -70,6 +71,9 @@ class Create extends Component
         return view('admin.livewire.role.create');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function createRole()
     {
         $this->authorize('create', Role::class);

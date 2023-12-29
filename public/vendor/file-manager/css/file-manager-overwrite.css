@@ -1,0 +1,22 @@
+#fm {
+    height: 800px;
+}
+
+
+.fm {
+    padding: 0;
+}
+
+
+#fm .fm-modal .modal-dialog .modal-content {
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1em;
+    border-radius: 0.25em;
+    margin: 1em auto 0;
+}
+
+
+#fm .fm-navbar .row .col-auto .btn-group {
+    margin-bottom: 1em;
+}

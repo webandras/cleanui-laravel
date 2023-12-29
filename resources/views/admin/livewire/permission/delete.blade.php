@@ -14,16 +14,18 @@
     @endif
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete it?') }}"
-                        id="{{ $modalId }}">
+                          id="{{ $modalId }}">
         <form wire:submit.prevent="deletePermission">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 
+            <label for="permissionId" class="sr-only">{{ __('Permission Id') }}</label>
             <input wire:model.defer="permissionId"
                    disabled
                    type="number"
                    class="hidden"
-                   name="roleId"
+                   name="permissionId"
+                   id="permissionId"
                    value="{{ $permissionId }}"
             >
 

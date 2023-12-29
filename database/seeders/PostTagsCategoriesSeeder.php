@@ -58,7 +58,7 @@ class PostTagsCategoriesSeeder extends Seeder implements SeederInterface
                 }
             }
 
-        }, 1);
+        });
 
 
     }

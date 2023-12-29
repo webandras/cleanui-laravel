@@ -11,10 +11,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.3.2/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-icons-1.11.2/bootstrap-icons.css') }}">
 
     <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager-overwrite.css') }}">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png') }}">

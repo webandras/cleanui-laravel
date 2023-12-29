@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Post;
 use App\Interface\Repository\PostRepositoryInterface;
 use App\Models\Post;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -61,6 +62,9 @@ class Delete extends Component
     }
 
 
+    /**
+     * @throws AuthorizationException
+     */
     public function deletePost()
     {
         $this->authorize('delete', [Post::class, $this->post]);

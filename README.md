@@ -45,7 +45,7 @@ composer install
 npm install
 ```
 
-Setup `.env` variables. Especially database and email settings. You need to have a local smtp server, and an user
+Setup `.env` variables. Especially database and email settings. You need to have a local smtp server, and a user
 interface to receive and view emails (account verification, 2fa code emails). For example, one solution is to
 install [mailcatcher](https://mailcatcher.me/)
 on your computer.
@@ -69,7 +69,7 @@ php artisan ui bootstrap --auth
 4. Copy the `public` folder over the `resources` folder in your project (overwrite all files)
 5. Overwrite `package.json` and `vite.config` file
 6. Add `postcss.config.js` file
-7. Add Composer dependencies (see the example config file). Install packages afterwards
+7. Add Composer dependencies (see the example config file). Install packages afterward
 8. Install npm packages. Use your Laravel app as usual (npm run dev, php artisan serve)
 
 ## Important notes! - Updating laravel/ui

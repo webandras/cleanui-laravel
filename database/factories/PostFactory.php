@@ -29,7 +29,7 @@ class PostFactory extends Factory
             'status'          => 'published',
             'slug'            => $this->faker->slug(),
             'content'         => $this->faker->randomHtml(),
-            'excerpt'         => $this->faker->realText(200),
+            'excerpt'         => $this->faker->realText(),
             'is_highlighted'  => $this->faker->numberBetween(0, 1),
             'cover_image_url' => $this->faker->randomElement($imagePaths),
         ];

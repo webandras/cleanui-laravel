@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Support\InteractsWithBanner;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -221,6 +222,7 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
