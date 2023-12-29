@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.demo')
 
 @section('content')
@@ -237,7 +236,8 @@
                     <a href="javascript:void(0)" class="bar-item mobile">Link 2</a>
                 </nav>
                 <div class="bar-item mobile bar-search">
-                    <input type="text" class="white" placeholder="Search...">
+                    <label for="bar-search-1" class="sr-only">Search...</label>
+                    <input type="text" class="white" id="bar-search-1" name="bar-search-1" placeholder="Search...">
                     <a href="javascript:void(0)" class="button primary"><i class="fa fa-search"></i></a>
                 </div>
             </div>
@@ -589,7 +589,7 @@
                                 </li>
                                 <li>
                                     <h4>The Fault in Our Stars</h4>
-                                    <p>Touching, gripping and genuinely well made</p>
+                                    <p>Touching, gripping and genuinely well-made</p>
                                 </li>
                                 <li>
                                     <h4>The Avengers</h4>
@@ -616,7 +616,7 @@
                                 </li>
                                 <li>
                                     <h4>The Fault in Our Stars</h4>
-                                    <p>Touching, gripping and genuinely well made</p>
+                                    <p>Touching, gripping and genuinely well-made</p>
                                 </li>
                                 <li>
                                     <h4>The Avengers</h4>
@@ -717,10 +717,11 @@
 
             <h3>10. Filter</h3>
             <p>Use <a href="#">Clean.CSS Filters</a> to search for a specific element inside a list, table, dropdown,
-                etc:</p>
+                etc.:</p>
 
             <div x-data="filterData" x-init="dataType = 'table'; sourceId = 'filter-table';">
-                <input type="text" placeholder="Search for names.." x-model="filterTerm"
+                <label for="name-search" class="sr-only">Search for names</label>
+                <input type="text" name="name-search" id="name-search" placeholder="Search for names..." x-model="filterTerm"
                        @keyup="filter()">
 
                 <table id="filter-table">
@@ -776,72 +777,72 @@
 
             <div class="row-padding">
                 <div class="third">
-                    <label>One</label>
-                    <input type="text" placeholder="One">
+                    <label for="one">One</label>
+                    <input type="text" placeholder="One" id="one" name="one">
                 </div>
                 <div class="third">
-                    <label>Two</label>
-                    <input type="text" placeholder="Two">
+                    <label for="two">Two</label>
+                    <input type="text" placeholder="Two" id="two" name="two">
                 </div>
                 <div class="third">
-                    <label>Three</label>
-                    <input type="text" placeholder="Three">
+                    <label for="three">Three</label>
+                    <input type="text" placeholder="Three" id="three" name="three">
                 </div>
             </div>
 
             <div class="row-padding">
                 <div class="half">
-                    <label>First name</label>
-                    <input type="text" placeholder="First name">
+                    <label for="firstname">First name</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="First name">
                 </div>
                 <div class="half">
-                    <label>Family name</label>
-                    <input type="text" placeholder="Family name">
+                    <label for="familyname">Family name</label>
+                    <input type="text" name="familyname" id="familyname" placeholder="Family name">
                 </div>
             </div>
 
 
-                <div class="row-padding">
-                    <div class="half">
-                        <div class="margin-bottom-1">
-                            <label for="fruit">Fruits<span class="text-red">*</span></label>
-                            <select id="fruit" name="fruit"
-                                    class="@error('fruit') is-invalid @enderror">
-                                <option value="0">Select fruit</option>
-                                @foreach($fruits as $fruit)
-                                    <option
-                                        {{ old('fruit') == $fruit ? 'selected' : ''  }} value="{{ $fruit }}">{{ $fruit }}</option>
-                                @endforeach
-                            </select>
-                            @error('fruit')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="margin-bottom-1">
-                            <label for="logo"
-                                   class="@error('logo') is-invalid @enderror">Select logo
-                                <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control-file" id="logo"
-                                   name="logo">
-                            @error('logo')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="margin-bottom-1">
-                            <label for="gallery"
-                                   class="@error('gallery') is-invalid @enderror">Upload images for the gallery</label>
-                            <input type="file" class="form-control-file" id="gallery"
-                                   name="gallery[]" multiple>
-
-                            @error('gallery')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
+            <div class="row-padding">
+                <div class="half">
+                    <div class="margin-bottom-1">
+                        <label for="fruit">Fruits<span class="text-red">*</span></label>
+                        <select id="fruit" name="fruit"
+                                class="@error('fruit') is-invalid @enderror">
+                            <option value="0">Select fruit</option>
+                            @foreach($fruits as $fruit)
+                                <option
+                                    {{ old('fruit') == $fruit ? 'selected' : ''  }} value="{{ $fruit }}">{{ $fruit }}</option>
+                            @endforeach
+                        </select>
+                        @error('fruit')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
+
+                    <div class="margin-bottom-1">
+                        <label for="logo"
+                               class="@error('logo') is-invalid @enderror">Select logo
+                            <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control-file" id="logo"
+                               name="logo">
+                        @error('logo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="margin-bottom-1">
+                        <label for="gallery"
+                               class="@error('gallery') is-invalid @enderror">Upload images for the gallery</label>
+                        <input type="file" class="form-control-file" id="gallery"
+                               name="gallery[]" multiple>
+
+                        @error('gallery')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
+            </div>
 
 
             <div class="row-padding">
@@ -851,14 +852,14 @@
                             <h3 class="text-white">Input Form</h3>
                         </div>
                         <form class="box padding-bottom-1-5">
-                            <label>Name</label>
-                            <input type="text" disabled>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" disabled>
 
-                            <label>Email</label>
-                            <input type="email" required>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required>
 
-                            <label>Subject</label>
-                            <textarea rows="5" name="message"></textarea>
+                            <label for="message">Message</label>
+                            <textarea rows="5" name="message" id="message"></textarea>
 
                             <label>What do you need from the grocery's?</label>
 
@@ -884,14 +885,14 @@
                             <h3 class="text-white">Input Form</h3>
                         </div>
                         <form class="box padding-bottom-1-5">
-                            <label>Name</label>
-                            <input type="text" required>
+                            <label for="your-name">Name</label>
+                            <input type="text" name="your_name" id="your-name" required>
 
-                            <label>Email </label>
-                            <input type="email" required>
+                            <label for="your-email">Email </label>
+                            <input type="email" name="your_email" id="your-email" required>
 
-                            <label>Subject </label>
-                            <textarea name="message" rows="5"></textarea>
+                            <label for="your-message">Message </label>
+                            <textarea name="your_message" id="your-message" rows="5"></textarea>
 
                             <label>Sex</label>
 
