@@ -16,9 +16,16 @@ use cleaner codes...)
 
 _Disclaimer: This project is under development, not 100% ready, but close._
 
+
 ## Todos
 
 - TODO: Add the public-facing side of the demo blog, after the admin-side is finalized
+
+
+## Screenshot
+
+![Screenshot](screenshot.png "Screenshot of the app")
+
 
 ## Installation
 
@@ -39,11 +46,11 @@ npm install
 ```
 
 Setup `.env` variables. Especially database and email settings. You need to have a local smtp server, and an user
-interface to receive emails (account verification, 2fa code emails). For example, one solution is to
+interface to receive and view emails (account verification, 2fa code emails). For example, one solution is to
 install [mailcatcher](https://mailcatcher.me/)
 on your computer.
 
-**These old steps below are not necessary:**
+**These old steps below are not needed:**
 
 _Only install it for new Laravel projects, because we will overwrite some files (and you may lose your changes you have
 already made, e.g. vite.config.js, package.json)!_
@@ -77,7 +84,8 @@ support, but versions can be downgraded to Laravel 9.x.
 
 ## Other dependencies & configuration
 
-**mews/purifier** and **tinymce** are installed
+**mews/purifier**, **tinymce**, and **alexusmai/laravel-file-manager** are installed.
+
 
 - **mews/purifier**
   https://packagist.org/packages/mews/purifier
@@ -102,8 +110,10 @@ If you do not want to have these embeds enabled, remove this line from the confi
 - **tinymce**
   https://www.tiny.cloud/docs/tinymce/6/laravel-tiny-cloud/
 
+Copy the tinymce folder from inside `vendor/tinymce` folder to `public/assets`!
 
-- **alexusmai/laravel-file-manager**
+
+- **alexusmai/laravel-file-manager** https://github.com/alexusmai/laravel-file-manager
 
 For file management the `alexusmai/laravel-file-manager` is used here. As an alternative, you can
 replace it with `unisharp/laravel-filemanager` or with other packages.
@@ -118,6 +128,5 @@ Use the file manager there as well).
 
 **Laravel Clean UI** is a modification / extension for the Laravel UI.
 
-(MIT license).
+&copy; András Gulácsi 2023 - MIT license
 
-=================================================
