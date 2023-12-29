@@ -27,7 +27,7 @@
 
                 <button @click="toggleAccordion('accordionOne')" aria-controls="accordionOne" type="button"
                         class="fs-16 block left-align accordion-button">
-                    <span>Open Section 1</span><i class="fa-solid fa-plus"></i>
+                    <span>Open Section 1</span><i class="fa-solid fa-minus"></i>
                 </button>
                 <div id="accordionOne" :aria-expanded="isAccordionContentExpanded('accordionOne')"
                      class="hide accordion-item show">
