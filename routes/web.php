@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\UserCodeController;
 use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Artisan;
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::group(
-    ['middleware' => [], 'prefix' => ''],
+    [],
     function () {
         /* Clean.ui Demo page */
         Route::get('/', function() {
@@ -44,7 +45,7 @@ Route::group(
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
         /* 2FA */
-        Route::get('2fa', [App\Http\Controllers\UserCodeController::class, 'index'])->name('2fa.index');
+        Route::get('2fa', [UserCodeController::class, 'index'])->name('2fa.index');
         /* 2FA END */
 
     }
@@ -158,8 +159,8 @@ Route::group(
     function () {
 
         /* 2fa endpoints for authenticated users */
-        Route::post('2fa', [App\Http\Controllers\UserCodeController::class, 'store'])->name('2fa.post');
-        Route::get('2fa/reset', [App\Http\Controllers\UserCodeController::class, 'resend'])
+        Route::post('2fa', [UserCodeController::class, 'store'])->name('2fa.post');
+        Route::get('2fa/reset', [UserCodeController::class, 'resend'])
             ->name('2fa.resend');
         /* 2fa endpoints for authenticated users END */
 

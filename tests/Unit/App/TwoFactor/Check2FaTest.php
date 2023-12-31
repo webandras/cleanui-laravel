@@ -121,7 +121,7 @@ class Check2FaTest extends TestCase
     public function test_login_user_2fa_enabled(): void
     {
         $this->assertTrue(Route::has('2fa.index'), '2FA verification route should exists');
-        $this->assertTrue(class_exists('\App\Http\Controllers\UserCodeController'), 'UserCodeController should exists');
+        $this->assertTrue(class_exists('\App\Http\Controllers\Auth\UserCodeController'), 'UserCodeController should exists');
 
 
         $response = $this->actingAs($this->user)->get('/admin/dashboard');
