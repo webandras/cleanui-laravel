@@ -4,9 +4,16 @@
 
     <main class="card content-600">
         <div class="header">
-            <h1 class="h3 text-white">{{ __('Login') }}</h1>
+            <h1 class="h3 text-white">{{ __('Sign in') }}</h1>
         </div>
         <div class="padding-1-5">
+            @php $error = session('login_error') @endphp
+            @isset($error)
+                <div class="alert error" role="alert">
+                    {{ $error }}
+                </div>
+            @endisset
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -35,16 +42,36 @@
                     </label>
                 </div>
 
-                <div class="bar">
-                    <button type="submit" class="primary margin-top-1">
-                        {{ __('Login') }}
+                {{-- Login with Email and Password --}}
+                <div>
+                    <button type="submit" class="primary margin-top-1 block" style="padding: 10px;">
+                        {{ __('Sign in') }}
                     </button>
 
                     @if (Route::has('password.request'))
-                        <a class="button primary alt margin-top-1" href="{{ route('password.request') }}">
+                        <a class="link margin-top-1 block text-center" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif
+                </div>
+
+                <hr class="divider">
+
+                {{-- Login with Facebook --}}
+                <a class="button block text-center relative" href="{{ route('facebook.redirect') }}"
+                   style="background: #3B5499; color: #ffffff; padding: 10px;">
+                    <img class="absolute left margin-left-1" style="height: 26px;" src="{{ asset('images/social/facebook.png') }}"
+                         alt="Facebook logo"> {{ __('Sign in with Facebook') }}
+                </a>
+
+                {{-- Login with Google --}}
+                <div>
+                    <a class="button block text-center relative" href="{{ route('google.redirect') }}"
+                       style="background: rgb(62,130,247); color: #ffffff; padding: 10px;">
+                        <img class="absolute left margin-left-1" style="height: 26px;"
+                             src="{{ asset('images/social/google.png') }}" alt="Google logo"> <span
+                            class="text-center">{{ __('Sign in with Google') }}</span>
+                    </a>
                 </div>
 
             </form>

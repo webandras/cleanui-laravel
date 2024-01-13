@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UserCodeController;
+use App\Http\Controllers\Social\FacebookController;
+use App\Http\Controllers\Social\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Artisan;
@@ -37,7 +39,7 @@ Route::group(
     [],
     function () {
         /* Clean.ui Demo page */
-        Route::get('/', function() {
+        Route::get('/', function () {
             return view('welcome');
         })->name('frontpage');
 
@@ -48,10 +50,19 @@ Route::group(
         Route::get('2fa', [UserCodeController::class, 'index'])->name('2fa.index');
         /* 2FA END */
 
+
+        /* Social Login endpoints */
+        Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook'])->name('facebook.redirect');
+        Route::get('auth/callback/facebook', [FacebookController::class, 'handleCallback'])->name('facebook.callback');
+
+        Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
+        Route::get('auth/callback/google', [GoogleController::class, 'handleCallback'])->name('google.callback');
+        /* Social Login endpoints END */
     }
 );
 
 
+/* Auth endpoints */
 Route::group(
     ['prefix' => 'admin'],
     function () {

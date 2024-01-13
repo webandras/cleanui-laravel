@@ -29,6 +29,8 @@ final class User extends Authenticatable implements MustVerifyEmail
         'password',
         'role_id',
         'enable_2fa',
+        'social_id',
+        'social_type'
     ];
 
     /**

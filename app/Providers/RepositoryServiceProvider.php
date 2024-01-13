@@ -12,6 +12,7 @@ use App\Interface\Services\DateTimeServiceInterface;
 use App\Interface\Services\ImageServiceInterface;
 use App\Interface\Services\RolePermissionServiceInterface;
 
+use App\Interface\Services\SocialServiceInterface;
 use App\Repository\CategoryRepository;
 use App\Repository\ModelRepository;
 use App\Repository\PostRepository;
@@ -23,6 +24,7 @@ use App\Services\DateTimeService;
 use App\Services\ImageService;
 use App\Services\RolePermissionService;
 
+use App\Services\SocialService;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -41,6 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(ArchiveEntityServiceInterface::class, ArchiveEntityService::class);
+        $this->app->bind(SocialServiceInterface::class, SocialService::class);
 
 
         /* $this->app->when([LocationController::class])

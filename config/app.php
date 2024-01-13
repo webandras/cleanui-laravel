@@ -173,6 +173,7 @@ return [
         App\Providers\PermissionServiceProvider::class, // add permissions to @can directive
         \Spatie\Csp\CspServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class, // social login providers
     ])->toArray(),
 
     /*
@@ -188,6 +189,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

@@ -8,6 +8,13 @@
         </div>
 
         <div class="padding-1-5">
+            @php $error = session('login_error') @endphp
+            @isset($error)
+                <div class="alert error" role="alert">
+                    {{ $error }}
+                </div>
+            @endisset
+
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
@@ -68,6 +75,26 @@
                 >
 
                 <button type="submit" class="primary margin-top-1-5">{{ __('Register') }}</button>
+
+
+                <hr class="divider">
+
+                {{-- Login with Facebook --}}
+                <div>
+                    <a class="button primary" href="{{ route('facebook.redirect') }}"
+                       style="background: #3B5499; color: #ffffff; padding: 10px; width: 100%; display: block;">
+                        <i class="fa-brands fa-facebook-f"></i> Register with Facebook
+                    </a>
+                </div>
+
+                {{-- Login with Google --}}
+                <div>
+                    <a class="button primary" href="{{ route('google.redirect') }}"
+                       style="background: #217bff; color: #ffffff; padding: 10px; width: 100%; display: block;">
+                        <i class="fa-brands fa-google"></i> Register with Google
+                    </a>
+                </div>
+
             </form>
         </div>
 
