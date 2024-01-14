@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UserCodeController;
+use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Social\FacebookController;
 use App\Http\Controllers\Social\GoogleController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,13 @@ Route::group(
         Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
         Route::get('auth/callback/google', [GoogleController::class, 'handleCallback'])->name('google.callback');
         /* Social Login endpoints END */
+
+
+        /* Posts */
+        Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+        Route::get('blog/info/{slug}', [BlogController::class, 'show'])->name('blog.show');
+        Route::get('blog/category/{category}', [BlogController::class, 'category'])->name('blog.category');
+        Route::get('blog/tag/{tag}', [BlogController::class, 'tag'])->name('blog.tag');
     }
 );
 
