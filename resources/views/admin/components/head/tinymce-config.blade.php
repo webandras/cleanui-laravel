@@ -2,7 +2,7 @@
 <script nonce="{{ csp_nonce() }}">
     var editor_config = {
         path_absolute : "/",
-        selector: 'textarea#update-content-editor',
+        selector: 'textarea#content',
         plugins: 'link table lists image code media',
         height: 700,
         browser_spellcheck: true,
