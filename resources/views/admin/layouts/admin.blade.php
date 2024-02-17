@@ -83,7 +83,7 @@
 @stack('modals')
 <?php $nonce = ["nonce" => csp_nonce()] ?>
 @livewireScripts($nonce)
-<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+<script src="{{ url('/assets/livewire-sortable-0.x.x/livewire-sortable.js') }}"></script>
 <!-- To support inline scripts needed for the calendar library
 https://laravel-livewire.com/docs/2.x/inline-scripts
 -->
