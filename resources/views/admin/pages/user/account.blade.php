@@ -24,6 +24,7 @@
                   enctype="application/x-www-form-urlencoded"
                   accept-charset="UTF-8"
                   autocomplete="off"
+                  class="content-600"
             >
                 @method("PUT")
                 @csrf
@@ -100,7 +101,7 @@
 
             <h2 class="h3">{{ __('Delete account') }}</h2>
 
-            <div class="alert danger">
+            <div class="alert danger content-800">
                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 {{ __('This action cannot be undone. It will permanently erase your account with all of your data.') }}
             </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <main class="padding-1">
+    <main class="padding-1 file-manager__container">
         <h1 class="h2">{{ __('File manager') }}</h1>
         <a class="btn btn-secondary" href="{{ route('dashboard') }}">{{ __('Back go dashboard') }}</a>
         <hr>
