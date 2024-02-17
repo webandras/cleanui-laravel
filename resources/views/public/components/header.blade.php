@@ -92,7 +92,7 @@
                         $dark = __('Dark mode');
                     @endphp
                     <button
-                            class="darkmode-toggle margin-top-0"
+                            class="darkmode-toggle margin-top-0 margin-right-0-5"
                             rel="button"
                             @click="toggleDarkMode"
                             x-text="isDarkModeOn() ? '🔆' : '🌒'"

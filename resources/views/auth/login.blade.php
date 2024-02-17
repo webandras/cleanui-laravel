@@ -16,7 +16,6 @@
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
                 <label for="email">{{ __('Email Address') }}</label>
                 <input id="email" type="email" class="@error('email') border border-red @enderror" name="email"
                        value="{{ old('email') }}" required autocomplete="email" autofocus>

@@ -30,6 +30,7 @@
     <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
     <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
     <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
+    <script src="{{ url('assets/jquery-sortable-lists.js') }}"></script>
 
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
@@ -82,7 +83,7 @@
 @stack('modals')
 <?php $nonce = ["nonce" => csp_nonce()] ?>
 @livewireScripts($nonce)
-
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 <!-- To support inline scripts needed for the calendar library
 https://laravel-livewire.com/docs/2.x/inline-scripts
 -->

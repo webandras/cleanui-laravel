@@ -64,7 +64,7 @@
                         <div>
                                 <textarea name="content" rows="5" id="update-content-editor"
                                           class="{{ $errors->has('content') ? 'border border-red' : '' }}"
-                                >
+                                >{!! old('content') ?? '' !!}
                                 </textarea>
                         </div>
                         <div
