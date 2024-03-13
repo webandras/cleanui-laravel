@@ -1,7 +1,7 @@
 /* width */
 ::-webkit-scrollbar
     width: 12px
-    @media screen and (max-width: $s-1024)
+    @media screen and (max-width: $s-600)
         width: 6px
 
 /* Track */
@@ -11,11 +11,20 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb
-    background: $grey-40
+    background: $primary-light
 
 
 html.dark
     ::-webkit-scrollbar-track
-        background: $grey-20
-    ::-webkit-scrollbar-thumb
-        background: $grey-80
+        background: $gray-40
+
+
+pre
+    display: flex
+    overflow-x: scroll
+
+    &::-webkit-scrollbar
+        height: 6px
+
+    &::-webkit-scrollbar-thumb
+        background: $primary-light
