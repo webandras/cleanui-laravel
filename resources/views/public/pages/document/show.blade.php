@@ -1,0 +1,86 @@
+@extends('public.layouts.frontpage')
+
+@section('seo')
+    <x-public::meta
+        :title="'Documentation'"
+        :excerpt="'This is a demo documentation page description'"
+        :slug="''"
+    ></x-public::meta>
+@endsection
+
+@push('head-extra')
+    <link href="{{ url('css/prism.css') }}" rel="stylesheet">
+@endpush
+
+
+@section('content')
+    <div x-data="{ showToc: true}" class="main-container container relative">
+
+        <aside x-show="showToc" x-cloak x-transition class="toc round">
+            <h2 class="h4"> Table of Contents </h2>
+            <ul class="padding-right-left-0 no-bullets">
+                <li><a href="{{ route('document.index') }}">{{ __('Get Started') }}</a></li>
+                @foreach($documents as $document)
+                    <li><a href="{{ route('document.show', $document->slug) }}"
+                           class="{{ $currentDocument->slug === $document->slug ? 'active' : 'not-active' }}">{{ $document->title }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </aside>
+
+        <main class="content round">
+
+            <div>
+
+                <span @click="showToc = ! showToc" class="pointer absolute padding-0 topright margin-top-1-5 margin-right-1" role="button"
+                      title="{{ __('Table of content') }}">
+                <i :class="{'fa fa-expand' : !showToc,  'fa fa-compress' : showToc }" aria-hidden="true"></i>
+                <span class="fs-12">{{ __('Table of content') }}</span>
+            </span>
+
+                <nav class="breadcrumb breadcrumb-left padding-top-1-5">
+                    <ol>
+                        <li>
+                            <a href="{{ route('document.index') }}">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                {{ __('Documentation') }}
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </li>
+                        <li>{{ $currentDocument->title }}</li>
+                    </ol>
+                </nav>
+                <hr class="margin-0">
+
+                <h1 class="text-left h1 margin-top-0 margin-bottom-0-5"
+                    style="text-align: left; margin-top: 0;">{{ $currentDocument->title }}</h1>
+            </div>
+
+
+            <p class="semibold text-gray-60 padding-bottom-2">{{ $currentDocument->excerpt }}</p>
+
+            <div>
+                {!! $currentDocument->content !!}
+            </div>
+
+            <hr class="">
+
+            <div class="next-prev-navigation bar border border-20 margin-top-2 round">
+                <a href="{{ isset($nextDocument) ? route('document.show', $nextDocument->slug) : '#' }}"
+                   class="button link-button fs-14">{{ isset($nextDocument) ? ('❮ '. $nextDocument->title) : '' }}</a>
+
+                <a href="{{ isset($previousDocument) ? route('document.show', $previousDocument->slug) : '#' }}"
+                   class="button float-right link-button fs-14">{{ isset($previousDocument) ? ($previousDocument->title . ' ❯') : '' }} </a>
+            </div>
+
+        </main>
+
+    </div>
+
+@endsection
+
+@push('scripts')
+<script src="{{ url('/js/prism.js') }}" type="text/javascript"></script>
+@endpush
