@@ -1,12 +1,12 @@
 // General
 h1
-    line-height: 1.25
+    line-height: 1.1
     font-weight: 900
     font-family: $serif
 
 
 h2, h3, h4, h5, h6
-    line-height: 1.25
+    line-height: 1.2
     font-weight: 700
     font-family: $sans
 
@@ -100,6 +100,27 @@ footer.page-footer.public-footer
 
 // Frontpage
 
+.frontpage
+    width: 100%
+
+    .public-content
+        max-width: 100% !important
+        padding-left: 0 !important
+        padding-right: 0 !important
+
+        .main-container
+            width: 95% !important
+            padding-left: 0 !important
+            padding-right: 0 !important
+
+
+@media screen and (max-width: $mobile)
+    .next-prev-navigation.bar
+        .button, button
+            display: block
+            margin-top: 0
+
+
 // Other
 .filemanager-container
     width: 100%
@@ -110,61 +131,36 @@ footer.page-footer.public-footer
 .post-date
     font-size: 18px
     font-weight: 500
-    text-transform: uppercase
-    font-variant: all-small-caps
     line-height: 150%
     letter-spacing: 1px
 
-
-$primary-light-darkmode: #e42b4a
-$primary-dark-darkmode: #ad0e29
-$accent-light-darkmode: #1da22a
-$accent-dark-darkmode: #0d6e16
 
 .dark
     button,
     .button
 
-
         &.primary
-            color: white
-            background-color: $primary-light-darkmode
-            border-color: $primary-light-darkmode
-
             &:hover
-                border-color: $primary-dark-darkmode
-                background-color: $primary-dark-darkmode
                 color: white
 
             &.alt
-                color: $primary-light-darkmode
-                border-color: $primary-light-darkmode
-                background-color: transparent
+                color: white
 
+                background-color: transparent
                 &:hover, &:focus
-                    border-color: $primary-dark-darkmode
-                    background-color: white
-                    color: $primary-dark-darkmode
+                    border-color: white
 
 
         &.secondary
-            color: white
-            background-color: $accent-light-darkmode
-            border-color: $accent-light-darkmode
+            color: black
 
             &:hover
-                border-color: $accent-dark-darkmode
-                background-color: $accent-dark-darkmode
                 color: white
 
             &.alt
-                color: $accent-light-darkmode
-                border-color: $accent-light-darkmode
                 background-color: transparent
 
                 &:hover, &:focus
-                    border-color: $accent-dark-darkmode
-                    background-color: $accent-dark-darkmode
                     color: white
 
 
@@ -184,3 +180,16 @@ $accent-dark-darkmode: #0d6e16
 
 .osm-embed
     border: 1px solid black
+
+.main-container
+    .toc
+        max-width: 320px
+
+@media screen and (max-width: $s-1023)
+    .main-container
+        flex-direction: column-reverse
+        row-gap: 2em
+
+        .toc
+            max-width: 100%
+            margin-right: 0
