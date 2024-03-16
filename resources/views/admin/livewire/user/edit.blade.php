@@ -28,12 +28,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <!-- Email -->
@@ -43,13 +39,10 @@
                     type="email"
                     name="email"
                     id="email"
-                    value=""
                     readonly
                 >
+                <x-global::input-error for="email"/>
 
-                <div class="{{ $errors->has('email') ? 'error-message' : '' }}">
-                    {{ $errors->has('email') ? $errors->first('email') : '' }}
-                </div>
 
                 <!-- Password -->
                 <label for="password">{{ __('New Password (optional)') }}</label>
@@ -59,12 +52,8 @@
                     class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                     name="password"
                     id="password"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('password') ? 'error-message' : '' }}">
-                    {{ $errors->has('password') ? $errors->first('password') : '' }}
-                </div>
+                <x-global::input-error for="password"/>
 
 
                 <!-- Role -->
@@ -83,12 +72,9 @@
                     @foreach ($rolesArray as $key => $value)
                         <option {{ $role === $key ? "selected": "" }} value="{{ $key }}">{{ $value }}</option>
                     @endforeach
-
                 </select>
 
-                <div class="{{ $errors->has('role') ? 'error-message' : '' }}">
-                    {{ $errors->has('role') ? $errors->first('role') : '' }}
-                </div>
+                <x-global::input-error for="role"/>
 
             </fieldset>
 
@@ -97,7 +83,7 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="updateUser" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="updateUser">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>

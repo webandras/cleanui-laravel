@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Interface\Repository\CategoryRepositoryInterface;
-use App\Interface\Services\ImageServiceInterface;
-use App\Models\Category;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\CategoryRepositoryInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
+use App\Models\Clean\Category;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -17,9 +17,9 @@ class Create extends Component
 
     // used by blade / alpinejs
     /**
-     * @var
+     * @var string
      */
-    public $modalId;
+    public string $modalId;
 
 
     /**
@@ -32,6 +32,7 @@ class Create extends Component
      * @var bool
      */
     public bool $hasSmallButton;
+
 
     // inputs
     /**
@@ -166,7 +167,8 @@ class Create extends Component
     /**
      * @return void
      */
-    public function initialize() {
+    public function initialize(): void
+    {
         $this->name = '';
         $this->cover_image_url = '';
     }

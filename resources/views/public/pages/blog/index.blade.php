@@ -11,14 +11,11 @@
 
 @section('content')
 
-    @php
-        // setlocale(LC_ALL, 'hu_HU.UTF-8');
-        $dtFormat = 'Y. F j.';
-    @endphp
+    @php $dtFormat = \App\Interface\Entities\Clean\PostInterface::DT_FORMAT; @endphp
 
     <div class="card">
 
-        <h1 class="text-left margin-top-0 margin-bottom-0-5 title">{{ __('Newest articles') }}</h1>
+        <h1 class="text-left margin-top-0 margin-bottom-0-5">{{ __('Newest articles') }}</h1>
 
         <section class="intro">
             <div class="left-panel-1">
@@ -120,7 +117,8 @@
                                 <div class="cover-image-container relative">
                                     <i class="fa-regular fa-star absolute margin-top-0-5 margin-left-0-5 topleft fs-24 gold"
                                        title="{{ __('Highlighted post') }}"></i>
-                                    <img class="round card" src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                    <img class="round card"
+                                         src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                          alt="{{ $highlightedPost->title }}">
                                 </div>
                                 <div>
@@ -150,7 +148,8 @@
                             <a href="{{ route('blog.show', $highlightedPost->slug) }}"
                                class="no-underline width-45">
                                 <div class="relative cover-image-container">
-                                    <img class="round-top" src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                    <img class="round-top"
+                                         src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                          alt="{{ $highlightedPost->title }}">
                                 </div>
                             </a>

@@ -99,7 +99,7 @@
                                 @if(auth()->user()->hasRoles('super-administrator|administrator') )
 
                                     <!-- View post -->
-                                    <a href="#"
+                                    <a href="{{ route('blog.show', $post->slug) }}"
                                        target="_blank"
                                        title="View post"
                                        class="button success margin-top-0"

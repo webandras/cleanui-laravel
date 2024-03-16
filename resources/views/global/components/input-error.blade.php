@@ -1,5 +1,5 @@
 @props(['for'])
 
 @error($for)
-<p {{ $attributes->merge(['class' => 'fs-14 error-message']) }}>{{ $message }}</p>
+<p {{ $attributes->merge(['class' => 'error-message']) }}>{{ $message }}</p>
 @enderror

@@ -45,8 +45,10 @@
                         <td>
                             <div class="flex flex-row">
 
-                                @if(! $user->hasRoles('super-administrator') || auth()->user()->hasRoles('super-administrator') )
+                                @if(auth()->user()->hasRoles('super-administrator') )
 
+                                    <!-- Superadmins cannot be deleted or edited -->
+                                    @if (!$user->hasRoles('super-administrator'))
                                     <!-- Delete user -->
                                     <livewire:admin.user.delete title="{{ __('Delete user') }}"
                                                           :user="$user"
@@ -64,6 +66,8 @@
                                                         :modalId="'m-edit-user-' . $user->id"
                                     >
                                     </livewire:admin.user.edit>
+                                    @endif
+
                                 @else
                                     <p class="fs-14 italic">{{ __('Super-admin cannot be deleted or edited here.') }}</p>
                                 @endif

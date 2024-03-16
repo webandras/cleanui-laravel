@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Interface\Services\SocialServiceInterface;
-use App\Models\User;
+use App\Interface\Services\Clean\SocialServiceInterface;
+use App\Models\Clean\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

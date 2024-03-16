@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Interface\Services\RolePermissionServiceInterface;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Interface\Services\Clean\RolePermissionServiceInterface;
+use App\Models\Clean\Permission;
+use App\Models\Clean\Role;
+use App\Models\Clean\User;
 use Illuminate\Database\Eloquent\Collection;
 
 class RolePermissionService implements RolePermissionServiceInterface

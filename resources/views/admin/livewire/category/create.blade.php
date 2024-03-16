@@ -37,12 +37,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <label for="slug">{{ __('Subcategory slug') }}<span class="text-red">*</span></label>
@@ -52,12 +48,9 @@
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
                     id="slug"
-                    value=""
                 >
+                <x-global::input-error for="slug"/>
 
-                <div class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
 
             </fieldset>
 
@@ -69,11 +62,9 @@
                 class="hidden"
                 name="categoryId"
                 id="categoryId"
-                value="{{ $categoryId }}"
             >
 
             <!-- Cover image -->
-
             <label for="cover_image_url">{{ __('Cover Image') }}</label>
 
             <template x-if="isValidUrl(coverImage)">
@@ -132,9 +123,7 @@
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('lfm-new-{{ $categoryId }}').addEventListener('click', (event) => {
                         event.preventDefault();
-
                         inputId = 'cover-image-url-new-{{$categoryId}}';
-
                         window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
                     });
                 });

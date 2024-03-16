@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interface\Services\ArchiveEntityServiceInterface;
+use App\Interface\Services\Clean\ArchiveEntityServiceInterface;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\DB;
  */
 class ArchiveEntityService implements ArchiveEntityServiceInterface
 {
-    private const PREFIX = "\App\Models\\";
+    private const PREFIX = "\App\Models\Clean\\";
+
 
     /**
      * @param string $modelClass
@@ -27,7 +28,7 @@ class ArchiveEntityService implements ArchiveEntityServiceInterface
     {
         $modelClass = self::PREFIX . $modelClass;
         if (!class_exists($modelClass)) {
-            throw new InvalidArgumentException();
+            throw new \InvalidArgumentException();
         }
 
         $query = $modelClass::withTrashed();

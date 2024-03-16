@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interface\Services\DateTimeServiceInterface;
+use App\Interface\Services\Clean\DateTimeServiceInterface;
 
 class DateTimeService implements DateTimeServiceInterface
 {

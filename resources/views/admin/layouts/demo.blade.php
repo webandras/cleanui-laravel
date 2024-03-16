@@ -32,15 +32,13 @@
 
     <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
     <script src="{{ url('assets/clean-dropzone/dist/js/clean-dropzone.js') }}"></script>
 
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
     @livewireStyles(['nonce' => csp_nonce()])
 
+    @stack('head-extra')
     @yield('head')
 
 </head>
@@ -92,6 +90,5 @@ https://laravel-livewire.com/docs/2.x/inline-scripts
 -->
 @stack('scripts')
 
-<script src="{{ url('/js/prism.js') }}" type="text/javascript"></script>
 </body>
 </html>

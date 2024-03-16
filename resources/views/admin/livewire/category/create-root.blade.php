@@ -34,10 +34,8 @@
                        name="name"
                        id="name"
                 >
+                <x-global::input-error for="name"/>
 
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
 
                 <label for="slug">{{ __('Category slug') }}<span class="text-red">*</span></label>
                 <input wire:model.defer="slug"
@@ -46,10 +44,7 @@
                        name="slug"
                        id="slug"
                 >
-
-                <div class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                <x-global::input-error for="slug"/>
 
 
                 <!-- Cover image -->
@@ -87,6 +82,7 @@
                 </div>
 
                 <x-global::input-error for="cover_image_url"/>
+
             </fieldset>
 
             <div class="actions">
@@ -110,9 +106,7 @@
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('lfm-new-root').addEventListener('click', (event) => {
                         event.preventDefault();
-
                         inputId = 'cover-image-url-new-root';
-
                         window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
                     });
                 });

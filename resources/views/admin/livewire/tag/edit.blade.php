@@ -37,10 +37,8 @@
                        name="name"
                        id="name"
                 >
-                <div
-                    class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
+
 
                 <label for="slug">{{ __('Slug') }}<span class="text-red">*</span></label>
                 <input wire:model.defer="slug"
@@ -49,10 +47,7 @@
                        name="slug"
                        id="slug"
                 >
-                <div
-                    class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                <x-global::input-error for="slug"/>
 
 
                 <!-- Cover Image Url -->
@@ -60,16 +55,17 @@
 
                 @if (isset($cover_image))
                     <div class="relative" style="width: fit-content">
-                        Photo Preview:
+                        <small>Photo Preview:</small>
                         <img src="{{ $cover_image->temporaryUrl() }}" alt="{{ __('Photo Preview:') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
                     </div>
-
                 @else
-                    <div class="relative" style="width: fit-content">
-                        <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
-                             class="card card-4 margin-bottom-1 image-preview"/>
-                    </div>
+                    @if (isset($cover_image_url) && $cover_image_url !== '')
+                        <div class="relative" style="width: fit-content">
+                            <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
+                                 class="card card-4 margin-bottom-1 image-preview"/>
+                        </div>
+                    @endif
                 @endif
 
                 <input

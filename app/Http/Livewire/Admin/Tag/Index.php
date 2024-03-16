@@ -3,11 +3,11 @@
 namespace App\Http\Livewire\Admin\Tag;
 
 use App\Http\Livewire\Admin\Tag\Trait\Reactive;
-use App\Interface\Repository\ModelRepositoryInterface;
-use App\Interface\Entities\TagInterface;
-use App\Models\Tag;
-use App\Models\User;
-use App\Support\InteractsWithBanner;
+use App\Interface\Entities\Clean\TagInterface;
+use App\Interface\Repository\Clean\ModelRepositoryInterface;
+use App\Models\Clean\Tag;
+use App\Models\Clean\User;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
@@ -20,10 +20,12 @@ class Index extends Component
     use WithPagination;
     use Reactive;
 
+
     /**
      * @var ModelRepositoryInterface
      */
     private ModelRepositoryInterface $tagRepository;
+
 
     /**
      * @var
@@ -43,15 +45,18 @@ class Index extends Component
      */
     public string $pageName = 'page';
 
+
     /**
      * @var User|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     protected User|\Illuminate\Contracts\Auth\Authenticatable|null $user;
 
+
     /**
      * @var string
      */
     public string $filterKeyword = '';
+
 
     /**
      * @var bool
@@ -98,7 +103,6 @@ class Index extends Component
      */
     public function mount(): void
     {
-        //$this->initialize();
         $this->tags         = null;
         $this->archivedTags = null;
         $this->selectedIds  = [];

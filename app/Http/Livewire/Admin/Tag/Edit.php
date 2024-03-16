@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Tag;
 
 use App\Http\Livewire\Admin\Tag\Trait\Reactive;
-use App\Interface\Repository\ModelRepositoryInterface;
-use App\Interface\Services\ImageServiceInterface;
-use App\Models\Tag;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\ModelRepositoryInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
+use App\Models\Clean\Tag;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -93,7 +93,7 @@ class Edit extends Component
      * @var array|string[]
      */
     protected array $rules = [
-        'name'        => 'required|string|min:1|max:255',
+        'name' => 'required|string|min:1|max:255',
         'cover_image' => 'nullable|image|max:2048',
     ];
 
@@ -117,7 +117,7 @@ class Edit extends Component
     public function boot(ModelRepositoryInterface $tagRepository, ImageServiceInterface $imageService)
     {
         $this->tagRepository = $tagRepository;
-        $this->imageService  = $imageService;
+        $this->imageService = $imageService;
     }
 
 
@@ -130,15 +130,15 @@ class Edit extends Component
      */
     public function mount(string $modalId, Tag $tag, bool $hasSmallButton = false)
     {
-        $this->modalId              = $modalId;
-        $this->isModalOpen          = false;
-        $this->hasSmallButton       = $hasSmallButton;
-        $this->tag                  = $tag;
-        $this->name                 = $tag->name;
-        $this->slug                 = $tag->slug;
-        $this->cover_image_url      = isset($tag->cover_image_url) ? (config('app.url').$tag->cover_image_url) : '';
+        $this->modalId = $modalId;
+        $this->isModalOpen = false;
+        $this->hasSmallButton = $hasSmallButton;
+        $this->tag = $tag;
+        $this->name = $tag->name;
+        $this->slug = $tag->slug;
+        $this->cover_image_url = isset($tag->cover_image_url) ? (config('app.url').$tag->cover_image_url) : '';
         $this->cover_image_url_temp = isset($tag->cover_image_url) ? $tag->cover_image_url : '';
-        $this->tagId                = $tag->id;
+        $this->tagId = $tag->id;
 
     }
 
@@ -180,11 +180,11 @@ class Edit extends Component
 
                 if (isset($this->cover_image)) {
                     $this->cover_image_url = $this->cover_image->store('public/images');
-                    $this->cover_image_url = '/storage/'. str_replace('public', '', $this->cover_image_url);
+                    $this->cover_image_url = '/storage/'.str_replace('public', '', $this->cover_image_url);
                 }
 
                 // if no image is uploaded and url is set to empty string
-                if ( ! isset($this->cover_image) && $this->cover_image_url === '') {
+                if (!isset($this->cover_image) && $this->cover_image_url === '') {
                     // Delete previous image
                     if ($this->cover_image_url_temp !== '') {
                         Storage::delete($this->cover_image_url_temp);
@@ -192,14 +192,13 @@ class Edit extends Component
                 }
 
                 $this->tagRepository->updateEntity($this->tag, [
-                    'name'            => $this->name,
-                    'slug'            => $this->slug,
+                    'name' => $this->name,
+                    'slug' => $this->slug,
                     'cover_image_url' => $this->cover_image_url !== '' ? $this->cover_image_url : null,
                 ]);
             },
             2
         );
-
 
 
         $this->banner(__('Tag successfully updated.'));

@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\App\Trait;
 
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
-use App\Trait\HasRolesAndPermissions;
+use App\Models\Clean\Permission;
+use App\Models\Clean\Role;
+use App\Models\Clean\User;
+use App\Trait\Clean\HasRolesAndPermissions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interface\Services\ImageServiceInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
 
 class ImageService implements ImageServiceInterface
 {

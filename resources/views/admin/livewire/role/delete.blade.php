@@ -26,7 +26,6 @@
                    class="hidden"
                    name="roleId"
                    id="roleId"
-                   value="{{ $roleId }}"
             >
 
             <div class="actions">

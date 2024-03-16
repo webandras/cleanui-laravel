@@ -3,13 +3,12 @@
 namespace App\Http\Livewire\Admin\Tag;
 
 use App\Http\Livewire\Admin\Tag\Trait\Reactive;
-use App\Interface\Services\ArchiveEntityServiceInterface;
-use App\Interface\Entities\TagInterface;
-use App\Models\Tag;
-use App\Models\User;
-use App\Support\InteractsWithBanner;
+use App\Interface\Entities\Clean\TagInterface;
+use App\Interface\Services\Clean\ArchiveEntityServiceInterface;
+use App\Models\Clean\Tag;
+use App\Models\Clean\User;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 

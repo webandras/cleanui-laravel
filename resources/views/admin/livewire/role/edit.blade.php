@@ -1,4 +1,4 @@
-<div wire:ignore x-data="{
+<div x-data="{
     isModalOpen: $wire.entangle('isModalOpen'),
     permission: $wire.entangle('rolePermissions'),
     init(){
@@ -36,12 +36,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <!-- Email -->
@@ -52,41 +48,36 @@
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
                     id="slug"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                <x-global::input-error for="slug"/>
 
 
-                <label for="rolePermissions" class="{{ $errors->has('rolePermissions') ? 'border border-red' : '' }}">
-                    {{ __('Assign permissions') }}
-                </label>
-                <select x-ref="selectPermissions" id="rolePermissions" class="selectPermissions" x-model="permission" multiple="multiple">
-                    @foreach($allPermissions as $permission)
-                        <option value="{{ $permission->id }}">{{ $permission->name }}</option>
-                    @endforeach
-                </select>
+                <div wire:ignore>
+                    <label for="rolePermissions" class="{{ $errors->has('rolePermissions') ? 'border border-red' : '' }}">
+                        {{ __('Assign permissions') }}
+                    </label>
+                    <select x-ref="selectPermissions" id="rolePermissions" class="selectPermissions" x-model="permission" multiple="multiple">
+                        @foreach($allPermissions as $permission)
+                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
 
-                <div class="checkbox-container">
-                    @foreach($allPermissions as $permission)
-                        <label for="permissions" class="hide">
-                            <input wire:model="rolePermissions"
-                                   type="checkbox"
-                                   name="rolePermissions[]"
-                                   {{-- array_search($permission->id, $rolePermissions) !== false ? 'checked' : '' --}}
-                                   value="{{ $permission->id }}"
-                            >
-                            {{ $permission->name }}
-                        </label>
-                    @endforeach
+                    <div class="checkbox-container">
+                        @foreach($allPermissions as $permission)
+                            <label for="permissions" class="hide">
+                                <input wire:model="rolePermissions"
+                                       type="checkbox"
+                                       name="rolePermissions[]"
+                                       {{-- array_search($permission->id, $rolePermissions) !== false ? 'checked' : '' --}}
+                                       value="{{ $permission->id }}"
+                                >
+                                {{ $permission->name }}
+                            </label>
+                        @endforeach
 
-                    <div class="{{ $errors->has('rolePermissions') ? 'error-message' : '' }}">
-                        {{ $errors->has('rolePermissions') ? $errors->first('rolePermissions') : '' }}
+                        <x-global::input-error for="rolePermissions"/>
+
                     </div>
-
-                    {{-- var_export($rolePermissions) --}}
                 </div>
             </fieldset>
 
@@ -95,7 +86,7 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="updateRole" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="updateRole">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>

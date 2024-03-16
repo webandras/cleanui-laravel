@@ -16,7 +16,6 @@
     <link href="{{ url('assets/fontawesome-6.4.0/css/fontawesome.css') }}" rel="stylesheet">
     <link href="{{ url('assets/fontawesome-6.4.0/css/solid.css') }}" rel="stylesheet">
     <link href="{{ url('assets/fontawesome-6.4.0/css/brands.css') }}" rel="stylesheet">
-    <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png') }}">
@@ -27,16 +26,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
-    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
-    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
-
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
 
     <?php $nonce = ["nonce" => csp_nonce()] ?>
     @livewireStyles($nonce)
 
+    @stack('head-extra')
     @yield('head')
 </head>
 <body @scroll="setScrollToTop()">
@@ -81,7 +77,6 @@ https://laravel-livewire.com/docs/2.x/inline-scripts
 -->
 @stack('scripts')
 
-<script src="{{ url('/js/prism.js') }}" type="text/javascript"></script>
 </body>
 </html>
 

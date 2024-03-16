@@ -26,7 +26,6 @@
                    class="hidden"
                    name="categoryId"
                    id="categoryId"
-                   value="{{ $categoryId }}"
             >
 
             <div class="actions">

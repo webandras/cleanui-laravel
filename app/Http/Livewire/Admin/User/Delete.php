@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Interface\Repository\UserRepositoryInterface;
-use App\Models\User;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\UserRepositoryInterface;
+use App\Models\Clean\User;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +15,12 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public int $userId;

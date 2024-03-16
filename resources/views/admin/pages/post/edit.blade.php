@@ -5,6 +5,14 @@
 @endsection
 
 
+@push('head-extra')
+    <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
+    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
+    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
+    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
+@endpush
+
+
 @section('content')
     <main class="padding-1" style="">
 
@@ -74,16 +82,14 @@
                                     {!! $post->content !!}
                                 </textarea>
                         </div>
-                        <div
-                            class="{{ $errors->has('content') ? 'error-message' : 'red' }}">
-                            {{ $errors->has('content') ? $errors->first('content') : '' }}
-                        </div>
+
+                        <x-global::input-error for="content"/>
+
                     </div>
                 </div>
 
 
                 <div class="col s12 m12 l4">
-
                     <div>
                         <!-- Status -->
                         <label for="status" class="bold">{{ __('Status') }}<span class="text-red">*</span></label>
@@ -103,9 +109,8 @@
                             @endforeach
                         </select>
 
-                        <div class="{{ $errors->has('status') ? 'error-message' : '' }}">
-                            {{ $errors->has('status') ? $errors->first('status') : '' }}
-                        </div>
+                        <x-global::input-error for="status"/>
+
                     </div>
 
                     <div>
@@ -135,8 +140,7 @@
 
                     <!-- Is post highlighted? -->
                     <div class="mb-5">
-                        <label for="is_highlighted">{{ __('Is the post highlighted?') }}<span
-                                class="text-red">*</span></label>
+                        <label for="is_highlighted">{{ __('Is the post highlighted?') }}</label>
 
                         <input type="checkbox" id="is_highlighted" name="is_highlighted"
                                value="1" {{ ($post->is_highlighted === 1) ? "checked" : "" }}>
@@ -193,9 +197,7 @@
                                 @endforeach
                             </select>
 
-                            <div class="{{ $errors->has('categories') ? 'error-message' : '' }}">
-                                {{ $errors->has('categories') ? $errors->first('categories') : '' }}
-                            </div>
+                            <x-global::input-error for="categories"/>
 
                         </div>
 
@@ -211,9 +213,8 @@
                                 @endforeach
                             </select>
 
-                            <div class="{{ $errors->has('tags') ? 'error-message' : '' }}">
-                                {{ $errors->has('tags') ? $errors->first('tags') : '' }}
-                            </div>
+                            <x-global::input-error for="tags"/>
+
                         </div>
 
                     </div>

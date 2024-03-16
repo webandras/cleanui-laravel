@@ -26,15 +26,15 @@ trait Reactive
         }
 
         if (isset($this->tag)) {
-            $this->name            = $this->tag->name;
-            $this->slug            = $this->tag->slug;
+            $this->name = $this->tag->name;
+            $this->slug = $this->tag->slug;
             $this->cover_image_url = $this->tag->cover_image_url;
-            $this->cover_image     = null;
+            $this->cover_image = null;
         } else {
-            $this->name            = '';
-            $this->slug            = '';
+            $this->name = '';
+            $this->slug = '';
             $this->cover_image_url = '';
-            $this->filterKeyword   = '';
+            $this->filterKeyword = '';
         }
     }
 
@@ -47,6 +47,9 @@ trait Reactive
     }
 
 
+    /**
+     * @return void
+     */
     public function triggerOnAlert(): void
     {
         $this->emitTo(

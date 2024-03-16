@@ -1,13 +1,13 @@
-@import url('https://fonts.bunny.net/css?family=dm-serif-text:400,700|exo:700,800|exo-2:400,500,700');
+/*@import url('https://fonts.bunny.net/css?family=dm-serif-text:400,700|exo:700,800|exo-2:400,500,700');*/
 
 html, body {
-    font-family: "Exo 2", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 h1, h2, h3, h4,
 .h1, .h2, .h3, .h4
 {
-    font-family: "DM Serif Text", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     font-weight: 700;
 }
 

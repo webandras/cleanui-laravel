@@ -38,6 +38,8 @@
 
     <?php $nonce = ["nonce" => csp_nonce()] ?>
     @livewireStyles($nonce)
+
+    @stack('head-extra')
 </head>
 <body @scroll="setScrollToTop()" class="overflow-x-hidden">
 

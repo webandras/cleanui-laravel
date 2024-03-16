@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Interface\Repository\CategoryRepositoryInterface;
-use App\Models\Category;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\CategoryRepositoryInterface;
+use App\Models\Clean\Category;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -14,15 +14,18 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
 
+
     // inputs
     public int $categoryId;
     public string $name;
     public Category $category;
+
 
     protected array $rules = [
         'categoryId' => 'required|int|min:1',

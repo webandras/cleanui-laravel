@@ -26,7 +26,6 @@
                    class="hidden"
                    name="tagId"
                    id="tagId"
-                   value="{{ $tagId }}"
             >
 
             <div class="actions">

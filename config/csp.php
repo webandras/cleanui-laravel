@@ -7,7 +7,7 @@ return [
      * any class that extends `Spatie\Csp\Policies\Policy`
      */
 //    'policy' => Spatie\Csp\Policies\Basic::class,
-    'policy' => \App\Support\ContentPolicy::class,
+    'policy' => \App\Support\Clean\ContentPolicy::class,
 
     /*
      * This policy which will be put in report only mode. This is great for testing out
@@ -32,5 +32,5 @@ return [
      * The class responsible for generating the nonces used in inline tags and headers.
      */
 //    'nonce_generator' => Spatie\Csp\Nonce\RandomString::class,
-    'nonce_generator' => \App\Support\LaravelViteNonceGenerator::class,
+    'nonce_generator' => \App\Support\Clean\LaravelViteNonceGenerator::class,
 ];

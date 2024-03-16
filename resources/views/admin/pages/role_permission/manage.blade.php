@@ -1,5 +1,10 @@
 @extends('admin.layouts.admin')
 
+@push('head-extra')
+    <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
+    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
+@endpush
+
 @section('content')
 
     <main class="padding-1">

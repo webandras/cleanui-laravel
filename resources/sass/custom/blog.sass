@@ -41,21 +41,20 @@
                 span
                     position: relative
                     color: rgba(0, 0, 0, 0.7)
-                    font-size: 18px
+                    font-size: 14px
                     font-weight: 500
-                    font-variant: all-small-caps
                     letter-spacing: 1px
                     padding-left: 1em
 
                     &:before
                         position: absolute
                         left: 0
-                        top: 8px
+                        top: 4px
                         content: ""
                         width: 8px
                         height: 8px
                         border-radius: 8px
-                        background: #E7B56E
+                        background: $accent-light
 
                 h3
                     margin-top: 2px
@@ -65,7 +64,7 @@
                     letter-spacing: 1px
 
                     @media screen and (max-width: $s-600)
-                        font-size: 16px
+                        font-size: 18px
 
                 img
                     width: 100%
@@ -102,9 +101,10 @@
                 .badge
                     background-color: rgba(255, 255, 255, 0.8)
                     color: black
-                    font-size: 16px
+                    font-size: 14px
                     font-weight: 500
-                    font-variant: all-small-caps
+                    text-transform: none
+                    /*font-variant: all-small-caps*/
                     line-height: 150%
                     letter-spacing: 1px
 
@@ -168,13 +168,13 @@
         a
             position: relative
             width: fit-content
-            margin-right: 4em
-            padding-left: 1.5em
+            /*margin-right: 4em*/
+            /*padding-left: 1.5em*/
 
             @media screen and (max-width: $s-960)
                 margin-right: 0
 
-            &:before
+            /*&:before
                 position: absolute
                 top: 3px
                 left: 0
@@ -182,7 +182,7 @@
                 height: 16px
                 width: 16px
                 background-size: cover
-                background-image: url('./../../public/images/point-1.png')
+                background-image: url('./../../public/images/point-1.png')*/
 
 
     .title
@@ -246,13 +246,10 @@
                 margin-top: 10px
                 margin-bottom: 1px
                 color: rgba(255, 255, 255, 0.90)
-                font-size: 18px
+                font-size: 14px
                 font-weight: 500
-                text-transform: uppercase
-                font-variant: all-small-caps
                 line-height: 150%
                 letter-spacing: 1px
-                padding-left: 1em
 
                 &:before
                     position: absolute
@@ -282,7 +279,7 @@
 
                 &:hover, &:focus
                     transition: 0.3s all
-                    color: $primary-dark
+                    color: black
                     background: $pale-dark
 
             h2
@@ -351,7 +348,7 @@
                     content: ""
                     width: 55px
                     height: 4px
-                    background: rgba(231, 181, 110, 0.70)
+                    background: $accent-light
 
 
         .side-panel-4
@@ -398,28 +395,27 @@
                     position: relative
                     margin-top: 10px
                     color: rgba(0, 0, 0, 0.65)
-                    font-size: 16px
+                    font-size: 14px
                     font-weight: 500
-                    text-transform: uppercase
-                    font-variant: all-small-caps
+
                     line-height: 150%
                     letter-spacing: 1px
 
                     &:before
                         position: absolute
                         left: 0
-                        top: 9px
+                        top: 6px
                         content: ""
                         width: 8px
                         height: 8px
                         border-radius: 8px
-                        background: #E7B56E
+                        background: $accent-light
 
                 h3
                     margin-top: 3px
                     margin-bottom: 0
                     color: rgba(0, 0, 0, 0.80)
-                    font-size: 1em
+                    /*font-size: 1em*/
                     line-height: 120%
                     letter-spacing: 1px
 
@@ -457,3 +453,14 @@
                     width: 100%
                     height: 3px
                     background: $primary-dark
+
+article
+
+    .post-date
+        font-size: 14px
+
+    .card-body
+        .post-content
+            .post-footer
+                h4
+                    font-size: 18px

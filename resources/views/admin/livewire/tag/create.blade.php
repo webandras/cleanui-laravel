@@ -34,12 +34,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <label for="slug">{{ __('Slug of the tag') }}<span class="text-red">*</span></label>
@@ -49,12 +45,8 @@
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
                     id="slug"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                <x-global::input-error for="slug"/>
 
 
                 <!-- Cover image -->
@@ -62,16 +54,17 @@
 
                 @if (isset($cover_image))
                     <div class="relative" style="width: fit-content">
-                        Photo Preview:
+                        <small>Photo Preview:</small>
                         <img src="{{ $cover_image->temporaryUrl() }}" alt="{{ __('Photo Preview:') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
                     </div>
-
                 @else
-                    <div class="relative" style="width: fit-content">
-                        <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
-                             class="card card-4 margin-bottom-1 image-preview"/>
-                    </div>
+                    @if (isset($cover_image_url) && $cover_image_url !== '')
+                        <div class="relative" style="width: fit-content">
+                            <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
+                                 class="card card-4 margin-bottom-1 image-preview"/>
+                        </div>
+                    @endif
                 @endif
 
 
@@ -94,7 +87,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <x-global::input-error for="cover_image"/>
 

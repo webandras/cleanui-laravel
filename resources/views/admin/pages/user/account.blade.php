@@ -41,10 +41,7 @@
                         id="name"
                         value="{{ $user->name ?? old('name') }}"
                     >
-
-                    <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                        {{ $errors->has('name') ? $errors->first('name') : '' }}
-                    </div>
+                    <x-global::input-error for="name"/>
 
 
                     <!-- Email -->
@@ -56,10 +53,8 @@
                         value="{{ $user->email }}"
                         readonly
                     >
+                    <x-global::input-error for="email"/>
 
-                    <div class="{{ $errors->has('email') ? 'error-message' : '' }}">
-                        {{ $errors->has('email') ? $errors->first('email') : '' }}
-                    </div>
 
                     <!-- Password -->
                     <label for="password">{{ __('New Password (optional)') }}</label>
@@ -70,10 +65,8 @@
                         id="password"
                         value="{{ old('password') }}"
                     >
+                    <x-global::input-error for="password"/>
 
-                    <div class="{{ $errors->has('password') ? 'error-message' : '' }}">
-                        {{ $errors->has('password') ? $errors->first('password') : '' }}
-                    </div>
 
                     <div class="checkbox-container">
                         <label for="enable2fa">
@@ -86,9 +79,8 @@
                             {{ __('Enable Two Factor Authentication') }}
                         </label>
 
-                        <div class="{{ $errors->has('enable2fa') ? 'error-message' : '' }}">
-                            {{ $errors->has('enable2fa') ? $errors->first('enable2fa') : '' }}
-                        </div>
+                        <x-global::input-error for="enable2fa"/>
+
                     </div>
 
 

@@ -27,15 +27,11 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
-    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
-    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
-    <script src="{{ url('assets/jquery-sortable-lists.js') }}"></script>
-
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
     @livewireStyles(['nonce' => csp_nonce()])
 
+    @stack('head-extra')
     @yield('head')
 
 </head>

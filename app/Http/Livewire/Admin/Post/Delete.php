@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Post;
 
-use App\Interface\Repository\PostRepositoryInterface;
-use App\Models\Post;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\PostRepositoryInterface;
+use App\Models\Clean\Post;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
@@ -15,15 +15,18 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
 
+
     // inputs
     public int $postId;
     public string $title;
     public Post $post;
+
 
     protected array $rules = [
         'postId' => 'required|int|min:1',

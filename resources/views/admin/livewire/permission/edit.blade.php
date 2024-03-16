@@ -28,12 +28,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <!-- Email -->
@@ -44,12 +40,8 @@
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
                     id="slug"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('slug') ? 'error-message' : '' }}">
-                    {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                <x-global::input-error for="slug"/>
 
 
                 <label class="{{ $errors->has('permissionRoles') ? 'border border-red' : '' }}">
@@ -66,10 +58,7 @@
                         </label>
                     @endforeach
 
-                    <div class="{{ $errors->has('permissionRoles') ? 'error-message' : '' }}">
-                        {{ $errors->has('permissionRoles') ? $errors->first('permissionRoles') : '' }}
-                    </div>
-
+                    <x-global::input-error for="permissionRoles"/>
                     {{-- var_export($permissionRoles) --}}
                 </div>
             </fieldset>
@@ -79,7 +68,7 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="updatePermission" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="updatePermission">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>

@@ -10,6 +10,7 @@ class Banner extends Component
     public string $style;
     public string $message;
 
+
     protected $listeners = [
         'onAlert'
     ];
@@ -18,9 +19,10 @@ class Banner extends Component
     public function mount()
     {
         $this->show = false;
-        $this->style   = '';
+        $this->style = '';
         $this->message = '';
     }
+
 
     public function render()
     {
@@ -28,7 +30,12 @@ class Banner extends Component
     }
 
 
-    public function onAlert(array $args) {
+    /**
+     * @param  array  $args
+     * @return void
+     */
+    public function onAlert(array $args): void
+    {
         $this->show = true;
         $this->emitSelf('$refresh');
         $this->style = $args['style'];

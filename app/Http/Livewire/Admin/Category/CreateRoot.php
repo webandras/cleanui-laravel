@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Interface\Repository\CategoryRepositoryInterface;
-use App\Interface\Services\ImageServiceInterface;
-use App\Models\Category;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\CategoryRepositoryInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
+use App\Models\Clean\Category;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +108,8 @@ class CreateRoot extends Component
         return redirect()->route('category.manage');
     }
 
-    public function initialize() {
+    public function initialize(): void
+    {
         $this->name = '';
         $this->cover_image_url = '';
     }

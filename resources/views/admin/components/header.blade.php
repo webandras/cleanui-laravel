@@ -18,8 +18,8 @@
                             @role('super-administrator|administrator')
 
                             <!-- Demo components link -->
-                            <a class="fs-14 {{ request()->routeIs('home') ? 'active' : '' }}"
-                               href="{{ route('home') }}"
+                            <a class="fs-14 {{ request()->routeIs('demo') ? 'active' : '' }}"
+                               href="{{ route('demo') }}"
                             >
                                 <i class="fa-regular fa-book"></i>
                                 <span>{{ __('Components') }}</span>

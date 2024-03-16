@@ -17,7 +17,6 @@
             <?php ?>
         </nav>
 
-        <small class="text-gray-40 fs-12">&copy; 2023 {{ config('app.name', 'Laravel') }}
-            . {{ __('All rights reserved!') }}</small>
+        <small class="text-gray-40 fs-12">&copy; 2023 {{ config('app.name', 'Laravel') }}. {{ __('All rights reserved!') }}</small>
     </div>
 </footer>

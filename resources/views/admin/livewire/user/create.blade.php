@@ -28,12 +28,8 @@
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
                     id="name"
-                    value=""
                 >
-
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
-                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                <x-global::input-error for="name"/>
 
 
                 <!-- Email -->
@@ -44,12 +40,9 @@
                     class="{{ $errors->has('email') ? 'border border-red' : '' }}"
                     name="email"
                     id="email"
-                    value=""
                 >
+                <x-global::input-error for="email"/>
 
-                <div class="{{ $errors->has('email') ? 'error-message' : '' }}">
-                    {{ $errors->has('email') ? $errors->first('email') : '' }}
-                </div>
 
                 <!-- Password -->
                 <label for="password">{{ __('Password') }}<span class="text-red">*</span></label>
@@ -59,12 +52,9 @@
                     class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                     name="password"
                     id="password"
-                    value=""
                 >
+                <x-global::input-error for="password"/>
 
-                <div class="{{ $errors->has('password') ? 'error-message' : '' }}">
-                    {{ $errors->has('password') ? $errors->first('password') : '' }}
-                </div>
 
                 <!-- Role -->
                 <label for="role">{{ __('Role') }}<span class="text-red">*</span></label>
@@ -75,18 +65,14 @@
                     name="role"
                     id="role"
                 >
-
                     <option selected>{{ __("Select the role") }}</option>
 
                     @foreach ($rolesArray as $key => $value)
                         <option name="role" value="{{ $key }}">{{ $value }}</option>
                     @endforeach
-
                 </select>
 
-                <div class="{{ $errors->has('role') ? 'error-message' : '' }}">
-                    {{ $errors->has('role') ? $errors->first('role') : '' }}
-                </div>
+                <x-global::input-error for="role"/>
 
             </fieldset>
 
@@ -95,15 +81,14 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="createUser" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="createUser">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>
 
-                <button
-                    type="button"
-                    class="alt primary"
-                    @click="isModalOpen = false"
+                <button type="button"
+                        class="alt primary"
+                        @click="isModalOpen = false"
                 >
                     {{ __('Cancel') }}
                 </button>

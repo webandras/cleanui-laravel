@@ -14,29 +14,29 @@
                     @role('super-administrator|administrator')
                     <!-- Demo components link -->
                     <li class="card text-center glassmorphic">
-                        <a class="card-link" href="{{ route('home') }}">
-                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                        <a class="card-link" href="{{ route('demo') }}">
+                            <i class="fa-solid fa-palette" aria-hidden="true"></i>
                             {{ __('Demo Components') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('post.manage') }}">
-                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
                             {{ __('Manage Posts') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('category.manage') }}">
-                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
                             {{ __('Manage Categories') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('tag.manage') }}">
-                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            <i class="fa-solid fa-tags" aria-hidden="true"></i>
                             {{ __('Manage Tags') }}
                         </a>
                     </li>
@@ -48,6 +48,14 @@
                             {{ __('Media Library') }}
                         </a>
                     </li>
+
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('document.manage') }}">
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>
+                            {{ __('Manage Documentation') }}
+                        </a>
+                    </li>
+
                     @endrole
 
                     @role('super-administrator')

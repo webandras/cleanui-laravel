@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Models\Role;
-use App\Models\User;
+use App\Models\Clean\Role;
+use App\Models\Clean\User;
 use Illuminate\Support\Facades\DB;
 
 

@@ -1,6 +1,6 @@
 <aside>
     <header>
-        <h3 class="text-white fs-18">{{ Auth()->user()->name }}</h3>
+        <h3 class="text-white fs-18">{{ __('Welcome, ') . Auth()->user()->name }}</h3>
     </header>
     <div class="sidebar-content">
 
@@ -27,14 +27,18 @@
                         </li>
                     @endif
                 @else
+                    <li>
+                        <h4 class="fs-14 margin-top-bottom-0-5 padding-left-1 text-gray-60">{{ 'Content' }}</h4>
+                    </li>
+
                     <!-- Custom links -->
                     @role('super-administrator|administrator')
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                           href="{{ route('home') }}"
+                        <a class="nav-link {{ request()->routeIs('demo') ? 'active' : '' }}"
+                           href="{{ route('demo') }}"
                         >
-                            <i class="fa-solid fa-book"></i>{{ __('Demo Components') }}
+                            <i class="fa-solid fa-palette" aria-hidden="true"></i>{{ __('Demo Components') }}
                         </a>
                     </li>
 
@@ -48,6 +52,27 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('document.manage') ? 'active' : '' }}"
+                           href="{{ route('document.manage') }}"
+                        >
+                            <i class="fa-solid fa-book"></i>{{ __('Manage Documentation') }}
+                        </a>
+                    </li>
+
+                    <!-- Media library link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('filemanager') ? 'active' : '' }}"
+                           href="{{ route('filemanager') }}"
+                        >
+                            <i class="fa-solid fa-photo-film"></i>{{ __('Media Library') }}
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Taxonomies' }}</h4>
+                    </li>
 
                     <!-- Manage categories link -->
                     <li class="nav-item">
@@ -67,18 +92,11 @@
                             <i class="fa-solid fa-tags"></i>{{ __('Manage Tags') }}
                         </a>
                     </li>
-
-
-                    <!-- Media library link -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('filemanager') ? 'active' : '' }}"
-                           href="{{ route('filemanager') }}"
-                        >
-                            <i class="fa-solid fa-photo-film"></i>{{ __('Media Library') }}
-                        </a>
-                    </li>
                     @endrole
 
+                    <li>
+                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Users & Roles' }}</h4>
+                    </li>
                     @role('super-administrator')
                     <!-- Manage users link -->
                     <li class="nav-item">

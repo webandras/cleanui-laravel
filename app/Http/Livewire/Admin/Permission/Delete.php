@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Permission;
 
-use App\Interface\Services\RolePermissionServiceInterface;
-use App\Models\Permission;
-use App\Support\InteractsWithBanner;
+use App\Interface\Services\Clean\RolePermissionServiceInterface;
+use App\Models\Clean\Permission;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +15,12 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public int $permissionId;

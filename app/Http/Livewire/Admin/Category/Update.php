@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Category;
 
-use App\Interface\Repository\CategoryRepositoryInterface;
-use App\Interface\Services\ImageServiceInterface;
-use App\Models\Category;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\CategoryRepositoryInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
+use App\Models\Clean\Category;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -14,10 +14,12 @@ class Update extends Component
 {
     use InteractsWithBanner, AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public string $name;
@@ -25,6 +27,7 @@ class Update extends Component
     public ?string $cover_image_url;
     public int $categoryId;
     public Category $category;
+
 
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',

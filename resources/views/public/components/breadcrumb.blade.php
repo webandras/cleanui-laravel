@@ -1,9 +1,9 @@
 <nav class="breadcrumb {{ isset($centerAlign) ? 'breadcrumb-center' : '' }}">
     <ol>
         <li>
-            <a href="{{ route('blog.index') }}">
+            <a href="{{ $homeLink ?? route('frontpage') }}">
                 <i class="fa fa-home" aria-hidden="true"></i>
-                {{ __('Home') }}
+                {{ $homeLabel ?? __('Home') }}
             </a>
         </li>
         <li>

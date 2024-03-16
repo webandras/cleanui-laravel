@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Tag;
 
 use App\Http\Livewire\Admin\Tag\Trait\Reactive;
-use App\Interface\Repository\ModelRepositoryInterface;
-use App\Interface\Services\ImageServiceInterface;
-use App\Models\Tag;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\ModelRepositoryInterface;
+use App\Interface\Services\Clean\ImageServiceInterface;
+use App\Models\Clean\Tag;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Interface\Services\RolePermissionServiceInterface;
-use App\Models\Role;
-use App\Support\InteractsWithBanner;
+use App\Interface\Services\Clean\RolePermissionServiceInterface;
+use App\Models\Clean\Role;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,16 +19,19 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public string $name;
     public string $slug;
     public Collection $allPermissions;
     public array $rolePermissions;
+
 
     protected array $rules = [
         'name' => ['required', 'string', 'max:255'],
@@ -70,6 +73,7 @@ class Create extends Component
     {
         return view('admin.livewire.role.create');
     }
+
 
     /**
      * @throws AuthorizationException

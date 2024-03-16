@@ -10,9 +10,19 @@
                 <div class="main-navigation">
                     <nav id="main-menu">
 
-                        <a class="{{ request()->routeIs('blog.index') ? 'active' : '' }}"
-                           href="{{ url('/') }}">
+                        <a class="{{ request()->routeIs('frontpage') ? 'active' : '' }}"
+                           href="{{ route('frontpage') }}">
                             <i class="fa fa-home" aria-hidden="true"></i>{{ __('Home') }}
+                        </a>
+
+                        <a class="{{ request()->routeIs('blog.index') ? 'active' : '' }}"
+                           href="{{ route('blog.index') }}">
+                            <i class="fa-regular fa-newspaper"></i>{{ __('Blog') }}
+                        </a>
+
+                        <a class="{{ request()->routeIs('document.index') ? 'active' : '' }}"
+                           href="{{ route('document.index') }}">
+                            <i class="fa-solid fa-book"></i>{{ __('Documentation') }}
                         </a>
 
                         @guest

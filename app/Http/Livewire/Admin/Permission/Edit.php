@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Permission;
 
-use App\Interface\Services\RolePermissionServiceInterface;
-use App\Models\Permission;
-use App\Support\InteractsWithBanner;
+use App\Interface\Services\Clean\RolePermissionServiceInterface;
+use App\Models\Clean\Permission;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,10 +19,12 @@ class Edit extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public string $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public string $name;
@@ -31,6 +33,7 @@ class Edit extends Component
     public int $permissionId;
     public Collection $allRoles;
     public array $permissionRoles;
+
 
     protected array $rules = [
         'name' => ['required', 'string', 'max:255'],

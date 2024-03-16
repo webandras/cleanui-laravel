@@ -26,7 +26,6 @@
                    class="hidden"
                    name="permissionId"
                    id="permissionId"
-                   value="{{ $permissionId }}"
             >
 
             <div class="actions">

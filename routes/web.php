@@ -1,16 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\FileManagerController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\RolePermissionController;
-use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\UserCodeController;
-use App\Http\Controllers\Public\BlogController;
-use App\Http\Controllers\Social\FacebookController;
-use App\Http\Controllers\Social\GoogleController;
+use App\Http\Controllers\Admin\Clean\CategoryController;
+use App\Http\Controllers\Admin\Clean\DashboardController;
+use App\Http\Controllers\Admin\Clean\DocumentController;
+use App\Http\Controllers\Admin\Clean\FileManagerController;
+use App\Http\Controllers\Admin\Clean\PostController;
+use App\Http\Controllers\Admin\Clean\RolePermissionController;
+use App\Http\Controllers\Admin\Clean\TagController;
+use App\Http\Controllers\Admin\Clean\UserController;
+use App\Http\Controllers\Auth\Clean\UserCodeController;
+use App\Http\Controllers\Demo\Clean\DemoController;
+use App\Http\Controllers\Public\Clean\BlogController;
+use App\Http\Controllers\Public\Clean\DocumentationController;
+use App\Http\Controllers\Social\Clean\FacebookController;
+use App\Http\Controllers\Social\Clean\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Artisan;
@@ -39,13 +42,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [],
     function () {
-        /* Clean.ui Demo page */
+
+        /* Frontpage */
         Route::get('/', function () {
             return view('welcome');
         })->name('frontpage');
+        /* Frontpage END */
 
-
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
         /* 2FA */
         Route::get('2fa', [UserCodeController::class, 'index'])->name('2fa.index');
@@ -53,19 +56,29 @@ Route::group(
 
 
         /* Social Login endpoints */
+        // Facebook
         Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook'])->name('facebook.redirect');
         Route::get('auth/callback/facebook', [FacebookController::class, 'handleCallback'])->name('facebook.callback');
 
+        // Google
         Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
         Route::get('auth/callback/google', [GoogleController::class, 'handleCallback'])->name('google.callback');
         /* Social Login endpoints END */
 
 
-        /* Posts */
+        /* Blog */
         Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
         Route::get('blog/info/{slug}', [BlogController::class, 'show'])->name('blog.show');
         Route::get('blog/category/{category}', [BlogController::class, 'category'])->name('blog.category');
         Route::get('blog/tag/{tag}', [BlogController::class, 'tag'])->name('blog.tag');
+        /* Blog END */
+
+
+        /* Documentation */
+        Route::get('/documentation', [DocumentationController::class, 'index'])->name('document.index');
+        Route::get('/documentation/{slug}', [DocumentationController::class, 'show'])->name('document.show');
+        /* Documentation END */
+
     }
 );
 
@@ -122,8 +135,8 @@ Route::group(
 
 
         /* Roles and Permissions */
-        Route::get('role-permission/manage', [RolePermissionController::class, 'index'])
-            ->name('role-permission.manage');
+        Route::get('role-permission/manage',
+            [RolePermissionController::class, 'index'])->name('role-permission.manage');
         /* Roles and Permissions END */
 
 
@@ -137,21 +150,39 @@ Route::group(
         /* Categories END */
 
 
+        /* Demo page */
+        Route::get('/demo', [DemoController::class, 'index'])->name('demo');
+        /* Demo page END */
+
+
+        /* Docs */
+        Route::post('document', [DocumentController::class, 'store'])->name('document.store');
+        Route::get('document/create', [DocumentController::class, 'create'])->name('document.create');
+        Route::get('documents/manage', [DocumentController::class, 'index'])->name('document.manage');
+
+        Route::get('document/{document}', [DocumentController::class, 'edit'])->name('document.edit');
+
+        Route::put('document/{document}', [DocumentController::class, 'update'])->name('document.update');
+        Route::delete('document/{document}', [DocumentController::class, 'destroy'])->name('document.destroy');
+        /* Docs END */
+
+
         /* Posts */
         Route::post('post', [PostController::class, 'store'])->name('post.store');
         Route::get('post/create', [PostController::class, 'create'])->name('post.create');
         Route::get('posts/manage', [PostController::class, 'index'])->name('post.manage');
 
-        Route::get(
-            'post/{post}', [PostController::class, 'edit'])->name('post.edit');
+        Route::get('post/{post}', [PostController::class, 'edit'])->name('post.edit');
 
         Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
         Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
         /* Posts END */
 
 
-        Route::get(
-            'file-manager', [FileManagerController::class, 'index'])->name('filemanager');
+        /* File Manager */
+        Route::get('file-manager', [FileManagerController::class, 'index'])->name('filemanager');
+        /* File Manager END */
+
     }
 );
 
@@ -179,8 +210,7 @@ Route::group(
 
         /* 2fa endpoints for authenticated users */
         Route::post('2fa', [UserCodeController::class, 'store'])->name('2fa.post');
-        Route::get('2fa/reset', [UserCodeController::class, 'resend'])
-            ->name('2fa.resend');
+        Route::get('2fa/reset', [UserCodeController::class, 'resend'])->name('2fa.resend');
         /* 2fa endpoints for authenticated users END */
 
     });

@@ -33,15 +33,15 @@ return [
             'HTML.SafeObject' => true,
             'Output.FlashCompat' => true,
             'URI.DisableExternalResources' => false,
-            'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()),
+            'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()), /* Be careful with this one -> if it is enabled, you can't cache the config! */
         ],
         'test'    => [
             'Attr.EnableID' => 'true',
         ],
-        /*        "youtube" => [
-                    "HTML.SafeIframe"      => 'true',
-                    "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
-                ],*/
+        /* "youtube" => [
+            "HTML.SafeIframe"      => 'true',
+            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
+        ],*/
         'custom_definition' => [
             'id'  => 'html5-definitions',
             'rev' => 1,

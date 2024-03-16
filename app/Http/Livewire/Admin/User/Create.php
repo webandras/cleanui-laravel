@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Interface\Repository\UserRepositoryInterface;
-use App\Interface\Services\RolePermissionServiceInterface;
-use App\Models\User;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\UserRepositoryInterface;
+use App\Interface\Services\Clean\RolePermissionServiceInterface;
+use App\Models\Clean\User;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -20,10 +20,12 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
+
     // used by blade / alpinejs
     public $modalId;
     public bool $isModalOpen;
     public bool $hasSmallButton;
+
 
     // inputs
     public string $name;
@@ -31,6 +33,7 @@ class Create extends Component
     public string $password;
     public ?int $role;
     public array $rolesArray;
+
 
     protected array $rules = [
         'name' => ['required', 'string', 'max:255'],

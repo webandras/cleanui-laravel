@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Admin\Tag;
 
 use App\Http\Livewire\Admin\Tag\Trait\Reactive;
-use App\Interface\Repository\ModelRepositoryInterface;
-use App\Models\Tag;
-use App\Support\InteractsWithBanner;
+use App\Interface\Repository\Clean\ModelRepositoryInterface;
+use App\Models\Clean\Tag;
+use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -16,21 +16,25 @@ class Delete extends Component
     use AuthorizesRequests;
     use Reactive;
 
+
     // used by blade / alpinejs
     /**
      * @var string
      */
     public string $modalId;
 
+
     /**
      * @var bool
      */
     public bool $isModalOpen;
 
+
     /**
      * @var bool
      */
     public bool $hasSmallButton;
+
 
     // inputs
     /**
@@ -38,10 +42,12 @@ class Delete extends Component
      */
     public int $tagId;
 
+
     /**
      * @var string
      */
     public string $name;
+
 
     /**
      * @var Tag
@@ -64,7 +70,7 @@ class Delete extends Component
 
 
     /**
-     * @param ModelRepositoryInterface $tagRepository
+     * @param  ModelRepositoryInterface  $tagRepository
      */
     public function boot(ModelRepositoryInterface $tagRepository)
     {
@@ -73,9 +79,9 @@ class Delete extends Component
 
 
     /**
-     * @param string $modalId
-     * @param Tag $tag
-     * @param bool $hasSmallButton
+     * @param  string  $modalId
+     * @param  Tag  $tag
+     * @param  bool  $hasSmallButton
      * @return void
      */
     public function mount(string $modalId, Tag $tag, bool $hasSmallButton = false)

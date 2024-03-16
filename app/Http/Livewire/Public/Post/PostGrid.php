@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Public\Post;
 
-use App\Interface\Repository\PostRepositoryInterface;
+use App\Interface\Repository\Clean\PostRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class PostGrid extends Component
 {
     use WithPagination;
+
 
     /**
      * Event list collection
