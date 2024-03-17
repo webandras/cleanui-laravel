@@ -3,7 +3,7 @@
 namespace Tests\Unit\App\Utils;
 
 use App\Interface\Services\Clean\ImageServiceInterface;
-use App\Services\ImageService;
+use App\Services\Clean\ImageService;
 use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase

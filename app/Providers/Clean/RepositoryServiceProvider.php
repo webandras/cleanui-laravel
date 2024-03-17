@@ -19,11 +19,11 @@ use App\Repository\Clean\ModelRepository;
 use App\Repository\Clean\PostRepository;
 use App\Repository\Clean\TagRepository;
 use App\Repository\Clean\UserRepository;
-use App\Services\ArchiveEntityService;
-use App\Services\DateTimeService;
-use App\Services\ImageService;
-use App\Services\RolePermissionService;
-use App\Services\SocialService;
+use App\Services\Clean\ArchiveEntityService;
+use App\Services\Clean\DateTimeService;
+use App\Services\Clean\ImageService;
+use App\Services\Clean\RolePermissionService;
+use App\Services\Clean\SocialService;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
