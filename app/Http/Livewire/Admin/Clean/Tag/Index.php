@@ -118,7 +118,7 @@ class Index extends Component
             $this->tags = $this->tagRepository->paginateEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'page');
         }
 
-        return view('admin.livewire.tag.index')->with([
+        return view('admin.livewire.clean.tag.index')->with([
             'tags' => $this->tags,
         ]);
     }
@@ -192,7 +192,7 @@ class Index extends Component
         if ($keyword !== '') {
             $q = Tag::where('name', 'LIKE', '%'.$keyword.'%');
         } else {
-            $q = Tag::all();
+            return Tag::paginate(TagInterface::RECORDS_PER_PAGE);
         }
 
         return $q->orderBy('id', 'desc')
