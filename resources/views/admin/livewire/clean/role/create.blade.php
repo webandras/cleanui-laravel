@@ -49,7 +49,7 @@
                     name="slug"
                     id="slug"
                 >
-                @error('slug')<div class="error-message">{{ $message }}</div>@enderror
+                <x-global::input-error for="slug"/>
 
 
                 <div wire:ignore>

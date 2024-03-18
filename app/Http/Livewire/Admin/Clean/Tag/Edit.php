@@ -148,7 +148,7 @@ class Edit extends Component
      */
     public function render()
     {
-        return view('admin.livewire.tag.edit');
+        return view('admin.livewire.clean.tag.edit');
     }
 
 

@@ -64,7 +64,7 @@ class Restore extends Component
      */
     public function render()
     {
-        return view('admin.livewire.tag.restore');
+        return view('admin.livewire.tag.clean.restore');
     }
 
 

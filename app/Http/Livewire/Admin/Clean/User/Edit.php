@@ -90,7 +90,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('admin.livewire.user.edit');
+        return view('admin.livewire.clean.user.edit');
     }
 
 

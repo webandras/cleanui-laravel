@@ -126,7 +126,7 @@ class Archive extends Component
             $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
         }
 
-        return view('admin.livewire.tag.archive')->with([
+        return view('admin.livewire.clean.tag.archive')->with([
             'archivedTags' => $this->archivedTags,
         ]);
     }

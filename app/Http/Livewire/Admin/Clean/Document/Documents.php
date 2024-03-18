@@ -26,7 +26,7 @@ class Documents extends Component
 
     public function render()
     {
-        return view('admin.livewire.document.documents')->with([
+        return view('admin.livewire.clean.document.documents')->with([
             'documents' => $this->documentRepository->getDocuments(),
             'documentStatuses' => Document::getDocumentStatuses(),
             'documentStatusColors' => Document::getDocumentStatusColors(),

@@ -71,7 +71,7 @@ class CreateRoot extends Component
 
     public function render()
     {
-        return view('admin.livewire.category.create-root');
+        return view('admin.livewire.clean.category.create-root');
     }
 
 

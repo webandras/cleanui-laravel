@@ -71,7 +71,7 @@ class Create extends Component
 
     public function render(): Factory|View|Application
     {
-        return view('admin.livewire.role.create');
+        return view('admin.livewire.clean.role.create');
     }
 
 

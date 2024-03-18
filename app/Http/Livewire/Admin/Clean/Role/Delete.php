@@ -61,7 +61,7 @@ class Delete extends Component
 
     public function render()
     {
-        return view('admin.livewire.role.delete');
+        return view('admin.livewire.clean.role.delete');
     }
 
 

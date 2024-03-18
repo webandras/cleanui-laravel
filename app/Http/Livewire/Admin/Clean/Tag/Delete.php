@@ -100,7 +100,7 @@ class Delete extends Component
      */
     public function render()
     {
-        return view('admin.livewire.tag.delete');
+        return view('admin.livewire.clean.tag.delete');
     }
 
 

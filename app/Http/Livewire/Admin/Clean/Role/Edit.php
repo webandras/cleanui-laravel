@@ -74,7 +74,7 @@ class Edit extends Component
 
     public function render(): Factory|View|Application
     {
-        return view('admin.livewire.role.edit');
+        return view('admin.livewire.clean.role.edit');
     }
 
 

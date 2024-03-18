@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Global;
+namespace App\Http\Livewire\Global\Clean;
 
 use Livewire\Component;
 
@@ -26,7 +26,7 @@ class Banner extends Component
 
     public function render()
     {
-        return view('admin.livewire.global.banner');
+        return view('admin.livewire.clean.global.banner');
     }
 
 

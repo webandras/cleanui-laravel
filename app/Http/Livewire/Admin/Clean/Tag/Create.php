@@ -124,7 +124,7 @@ class Create extends Component
      */
     public function render()
     {
-        return view('admin.livewire.tag.create');
+        return view('admin.livewire.clean.tag.create');
     }
 
 

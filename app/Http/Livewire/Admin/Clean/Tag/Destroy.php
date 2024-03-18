@@ -98,7 +98,7 @@ class Destroy extends Component
      */
     public function render()
     {
-        return view('admin.livewire.tag.destroy');
+        return view('admin.livewire.clean.tag.destroy');
     }
 
 

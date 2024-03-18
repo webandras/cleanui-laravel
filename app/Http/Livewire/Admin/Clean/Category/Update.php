@@ -74,7 +74,7 @@ class Update extends Component
 
     public function render()
     {
-        return view('admin.livewire.category.update');
+        return view('admin.livewire.clean.category.update');
     }
 
 
