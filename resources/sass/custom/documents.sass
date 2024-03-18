@@ -1,0 +1,25 @@
+.document__list
+    .document__list__item
+        .document__list__item__container
+            display: flex
+            justify-content: space-between
+            row-gap: 0
+
+            @media screen and (max-width: $s-1400)
+                flex-direction: column
+
+            .document__list__item__container__content
+                flex-direction: row
+                display: flex
+                align-items: center
+                cursor: move
+
+                .document__list__item__container__content__grip
+                    display: flex
+                    align-items: center
+
+            .button-group
+                align-items: center
+
+                @media screen and (max-width: $s-1400)
+                    padding-top: 0
