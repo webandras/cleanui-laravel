@@ -89,36 +89,36 @@ Route::group(
     function () {
 
         /* Login/Logout/Register */
-        Route::get('login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-        Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
-        Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-        Route::get('register', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
+        Route::get('login', 'App\Http\Controllers\Auth\Clean\LoginController@showLoginForm')->name('login');
+        Route::post('login', 'App\Http\Controllers\Auth\Clean\LoginController@login');
+        Route::post('logout', 'App\Http\Controllers\Auth\Clean\LoginController@logout')->name('logout');
+        Route::get('register', 'App\Http\Controllers\Auth\Clean\RegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'App\Http\Controllers\Auth\Clean\RegisterController@register');
         /* Login/Logout/Register END */
 
 
         /* Password */
         Route::get('password/reset',
-            'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+            'App\Http\Controllers\Auth\Clean\ForgotPasswordController@showLinkRequestForm')->name('password.request');
         Route::post('password/email',
-            'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+            'App\Http\Controllers\Auth\Clean\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
         Route::get('password/reset/{token}',
-            'App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+            'App\Http\Controllers\Auth\Clean\ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('password/reset',
-            'App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
+            'App\Http\Controllers\Auth\Clean\ResetPasswordController@reset')->name('password.update');
         Route::get('password/confirm',
-            'App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-        Route::post('password/confirm', 'App\Http\Controllers\Auth\ConfirmPasswordController@confirm');
+            'App\Http\Controllers\Auth\Clean\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+        Route::post('password/confirm', 'App\Http\Controllers\Auth\Clean\ConfirmPasswordController@confirm');
         /* Password END */
 
 
         /* Email */
         Route::get('email/verify',
-            'App\Http\Controllers\Auth\VerificationController@show')->name('verification.notice');
+            'App\Http\Controllers\Auth\Clean\VerificationController@show')->name('verification.notice');
         Route::get('email/verify/{id}/{hash}',
-            'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
+            'App\Http\Controllers\Auth\Clean\VerificationController@verify')->name('verification.verify');
         Route::post('email/resend',
-            'App\Http\Controllers\Auth\VerificationController@resend')->name('verification.resend');
+            'App\Http\Controllers\Auth\Clean\VerificationController@resend')->name('verification.resend');
         /* Email END */
 
     });
