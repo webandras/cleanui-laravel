@@ -92,6 +92,54 @@
                             <i class="fa-solid fa-tags"></i>{{ __('Manage Tags') }}
                         </a>
                     </li>
+
+
+                    <li>
+                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Manage jobs calendar' }}</h4>
+                    </li>
+
+                    <!-- Jobs calendar link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('job.calendar') ? 'active' : '' }}"
+                           href="{{ route('job.calendar') }}"
+                        >
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span>{{ __('Manage Jobs') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Manage workers link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('worker.manage') ? 'active' : '' }}"
+                           href="{{ route('worker.manage') }}"
+                        >
+                            <i class="fa-solid fa-person-digging" aria-hidden="true"></i>
+                            <span>{{ __('Manage Workers') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Manage clients link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('client.manage') ? 'active' : '' }}"
+                           href="{{ route('client.manage') }}"
+                        >
+                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                            <span>{{ __('Manage Clients') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Get worked hours statistics link -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('job.statistics') ? 'active' : '' }}"
+                           href="{{ route('job.statistics') }}"
+                        >
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <span>{{ __('Statistics') }}</span>
+                        </a>
+                    </li>
+
+
+
                     @endrole
 
                     <li>

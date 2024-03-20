@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('banner')
-    <livewire:global.banner></livewire:global.banner>
+    <livewire:global.clean.banner></livewire:global.clean.banner>
 @endsection
 
 @section('content')
@@ -54,11 +54,11 @@
                 </div>
 
                 <div id="Tags" class="box tabs animate-opacity">
-                    <livewire:admin.tag.index></livewire:admin.tag.index>
+                    <livewire:admin.clean.tag.index></livewire:admin.clean.tag.index>
                 </div>
 
                 <div id="Archive" class="box tabs animate-opacity">
-                    <livewire:admin.tag.archive></livewire:admin.tag.archive>
+                    <livewire:admin.clean.tag.archive></livewire:admin.clean.tag.archive>
                 </div>
             </div>
 

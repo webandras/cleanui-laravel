@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\Clean\PostController;
 use App\Http\Controllers\Admin\Clean\RolePermissionController;
 use App\Http\Controllers\Admin\Clean\TagController;
 use App\Http\Controllers\Admin\Clean\UserController;
+use App\Http\Controllers\Admin\Job\JobClientController;
+use App\Http\Controllers\Admin\Job\JobCalendarController;
+use App\Http\Controllers\Admin\Job\JobStatsController;
+use App\Http\Controllers\Admin\Job\JobWorkerController;
 use App\Http\Controllers\Auth\Clean\UserCodeController;
 use App\Http\Controllers\Demo\Clean\DemoController;
 use App\Http\Controllers\Public\Clean\BlogController;
@@ -182,6 +186,14 @@ Route::group(
         /* File Manager */
         Route::get('file-manager', [FileManagerController::class, 'index'])->name('filemanager');
         /* File Manager END */
+
+
+        /* Jobs calendar */
+        Route::get('worker/manage', [JobWorkerController::class, 'index'])->name('worker.manage');
+        Route::get('client/manage', [JobClientController::class, 'index'])->name('client.manage');
+        Route::get('jobs/calendar', [JobCalendarController::class, 'index'])->name('job.calendar');
+        Route::get('jobs/statistics', [JobStatsController::class, 'index'])->name('job.statistics');
+        /* Jobs calendar END */
 
     }
 );

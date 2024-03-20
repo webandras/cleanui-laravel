@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Clean;
 
 use App\Http\Controllers\Controller;
+use App\Interface\Utils\UserCodeInterface;
 use App\Models\Clean\UserCode;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
@@ -49,7 +50,7 @@ class UserCodeController extends Controller
 
         $find = UserCode::where('user_id', auth()->id())
             ->where('code', $request->code)
-            ->where('updated_at', '>=', now()->subMinutes(2))
+            ->where('updated_at', '>=', now()->subMinutes(UserCodeInterface::CODE_VALIDITY_EXPIRATION))
             ->first();
 
         if (!is_null($find)) {

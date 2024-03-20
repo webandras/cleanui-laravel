@@ -89,7 +89,7 @@
 
         <hr>
 
-        <livewire:public.post.post-grid></livewire:public.post.post-grid>
+        <livewire:public.clean.post.post-grid></livewire:public.clean.post.post-grid>
 
 
         <section>
@@ -111,7 +111,7 @@
         <section class="highlighted-posts-container">
             <div class="featured">
                 @foreach($highlightedPosts as $highlightedPost)
-                    @if($highlightedPost->id === 4)
+                    @if($highlightedPost->id === 1)
                         <article class="post-item white">
                             <a href="{{ route('blog.show', $highlightedPost->slug) }}" class="no-underline">
                                 <div class="cover-image-container relative">

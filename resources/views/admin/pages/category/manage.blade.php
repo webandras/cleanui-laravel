@@ -40,8 +40,8 @@
 
             <div class="padding-top-bottom-1">
                 <!-- Create root category -->
-                <livewire:admin.category.create-root title="{{ __('Add category') }}" :hasSmallButton="false">
-                </livewire:admin.category.create-root>
+                <livewire:admin.clean.category.create-root title="{{ __('Add category') }}" :hasSmallButton="false">
+                </livewire:admin.clean.category.create-root>
 
             </div>
 
@@ -65,22 +65,22 @@
 
                             <div class="button-group padding-left-0-5 margin-bottom-0">
                                 <!-- Update category -->
-                                <livewire:admin.category.update :modalId="'m-update-' . $category->id"
+                                <livewire:admin.clean.category.update :modalId="'m-update-' . $category->id"
                                                           :category="$category"
                                                           :hasSmallButton="false">
-                                </livewire:admin.category.update>
+                                </livewire:admin.clean.category.update>
 
                                 <!-- Delete category -->
-                                <livewire:admin.category.delete :modalId="'m-delete-' . $category->id"
+                                <livewire:admin.clean.category.delete :modalId="'m-delete-' . $category->id"
                                                           :category="$category"
                                                           :hasSmallButton="false">
-                                </livewire:admin.category.delete>
+                                </livewire:admin.clean.category.delete>
 
                                 <!-- Create sub-category -->
-                                <livewire:admin.category.create :modalId="'m-add-' . $category->id"
+                                <livewire:admin.clean.category.create :modalId="'m-add-' . $category->id"
                                                           :category="$category"
                                                           :hasSmallButton="false">
-                                </livewire:admin.category.create>
+                                </livewire:admin.clean.category.create>
                             </div>
 
                         </div>

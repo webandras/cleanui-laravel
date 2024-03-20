@@ -12,6 +12,8 @@ use Database\Seeders\Clean\DocumentSeeder;
 use Database\Seeders\Clean\PostSeeder;
 use Database\Seeders\Clean\PostTagsCategoriesSeeder;
 use Database\Seeders\Clean\TagSeeder;
+use Database\Seeders\Job\ClientSeeder;
+use Database\Seeders\Job\JobSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,5 +38,9 @@ class DatabaseSeeder extends Seeder
 
         // DOCS
         $this->call(DocumentSeeder::class);
+
+        /* Custom */
+        $this->call(JobSeeder::class);
+        $this->call(ClientSeeder::class);
     }
 }

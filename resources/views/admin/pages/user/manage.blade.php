@@ -20,12 +20,12 @@
         <div class="main-content">
 
             <!-- Create new user -->
-            <livewire:admin.user.create title="{{ __('New user') }}"
+            <livewire:admin.clean.user.create title="{{ __('New user') }}"
                                   :roles="$roles"
                                   :permissions="$permissions"
                                   :hasSmallButton="false"
                                   :modalId="'m-create-user'">
-            </livewire:admin.user.create>
+            </livewire:admin.clean.user.create>
 
             <table>
                 <thead>
@@ -50,22 +50,22 @@
                                     <!-- Superadmins cannot be deleted or edited -->
                                     @if (!$user->hasRoles('super-administrator'))
                                     <!-- Delete user -->
-                                    <livewire:admin.user.delete title="{{ __('Delete user') }}"
+                                    <livewire:admin.clean.user.delete title="{{ __('Delete user') }}"
                                                           :user="$user"
                                                           :hasSmallButton="false"
                                                           :modalId="'m-delete-user-' . $user->id"
                                     >
-                                    </livewire:admin.user.delete>
+                                    </livewire:admin.clean.user.delete>
 
                                     <!-- Update user -->
-                                    <livewire:admin.user.edit title="{{ __('Edit user') }}"
+                                    <livewire:admin.clean.user.edit title="{{ __('Edit user') }}"
                                                         :user="$user"
                                                         :roles="$roles"
                                                         :permissions="$permissions"
                                                         :hasSmallButton="false"
                                                         :modalId="'m-edit-user-' . $user->id"
                                     >
-                                    </livewire:admin.user.edit>
+                                    </livewire:admin.clean.user.edit>
                                     @endif
 
                                 @else

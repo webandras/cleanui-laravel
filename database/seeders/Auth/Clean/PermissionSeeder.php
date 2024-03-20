@@ -53,5 +53,10 @@ class PermissionSeeder extends Seeder
         $manageDocuments->name = 'Manage Documents';
         $manageDocuments->slug = 'manage-documents';
         $manageDocuments->save();
+
+        $manageJobs       = new Permission();
+        $manageJobs->name = 'Manage Jobs';
+        $manageJobs->slug = 'manage-jobs';
+        $manageJobs->save();
     }
 }

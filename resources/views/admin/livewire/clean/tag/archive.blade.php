@@ -104,15 +104,15 @@
 
                             @if(auth()->user()->hasRoles('super-administrator|administrator') )
                                 <!-- Restore tag -->
-                                <livewire:admin.tag.restore :tag="$tag" :modalId="'m-restore-tag-'.$tag->id"
+                                <livewire:admin.clean.tag.restore :tag="$tag" :modalId="'m-restore-tag-'.$tag->id"
                                                             :wire:key="'restore-'.$tag->id">
-                                </livewire:admin.tag.restore>
+                                </livewire:admin.clean.tag.restore>
 
                                 <!-- Destroy tag -->
-                                <livewire:admin.tag.destroy title="{{ __('Delete') }}" :tag="$tag"
+                                <livewire:admin.clean.tag.destroy title="{{ __('Delete') }}" :tag="$tag"
                                                             :wire:key="'destroy-'.$tag->id"
                                                             :modalId="'m-destroy-tag-' . $tag->id">
-                                </livewire:admin.tag.destroy>
+                                </livewire:admin.clean.tag.destroy>
                             @endif
                         </div>
 
