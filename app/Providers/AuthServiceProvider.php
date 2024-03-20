@@ -21,6 +21,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Clean\Role' => 'App\Policies\Clean\RolePolicy',
         'App\Models\Clean\Tag' => 'App\Policies\Clean\TagPolicy',
         'App\Models\Clean\User' => 'App\Policies\Clean\UserPolicy',
+        'App\Models\Job\Job' => 'App\Policies\Job\JobPolicy',
+        'App\Models\Job\Client' => 'App\Policies\Job\ClientPolicy',
+        'App\Models\Job\Worker' => 'App\Policies\Job\WorkerPolicy',
     ];
 
     /**
