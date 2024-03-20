@@ -64,4 +64,12 @@ interface DateTimeServiceInterface
         string $inputFormat = 'Y-m-d H:i:s',
         string $outputFormat = 'Y-m-d H:i:s'
     ): string|DateTime|bool;
+
+
+    /**
+     * @param  string  $dateTimeString
+     * @return string
+     */
+    public function transformDateTimeLocalInput(string $dateTimeString): string;
+
 }

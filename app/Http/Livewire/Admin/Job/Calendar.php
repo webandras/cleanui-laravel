@@ -713,15 +713,10 @@ class Calendar extends Component
                 $jobProps['rrule'] = $this->rrule;
             }
         } else {
-
-           /* $start = str_replace('T', ' ', $this->start);
-            $start .= ':00';*/
-            // regular jobs; input 'Y-m-d H:i:s', output: 'Y-m-d H:i:s'
-            $jobProps['start'] = $this->dateTimeService->convertFromLocalToUtc($this->start, Job::TIMEZONE);
+            // regular jobs; input YYYY-MM-DDThh:mm, output: 'Y-m-d H:i:s'
+            $jobProps['start'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->start), Job::TIMEZONE);
             // input 'Y-m-d H:i:s', output: 'Y-m-d H:i:s'
-            $jobProps['end'] = $this->dateTimeService->convertFromLocalToUtc($this->end, Job::TIMEZONE);
-
-
+            $jobProps['end'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->end), Job::TIMEZONE);
         }
 
         // If a client need to be associated with the job

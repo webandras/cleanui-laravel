@@ -108,4 +108,21 @@ class DateTimeService implements DateTimeServiceInterface
         return $returnObject ? $datetimeObject : $datetimeObject->format($outputFormat);
     }
 
+
+    /**
+     * The date/time value is always formatted YYYY-MM-DDThh:mm
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
+     *
+     * @param  string  $dateTimeString
+     * @return string
+     */
+    public function transformDateTimeLocalInput(string $dateTimeString): string
+    {
+        if (str_contains($dateTimeString, 'T')) {
+            $dateTimeString = str_replace('T', ' ', $dateTimeString);
+            $dateTimeString .= ':00';
+        }
+        return $dateTimeString;
+    }
+
 }
