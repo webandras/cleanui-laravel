@@ -3,7 +3,6 @@
 namespace App\Models\Job;
 
 use App\Models\Job\Job;
-use App\Models\WorkerAvailability;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

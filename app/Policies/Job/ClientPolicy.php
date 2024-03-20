@@ -3,8 +3,8 @@
 namespace App\Policies\Job;
 
 use App\Models\Clean\User;
-use App\Models\Event;
 use App\Models\Job\Client;
+use App\Models\Job\Job;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -79,11 +79,11 @@ class ClientPolicy
      * Determine whether the user can restore the model.
      *
      * @param  User  $user
-     * @param  Event  $event
+     * @param  Job  $job
      *
      * @return Response|bool
      */
-    public function restore(User $user, Event $event)
+    public function restore(User $user, Job $job)
     {
         return false;
     }
@@ -92,11 +92,11 @@ class ClientPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  User  $user
-     * @param  Event  $event
+     * @param  Job  $job
      *
      * @return Response|bool
      */
-    public function forceDelete(User $user, Event $event)
+    public function forceDelete(User $user, Job  $job)
     {
         return false;
     }
