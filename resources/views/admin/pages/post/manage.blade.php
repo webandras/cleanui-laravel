@@ -118,12 +118,12 @@
 
 
                                     <!-- Delete post -->
-                                    <livewire:admin.post.delete title="{{ __('Delete post') }}"
+                                    <livewire:admin.clean.post.delete title="{{ __('Delete post') }}"
                                                                 :post="$post"
                                                                 :hasSmallButton="false"
                                                                 :modalId="'m-delete-post-' . $post->id"
                                     >
-                                    </livewire:admin.post.delete>
+                                    </livewire:admin.clean.post.delete>
                                 @endif
                             </div>
 

@@ -14,22 +14,22 @@
 
         <div class="button-group padding-left-0-5 margin-bottom-0">
             <!-- Update category -->
-            <livewire:admin.category.update :modalId="'m-update-' . $childCategory->id"
+            <livewire:admin.clean.category.update :modalId="'m-update-' . $childCategory->id"
                                       :category="$childCategory"
                                       :hasSmallButton="false">
-            </livewire:admin.category.update>
+            </livewire:admin.clean.category.update>
 
             <!-- Delete category -->
-            <livewire:admin.category.delete :modalId="'m-delete-' . $childCategory->id"
+            <livewire:admin.clean.category.delete :modalId="'m-delete-' . $childCategory->id"
                                       :category="$childCategory"
                                       :hasSmallButton="false">
-            </livewire:admin.category.delete>
+            </livewire:admin.clean.category.delete>
 
             <!-- Create sub-category -->
-            <livewire:admin.category.create :modalId="'m-add-' . $childCategory->id"
+            <livewire:admin.clean.category.create :modalId="'m-add-' . $childCategory->id"
                                       :category="$childCategory"
                                       :hasSmallButton="false">
-            </livewire:admin.category.create>
+            </livewire:admin.clean.category.create>
         </div>
 
     </div>

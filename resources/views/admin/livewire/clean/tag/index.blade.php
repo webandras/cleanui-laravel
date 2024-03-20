@@ -2,11 +2,11 @@
     <div class="flex flex-row">
 
         <!-- Create new tag -->
-        <livewire:admin.tag.create title="{{ __('New tag') }}"
+        <livewire:admin.clean.tag.create title="{{ __('New tag') }}"
                                    :hasSmallButton="false"
                                    :modalId="'m-create-tag'"
                                    :wire:key="'create-new-tag'">
-        </livewire:admin.tag.create>
+        </livewire:admin.clean.tag.create>
 
         <form wire:submit.prevent="filterTags" style="width: auto;">
             <div class="flex flex-row">
@@ -103,20 +103,20 @@
 
                             @if(auth()->user()->hasRoles('super-administrator|administrator') )
                                 <!-- Delete tag -->
-                                <livewire:admin.tag.delete title="{{ __('Delete tag') }}"
+                                <livewire:admin.clean.tag.delete title="{{ __('Delete tag') }}"
                                                            :tag="$tag"
                                                            :hasSmallButton="false"
                                                            :wire:key="'m-delete-tag-' . $tag->id"
                                                            :modalId="'m-delete-tag-' . $tag->id">
-                                </livewire:admin.tag.delete>
+                                </livewire:admin.clean.tag.delete>
 
                                 <!-- Update tag -->
-                                <livewire:admin.tag.edit title="{{ __('Edit tag') }}"
+                                <livewire:admin.clean.tag.edit title="{{ __('Edit tag') }}"
                                                          :tag="$tag"
                                                          :hasSmallButton="false"
                                                          :wire:key="'m-edit-tag-' . $tag->id"
                                                          :modalId="'m-edit-tag-' . $tag->id">
-                                </livewire:admin.tag.edit>
+                                </livewire:admin.clean.tag.edit>
                             @endif
                         </div>
 
