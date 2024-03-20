@@ -57,12 +57,12 @@
                     <h1 class="h3">{{ __('Manage roles') }}</h1>
 
                     <!-- Create role -->
-                    <livewire:admin.role.create title="{{ __('New role') }}"
+                    <livewire:admin.clean.role.create title="{{ __('New role') }}"
                                                 :permissions="$permissions"
                                                 :hasSmallButton="false"
                                                 :modalId="'m-create-role'"
                     >
-                    </livewire:admin.role.create>
+                    </livewire:admin.clean.role.create>
 
                     <table>
                         <thead>
@@ -91,21 +91,21 @@
                                 <td>
                                     <div class="flex flex-row">
                                         <!-- Delete role -->
-                                        <livewire:admin.role.delete title="{{ __('Delete role') }}"
+                                        <livewire:admin.clean.role.delete title="{{ __('Delete role') }}"
                                                                     :role="$role"
                                                                     :hasSmallButton="false"
                                                                     :modalId="'m-delete-role-' . $role->id"
                                         >
-                                        </livewire:admin.role.delete>
+                                        </livewire:admin.clean.role.delete>
 
                                         <!-- Update role -->
-                                        <livewire:admin.role.edit title="{{ __('Edit role') }}"
+                                        <livewire:admin.clean.role.edit title="{{ __('Edit role') }}"
                                                                   :role="$role"
                                                                   :permissions="$permissions"
                                                                   :hasSmallButton="false"
                                                                   :modalId="'m-edit-role-' . $role->id"
                                         >
-                                        </livewire:admin.role.edit>
+                                        </livewire:admin.clean.role.edit>
 
                                     </div>
 
@@ -124,10 +124,10 @@
                         <h1 class="h3">{{ __('Manage permissions') }}</h1>
 
                         <!-- Create role -->
-                        <livewire:admin.permission.create title="{{ __('New permission') }}" :roles="$roles"
+                        <livewire:admin.clean.permission.create title="{{ __('New permission') }}" :roles="$roles"
                                                           :hasSmallButton="false"
                                                           :modalId="'m-create-permission'">
-                        </livewire:admin.permission.create>
+                        </livewire:admin.clean.permission.create>
 
                         <table>
                             <thead>
@@ -157,21 +157,21 @@
                                     <td>
                                         <div class="flex flex-row">
                                             <!-- Delete role -->
-                                            <livewire:admin.permission.delete title="{{ __('Delete permission') }}"
+                                            <livewire:admin.clean.permission.delete title="{{ __('Delete permission') }}"
                                                                               :permission="$permission"
                                                                               :hasSmallButton="false"
                                                                               :modalId="'m-delete-permission-' . $permission->id"
                                             >
-                                            </livewire:admin.permission.delete>
+                                            </livewire:admin.clean.permission.delete>
 
                                             <!-- Update role -->
-                                            <livewire:admin.permission.edit title="{{ __('Edit permission') }}"
+                                            <livewire:admin.clean.permission.edit title="{{ __('Edit permission') }}"
                                                                             :permission="$permission"
                                                                             :roles="$roles"
                                                                             :hasSmallButton="false"
                                                                             :modalId="'m-edit-permission-' . $permission->id"
                                             >
-                                            </livewire:admin.permission.edit>
+                                            </livewire:admin.clean.permission.edit>
 
                                         </div>
 
