@@ -96,7 +96,7 @@ class Edit extends Component
      */
     public function render()
     {
-        return view('admin.livewire.client.edit');
+        return view('admin.livewire.job.client.edit');
     }
 
 

@@ -87,7 +87,7 @@ class Create extends Component
      */
     public function render()
     {
-        return view('admin.livewire.client.create');
+        return view('admin.livewire.job.client.create');
     }
 
 

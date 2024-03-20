@@ -66,7 +66,7 @@ class Delete extends Component
      */
     public function render()
     {
-        return view('admin.livewire.client.delete');
+        return view('admin.livewire.job.client.delete');
     }
 
 
