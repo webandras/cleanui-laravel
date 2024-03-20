@@ -4,7 +4,7 @@
         <nav class="nav-links">
             @auth
                 @role('super-administrator|administrator')
-                <h1 class="margin-0 fs-18 relative calendar-works padding-right-2">{{ __('Works') }}</h1>
+                <h1 class="margin-0 fs-18 relative calendar-works padding-right-2">{{ __('Jobs') }}</h1>
                 <a class="fs-14 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                    href="{{ url('/admin/dashboard') }}">
                     <i class="fa fa-tachometer" aria-hidden="true"></i>{{ __('Dashboard') }}
