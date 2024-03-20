@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Services\Clean;
+namespace App\Trait\Clean;
 
-use App\Interface\Services\Clean\DateTimeServiceInterface;
 use DateTime;
 use Exception;
 
-class DateTimeService implements DateTimeServiceInterface
+/**
+ * Used for datetime conversions in models (converting datetime from local timezone to UTC)
+ *
+ */
+trait DateTimeConverter
 {
+
     /**
      * Need to convert datetime to UTC for the database to store, because
      * database should not deal with timezones
@@ -18,7 +22,7 @@ class DateTimeService implements DateTimeServiceInterface
      * @return array
      * @throws Exception
      */
-    public function convertDateTimesToUTC(
+    public static function convertDateTimesToUTC(
         array $data,
         string $timezone,
         string $format = 'Y-m-d H:i:s'
@@ -52,7 +56,7 @@ class DateTimeService implements DateTimeServiceInterface
      * @return string|DateTime|false
      * @throws Exception
      */
-    public function convertFromLocalToUtc(
+    public static function convertFromLocalToUtc(
         string $datetime,
         string $timezone,
         bool $returnObject = false,
@@ -87,7 +91,7 @@ class DateTimeService implements DateTimeServiceInterface
      * @return string|DateTime|bool
      * @throws Exception
      */
-    public function convertFromUtcToLocal(
+    public static function convertFromUtcToLocal(
         string $datetime,
         string $timezone,
         bool $returnObject = false,
@@ -107,5 +111,4 @@ class DateTimeService implements DateTimeServiceInterface
 
         return $returnObject ? $datetimeObject : $datetimeObject->format($outputFormat);
     }
-
 }

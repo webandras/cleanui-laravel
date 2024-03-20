@@ -8,6 +8,9 @@
         <div class="dashboard-content">
 
             @auth
+
+                <h2 class="h4 margin-top-2 margin-bottom-0-5 text-center">{{ __('Contents & Taxonomies') }}</h2>
+
                 <ul class="dashboard-card-grid">
                     <!-- Custom links -->
 
@@ -55,10 +58,55 @@
                             {{ __('Manage Documentation') }}
                         </a>
                     </li>
-
                     @endrole
 
-                    @role('super-administrator')
+                </ul>
+
+                @role('super-administrator|administrator')
+                <h2 class="h4 margin-top-2 text-center">{{ __('Job Calendar') }}</h2>
+
+                <ul class="dashboard-card-grid">
+                    <!-- Custom links -->
+
+                    <!-- Job calendar link -->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('job.calendar') }}">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span>{{ __('Manage Jobs') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Manage workers link -->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('worker.manage') }}">
+                            <i class="fa-solid fa-person-digging" aria-hidden="true"></i>
+                            {{ __('Manage workers') }}
+                        </a>
+                    </li>
+
+                    <!-- Manage clients link -->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('client.manage') }}">
+                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                            <span>{{ __('Manage clients') }}</span>
+                        </a>
+                    </li>
+
+                    <li class="card text-center glassmorphic">
+                        <a href="{{ route('job.statistics') }}" class="card-link">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>{{ __('Statistics') }}
+                        </a>
+                    </li>
+                </ul>
+                @endrole
+
+
+                @role('super-administrator')
+                <h2 class="h4 margin-top-2 text-center">{{ __('Users, Roles & Permissions') }}</h2>
+
+                <ul class="dashboard-card-grid">
+                    <!-- Custom links -->
+
                     <!-- Manage users link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('user.manage') }}">
@@ -75,7 +123,14 @@
                             {{ __('Roles and Permissions') }}
                         </a>
                     </li>
-                    @endrole
+                </ul>
+                @endrole
+
+
+                <h2 class="h4 margin-top-2 text-center">{{ __('Account') }}</h2>
+
+                <ul class="dashboard-card-grid">
+                    <!-- Custom links -->
 
                     <!-- Account link -->
                     <li class="card text-center glassmorphic">
@@ -105,8 +160,8 @@
                             @csrf
                         </form>
                     </li>
-
                 </ul>
+
             @endauth
         </div>
     </main>

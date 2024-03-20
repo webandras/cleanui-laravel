@@ -8,6 +8,9 @@ use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Interface\Repository\Clean\PostRepositoryInterface;
 use App\Interface\Repository\Clean\TagRepositoryInterface;
 use App\Interface\Repository\Clean\UserRepositoryInterface;
+use App\Interface\Repository\Job\ClientRepositoryInterface;
+use App\Interface\Repository\Job\JobRepositoryInterface;
+use App\Interface\Repository\Job\WorkerRepositoryInterface;
 use App\Interface\Services\Clean\ArchiveEntityServiceInterface;
 use App\Interface\Services\Clean\DateTimeServiceInterface;
 use App\Interface\Services\Clean\ImageServiceInterface;
@@ -19,6 +22,9 @@ use App\Repository\Clean\ModelRepository;
 use App\Repository\Clean\PostRepository;
 use App\Repository\Clean\TagRepository;
 use App\Repository\Clean\UserRepository;
+use App\Repository\Job\ClientRepository;
+use App\Repository\Job\JobRepository;
+use App\Repository\Job\WorkerRepository;
 use App\Services\Clean\ArchiveEntityService;
 use App\Services\Clean\DateTimeService;
 use App\Services\Clean\ImageService;
@@ -33,19 +39,26 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
-        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        /* services */
         $this->app->bind(RolePermissionServiceInterface::class, RolePermissionService::class);
         $this->app->bind(ImageServiceInterface::class, ImageService::class);
         $this->app->bind(DateTimeServiceInterface::class, DateTimeService::class);
+        $this->app->bind(ArchiveEntityServiceInterface::class, ArchiveEntityService::class);
+        $this->app->bind(SocialServiceInterface::class, SocialService::class);
+
+        /* repositories */
+        $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
+        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
-        $this->app->bind(ArchiveEntityServiceInterface::class, ArchiveEntityService::class);
-        $this->app->bind(SocialServiceInterface::class, SocialService::class);
         $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
 
-        /* Custom ... */
+        /* Custom */
+        $this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
+        $this->app->bind(JobRepositoryInterface::class, JobRepository::class);
+        $this->app->bind(WorkerRepositoryInterface::class, WorkerRepository::class);
+
 
         /* $this->app->when([LocationController::class])
             ->needs(ModelRepositoryInterface::class)
