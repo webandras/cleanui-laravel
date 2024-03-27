@@ -34,9 +34,28 @@ class Statisticswidget extends Component
     // client name and id for select field
     public array $clientsData;
 
+
+    /**
+     * The data to pass to the Google Chart library to render
+     *
+     */
+    public Collection|array $chartData;
+
+
     // for filtering by date interval
     public string $startDate;
     public string $endDate;
+
+
+    /* Chart option properties */
+    public string $chartTitle;
+    public string $chartId;
+    public string $chartAreaWidth;
+    public string $chartColor;
+    public string $chartXAxisTitle;
+    public string $chartVAxisTitle;
+
+    public $totalJobs;
 
 
     protected array $rules = [
@@ -53,6 +72,8 @@ class Statisticswidget extends Component
     {
         $this->jobs = null;
         $this->clientId = 0;
+        $this->chartData = [];
+        $this->totalJobs = null;
 
         $firstDayOfTheMonth = new DateTime('first day of this month', new DateTimeZone('Europe/Budapest'));
         $lastDayOfTheMonth = new DateTime('last day of this month', new DateTimeZone('Europe/Budapest'));
@@ -66,6 +87,13 @@ class Statisticswidget extends Component
         foreach ($this->clients as $client) {
             $this->clientsData[$client->name] = $client->id;
         }
+
+        $this->chartTitle = __('Hours of jobs done for clients');
+        $this->chartId = 'chart_div';
+        $this->chartAreaWidth = '65%';
+        $this->chartColor = '#13B623';
+        $this->chartXAxisTitle = __('Hours of work');
+        $this->chartVAxisTitle = __('Client name');
     }
 
 
@@ -146,6 +174,7 @@ class Statisticswidget extends Component
     public function getResults(): void
     {
         $this->getJobList();
+        $this->queryDataForChart();
         $this->resetPage();
     }
 
@@ -171,5 +200,40 @@ class Statisticswidget extends Component
         }
 
         return $query;
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    public function queryDataForChart(): void
+    {
+        // validate user input
+        $this->validate();
+
+        $tz = new DateTimeZone('Europe/Budapest');
+        $startDate = new DateTime($this->startDate, $tz);
+        $endDate = new DateTime($this->endDate, $tz);
+        $interval = $startDate->diff($endDate);
+        $weeks = (int) floor($interval->days / 7);
+
+        $statistics = DB::table('jobs')
+            ->selectRaw(
+                "clients.name,
+                            SUM(CASE
+                                WHEN (jobs.is_recurring = 0) THEN
+                                     TIME_TO_SEC( TIMEDIFF( jobs.end, jobs.start ) ) / 3600
+                                WHEN (jobs.is_recurring = 1) THEN
+                                    TIME_TO_SEC(jobs.duration) / 3600 * FLOOR( $weeks / JSON_EXTRACT(`rrule` , '$.interval') )
+                            END) AS hours"
+            )
+            ->join('clients', 'jobs.client_id', '=', 'clients.id');
+
+        $statistics = $this->addWhereConditionsToQueries($statistics);
+        $statistics = $statistics
+            ->groupBy('clients.name', 'jobs.is_recurring')
+            ->get();
+
+        $this->chartData = $statistics;
     }
 }
