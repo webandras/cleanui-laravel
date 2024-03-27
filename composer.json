@@ -17,8 +17,7 @@
         "livewire/livewire": "^2.12.3",
         "mews/purifier": "^3.4.0",
         "spatie/laravel-csp": "^2.8",
-        "tinymce/tinymce": "^6.4.2",
-        "ext-http": "*"
+        "tinymce/tinymce": "^6.4.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
