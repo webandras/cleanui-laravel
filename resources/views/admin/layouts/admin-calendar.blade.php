@@ -27,6 +27,7 @@
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
 
+    <?php $nonce = ["nonce" => csp_nonce()] ?>
     @livewireStyles($nonce)
 </head>
 <body @scroll="setScrollToTop()">
@@ -59,7 +60,6 @@
 
 @stack('modals')
 
-<?php $nonce = ["nonce" => csp_nonce()] ?>
 @livewireScriptConfig($nonce)
 
 <!-- To support inline scripts needed for the calendar library
