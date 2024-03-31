@@ -1,10 +1,10 @@
 <div x-data="{}" x-cloak>
-    <form wire:submit.prevent="filterTags">
+    <form wire:submit="filterTags">
         <div class="flex flex-row">
             <div>
                 <label for="filterKeyword" class="hidden bold fs-14">{{ __('Search keyword') }}</label>
                 <input id="filterKeyword"
-                       wire:model.defer="filterKeyword"
+                       wire:model="filterKeyword"
                        name="filterKeyword"
                        placeholder="{{ __('Search keyword') }}"
                        class="fs-14 {{ $errors->has('filterKeyword') ? ' border border-red' : '' }}"
@@ -43,7 +43,7 @@
                 </button>
 
 
-                <div x-data="{isModalOpen: $wire.entangle('isRestoreConfirmOpen')}">
+                <div x-data="{isModalOpen: $wire.$entangle('isRestoreConfirmOpen', true)}">
                     <x-global::modal
                         trigger="isModalOpen"
                         title="{{ __('Restore tag(s)?') }}"
@@ -57,7 +57,7 @@
                     </x-global::modal>
                 </div>
 
-                <div x-data="{isModalOpen: $wire.entangle('isDestroyConfirmOpen')}">
+                <div x-data="{isModalOpen: $wire.$entangle('isDestroyConfirmOpen', true)}">
 
                     <x-global::modal
                         trigger="isModalOpen"

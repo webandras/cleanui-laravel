@@ -1,6 +1,6 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen'),
-    coverImage: $wire.entangle('cover_image_url'),
+    isModalOpen: $wire.$entangle('isModalOpen', true),
+    coverImage: $wire.$entangle('cover_image_url', true),
     isValidUrl: function(urlString) {
         try {
             return Boolean(new URL(urlString));
@@ -24,11 +24,11 @@
     @endif
 
     <x-global::form-modal trigger="isModalOpen" title="{{ $title }}" id="{{ $modalId }}">
-        <form wire:submit.prevent="createCategory">
+        <form wire:submit="createCategory">
 
             <fieldset>
                 <label for="name">{{ __('Category name') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="name"
+                <input wire:model="name"
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
@@ -38,7 +38,7 @@
 
 
                 <label for="slug">{{ __('Category slug') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="slug"
+                <input wire:model="slug"
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                        name="slug"
@@ -101,7 +101,7 @@
         </form>
 
         <script nonce="{{ csp_nonce() }}">
-            document.addEventListener('livewire:load', function () {
+            document.addEventListener('livewire:init', function () {
 
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('lfm-new-root').addEventListener('click', (event) => {

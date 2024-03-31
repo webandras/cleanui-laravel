@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.entangle('isModalOpen') }">
+<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     @if ($hasSmallButton)
         <button @click="isModalOpen = true" class="primary" title="{{ __('New location') }}">
@@ -15,11 +15,11 @@
         title="{{ __('New location') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="createLocation">
+        <form wire:submit="createLocation">
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Location name') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="name"
+                <input wire:model="name"
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
@@ -33,7 +33,7 @@
 
                 <!-- City -->
                 <label for="city">{{ __('City') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="city"
+                <input wire:model="city"
                        type="text"
                        class="{{ $errors->has('city') ? 'border border-red' : '' }}"
                        name="city"
@@ -47,7 +47,7 @@
 
                 <!-- Address -->
                 <label for="address">{{ __('Address') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="address"
+                <input wire:model="address"
                        type="text"
                        class="{{ $errors->has('address') ? 'border border-red' : '' }}"
                        name="address"
@@ -61,7 +61,7 @@
 
                 <!-- Slug -->
                 <label for="slug">{{ __('Slug') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="slug"
+                <input wire:model="slug"
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                        name="slug"
@@ -76,7 +76,7 @@
                     <div class="col s6">
                         <!-- Latitude -->
                         <label for="latitude">{{ __('Latitude') }}<span class="text-red">*</span></label>
-                        <input wire:model.defer="latitude"
+                        <input wire:model="latitude"
                                type="text"
                                class="{{ $errors->has('latitude') ? 'border border-red' : '' }}"
                                name="latitude"
@@ -90,7 +90,7 @@
                     <div class="col s6">
                         <!-- Longitude -->
                         <label for="longitude">{{ __('Longitude') }}<span class="text-red">*</span></label>
-                        <input wire:model.defer="longitude"
+                        <input wire:model="longitude"
                                type="text"
                                class="{{ $errors->has('longitude') ? 'border border-red' : '' }}"
                                name="longitude"

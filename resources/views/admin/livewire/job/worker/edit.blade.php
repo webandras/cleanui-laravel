@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     @if ($hasSmallButton)
@@ -17,13 +17,13 @@
         title="{{ __('Edit Worker') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="updateWorker">
+        <form wire:submit="updateWorker">
 
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -37,7 +37,7 @@
                 <!-- Email -->
                 <label for="email">{{ __('Email') }}</label>
                 <input
-                    wire:model.defer="email"
+                    wire:model="email"
                     type="email"
                     name="name"
                 >
@@ -50,7 +50,7 @@
                 <!-- Phone number -->
                 <label for="phone">{{ __('Phone number') }}</label>
                 <input
-                    wire:model.defer="phone"
+                    wire:model="phone"
                     type="text"
                     class="{{ $errors->has('phone') ? 'border border-red' : '' }}"
                     name="phone"
@@ -65,7 +65,7 @@
                 <!-- Bank Account Name -->
                 <label for="bankAccountName">{{ __('Bank account name') }}</label>
                 <input
-                    wire:model.defer="bankAccountName"
+                    wire:model="bankAccountName"
                     type="text"
                     class="{{ $errors->has('bankAccountName') ? 'border border-red' : '' }}"
                     name="bankAccountName"
@@ -79,7 +79,7 @@
                 <!-- Bank Account Number -->
                 <label for="bankAccountNumber">{{ __('Bank account number') }}</label>
                 <input
-                    wire:model.defer="bankAccountNumber"
+                    wire:model="bankAccountNumber"
                     type="text"
                     class="{{ $errors->has('bankAccountNumber') ? 'border border-red' : '' }}"
                     name="bankAccountNumber"

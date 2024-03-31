@@ -36,10 +36,10 @@
 
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
+
     @livewireStyles(['nonce' => csp_nonce()])
 
     @stack('head-extra')
-    @yield('head')
 
 </head>
 <body @scroll="setScrollToTop()">
@@ -82,8 +82,9 @@
 </div>
 
 @stack('modals')
+
 <?php $nonce = ["nonce" => csp_nonce()] ?>
-@livewireScripts($nonce)
+@livewireScriptConfig($nonce)
 
 <!-- To support inline scripts needed for the calendar library
 https://laravel-livewire.com/docs/2.x/inline-scripts

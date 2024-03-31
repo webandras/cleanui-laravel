@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     @if ($hasSmallButton)
@@ -17,13 +17,13 @@
         title="{{ __('Add User') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="createUser">
+        <form wire:submit="createUser">
 
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -35,7 +35,7 @@
                 <!-- Email -->
                 <label for="email">{{ __('Email') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="email"
+                    wire:model="email"
                     type="email"
                     class="{{ $errors->has('email') ? 'border border-red' : '' }}"
                     name="email"
@@ -47,7 +47,7 @@
                 <!-- Password -->
                 <label for="password">{{ __('Password') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="password"
+                    wire:model="password"
                     type="text"
                     class="{{ $errors->has('password') ? 'border border-red' : '' }}"
                     name="password"
@@ -59,7 +59,7 @@
                 <!-- Role -->
                 <label for="role">{{ __('Role') }}<span class="text-red">*</span></label>
                 <select
-                    wire:model.defer="role"
+                    wire:model="role"
                     class="{{ $errors->has('role') ? 'border border-red' : '' }}"
                     aria-label="{{ __("Select a role") }}"
                     name="role"

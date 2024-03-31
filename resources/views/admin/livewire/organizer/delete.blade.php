@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     @if ($hasSmallButton)
@@ -15,11 +15,11 @@
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete?') }}"
                         id="{{ $modalId }}">
-        <form wire:submit.prevent="deleteOrganizer">
+        <form wire:submit="deleteOrganizer">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 
-            <input wire:model.defer="organizerId"
+            <input wire:model="organizerId"
                    disabled
                    type="number"
                    class="hidden"

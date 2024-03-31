@@ -1,4 +1,4 @@
-<div x-data="{ 'show': $wire.entangle('show'), 'style': $wire.entangle('style'), 'message': $wire.entangle('message') }"
+<div x-data="{ 'show': $wire.$entangle('show', true), 'style': $wire.$entangle('style', true), 'message': $wire.$entangle('message', true) }"
      class="alert notification padding-top-bottom-0"
      :class="{ 'success': style === 'success', 'danger': style === 'danger', 'info': style !== 'success' && style !== 'danger' }"
      x-show="show === true"

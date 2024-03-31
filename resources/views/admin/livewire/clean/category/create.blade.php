@@ -1,6 +1,6 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen'),
-    coverImage: $wire.entangle('cover_image_url'),
+    isModalOpen: $wire.$entangle('isModalOpen', true),
+    coverImage: $wire.$entangle('cover_image_url', true),
     isValidUrl: function(urlString) {
         try {
             return Boolean(new URL(urlString));
@@ -27,12 +27,12 @@
         title="{{ __('Add subcategory') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="createCategory">
+        <form wire:submit="createCategory">
 
             <fieldset>
                 <label for="name">{{ __('Subcategory name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -43,7 +43,7 @@
 
                 <label for="slug">{{ __('Subcategory slug') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="slug"
+                    wire:model="slug"
                     type="text"
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"
@@ -56,7 +56,7 @@
 
             <label for="categoryId" class="sr-only">{{ __('Category Id') }}</label>
             <input
-                wire:model.defer="categoryId"
+                wire:model="categoryId"
                 disabled
                 type="number"
                 class="hidden"
@@ -118,7 +118,7 @@
         </form>
 
         <script nonce="{{ csp_nonce() }}">
-            document.addEventListener('livewire:load', function () {
+            document.addEventListener('livewire:init', function () {
 
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('lfm-new-{{ $categoryId }}').addEventListener('click', (event) => {

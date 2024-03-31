@@ -1,7 +1,7 @@
 <div x-data="{
         isUploading: false,
         progress: 0,
-        isModalOpen: $wire.entangle('isModalOpen')
+        isModalOpen: $wire.$entangle('isModalOpen', true)
     }"
      x-on:livewire-upload-start="isUploading = true"
      x-on:livewire-upload-finish="isUploading = false"
@@ -24,12 +24,12 @@
         title="{{ __('Add tag') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="createTag">
+        <form wire:submit="createTag">
 
             <fieldset>
                 <label for="name">{{ __('Tag name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -40,7 +40,7 @@
 
                 <label for="slug">{{ __('Slug of the tag') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="slug"
+                    wire:model="slug"
                     type="text"
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"

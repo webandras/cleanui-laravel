@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     <button @click="isModalOpen = true" class="danger margin-top-0">
@@ -9,11 +9,11 @@
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete this client?') }}"
                         id="{{ $modalId }}">
-        <form wire:submit.prevent="deleteClient">
+        <form wire:submit="deleteClient">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 
-            <input wire:model.defer="clientId"
+            <input wire:model="clientId"
                    disabled
                    type="number"
                    class="hidden"

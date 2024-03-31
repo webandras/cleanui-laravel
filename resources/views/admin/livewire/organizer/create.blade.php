@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.entangle('isModalOpen') }">
+<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     @if ($hasSmallButton)
         <button @click="isModalOpen = true" class="primary" title="{{ __('New organizer') }}">
@@ -15,12 +15,12 @@
         title="{{ __('New organizer') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="createOrganizer">
+        <form wire:submit="createOrganizer">
             <fieldset>
 
                 <!-- Name -->
                 <label for="name">{{ __('Organizer name') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="name"
+                <input wire:model="name"
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
@@ -35,7 +35,7 @@
 
                 <!-- Slug -->
                 <label for="slug">{{ __('Slug') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="slug"
+                <input wire:model="slug"
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                        name="slug"
@@ -48,7 +48,7 @@
 
                 <!-- Facebook url -->
                 <label for="facebook_url">{{ __('Facebook URL') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="facebook_url"
+                <input wire:model="facebook_url"
                        type="url"
                        class="{{ $errors->has('facebook_url') ? 'border border-red' : '' }}"
                        name="facebook_url"

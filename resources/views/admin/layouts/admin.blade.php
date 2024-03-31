@@ -29,11 +29,12 @@
 
     <!-- Styles, Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
+
     @livewireStyles(['nonce' => csp_nonce()])
 
     @stack('head-extra')
-    @yield('head')
 
+    @yield('head')
 </head>
 <body @scroll="setScrollToTop()">
 
@@ -77,12 +78,13 @@
 </div>
 
 @stack('modals')
+
 <?php $nonce = ["nonce" => csp_nonce()] ?>
-@livewireScripts($nonce)
-<script src="{{ url('/assets/livewire-sortable-0.x.x/livewire-sortable.js') }}"></script>
+@livewireScriptConfig($nonce)
 <!-- To support inline scripts needed for the calendar library
 https://laravel-livewire.com/docs/2.x/inline-scripts
 -->
+
 @stack('scripts')
 
 <script src="{{ url('/js/prism.js') }}" type="text/javascript"></script>

@@ -44,8 +44,8 @@
 
 
     <div x-data="{
-        isModalOpen: $wire.entangle('isModalOpen'),
-        isRecurring: $wire.entangle('isRecurring')
+        isModalOpen: $wire.$entangle('isModalOpen', true),
+        isRecurring: $wire.$entangle('isRecurring', true)
     }">
 
         <x-global::form-modal
@@ -53,13 +53,13 @@
             title="{{ $updateId ? (isset($job->client) ? $job->client->name : $clientName) . ' ('. (isset($job->client) ? $job->client->address : $clientAddress) . ')' : __('Add job') }}"
             id="{{ $modalId }}"
         >
-            <form wire:submit.prevent="createOrUpdateJob">
+            <form wire:submit="createOrUpdateJob">
 
                 <fieldset>
                     @if($updateId)
                         <!-- Update id -->
                         <input
-                            wire:model.defer="updateId"
+                            wire:model="updateId"
                             type="text"
                             class="hidden"
                             name="updateId"
@@ -91,7 +91,7 @@
                     <!-- Client id -->
                     <label for="clientId">{{ __('Client') }}<span class="text-red">*</span></label>
                     <select
-                        wire:model.defer="clientId"
+                        wire:model="clientId"
                         class="{{ $errors->has('clientId') ? 'border border-red' : '' }}"
                         aria-label="{{ __("Select the client") }}"
                         name="clientId"
@@ -115,7 +115,7 @@
                             <!-- Start date -->
                             <label for="start">{{ __('Start date') }}<span class="text-red">*</span></label>
                             <input
-                                wire:model.defer="start"
+                                wire:model="start"
                                 type="datetime-local"
                                 class="{{ $errors->has('start') ? 'border border-red' : '' }}"
                                 name="start"
@@ -129,7 +129,7 @@
                             <!-- End date -->
                             <label for="end">{{ __('End date') }}<span class="text-red">*</span></label>
                             <input
-                                wire:model.defer="end"
+                                wire:model="end"
                                 type="datetime-local"
                                 class="{{ $errors->has('end') ? 'border border-red' : '' }}"
                                 name="end"
@@ -148,7 +148,7 @@
                                 <!-- Freq -->
                                 <label for="frequencyName">{{ __('Frequency') }}<span class="text-red">*</span></label>
                                 <select
-                                    wire:model.defer="frequencyName"
+                                    wire:model="frequencyName"
                                     class="{{ $errors->has('frequencyName') ? 'border border-red' : '' }}"
                                     aria-label="{{ __("Select a repeat frequency") }}"
                                     name="frequencyName"
@@ -171,7 +171,7 @@
                                 <div class="col s6">
                                     <label for="byweekday">{{ __('By Weekday') }}<span class="text-red">*</span></label>
                                     <select
-                                        wire:model.defer="byweekday"
+                                        wire:model="byweekday"
                                         class="{{ $errors->has('byweekday') ? 'border border-red' : '' }}"
                                         name="byweekday"
                                     >
@@ -192,7 +192,7 @@
                                     <!-- End recurring date -->
                                     <label for="duration">{{ __('Duration') }}<span class="text-red">*</span></label>
                                     <input
-                                        wire:model.defer="duration"
+                                        wire:model="duration"
                                         type="time"
                                         class="{{ $errors->has('duration') ? 'border border-red' : '' }}"
                                         name="duration"
@@ -208,7 +208,7 @@
                             <!-- Start recurring date -->
                             <label for="dtstart">{{ __('Start recurring date') }}<span class="text-red">*</span></label>
                             <input
-                                wire:model.defer="dtstart"
+                                wire:model="dtstart"
                                 type="datetime-local"
                                 class="{{ $errors->has('dtstart') ? 'border border-red' : '' }}"
                                 name="dtstart"
@@ -222,7 +222,7 @@
                             <!-- End recurring date -->
                             <label for="until">{{ __('End recurring date') }}</label>
                             <input
-                                wire:model.defer="until"
+                                wire:model="until"
                                 type="date"
                                 class="{{ $errors->has('until') ? 'border border-red' : '' }}"
                                 name="until"
@@ -240,7 +240,7 @@
                     <!-- description -->
                     <label for="description">{{ __('Description (optional)') }}</label>
                     <input
-                        wire:model.defer="description"
+                        wire:model="description"
                         type="text"
                         class="{{ $errors->has('description') ? 'border border-red' : '' }}"
                         name="description"
@@ -256,7 +256,7 @@
                     <div class="checkbox-container">
                         @foreach($workers as $worker)
                             <label for="workerIds">
-                                <input wire:model.defer="workerIds"
+                                <input wire:model="workerIds"
                                        type="checkbox"
                                        name="workerIds[]"
                                        value="{{ $worker->id }}"
@@ -297,7 +297,7 @@
                     </button>
 
                     @if( $updateId !== '' )
-                        <button wire:click="$emit('openDeleteJobModal')"
+                        <button wire:click="$dispatch('openDeleteJobModal')"
                                 type="button"
                                 class="danger"
                         >
@@ -315,7 +315,7 @@
     </div>
 
     @if( $updateId !== '' )
-        <div x-data="{ isDeleteModalOpen: $wire.entangle('isDeleteModalOpen') }">
+        <div x-data="{ isDeleteModalOpen: $wire.$entangle('isDeleteModalOpen', true) }">
 
             <x-global::form-modal
                 trigger="isDeleteModalOpen"
@@ -326,7 +326,7 @@
                     <h3 class="h5">{{ $clientName }}</h3>
                     <hr class="divider">
 
-                    <button wire:click="$emit('deleteJobListener')"
+                    <button wire:click="$dispatch('deleteJobListener')"
                             type="button"
                             class="danger"
                     >
@@ -363,7 +363,7 @@
     <script src="{{ url('/js/fullcalendar.moment-timezone.min.6.1.8.js') }}"></script>
 
     <script nonce="{{ csp_nonce() }}">
-        document.addEventListener('livewire:load', function () {
+        document.addEventListener('livewire:init', function () {
             var hu = {
                 code: 'hu',
                 week: {

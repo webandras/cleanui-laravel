@@ -3,13 +3,13 @@
 @endpush
 
 <section x-data="{
-        chartId: $wire.entangle('chartId'), /* Binding PHP and JS properties */
-        chartData: $wire.entangle('chartData'),
-        chartTitle: $wire.entangle('chartTitle'),
-        chartAreaWidth: $wire.entangle('chartAreaWidth'),
-        chartColor: $wire.entangle('chartColor'),
-        chartXAxisTitle: $wire.entangle('chartXAxisTitle'),
-        chartVAxisTitle: $wire.entangle('chartVAxisTitle'),
+        chartId: $wire.entangle('chartId').live, /* Binding PHP and JS properties */
+        chartData: $wire.entangle('chartData').live,
+        chartTitle: $wire.entangle('chartTitle').live ,
+        chartAreaWidth: $wire.entangle('chartAreaWidth').live,
+        chartColor: $wire.entangle('chartColor').live,
+        chartXAxisTitle: $wire.entangle('chartXAxisTitle').live,
+        chartVAxisTitle: $wire.entangle('chartVAxisTitle').live,
         sumOfHours: 0,
 
         /* Basic chart options */
@@ -65,15 +65,15 @@
          google.charts.setOnLoadCallback(function() { drawChart(); });
 
          // watches the changes for chartData, and re-renders the chart with the updated data
-         $watch('chartData', function() { drawChart(); })
+         $watch('chartData', function() { console.log(this.chartData); drawChart(); })
         "
 >
     <div>
-        <form wire:submit.prevent="getResults">
+        <form wire:submit="getResults">
             <div class="row-padding">
                 <div class="col s6">
                     <label for="startDate">{{ __('Start date') }}<span class="text-red">*</span></label>
-                    <input type="date" wire:model.defer="startDate"
+                    <input type="date" wire:model="startDate"
                            class="{{ $errors->has('startDate') ? 'border border-red' : '' }}"/>
                     <div class="{{ $errors->has('startDate') ? 'error-message' : '' }}">
                         {{ $errors->has('startDate') ? $errors->first('startDate') : '' }}
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col s6">
                     <label for="startDate">{{ __('End date') }}<span class="text-red">*</span></label>
-                    <input type="date" wire:model.defer="endDate"
+                    <input type="date" wire:model="endDate"
                            class="{{ $errors->has('endDate') ? 'border border-red' : '' }}"/>
                     <div class="{{ $errors->has('endDate') ? 'error-message' : '' }}">
                         {{ $errors->has('endDate') ? $errors->first('endDate') : '' }}
@@ -92,7 +92,7 @@
             <div>
                 <label for="clientId">{{ __('Client name') }}<span class="text-red">*</span></label>
                 <select
-                    wire:model.defer="clientId"
+                    wire:model="clientId"
                     class="{{ $errors->has('clientId') ? 'border border-red' : '' }}"
                     aria-label="{{ __("Select a client") }}"
                     name="clientId"
@@ -112,8 +112,7 @@
         </form>
     </div>
 
-
-    <div id="chart_div"></div>
+    <div wire:ignore id="chart_div"></div>
 
     <h4 class="fs-18">{{ __('Total number of works: ') }}
         <span class="badge gray-60 text-white round">{{ $jobs->total() }}</span>
