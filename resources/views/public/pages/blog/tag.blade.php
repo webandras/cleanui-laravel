@@ -2,9 +2,9 @@
 
 @section('seo')
     <x-public::meta
-        :title="$tag->name . ' | Tag'"
-        :excerpt="'Tags'"
-        :slug="'blog/tag/' . $tag->slug"
+        :title="$tag->name . ' | ' . __('Tag')"
+        :excerpt="__('Tags')"
+        :url="route('blog.tag', $tag->slug)"
     ></x-public::meta>
 @endsection
 

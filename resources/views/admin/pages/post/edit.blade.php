@@ -7,9 +7,6 @@
 
 @push('head-extra')
     <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
-    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
-    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
-    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
 @endpush
 
 
@@ -175,8 +172,6 @@
                                    value="{{ old('cover_image_url') ?? (config('app.url').$post->cover_image_url) }}"
                                    autofocus
                             />
-
-
                         </div>
                         <x-global::input-error for="cover_image_url"/>
                     </div>
@@ -229,6 +224,10 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
+    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
+    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
+
     <script nonce="{{ csp_nonce() }}">
         document.addEventListener("DOMContentLoaded", function() {
 

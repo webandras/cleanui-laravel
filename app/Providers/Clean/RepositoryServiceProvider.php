@@ -8,6 +8,7 @@ use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Interface\Repository\Clean\PostRepositoryInterface;
 use App\Interface\Repository\Clean\TagRepositoryInterface;
 use App\Interface\Repository\Clean\UserRepositoryInterface;
+use App\Interface\Repository\Event\EventRepositoryInterface;
 use App\Interface\Repository\Job\ClientRepositoryInterface;
 use App\Interface\Repository\Job\JobRepositoryInterface;
 use App\Interface\Repository\Job\WorkerRepositoryInterface;
@@ -22,6 +23,7 @@ use App\Repository\Clean\ModelRepository;
 use App\Repository\Clean\PostRepository;
 use App\Repository\Clean\TagRepository;
 use App\Repository\Clean\UserRepository;
+use App\Repository\Event\EventRepository;
 use App\Repository\Job\ClientRepository;
 use App\Repository\Job\JobRepository;
 use App\Repository\Job\WorkerRepository;
@@ -60,6 +62,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(WorkerRepositoryInterface::class, WorkerRepository::class);
 
 
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         /* $this->app->when([LocationController::class])
             ->needs(ModelRepositoryInterface::class)
             ->give(LocationRepository::class);

@@ -115,7 +115,7 @@ class Index extends Component
     public function render()
     {
         if ($this->filterOn !== true) {
-            $this->tags = $this->tagRepository->paginateEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'page');
+            $this->tags = $this->tagRepository->paginateEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
         }
 
         return view('admin.livewire.clean.tag.index')->with([
@@ -130,7 +130,7 @@ class Index extends Component
      */
     public function initialize(): void
     {
-        $this->tags = $this->tagRepository->paginateEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'page');
+        $this->tags = $this->tagRepository->paginateEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
     }
 
 

@@ -2,9 +2,9 @@
 
 @section('seo')
     <x-public::meta
-        :title="$category->name . ' | Category'"
-        :excerpt="'Category description here'"
-        :slug="'blog/category/' . $category->slug"
+        :title="$category->name . ' | ' . __('Category')"
+        :excerpt="__('Category description here')"
+        :url="route('blog.category', $category->slug)"
     ></x-public::meta>
 @endsection
 

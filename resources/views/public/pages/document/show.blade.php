@@ -2,9 +2,9 @@
 
 @section('seo')
     <x-public::meta
-        :title="'Documentation'"
-        :excerpt="'This is a demo documentation page description'"
-        :slug="''"
+        :title="__('Documentation')"
+        :excerpt="$currentDocument->excerpt ?? __('This is a demo documentation page description')"
+        :url="route('document.show', $currentDocument->slug)"
     ></x-public::meta>
 @endsection
 
@@ -17,7 +17,7 @@
     <div x-data="{ showToc: true}" class="main-container container relative">
 
         <aside x-show="showToc" x-cloak x-transition class="toc round">
-            <h2 class="h4"> Table of Contents </h2>
+            <h2 class="h4">{{ __('Table of Contents') }}</h2>
             <ul class="padding-right-left-0 no-bullets">
                 <li><a href="{{ route('document.index') }}">{{ __('Get Started') }}</a></li>
                 @foreach($documents as $document)

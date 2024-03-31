@@ -20,7 +20,6 @@
             {text: 'C#', value: 'csharp'},
             {text: 'C++', value: 'cpp'}
         ],
-        forced_root_block: '',
         extended_valid_elements : "iframe[src|frameborder|style|allowfullscreen|scrolling|class|width|height|name|align]",
         image_dimensions: true,
 

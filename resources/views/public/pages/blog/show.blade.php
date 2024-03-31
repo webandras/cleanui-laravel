@@ -5,7 +5,7 @@
         :title="$post->title"
         :excerpt="$post->excerpt"
         :coverImage="$post->cover_image_url"
-        :slug="'info/' . $post->slug"
+        :url="route('blog.show', $post->slug)"
     ></x-public::meta>
 @endsection
 

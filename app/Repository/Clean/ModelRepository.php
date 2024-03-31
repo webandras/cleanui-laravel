@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ModelRepository implements ModelRepositoryInterface
 {
-    private const PREFIX = "\App\Models\Clean\\";
+    private const PREFIX = "\App\Models\\";
 
     /**
      * @param string $modelClass

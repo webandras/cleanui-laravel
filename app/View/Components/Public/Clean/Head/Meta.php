@@ -15,7 +15,7 @@ class Meta extends Component
         public string $title,
         public string $excerpt,
         public ?string $coverImage,
-        public string $slug = '',
+        public string $url = '',
     ) {
     }
 

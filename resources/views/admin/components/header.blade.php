@@ -21,16 +21,14 @@
                             <a class="fs-14 {{ request()->routeIs('demo') ? 'active' : '' }}"
                                href="{{ route('demo') }}"
                             >
-                                <i class="fa-regular fa-book"></i>
-                                <span>{{ __('Components') }}</span>
+                                <i class="fa-regular fa-book"></i><span>{{ __('Components') }}</span>
                             </a>
 
                             <!-- Manage posts/articles link -->
                             <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
                                href="{{ route('post.manage') }}"
                             >
-                                <i class="fa-regular fa-newspaper"></i>
-                                <span>{{ __('Posts') }}</span>
+                                <i class="fa-regular fa-newspaper"></i><span>{{ __('Posts') }}</span>
                             </a>
 
 
@@ -38,8 +36,7 @@
                             <a class="fs-14 {{ request()->routeIs('category.manage') ? 'active' : '' }}"
                                href="{{ route('category.manage') }}"
                             >
-                                <i class="fa-solid fa-folder-open"></i>
-                                <span>{{ __('Categories') }}</span>
+                                <i class="fa-solid fa-folder-open"></i><span>{{ __('Categories') }}</span>
                             </a>
 
 
@@ -47,8 +44,12 @@
                             <a class="fs-14 {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
                                href="{{ route('tag.manage') }}"
                             >
-                                <i class="fa-solid fa-tags"></i>
-                                <span>{{ __('Tags') }}</span>
+                                <i class="fa-solid fa-tags"></i><span>{{ __('Tags') }}</span>
+                            </a>
+
+                            <a class="fs-14 {{ request()->routeIs('event.index') ? 'active' : '' }}"
+                               href="{{ route('event.manage') }}">
+                                <i class="fa-solid fa-calendar-days"></i><span>{{ __('Events') }}</span>
                             </a>
 
                             @endrole
@@ -59,9 +60,7 @@
                                 @click.outside="hideDropdown"
                             >
                                 <a class="fs-14" @click="toggleDropdown">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span>{{ Auth::user()->name }}</span>
-                                    <i class="fa fa-caret-down"></i>
+                                    <i class="fa fa-user" aria-hidden="true"></i><span>{{ Auth::user()->name }}</span><i class="fa fa-caret-down"></i>
                                 </a>
 
                                 <div x-show="openDropdown" x-cloak class="dropdown-content card padding-1">
@@ -69,8 +68,7 @@
                                     <a class="fs-14 dropdown-item"
                                        href="{{ route('user.account', auth()->id()) }}"
                                     >
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span>{{ __('My Account') }}</span>
+                                        <i class="fa fa-user" aria-hidden="true"></i><span>{{ __('My Account') }}</span>
                                     </a>
 
 
@@ -81,8 +79,7 @@
                                         role="button"
                                         onclick="triggerLogout('logout-form-admin-header')"
                                     >
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                        <span>{{ __('Logout') }}</span>
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i><span>{{ __('Logout') }}</span>
 
                                     </a>
 

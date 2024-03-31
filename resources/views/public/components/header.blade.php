@@ -25,11 +25,15 @@
                             <i class="fa-solid fa-book"></i>{{ __('Documentation') }}
                         </a>
 
+                        <a class="{{ request()->routeIs('event.index') ? 'active' : '' }}"
+                           href="{{ route('event.index') }}">
+                            <i class="fa-solid fa-calendar-days"></i>{{ __('Events') }}
+                        </a>
+
                         @guest
                             <a class="{{ request()->routeIs('login') ? 'active' : '' }}"
                                href="{{ route('login') }}">
-                                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
-                                {{ __('Login') }}
+                                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>{{ __('Login') }}
                             </a>
 
                             <a class="{{ request()->routeIs('register') ? 'active' : '' }}"
@@ -112,6 +116,10 @@
 
                     <div x-data="offCanvasMenuData">
                         <div class="flex flex-row">
+                            <a id="event-link-mobile-menu" href="{{ route('event.index') }}"
+                               class="button primary alt margin-top-0" title="{{ __('Event calendar link') }}">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </a>
                             <button id="main-menu-offcanvas-toggle"
                                     @click="toggleOffcanvasMenu()"
                                     class="primary alt margin-left-0-5"

@@ -92,10 +92,43 @@
                             <i class="fa-solid fa-tags"></i>{{ __('Manage Tags') }}
                         </a>
                     </li>
+                    @endrole
+
+                    @role('super-administrator')
+                    <li>
+                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Manage Events' }}</h4>
+                    </li>
+
+                    <!-- Manage events-->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('event.manage') ? 'active' : '' }}"
+                           href="{{ route('event.manage') }}"
+                        >
+                            <i class="fa-solid fa-calendar-days"></i>{{ __('Manage Events') }}
+                        </a>
+                    </li>
+
+                    <!-- Manage organizers -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('organizer.manage') ? 'active' : '' }}"
+                           href="{{ route('organizer.manage') }}"
+                        >
+                            <i class="fa-solid fa-users"></i>{{ __('Manage Organizers') }}
+                        </a>
+                    </li>
+
+                    <!-- Manage locations-->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('location.manage') ? 'active' : '' }}"
+                           href="{{ route('location.manage') }}"
+                        >
+                            <i class="fa-solid fa-location-dot"></i>{{ __('Manage Locations') }}
+                        </a>
+                    </li>
 
 
                     <li>
-                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Manage jobs calendar' }}</h4>
+                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ 'Manage Jobs Calendar' }}</h4>
                     </li>
 
                     <!-- Jobs calendar link -->

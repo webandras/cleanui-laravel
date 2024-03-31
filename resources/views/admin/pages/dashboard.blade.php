@@ -8,7 +8,6 @@
         <div class="dashboard-content">
 
             @auth
-
                 <h2 class="h4 margin-top-2 margin-bottom-0-5 text-center">{{ __('Contents & Taxonomies') }}</h2>
 
                 <ul class="dashboard-card-grid">
@@ -18,49 +17,72 @@
                     <!-- Demo components link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('demo') }}">
-                            <i class="fa-solid fa-palette" aria-hidden="true"></i>
-                            {{ __('Demo Components') }}
+                            <i class="fa-solid fa-palette" aria-hidden="true"></i>{{ __('Demo Components') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('post.manage') }}">
-                            <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-                            {{ __('Manage Posts') }}
+                            <i class="fa-regular fa-newspaper" aria-hidden="true"></i>{{ __('Manage Posts') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('category.manage') }}">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-                            {{ __('Manage Categories') }}
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>{{ __('Manage Categories') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('tag.manage') }}">
-                            <i class="fa-solid fa-tags" aria-hidden="true"></i>
-                            {{ __('Manage Tags') }}
+                            <i class="fa-solid fa-tags" aria-hidden="true"></i>{{ __('Manage Tags') }}
                         </a>
                     </li>
 
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('filemanager') }}">
-                            <i class="fa-solid fa-photo-film" aria-hidden="true"></i>
-                            {{ __('Media Library') }}
+                            <i class="fa-solid fa-photo-film" aria-hidden="true"></i>{{ __('Media Library') }}
                         </a>
                     </li>
 
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('document.manage') }}">
-                            <i class="fa-regular fa-book" aria-hidden="true"></i>
-                            {{ __('Manage Documentation') }}
+                            <i class="fa-regular fa-book" aria-hidden="true"></i>{{ __('Manage Documentation') }}
                         </a>
                     </li>
                     @endrole
 
                 </ul>
+
+
+                @role('super-administrator|administrator')
+                <h2 class="h4 margin-top-2 text-center">{{ __('Manage Events') }}</h2>
+
+                <ul class="dashboard-card-grid">
+                    <!-- Manage events-->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('event.manage') }}">
+                            <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>{{ __('Manage Events') }}
+                        </a>
+                    </li>
+
+                    <!-- Manage organizers -->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('organizer.manage') }}">
+                            <i class="fa-solid fa-users" aria-hidden="true"></i><span>{{ __('Manage Organizers') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Manage locations-->
+                    <li class="card text-center glassmorphic">
+                        <a class="card-link" href="{{ route('location.manage') }}">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>{{ __('Manage Locations') }}</span>
+                        </a>
+                    </li>
+                </ul>
+                @endrole
+
 
                 @role('super-administrator|administrator')
                 <h2 class="h4 margin-top-2 text-center">{{ __('Job Calendar') }}</h2>
@@ -71,24 +93,21 @@
                     <!-- Job calendar link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('job.calendar') }}">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span>{{ __('Manage Jobs') }}</span>
+                            <i class="fa fa-calendar" aria-hidden="true"></i><span>{{ __('Manage Jobs') }}</span>
                         </a>
                     </li>
 
                     <!-- Manage workers link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('worker.manage') }}">
-                            <i class="fa-solid fa-person-digging" aria-hidden="true"></i>
-                            {{ __('Manage workers') }}
+                            <i class="fa-solid fa-person-digging" aria-hidden="true"></i>{{ __('Manage workers') }}
                         </a>
                     </li>
 
                     <!-- Manage clients link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('client.manage') }}">
-                            <i class="fa fa-address-card" aria-hidden="true"></i>
-                            <span>{{ __('Manage clients') }}</span>
+                            <i class="fa fa-address-card" aria-hidden="true"></i><span>{{ __('Manage clients') }}</span>
                         </a>
                     </li>
 
@@ -110,8 +129,7 @@
                     <!-- Manage users link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('user.manage') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            {{ __('Manage Users') }}
+                            <i class="fa fa-users" aria-hidden="true"></i>{{ __('Manage Users') }}
                         </a>
                     </li>
 
@@ -119,8 +137,7 @@
                     <!-- Manage roles and permissions link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('role-permission.manage') }}">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            {{ __('Roles and Permissions') }}
+                            <i class="fa fa-lock" aria-hidden="true"></i>{{ __('Roles and Permissions') }}
                         </a>
                     </li>
                 </ul>
@@ -135,8 +152,7 @@
                     <!-- Account link -->
                     <li class="card text-center glassmorphic">
                         <a class="card-link" href="{{ route('user.account', auth()->id()) }}">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>{{ __('My Account') }}</span>
+                            <i class="fa fa-user" aria-hidden="true"></i><span>{{ __('My Account') }}</span>
                         </a>
                     </li>
 
@@ -148,8 +164,7 @@
                             href="#"
                             role="button"
                         >
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            {{ __('Logout') }}
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>{{ __('Logout') }}
                         </a>
                         <form
                             id="logout-form-dashboard"

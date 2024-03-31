@@ -6,9 +6,9 @@
 
 @section('seo')
     <x-public::meta
-        :title="'Documentation'"
-        :excerpt="'This is a demo documentation page description'"
-        :slug="''"
+        :title="__('Documentation')"
+        :excerpt="__('This is a demo documentation page description')"
+        :url="route('document.index')"
     ></x-public::meta>
 @endsection
 

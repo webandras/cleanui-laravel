@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Http\Controllers\Public\Event;
+
+use App\Http\Controllers\Controller;
+use App\Interface\Repository\Event\EventRepositoryInterface;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+
+
+class EventController extends Controller
+{
+    /**
+     * @var EventRepositoryInterface
+     */
+    private EventRepositoryInterface $eventRepository;
+
+
+    /**
+     * @param  EventRepositoryInterface  $eventRepository
+     */
+    public function __construct(EventRepositoryInterface $eventRepository)
+    {
+        $this->eventRepository = $eventRepository;
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('public.pages.event.index');
+    }
+
+
+    /**
+     * Display an entity
+     */
+    public function show(string $slug): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('public.pages.event.show')->with([
+            'event' => $this->eventRepository->getEventBySlug($slug)
+        ]);
+    }
+
+
+}

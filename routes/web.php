@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\Clean\PostController;
 use App\Http\Controllers\Admin\Clean\RolePermissionController;
 use App\Http\Controllers\Admin\Clean\TagController;
 use App\Http\Controllers\Admin\Clean\UserController;
+use App\Http\Controllers\Admin\Event\EventController;
+use App\Http\Controllers\Admin\Event\LocationController;
+use App\Http\Controllers\Admin\Event\OrganizerController;
 use App\Http\Controllers\Admin\Job\JobClientController;
 use App\Http\Controllers\Admin\Job\JobCalendarController;
 use App\Http\Controllers\Admin\Job\JobStatsController;
@@ -15,6 +18,7 @@ use App\Http\Controllers\Admin\Job\JobWorkerController;
 use App\Http\Controllers\Auth\Clean\UserCodeController;
 use App\Http\Controllers\Demo\Clean\DemoController;
 use App\Http\Controllers\Public\Clean\BlogController;
+use App\Http\Controllers\Public\Event\EventController as PublicEventController;
 use App\Http\Controllers\Public\Clean\DocumentationController;
 use App\Http\Controllers\Social\Clean\FacebookController;
 use App\Http\Controllers\Social\Clean\GoogleController;
@@ -82,6 +86,12 @@ Route::group(
         Route::get('/documentation', [DocumentationController::class, 'index'])->name('document.index');
         Route::get('/documentation/{slug}', [DocumentationController::class, 'show'])->name('document.show');
         /* Documentation END */
+
+
+        /* Events */
+        Route::get('event-calendar', [PublicEventController::class, 'index'])->name('event.index');
+        Route::get('event/{slug}', [PublicEventController::class, 'show'])->name('event.show');
+        /* Events END */
 
     }
 );
@@ -194,6 +204,26 @@ Route::group(
         Route::get('jobs/calendar', [JobCalendarController::class, 'index'])->name('job.calendar');
         Route::get('jobs/statistics', [JobStatsController::class, 'index'])->name('job.statistics');
         /* Jobs calendar END */
+
+
+        /* Events */
+        Route::post('event', [EventController::class, 'store'])->name('event.store');
+        Route::get('event/create', [EventController::class, 'create'])->name('event.create');
+        Route::get('event/manage', [EventController::class, 'index'])->name('event.manage');
+        Route::get('event/{event:id}', [EventController::class, 'edit'])->name('event.edit');
+        Route::put('event/{event}', [EventController::class, 'update'])->name('event.update');
+        Route::delete('event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
+        /* Events END */
+
+
+        /* Locations */
+        Route::get('locations/manage', [LocationController::class, 'index'])->name('location.manage');
+        /* Locations END */
+
+
+        /* Organizers */
+        Route::get('organizers/manage', [OrganizerController::class, 'index'])->name('organizer.manage');
+        /* Organizers END */
 
     }
 );

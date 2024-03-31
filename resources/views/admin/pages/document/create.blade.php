@@ -4,6 +4,12 @@
     <x-admin::head.tinymce-config/>
 @endsection
 
+
+@push('head-extra')
+    <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
+@endpush
+
+
 @section('content')
     <main class="padding-1">
         <form action="{{ route('document.store') }}"
@@ -130,8 +136,8 @@
 
 @endsection
 
-@push('head-extra')
-    <link href="{{ url('assets/tom-select/tom-select-2.2.2.css') }}" rel="stylesheet">
+
+@push('scripts')
     <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
     <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
     <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>

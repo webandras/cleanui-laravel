@@ -21,9 +21,19 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Clean\Role' => 'App\Policies\Clean\RolePolicy',
         'App\Models\Clean\Tag' => 'App\Policies\Clean\TagPolicy',
         'App\Models\Clean\User' => 'App\Policies\Clean\UserPolicy',
+
+        /* Jobs module */
         'App\Models\Job\Job' => 'App\Policies\Job\JobPolicy',
         'App\Models\Job\Client' => 'App\Policies\Job\ClientPolicy',
         'App\Models\Job\Worker' => 'App\Policies\Job\WorkerPolicy',
+        /* Jobs module END */
+
+        /* Events module */
+        'App\Models\Event\Event' => 'App\Policies\Event\EventPolicy',
+        'App\Models\Event\Location' => 'App\Policies\Event\LocationPolicy',
+        'App\Models\Event\Organizer' => 'App\Policies\Event\OrganizerPolicy',
+        /* Events module END */
+
     ];
 
     /**

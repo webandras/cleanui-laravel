@@ -2,9 +2,9 @@
 
 @section('seo')
     <x-public::meta
-        :title="'Blog'"
-        :excerpt="'Blog description'"
-        :slug="''"
+        :title="__('Blog')"
+        :excerpt="__('Blog description')"
+        :url="route('blog.index')"
     ></x-public::meta>
 @endsection
 
