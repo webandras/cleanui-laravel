@@ -69,7 +69,6 @@ class Delete extends Component
         $this->modalId = $modalId;
         $this->isModalOpen = false;
         $this->hasSmallButton = $hasSmallButton;
-        $this->worker = $worker;
         $this->workerId = $worker->id;
         $this->name = $worker->name;
     }
