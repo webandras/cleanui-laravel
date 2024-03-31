@@ -18,7 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Livewire\Redirector;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class Calendar extends Component
 {
