@@ -35,6 +35,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
+
+    @stack('head-extra')
+
+    <x-public::google></x-public::google>
 </head>
 <body @scroll="setScrollToTop()" class="overflow-x-hidden">
 

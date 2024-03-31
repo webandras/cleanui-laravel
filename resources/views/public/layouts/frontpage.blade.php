@@ -33,13 +33,15 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
+    @stack('head-extra')
+
     <!-- Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
 
     <?php $nonce = ["nonce" => csp_nonce()] ?>
     @livewireStyles($nonce)
 
-    @stack('head-extra')
+    <x-public::google></x-public::google>
 </head>
 <body @scroll="setScrollToTop()" class="overflow-x-hidden">
 

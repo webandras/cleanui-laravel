@@ -9,6 +9,13 @@
     ></x-public::meta>
 @endsection
 
+@push('head-extra')
+    <link rel="stylesheet" href="{{ url('assets/leaflet-1.9.4/leaflet.css') }}"/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="{{ url('assets/leaflet-1.9.4/leaflet.js') }}"></script>
+@endpush
+
 @section('content')
 
     @php

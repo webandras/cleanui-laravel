@@ -24,10 +24,6 @@
     <link href="{{ url('assets/fontawesome-6.4.0/css/solid.css') }}" rel="stylesheet">
     <link href="{{ url('assets/fontawesome-6.4.0/css/brands.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon-32x32.png') }}">
@@ -37,10 +33,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
+    @stack('head-extra')
 
     <!-- Scripts -->
     @vite(['resources/sass/main.sass', 'resources/js/app.js'])
