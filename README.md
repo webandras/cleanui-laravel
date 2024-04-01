@@ -22,7 +22,13 @@ _Disclaimer: This project is under development, not 100% ready, but close._
 
 - ~~TODO: Add the public-facing side of the demo blog, after the admin-side is finalized~~ -> DONE
 - Create a better documentation
-- Check Laravel 11, and PHP 8.2 compatibility
+- ~~Check Laravel 11, and PHP 8.2 compatibility~~ -> DONE (but not yet merged to master)
+
+The **laravel11** branch supports Laravel 11. Livewire was updated to version 3 (with all the necessary changes in components).
+The application structure was not upgraded to the new Laravel 11 structure. As stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#application-structure),
+
+> However, **we do not recommend** (emphasis mine) that Laravel 10 applications upgrading to Laravel 11 attempt to migrate their application structure, as Laravel 11 has been carefully tuned to also support the Laravel 10 application structure.
+
 
 ## Screenshot
 
