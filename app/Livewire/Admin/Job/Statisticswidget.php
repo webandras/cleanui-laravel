@@ -216,23 +216,30 @@ class Statisticswidget extends Component
         $startDate = new DateTime($this->startDate, $tz);
         $endDate = new DateTime($this->endDate, $tz);
         $interval = $startDate->diff($endDate);
-        $weeks = (int) floor($interval->days / 7);
 
         $statistics = DB::table('jobs')
             ->selectRaw(
                 "clients.name,
-                            SUM(CASE
-                                WHEN (jobs.is_recurring = 0) THEN
-                                     TIME_TO_SEC( TIMEDIFF( jobs.end, jobs.start ) ) / 3600
-                                WHEN (jobs.is_recurring = 1) THEN
-                                    TIME_TO_SEC(jobs.duration) / 3600 * FLOOR( $weeks / JSON_EXTRACT(`rrule` , '$.interval') )
-                            END) AS hours"
+                        CAST( 7 * JSON_UNQUOTE( JSON_EXTRACT( jobs.rrule, '$.interval' ) ) AS UNSIGNED ) AS per_week,
+                            ( CASE
+                                WHEN ( jobs.is_recurring = 0 ) THEN
+                                    SUM( TIME_TO_SEC( TIMEDIFF( jobs.end, jobs.start ) ) / 3600 )
+                                WHEN ( jobs.is_recurring = 1 ) THEN
+                                   SUM( TIME_TO_SEC( jobs.duration ) / 3600 * (
+                                        WITH RECURSIVE DateRange AS (
+                                            SELECT ? AS StartDate
+                                            UNION ALL
+                                            SELECT DATE_ADD( StartDate, INTERVAL per_week DAY )
+                                            FROM DateRange
+                                            WHERE StartDate < DATE_ADD( ?, INTERVAL -per_week DAY )
+                                    ) SELECT COUNT( StartDate ) FROM DateRange ) )
+                            END ) AS hours", [$this->startDate, $this->endDate]
             )
             ->join('clients', 'jobs.client_id', '=', 'clients.id');
 
         $statistics = $this->addWhereConditionsToQueries($statistics);
         $statistics = $statistics
-            ->groupBy('clients.name', 'jobs.is_recurring')
+            ->groupBy('clients.name', 'jobs.is_recurring', 'jobs.rrule')
             ->get();
 
         $this->chartData = $statistics;

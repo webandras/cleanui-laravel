@@ -3,13 +3,13 @@
 @endpush
 
 <section x-data="{
-        chartId: $wire.entangle('chartId').live, /* Binding PHP and JS properties */
-        chartData: $wire.entangle('chartData').live,
-        chartTitle: $wire.entangle('chartTitle').live ,
-        chartAreaWidth: $wire.entangle('chartAreaWidth').live,
-        chartColor: $wire.entangle('chartColor').live,
-        chartXAxisTitle: $wire.entangle('chartXAxisTitle').live,
-        chartVAxisTitle: $wire.entangle('chartVAxisTitle').live,
+        chartId: $wire.entangle('chartId'), /* Binding PHP and JS properties */
+        chartData: $wire.entangle('chartData'),
+        chartTitle: $wire.entangle('chartTitle') ,
+        chartAreaWidth: $wire.entangle('chartAreaWidth'),
+        chartColor: $wire.entangle('chartColor'),
+        chartXAxisTitle: $wire.entangle('chartXAxisTitle'),
+        chartVAxisTitle: $wire.entangle('chartVAxisTitle'),
         sumOfHours: 0,
 
         /* Basic chart options */
@@ -157,10 +157,16 @@
 
 						// variables needed for date calculations between start and end dates of the user-defined-interval
 						$intervalToAdd = '+' . $rrule->interval . ' ' . substr($rrule->freq, 0, -1); // example: +1 week
+
 					    $utc = new DateTimeZone( 'UTC' );
 					    $tz        = new DateTimeZone( 'Europe/Budapest' );
+
 						$startDate = new DateTime( $this->startDate, $tz );
+                        $startDate->setTime(0,0);
+
 						$endDate = new DateTime( $this->endDate, $tz);
+                        $endDate->setTime(23,59);
+
 						$iteratedDate = new DateTime( $rrule->dtstart, $utc);
                         $iteratedDate = $iteratedDate->setTimezone($tz);
 
@@ -195,7 +201,7 @@
 							$iteratedDate->modify($intervalToAdd);
 
 							// if the increased datetime is outside the end date of the interval
-							if ($iteratedDate > $endDate) {
+						    if ($iteratedDate >= $endDate) {
 								continue;
 							}
 
@@ -229,21 +235,22 @@
                     <td>{{ $job->durationCalc }}</td>
 
                     <td>
-                        @if ($jobStartDate !== '')
-                            {{ $jobStartDate }}
-                        @else
+                        @if (!empty($recurringStartDates))
                             @foreach($recurringStartDates as $dateItem)
                                 {{ str_replace('T', ' ', substr($dateItem, 0, -9)) }}<br>
                             @endforeach
+                        @else
+                            {{ $jobStartDate }}
                         @endif
                     </td>
                     <td>
-                        @if ($jobEndDate !== '')
-                            {{ $jobEndDate }}
-                        @else
+                        @if (!empty($recurringEndDates))
                             @foreach($recurringEndDates as $dateItem)
                                 {{ str_replace('T', ' ', substr($dateItem, 0, -9)) }}<br>
                             @endforeach
+
+                        @else
+                            {{ $jobEndDate }}
                         @endif
                     </td>
 
