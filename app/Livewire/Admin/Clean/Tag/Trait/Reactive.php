@@ -43,7 +43,7 @@ trait Reactive
      */
     public function rerenderList(): void
     {
-        $this->emitUp('listUpdated');
+        $this->dispatch('listUpdated');
     }
 
 
@@ -52,11 +52,10 @@ trait Reactive
      */
     public function triggerOnAlert(): void
     {
-        $this->emitTo(
-            'global.banner',
+        $this->dispatch(
             'onAlert',
             ['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')]
-        );
+        )->to('global.clean.banner');
 
     }
 }
