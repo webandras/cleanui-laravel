@@ -17,11 +17,13 @@ use App\Http\Controllers\Admin\Job\JobStatsController;
 use App\Http\Controllers\Admin\Job\JobWorkerController;
 use App\Http\Controllers\Auth\Clean\UserCodeController;
 use App\Http\Controllers\Demo\Clean\DemoController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Public\Clean\BlogController;
 use App\Http\Controllers\Public\Event\EventController as PublicEventController;
 use App\Http\Controllers\Public\Clean\DocumentationController;
 use App\Http\Controllers\Social\Clean\FacebookController;
 use App\Http\Controllers\Social\Clean\GoogleController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Artisan;
@@ -92,6 +94,11 @@ Route::group(
         Route::get('event-calendar', [PublicEventController::class, 'index'])->name('event.index');
         Route::get('event/{slug}', [PublicEventController::class, 'show'])->name('event.show');
         /* Events END */
+
+
+        /* Get language, set language in session */
+        Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('lang.index');
+        /* Get language, set language in session END */
 
     }
 );
@@ -271,7 +278,7 @@ Route::group(
     // Do whatever you want either a print a message or exit
     echo 'OK';
     exit;
-});
+});*/
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
@@ -288,8 +295,10 @@ Route::get('/cache', function () {
 
 
 Route::get('/clear', function () {
-    Artisan::call('route:clear');
-    echo 'Route cache clear OK';
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    echo 'Cache clear OK';
     exit;
-});*/
+});
 
