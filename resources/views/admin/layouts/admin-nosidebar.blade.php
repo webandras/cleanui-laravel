@@ -33,6 +33,7 @@
     @livewireStyles($nonce)
 
     @stack('head-extra')
+
     @yield('head')
 </head>
 <body @scroll="setScrollToTop()">
@@ -70,7 +71,7 @@
 
 @stack('modals')
 
-@livewireScripts($nonce)
+@livewireScriptConfig($nonce)
 
 <!-- To support inline scripts needed for the calendar library
 https://laravel-livewire.com/docs/2.x/inline-scripts

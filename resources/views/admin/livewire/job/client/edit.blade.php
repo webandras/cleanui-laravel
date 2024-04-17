@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     <button @click="isModalOpen = true" class="success margin-top-0">
@@ -11,13 +11,13 @@
         title="{{ __('Edit Client') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="updateClient">
+        <form wire:submit="updateClient">
 
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -31,7 +31,7 @@
                 <!-- Email -->
                 <label for="address">{{ __('Address') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="address"
+                    wire:model="address"
                     type="text"
                     class="{{ $errors->has('address') ? 'border border-red' : '' }}"
                     name="address"
@@ -44,7 +44,7 @@
                 <!-- Role -->
                 <label for="type">{{ __('Type') }}<span class="text-red">*</span></label>
                 <select
-                    wire:model.defer="type"
+                    wire:model="type"
                     class="{{ $errors->has('type') ? 'border border-red' : '' }}"
                     aria-label="{{ __("Select a client type") }}"
                     name="role"
@@ -67,7 +67,7 @@
                 <!-- $contactPerson -->
                 <label for="contactPerson">{{ __('Contact Person\'s name') }}</label>
                 <input
-                    wire:model.defer="contactPerson"
+                    wire:model="contactPerson"
                     type="text"
                     class="{{ $errors->has('contactPerson') ? 'border border-red' : '' }}"
                 >
@@ -79,7 +79,7 @@
                 <!-- phoneNumber -->
                 <label for="phoneNumber">{{ __('Phone number') }}</label>
                 <input
-                    wire:model.defer="phoneNumber"
+                    wire:model="phoneNumber"
                     type="text"
                     class="{{ $errors->has('phoneNumber') ? 'border border-red' : '' }}"
                     name="phoneNumber"
@@ -92,7 +92,7 @@
                 <!-- $email -->
                 <label for="email">{{ __('Email') }}</label>
                 <input
-                    wire:model.defer="email"
+                    wire:model="email"
                     type="email"
                     class="{{ $errors->has('email') ? 'border border-red' : '' }}"
                 >
@@ -105,7 +105,7 @@
                 <!-- $taxNumber -->
                 <label for="taxNumber">{{ __('Tax number') }}</label>
                 <input
-                    wire:model.defer="taxNumber"
+                    wire:model="taxNumber"
                     type="text"
                     class="{{ $errors->has('taxNumber') ? 'border border-red' : '' }}"
                 >

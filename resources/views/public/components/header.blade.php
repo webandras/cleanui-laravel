@@ -114,6 +114,8 @@
                     >
                     </button>
 
+                    @include('partials/language_switcher')
+
                     <div x-data="offCanvasMenuData">
                         <div class="flex flex-row">
                             <a id="event-link-mobile-menu" href="{{ route('event.index') }}"

@@ -1,15 +1,15 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete?') }}"
                           id="{{ $modalId }}">
-        <form wire:submit.prevent="deleteDocument">
+        <form wire:submit="deleteDocument">
             <h2 class="h3">{{ $title }}</h2>
             <hr class="divider">
 
             <label for="postId" class="sr-only">{{ __('Document Id') }}</label>
-            <input wire:model.defer="documentId"
+            <input wire:model="documentId"
                    disabled
                    type="number"
                    class="hidden"

@@ -35,7 +35,7 @@
                         </a>
 
                         <!-- Delete document -->
-                        <button wire:click="$emit('triggerDeleteDocument', {{$document->id }})"
+                        <button wire:click="$dispatch('triggerDeleteDocument', { document: {{ $document->id }} })"
                                 class="danger margin-top-0">
                             <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                             <span>{{ __('Delete') }}</span>

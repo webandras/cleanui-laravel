@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.entangle('isModalOpen') }">
+<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     <button @click="isModalOpen = true" class="danger alt margin-top-0">
         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
@@ -6,7 +6,7 @@
     </button>
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete it permanently?') }}" id="{{ $modalId }}">
-        <form wire:submit.prevent="destroyTag">
+        <form wire:submit="destroyTag">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 

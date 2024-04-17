@@ -19,7 +19,7 @@
                     <!-- Search Term -->
                     <label for="searchTerm" class="margin-top-0">{{ __('Search by keyword') }}</label>
                     <input id="searchTerm"
-                           wire:model.defer="searchTerm"
+                           wire:model="searchTerm"
                            class="{{ $errors->has('searchTerm') ? ' border border-red' : '' }}"
                            type="search"
                            name="searchTerm"

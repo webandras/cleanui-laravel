@@ -12,7 +12,7 @@
     <script nonce="{{ csp_nonce() }}" src="{{ url('/js/fullcalendar.moment-timezone.min.6.1.8.js') }}"></script>
 
     <script nonce="{{ csp_nonce() }}">
-        document.addEventListener('livewire:load', function () {
+        document.addEventListener('livewire:init', function () {
             // Translations for the calendar
             var hu = {
                 code: 'hu',

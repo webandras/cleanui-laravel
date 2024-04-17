@@ -5,7 +5,7 @@
 <section x-data="{
         chartId: $wire.entangle('chartId'), /* Binding PHP and JS properties */
         chartData: $wire.entangle('chartData'),
-        chartTitle: $wire.entangle('chartTitle'),
+        chartTitle: $wire.entangle('chartTitle') ,
         chartAreaWidth: $wire.entangle('chartAreaWidth'),
         chartColor: $wire.entangle('chartColor'),
         chartXAxisTitle: $wire.entangle('chartXAxisTitle'),
@@ -65,15 +65,15 @@
          google.charts.setOnLoadCallback(function() { drawChart(); });
 
          // watches the changes for chartData, and re-renders the chart with the updated data
-         $watch('chartData', function() { drawChart(); })
+         $watch('chartData', function() { console.log(this.chartData); drawChart(); })
         "
 >
     <div>
-        <form wire:submit.prevent="getResults">
+        <form wire:submit="getResults">
             <div class="row-padding">
                 <div class="col s6">
                     <label for="startDate">{{ __('Start date') }}<span class="text-red">*</span></label>
-                    <input type="date" wire:model.defer="startDate"
+                    <input type="date" wire:model="startDate"
                            class="{{ $errors->has('startDate') ? 'border border-red' : '' }}"/>
                     <div class="{{ $errors->has('startDate') ? 'error-message' : '' }}">
                         {{ $errors->has('startDate') ? $errors->first('startDate') : '' }}
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col s6">
                     <label for="startDate">{{ __('End date') }}<span class="text-red">*</span></label>
-                    <input type="date" wire:model.defer="endDate"
+                    <input type="date" wire:model="endDate"
                            class="{{ $errors->has('endDate') ? 'border border-red' : '' }}"/>
                     <div class="{{ $errors->has('endDate') ? 'error-message' : '' }}">
                         {{ $errors->has('endDate') ? $errors->first('endDate') : '' }}
@@ -92,7 +92,7 @@
             <div>
                 <label for="clientId">{{ __('Client name') }}<span class="text-red">*</span></label>
                 <select
-                    wire:model.defer="clientId"
+                    wire:model="clientId"
                     class="{{ $errors->has('clientId') ? 'border border-red' : '' }}"
                     aria-label="{{ __("Select a client") }}"
                     name="clientId"
@@ -112,8 +112,7 @@
         </form>
     </div>
 
-
-    <div id="chart_div"></div>
+    <div wire:ignore id="chart_div"></div>
 
     <h4 class="fs-18">{{ __('Total number of works: ') }}
         <span class="badge gray-60 text-white round">{{ $jobs->total() }}</span>
@@ -158,10 +157,16 @@
 
 						// variables needed for date calculations between start and end dates of the user-defined-interval
 						$intervalToAdd = '+' . $rrule->interval . ' ' . substr($rrule->freq, 0, -1); // example: +1 week
+
 					    $utc = new DateTimeZone( 'UTC' );
 					    $tz        = new DateTimeZone( 'Europe/Budapest' );
+
 						$startDate = new DateTime( $this->startDate, $tz );
+                        $startDate->setTime(0,0);
+
 						$endDate = new DateTime( $this->endDate, $tz);
+                        $endDate->setTime(23,59);
+
 						$iteratedDate = new DateTime( $rrule->dtstart, $utc);
                         $iteratedDate = $iteratedDate->setTimezone($tz);
 
@@ -196,7 +201,7 @@
 							$iteratedDate->modify($intervalToAdd);
 
 							// if the increased datetime is outside the end date of the interval
-							if ($iteratedDate > $endDate) {
+						    if ($iteratedDate >= $endDate) {
 								continue;
 							}
 
@@ -230,21 +235,22 @@
                     <td>{{ $job->durationCalc }}</td>
 
                     <td>
-                        @if ($jobStartDate !== '')
-                            {{ $jobStartDate }}
-                        @else
+                        @if (!empty($recurringStartDates))
                             @foreach($recurringStartDates as $dateItem)
                                 {{ str_replace('T', ' ', substr($dateItem, 0, -9)) }}<br>
                             @endforeach
+                        @else
+                            {{ $jobStartDate }}
                         @endif
                     </td>
                     <td>
-                        @if ($jobEndDate !== '')
-                            {{ $jobEndDate }}
-                        @else
+                        @if (!empty($recurringEndDates))
                             @foreach($recurringEndDates as $dateItem)
                                 {{ str_replace('T', ' ', substr($dateItem, 0, -9)) }}<br>
                             @endforeach
+
+                        @else
+                            {{ $jobEndDate }}
                         @endif
                     </td>
 

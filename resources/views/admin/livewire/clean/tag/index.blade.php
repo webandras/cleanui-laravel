@@ -8,12 +8,12 @@
                                    :wire:key="'create-new-tag'">
         </livewire:admin.clean.tag.create>
 
-        <form wire:submit.prevent="filterTags" style="width: auto;">
+        <form wire:submit="filterTags" style="width: auto;">
             <div class="flex flex-row">
                 <div>
                     <label for="filterKeyword" class="hidden bold fs-14">{{ __('Search keyword') }}</label>
                     <input id="filterKeyword"
-                           wire:model.defer="filterKeyword"
+                           wire:model="filterKeyword"
                            name="filterKeyword"
                            placeholder="{{ __('Search keyword') }}"
                            class="fs-14 {{ $errors->has('filterKeyword') ? ' border border-red' : '' }}"
@@ -50,7 +50,7 @@
                 {{ __('Archive selected') }}
             </button>
 
-            <div x-data="{isModalOpen: $wire.entangle('isArchiveConfirmOpen')}">
+            <div x-data="{isModalOpen: $wire.$entangle('isArchiveConfirmOpen', true)}">
                 <x-global::modal
                     trigger="isModalOpen"
                     title="{{ __('Archive tag(s)?') }}"
@@ -94,7 +94,7 @@
                 <tr>
                     <td>
                         <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
-                        <input type="checkbox" value="{{ $tag->id }}" wire:model.defer="selectedIds" name="selectedIds" id="selectedIds">
+                        <input type="checkbox" value="{{ $tag->id }}" wire:model="selectedIds" name="selectedIds" id="selectedIds">
                     </td>
                     <td><b>{{ $tag->name }}</b><br><small>{{ $tag->created_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>

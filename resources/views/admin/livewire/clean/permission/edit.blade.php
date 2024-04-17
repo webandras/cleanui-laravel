@@ -1,5 +1,5 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen')
+    isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
     @if ($hasSmallButton)
@@ -17,13 +17,13 @@
         title="{{ __('Edit Permission') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="updatePermission">
+        <form wire:submit="updatePermission">
 
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Name') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="name"
+                    wire:model="name"
                     type="text"
                     class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                     name="name"
@@ -35,7 +35,7 @@
                 <!-- Email -->
                 <label for="slug">{{ __('Slug (should be unique)') }}<span class="text-red">*</span></label>
                 <input
-                    wire:model.defer="slug"
+                    wire:model="slug"
                     type="text"
                     class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                     name="slug"

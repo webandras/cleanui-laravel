@@ -72,9 +72,10 @@
 
 </div>
 
-@livewireScripts($nonce)
+@livewireScriptConfig($nonce)
 
 @stack('scripts')
+
 </body>
 </html>
 

@@ -1,6 +1,6 @@
 <div x-data="{
-    isModalOpen: $wire.entangle('isModalOpen'),
-    coverImage: $wire.entangle('cover_image_url'),
+    isModalOpen: $wire.$entangle('isModalOpen', true),
+    coverImage: $wire.$entangle('cover_image_url', true),
     isValidUrl: function(urlString) {
         try {
             return Boolean(new URL(urlString));
@@ -28,13 +28,13 @@
         title="{{ __('Edit category') }}"
         id="{{ $modalId }}"
     >
-        <form wire:submit.prevent="updateCategory">
+        <form wire:submit="updateCategory">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
 
             <fieldset>
                 <label for="name">{{ __('Category name') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="name"
+                <input wire:model="name"
                        type="text"
                        class="{{ $errors->has('name') ? 'border border-red' : '' }}"
                        name="name"
@@ -44,7 +44,7 @@
 
 
                 <label for="slug">{{ __('Category slug') }}<span class="text-red">*</span></label>
-                <input wire:model.defer="slug"
+                <input wire:model="slug"
                        type="text"
                        class="{{ $errors->has('slug') ? 'border border-red' : '' }}"
                        name="slug"
@@ -107,7 +107,7 @@
         </form>
 
         <script nonce="{{ csp_nonce() }}">
-            document.addEventListener('livewire:load', function () {
+            document.addEventListener('livewire:init', function () {
 
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('lfm-edit-{{ $category->id }}').addEventListener('click', (event) => {

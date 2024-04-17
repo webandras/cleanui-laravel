@@ -68,6 +68,9 @@
 
 </div>
 
+<?php $nonce = ["nonce" => csp_nonce()] ?>
+@livewireScriptConfig($nonce)
+
 @stack('scripts')
 </body>
 </html>
