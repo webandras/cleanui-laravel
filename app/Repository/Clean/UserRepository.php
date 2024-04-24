@@ -5,7 +5,6 @@ namespace App\Repository\Clean;
 use App\Interface\Entities\Clean\UserInterface;
 use App\Interface\Repository\Clean\UserRepositoryInterface;
 use App\Models\Clean\User;
-use App\Models\Clean\UserSetting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
