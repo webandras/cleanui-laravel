@@ -10,9 +10,6 @@
 @endsection
 
 @section('content')
-
-    @php $dtFormat = \App\Interface\Entities\Clean\PostInterface::DT_FORMAT; @endphp
-
     <x-public::breadcrumb :homeLink="route('blog.index')" :homeLabel="__('Blog')"
                           :title="$post->title"></x-public::breadcrumb>
 

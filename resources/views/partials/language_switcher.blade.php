@@ -5,7 +5,7 @@
             @if ($available_locale === $current_locale)
                 <div class="flex">
                     <img style="height: auto; width: 32px;"
-                         src="{{ asset('storage/images/flags/' . $available_locale . '-flag.jpg' ) }}"
+                         src="{{ asset('storage/images/flags/' . $available_locale . '-flag.png' ) }}"
                          alt="{{ $locale_name }}">
                     <div class="margin-left-0-5">
                         <i class="fa fa-caret-down flex"></i>
@@ -20,7 +20,7 @@
         @foreach ($available_locales as $locale_name => $available_locale)
             @if ($available_locale !== $current_locale)
                 <a class="bar-item" title="{{ $locale_name }}" href="{{ route('lang.index', $available_locale) }}">
-                    <img src="{{ asset('storage/images/flags/' . $available_locale . '-flag.jpg' ) }}"
+                    <img src="{{ asset('storage/images/flags/' . $available_locale . '-flag.png' ) }}"
                          alt="{{ $locale_name }}" style="width: 32px;">
                 </a>
             @endif

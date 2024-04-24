@@ -8,6 +8,8 @@ use App\Interface\Repository\Clean\PostRepositoryInterface;
 use App\Models\Clean\Category;
 use App\Models\Clean\Post;
 use App\Models\Clean\Tag;
+use App\Models\Event\Event;
+use App\Trait\Clean\HasLocalization;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,6 +17,7 @@ use Illuminate\Contracts\View\View;
 
 class BlogController extends Controller
 {
+    use HasLocalization;
 
     /**
      * @var PostRepositoryInterface
@@ -49,6 +52,7 @@ class BlogController extends Controller
             'newestPosts' => $newestPosts,
             'categories' => $categories,
             'highlightedPosts' => $highlightedPosts,
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
     }
 
@@ -101,6 +105,7 @@ class BlogController extends Controller
         return view('public.pages.blog.show')->with([
             'post' => $post,
             'neighbouringPosts' => $neighbouringPosts,
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
     }
 
@@ -122,6 +127,7 @@ class BlogController extends Controller
         return view('public.pages.blog.category')->with([
             'category' => $category,
             'posts' => $posts,
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
 
     }
@@ -143,6 +149,7 @@ class BlogController extends Controller
         return view('public.pages.blog.tag')->with([
             'tag' => $tag,
             'posts' => $posts,
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
 
     }

@@ -3,6 +3,7 @@
 namespace App\Livewire\Public\Event;
 
 use App\Interface\Repository\Event\EventRepositoryInterface;
+use App\Models\Event\Event;
 use App\Models\Event\Location;
 use App\Models\Event\Organizer;
 use Carbon\Carbon;
@@ -106,7 +107,9 @@ class Widget extends Component
         $this->resetPage();
 
         return view('public.livewire.event.widget')->with([
-            'events' => $this->events
+            'events' => $this->events,
+            'dtFormat' => Event::getLocaleDateTimeFormat(),
+            'utcTz' => new \DateTimeZone("UTC")
         ]);
     }
 

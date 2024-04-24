@@ -3,13 +3,14 @@
 namespace App\Livewire\Public\Clean\Post;
 
 use App\Interface\Repository\Clean\PostRepositoryInterface;
+use App\Trait\Clean\HasLocalization;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class PostGrid extends Component
 {
-    use WithPagination;
+    use WithPagination, HasLocalization;
 
 
     /**
@@ -44,7 +45,8 @@ class PostGrid extends Component
         $this->resetPage();
 
         return view('public.livewire.post.post-grid')->with([
-            'posts' => $this->posts
+            'posts'    => $this->posts,
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
     }
 }

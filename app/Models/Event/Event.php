@@ -77,6 +77,19 @@ class Event extends Model implements EventInterface
 
 
     /**
+     * @return string
+     */
+    public static function getLocaleDateTimeFormat(): string {
+        $locale = config('app.locale');
+
+        return match ($locale) {
+            'hu' => 'Y. M j. H:i',
+            default => 'jS \o\f F Y H:i',
+        };
+    }
+
+
+    /**
      * @return HasOne
      */
     public function event_detail(): HasOne

@@ -1,10 +1,5 @@
 <section>
     <div class="public-post-grid">
-        @php
-            // setlocale(LC_ALL, 'hu_HU.UTF-8');
-            // $dtFormat = 'Y. F j.';
-            $dtFormat = 'jS \o\f F Y';
-        @endphp
         @foreach($posts as $post)
             <article class="post-item card">
 

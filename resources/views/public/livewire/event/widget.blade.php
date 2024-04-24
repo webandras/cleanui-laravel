@@ -1,10 +1,3 @@
-@php
-    setlocale(LC_ALL, 'hu_HU.UTF-8');
-    $dtFormat = 'Y. M j. H:i';
-    $utcTz = new \DateTimeZone("UTC");
-@endphp
-
-
 <div class="event-list-widget">
 
     <div x-data="{ show: false }" class="margin-bottom-2 event-list-widget--container" x-cloak>
@@ -122,14 +115,6 @@
                 <style nonce="{{ csp_nonce() }}">
                     .event-image-grayscale {
                         filter: {{ $event->status === 'cancelled' ? 'grayscale(60%)' : 'grayscale(0)' }}
-
-
-
-
-
-
-
-
                     }
                 </style>
 

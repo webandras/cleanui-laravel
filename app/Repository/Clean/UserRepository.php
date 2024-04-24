@@ -5,6 +5,8 @@ namespace App\Repository\Clean;
 use App\Interface\Entities\Clean\UserInterface;
 use App\Interface\Repository\Clean\UserRepositoryInterface;
 use App\Models\Clean\User;
+use App\Models\Clean\UserSetting;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserRepository implements UserRepositoryInterface
@@ -52,5 +54,26 @@ class UserRepository implements UserRepositoryInterface
     public function updateUser(User $user, array $data): bool
     {
         return $user->updateOrFail($data);
+    }
+
+
+    /**
+     * @param  User  $user
+     * @param  array  $data
+     *
+     * @return Model
+     */
+    public function updateUserPreferences(User $user, array $data): Model
+    {
+        return $user->preferences()->updateOrCreate([ 'user_id' => $user->id ], $data);
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function userHasPreferences(): bool
+    {
+        return array_key_exists('App\Trait\Clean\HasPreferences', class_uses_recursive(User::class));
     }
 }

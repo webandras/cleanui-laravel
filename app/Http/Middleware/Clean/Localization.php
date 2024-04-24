@@ -15,13 +15,34 @@ class Localization
      *
      * @param  Request  $request
      * @param  Closure(Request): (Response|RedirectResponse)  $next
+     *
      * @return Response|RedirectResponse
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->has('locale')) {
+        session()->has('locale') ? $this->setLocale(true) : $this->setLocale(false);
+
+        return $next($request);
+    }
+
+
+    /**
+     * @param  bool  $localeInSession
+     *
+     * @return void
+     */
+    private function setLocale(bool $localeInSession): void
+    {
+        $user = auth()->user();
+        if ($user && $user->preferences()->exists()) {
+            // set language from user preferences
+            App::setLocale($user->preferences->locale);
+        } elseif ($localeInSession === true) {
             App::setLocale(session('locale'));
         }
-        return $next($request);
+
+        $locale       = App::getLocale();
+        $localeString = $locale.'_'.strtoupper($locale).'.UTF-8';
+        setlocale(LC_ALL, $localeString);
     }
 }

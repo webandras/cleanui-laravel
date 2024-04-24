@@ -9,9 +9,6 @@
 @endsection
 
 @section('content')
-
-    @php $dtFormat = \App\Interface\Entities\Clean\PostInterface::DT_FORMAT; @endphp
-
     <div class="card white">
 
         <x-public::breadcrumb title="{{ $tag->name }}" :centerAlign="true"></x-public::breadcrumb>

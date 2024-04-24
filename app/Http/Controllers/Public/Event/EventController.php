@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Public\Event;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Repository\Event\EventRepositoryInterface;
+use App\Models\Event\Event;
+use App\Trait\Clean\HasLocalization;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\App;
 
 
 class EventController extends Controller
 {
+    use HasLocalization;
+
     /**
      * @var EventRepositoryInterface
      */
@@ -41,7 +46,9 @@ class EventController extends Controller
     public function show(string $slug): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('public.pages.event.show')->with([
-            'event' => $this->eventRepository->getEventBySlug($slug)
+            'event' => $this->eventRepository->getEventBySlug($slug),
+            'dtFormat' => $this->getLocaleDateTimeFormat(),
+            'utcTz' => new \DateTimeZone("UTC")
         ]);
     }
 

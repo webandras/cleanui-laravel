@@ -6,7 +6,15 @@
 >
 <head>
     <script nonce="{{ csp_nonce() }}">
-        document.querySelector('html').classList.add(localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light')
+        const userTheme = @json(auth()->user()->preferences->darkmode ?? null);
+        const htmlElement = document.querySelector('html');
+        if (userTheme === null) {
+            htmlElement.classList.add(localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light');
+        } else {
+            // set dark mode from user preferences
+            localStorage.setItem('darkMode', userTheme === 1 ? 'true' : 'false');
+            document.querySelector('html').classList.add(userTheme === 1 ? 'dark' : 'light');
+        }
     </script>
 
     <meta charset="utf-8">

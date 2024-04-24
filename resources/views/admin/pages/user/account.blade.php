@@ -83,6 +83,74 @@
 
                     </div>
 
+                </fieldset>
+
+
+                <hr class="divider">
+
+
+                <fieldset id="settings">
+                    <legend>
+                        <h2 class="h4">{{ __('Your Preferences') }}</h2>
+                    </legend>
+
+
+                    <!-- Language -->
+                    <label for="locale">{{ __('Your language') }}<span class="text-red">*</span></label>
+                    <select
+                        class="{{ $errors->has('preferences[locale]') ? 'border border-red' : '' }}"
+                        aria-label="{{ __("Select your language") }}"
+                        name="preferences[locale]"
+                        id="locale"
+                    >
+                        @if(!$user->preferences()->exists())
+                            @foreach ($languagesArray as $key => $value)
+                                <option {{ $user->preferences()->exists() && $user->preferences->locale === $defaultLocale ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
+                            @endforeach
+                        @else
+                            @foreach ($languagesArray as $key => $value)
+                                <option {{ $user->preferences()->exists() && $user->preferences->locale === $value ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+
+                    <x-global::input-error for="locale" />
+
+
+                    <label class="bold">{{ __('Select the timezone') }}</label>
+
+                    <select
+                        class="{{ $errors->has('preferences[timezone]') ? 'border border-red' : '' }}"
+                        aria-label="{{ __("Select the timezone") }}"
+                        name="preferences[timezone]"
+                        id="timezone"
+                    >
+                        @if(! $user->preferences()->exists())
+                            @foreach ($timezoneIdentifiers as $value)
+                                <option {{ $value === $defaultTimezone ? "selected" : "" }} value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                        @else
+                            @foreach ($timezoneIdentifiers as $value)
+                                <option {{ $user->preferences()->exists() && $user->preferences->timezone === $value ? "selected" : "" }} value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                        @endif;
+                    </select>
+
+
+                    <div class="checkbox-container">
+                        <label for="darkmode">
+                            <input name="preferences[darkmode]"
+                                   id="darkmode"
+                                   type="checkbox"
+                                   value="1"
+                                {{ old('preferences[darkmode]', ($user->preferences()->exists() && $user->preferences->darkmode === 1) ? 'checked' : '') }}
+                            >
+                            {{ __('Enable dark mode by default') }}
+                        </label>
+
+                        <x-global::input-error for="preferences.darkmode"/>
+                    </div>
+
 
                 </fieldset>
 
@@ -148,3 +216,29 @@
 
     </main>
 @endsection
+
+
+@push('scripts')
+    <script src="{{ url('assets/jquery/jquery-3.7.1.js') }}"></script>
+    <script src="{{ url('assets/switcher/jquery.simpleswitch.js') }}"></script>
+    <script src="{{ url('assets/tom-select/tom-select-2.2.2.js') }}"></script>
+
+    <script nonce="{{ csp_nonce() }}">
+        jQuery(document).ready(function ($) {
+            // Switcher
+            $('#enable2fa').simpleSwitch();
+            $('#darkmode').simpleSwitch();
+
+
+            new TomSelect("#timezone", {
+                maxItems: 1,
+                plugins: ['remove_button'],
+            });
+
+            new TomSelect("#locale", {
+                maxItems: 1,
+                plugins: ['remove_button'],
+            });
+        });
+    </script>
+@endpush

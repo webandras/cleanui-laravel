@@ -10,9 +10,6 @@
 
 
 @section('content')
-
-    @php $dtFormat = \App\Interface\Entities\Clean\PostInterface::DT_FORMAT; @endphp
-
     <div class="card">
 
         <h1 class="text-left margin-top-0 margin-bottom-0-5">{{ __('Newest articles') }}</h1>

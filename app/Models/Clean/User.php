@@ -5,6 +5,7 @@ namespace App\Models\Clean;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Mail\Clean\SendCodeMail;
 use App\Trait\Clean\HasRolesAndPermissions;
+use App\Trait\Clean\HasPreferences;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions;
+    use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions, HasPreferences;
 
     public const RECORDS_PER_PAGE = 10;
 
@@ -31,7 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'enable_2fa',
         'social_id',
-        'social_type'
+        'social_type',
     ];
 
 
@@ -73,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
             $details = [
                 'title' => __('Login code'),
-                'code' => $code
+                'code'  => $code,
             ];
 
             // Send the code in email

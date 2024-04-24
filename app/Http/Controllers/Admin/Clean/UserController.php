@@ -49,12 +49,12 @@ class UserController extends Controller
         $users = $this->userRepository->getPaginatedUsersWithRoles();
 
         $permissions = Permission::all();
-        $roles = Role::all();
+        $roles       = Role::all();
 
         return view('admin.pages.user.manage')->with([
-            'users' => $users,
+            'users'       => $users,
             'permissions' => $permissions,
-            'roles' => $roles,
+            'roles'       => $roles,
         ]);
     }
 
@@ -72,22 +72,23 @@ class UserController extends Controller
         $this->authorize('create', User::class);
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string'],
-            'role' => ['required', 'numeric', 'min:1', 'max:2'],
+            'role'     => ['required', 'numeric', 'min:1', 'max:2'],
         ]);
 
         $this->userRepository->createUser([
-            'name' => htmlspecialchars($request->name),
-            'email' => htmlspecialchars($request->email),
-            'password' => Hash::make($request->password),
-            'role' => intval($request->role), // 1 = admin, 2 = client
+            'name'           => htmlspecialchars($request->name),
+            'email'          => htmlspecialchars($request->email),
+            'password'       => Hash::make($request->password),
+            'role'           => intval($request->role), // 1 = admin, 2 = client
             'remember_token' => Str::random(10),
         ]);
 
         $this->banner(__('Successfully created the user with the name of ":name"!',
             [htmlspecialchars($request->name)]));
+
         return redirect()->route('user.index');
     }
 
@@ -108,6 +109,7 @@ class UserController extends Controller
         $user->delete();
 
         $this->banner(__('Successfully deleted the user with the name of ":name"!', [$oldName]));
+
         return redirect()->route('user.manage');
     }
 
@@ -130,10 +132,12 @@ class UserController extends Controller
             $this->userRepository->deleteUser($user);
 
             $this->banner(__('Successfully deleted the user with the name of ":name"!', [$oldName]));
+
             return redirect()->route('login');
 
         } else {
             $this->banner(__('Incorrect password. Try again.'), 'danger');
+
             return redirect()->route('user.account', $user->id);
         }
     }
@@ -141,6 +145,7 @@ class UserController extends Controller
 
     /**
      * Show user account with current user data
+     *
      * @param  User  $user
      *
      * @return Factory|View|Application
@@ -150,8 +155,14 @@ class UserController extends Controller
     {
         $this->authorize('view', [\App\Models\Clean\User::class, $user]);
 
+        $timezoneIdentifiers = ['UTC', ...\DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE)];
+
         return view('admin.pages.user.account')->with([
-            'user' => $user
+            'user'                => $user,
+            'languagesArray'      => config('app.available_locales'),
+            'defaultLocale'       => config('app.locale'),
+            'defaultTimezone'     => config('app.timezone'),
+            'timezoneIdentifiers' => $timezoneIdentifiers,
         ]);
     }
 
@@ -169,27 +180,50 @@ class UserController extends Controller
     {
         $this->authorize('update', [\App\Models\Clean\User::class, $user]);
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['nullable', 'string', 'min:0'],
+        $rules = [
+            'name'      => ['required', 'string', 'max:255'],
+            'password'  => ['nullable', 'string', 'min:0'],
             'enable2fa' => ['nullable', 'boolean'],
-        ]);
+        ];
 
+        if ($this->userRepository->userHasPreferences()) {
+            $rules = [
+                ...$rules,
+                'preferences.darkmode' => ['nullable', 'boolean'],
+                'preferences.locale'   => ['required', 'string', 'min:2'],
+                'preferences.timezone' => ['required', 'string'],
+            ];
+        }
+
+        $request->validate($rules);
 
         if ($request->password === null) {
             $this->userRepository->updateUser($user, [
-                'name' => strip_tags($request->name),
+                'name'       => strip_tags($request->name),
                 'enable_2fa' => intval($request->enable2fa),
             ]);
         } else {
             $this->userRepository->updateUser($user, [
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
+                'name'       => $request->name,
+                'password'   => Hash::make($request->password),
                 'enable_2fa' => intval($request->enable2fa),
             ]);
         }
 
+        // Save your preferences
+        if ($this->userRepository->userHasPreferences()) {
+            $preferences = $request->input('preferences');
+
+            // disable darkmode
+            if (!array_key_exists('darkmode', $preferences)) {
+                $preferences['darkmode'] = false;
+            }
+
+            $this->userRepository->updateUserPreferences($user, $preferences);
+        }
+
         $this->banner(__('Successfully updated your account!'));
+
         return redirect()->route('user.account', $user->id);
     }
 }

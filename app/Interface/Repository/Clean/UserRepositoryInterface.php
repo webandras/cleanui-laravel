@@ -3,6 +3,7 @@
 namespace App\Interface\Repository\Clean;
 
 use App\Models\Clean\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface UserRepositoryInterface
@@ -34,4 +35,18 @@ interface UserRepositoryInterface
      */
     public function updateUser(User $user, array $data): bool;
 
+
+    /**
+     * @param  User  $user
+     * @param  array  $data
+     *
+     * @return Model
+     */
+    public function updateUserPreferences(User $user, array $data): Model;
+
+
+    /**
+     * @return bool
+     */
+    public function userHasPreferences(): bool;
 }

@@ -19,9 +19,7 @@
 @section('content')
 
     @php
-        setlocale(LC_ALL, 'hu_HU.UTF-8');
-        $dtFormat = 'Y. M. j. H:i';
-        $localTz = new \DateTimeZone($event->timezone ?? 'Europe/Budapest');
+        $localTz = new \DateTimeZone($event->timezone ?? 'UTC');
         $utcTz = new \DateTimeZone("UTC");
 
         $startDate = new \DateTime($event->start, $utcTz);
