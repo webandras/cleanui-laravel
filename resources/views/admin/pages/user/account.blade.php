@@ -103,13 +103,13 @@
                         name="preferences[locale]"
                         id="locale"
                     >
-                        @if(!$user->preferences()->exists())
+                        @if(!isset($userPreferences))
                             @foreach ($languagesArray as $key => $value)
-                                <option {{ $user->preferences()->exists() && $user->preferences->locale === $defaultLocale ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
+                                <option {{ $value === $defaultLocale ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
                             @endforeach
                         @else
                             @foreach ($languagesArray as $key => $value)
-                                <option {{ $user->preferences()->exists() && $user->preferences->locale === $value ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
+                                <option {{ $userPreferences->locale === $value ? "selected": "" }} value="{{ $value }}">{{ $key }}</option>
                             @endforeach
                         @endif
                     </select>
@@ -125,13 +125,13 @@
                         name="preferences[timezone]"
                         id="timezone"
                     >
-                        @if(! $user->preferences()->exists())
+                        @if(!isset($userPreferences))
                             @foreach ($timezoneIdentifiers as $value)
                                 <option {{ $value === $defaultTimezone ? "selected" : "" }} value="{{ $value }}">{{ $value }}</option>
                             @endforeach
                         @else
                             @foreach ($timezoneIdentifiers as $value)
-                                <option {{ $user->preferences()->exists() && $user->preferences->timezone === $value ? "selected" : "" }} value="{{ $value }}">{{ $value }}</option>
+                                <option {{ $userPreferences->timezone === $value ? "selected" : "" }} value="{{ $value }}">{{ $value }}</option>
                             @endforeach
                         @endif;
                     </select>
@@ -143,7 +143,7 @@
                                    id="darkmode"
                                    type="checkbox"
                                    value="1"
-                                {{ old('preferences[darkmode]', ($user->preferences()->exists() && $user->preferences->darkmode === 1) ? 'checked' : '') }}
+                                {{ old('preferences[darkmode]', (isset($userPreferences) && $userPreferences->darkmode === 1) ? 'checked' : '') }}
                             >
                             {{ __('Enable dark mode by default') }}
                         </label>

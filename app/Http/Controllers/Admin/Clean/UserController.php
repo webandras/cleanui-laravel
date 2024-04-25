@@ -157,12 +157,15 @@ class UserController extends Controller
 
         $timezoneIdentifiers = ['UTC', ...\DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE)];
 
+        $userPreferences = $user->preferences ?? null;
+
         return view('admin.pages.user.account')->with([
             'user'                => $user,
             'languagesArray'      => config('app.available_locales'),
             'defaultLocale'       => config('app.locale'),
             'defaultTimezone'     => config('app.timezone'),
             'timezoneIdentifiers' => $timezoneIdentifiers,
+            'userPreferences'   => $userPreferences,
         ]);
     }
 
@@ -215,7 +218,7 @@ class UserController extends Controller
             $preferences = $request->input('preferences');
 
             // disable darkmode
-            if (!array_key_exists('darkmode', $preferences)) {
+            if ( ! array_key_exists('darkmode', $preferences)) {
                 $preferences['darkmode'] = false;
             }
 
