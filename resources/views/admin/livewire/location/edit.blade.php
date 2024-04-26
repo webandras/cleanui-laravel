@@ -17,9 +17,6 @@
         id="{{ $modalId }}"
     >
         <form wire:submit="updateLocation">
-            <h2 class="h3">{{ $name }}</h2>
-            <hr class="divider">
-
             <fieldset>
                 <!-- Name -->
                 <label for="name">{{ __('Location name') }}<span class="text-red">*</span></label>

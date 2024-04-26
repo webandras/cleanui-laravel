@@ -186,8 +186,6 @@
                             @csrf
                             @method('DELETE')
 
-                            <h2 class="h3">{{ __('Delete account') }}</h2>
-                            <hr class="divider">
                             <p>{{ __('Type in your password to delete your account. This action cannot be undone. ') }}</p>
 
 
