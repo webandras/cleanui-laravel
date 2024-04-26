@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder
 
 
         // JOBS
-        $this->call(JobSeeder::class);
         $this->call(ClientSeeder::class);
+        $this->call(JobSeeder::class);
 
 
         // EVENTS

@@ -3,41 +3,25 @@
 namespace Database\Seeders\Job;
 
 use App\Models\Job\Client;
+use App\Models\Job\ClientDetail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
-class ClientSeeder extends Seeder {
+class ClientSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      */
-    public function run(): void {
-        $now = Carbon::now( 'utc' )->toDateTimeString();
-
-        Client::insert( [
-            [
-                'name'       => 'MAHART Zrt.',
-                'address'    => 'Tápé, Komp u. 1.',
-                'type'       => 'company',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-
-            [
-                'name'       => 'Florin Group Kft.',
-                'address'    => 'Szeged, Fonógyári út 65.',
-                'type'       => 'company',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-
-            [
-                'name'       => 'Magyar Antal',
-                'address'    => 'Tápé, Barack u. 10.',
-                'type'       => 'private person',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-        ] );
-
+    public function run(): void
+    {
+        /* Create clients and client details for them */
+        ClientDetail::factory(3)->create()->each(function($clientDetail) {
+            $now = Carbon::now('utc')->toDateTimeString();
+            Client::factory()->create([
+                'client_detail_id' => $clientDetail->id,
+                'created_at'       => $now,
+                'updated_at'       => $now,
+            ]);
+        });
     }
 }
