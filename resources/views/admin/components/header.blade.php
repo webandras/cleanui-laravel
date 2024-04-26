@@ -47,7 +47,7 @@
                                 <i class="fa-solid fa-tags"></i><span>{{ __('Tags') }}</span>
                             </a>
 
-                            <a class="fs-14 {{ request()->routeIs('event.index') ? 'active' : '' }}"
+                            <a class="fs-14 {{ request()->routeIs('event.manage') ? 'active' : '' }}"
                                href="{{ route('event.manage') }}">
                                 <i class="fa-solid fa-calendar-days"></i><span>{{ __('Events') }}</span>
                             </a>
