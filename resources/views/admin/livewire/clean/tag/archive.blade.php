@@ -25,7 +25,7 @@
                 <button
                     type="button"
                     class="alt primary fs-14"
-                    wire:click="resetFilters()"
+                    wire:click="resetFilters"
                 >
                     {{ __('Reset filters') }}
                 </button>
@@ -96,7 +96,7 @@
                 <tr>
                     <td>
                         <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
-                        <input type="checkbox" value="{{ $tag->id }}" wire:model="selectedIds" name="selectedIds" id="selectedIds"></td>
+                        <input type="checkbox" value="{{ $tag->id }}" wire:model.live="selectedIds" name="selectedIds" id="selectedIds"></td>
                     <td><b>{{ $tag->name }}</b><br><small>Archived at: {{ $tag->deleted_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>
                     <td>

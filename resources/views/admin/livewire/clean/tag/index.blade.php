@@ -34,7 +34,7 @@
                     <button
                         type="button"
                         class="alt primary fs-14"
-                        wire:click="resetFilters()"
+                        wire:click="resetFilters"
                     >
                         {{ __('Reset filters') }}
                     </button>
@@ -91,7 +91,7 @@
             </thead>
             <tbody>
             @foreach($tags as $tag)
-                <tr>
+                <tr wire:key="{{'tag-item-'. $tag->id}}">
                     <td>
                         <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
                         <input type="checkbox" value="{{ $tag->id }}" wire:model="selectedIds" name="selectedIds" id="selectedIds">
