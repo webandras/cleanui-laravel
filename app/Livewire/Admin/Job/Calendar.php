@@ -222,6 +222,12 @@ class Calendar extends Component
     public array $rrule;
 
 
+    /**
+     * @var string
+     */
+    public string $timezone;
+
+
     // Job list as collection
     /**
      * @var Collection
@@ -401,6 +407,8 @@ class Calendar extends Component
         ];
 
         $this->clients = $this->clientRepository->getAllClients();
+
+        $this->timezone = auth()->user()->preferences->timezone ?? 'UTC';
     }
 
 

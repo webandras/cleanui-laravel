@@ -34,6 +34,7 @@
         </nav>
 
         <div class="legend-container">
+            <em class="fs-12">{{ __('Timezone:') . ' ' . $timezone }}</em>
         </div>
     </div>
 
@@ -390,14 +391,14 @@
 
             const calendarEl = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarEl, {
-                timeZone: 'Europe/Budapest',
+                timeZone: @js($timezone),
                 initialView: 'timeGridWeek',
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek'
                 },
-                //locale: hu,
+                locale: @js(App::getLocale()),
                 allDaySlot: false,
                 defaultAllDay: false,
                 slotMinTime: '06:00:00',
