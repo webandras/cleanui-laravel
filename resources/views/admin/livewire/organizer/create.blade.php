@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
+<article x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     @if ($hasSmallButton)
         <button @click="isModalOpen = true" class="primary" title="{{ __('New organizer') }}">
@@ -27,10 +27,9 @@
                        autofocus
                 >
 
-                <div
-                    class="{{ $errors->has('name') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('name') ? 'error-message' : '' }}">
                     {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Slug -->
@@ -41,10 +40,9 @@
                        name="slug"
                 >
 
-                <div
-                    class="{{ $errors->has('slug') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('slug') ? 'error-message' : '' }}">
                     {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                </p>
 
                 <!-- Facebook url -->
                 <label for="facebook_url">{{ __('Facebook URL') }}<span class="text-red">*</span></label>
@@ -54,10 +52,9 @@
                        name="facebook_url"
                 >
 
-                <div
-                    class="{{ $errors->has('facebook_url') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('facebook_url') ? 'error-message' : '' }}">
                     {{ $errors->has('facebook_url') ? $errors->first('facebook_url') : '' }}
-                </div>
+                </p>
 
             </fieldset>
 
@@ -73,4 +70,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
         isUploading: false,
         progress: 0,
         isModalOpen: $wire.$entangle('isModalOpen', true)
@@ -51,14 +51,14 @@
                 <label for="cover_image_url">{{ __('Cover Image (optional)') }}</label>
 
                 @if (isset($cover_image))
-                    <div class="relative" style="width: fit-content">
+                    <div class="relative fit-content">
                         <small>Photo Preview:</small>
                         <img src="{{ $cover_image->temporaryUrl() }}" alt="{{ __('Photo Preview:') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
                     </div>
                 @else
                     @if (isset($cover_image_url) && $cover_image_url !== '')
-                        <div class="relative" style="width: fit-content">
+                        <div class="relative fit-content">
                             <img src="{{ $cover_image_url }}" alt="{{ __('Cover image') }}"
                                  class="card card-4 margin-bottom-1 image-preview"/>
                         </div>
@@ -73,7 +73,7 @@
                     name="cover_image"
                 />
 
-                <div wire:loading wire:target="cover_image">Uploading...</div>
+                <p wire:loading wire:target="cover_image">Uploading...</p>
 
                 <!-- Progress Bar -->
                 <div x-show="isUploading">
@@ -101,4 +101,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

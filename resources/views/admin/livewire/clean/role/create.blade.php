@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true),
     permission: $wire.$entangle('rolePermissions', true),
     init(){
@@ -74,7 +74,7 @@
                             </label>
                         @endforeach
 
-                        @error('rolePermissions')<div class="error-message">{{ $message }}</div>@enderror
+                        @error('rolePermissions')<p class="error-message">{{ $message }}</p>@enderror
 
                     </div>
                 </div>
@@ -103,4 +103,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

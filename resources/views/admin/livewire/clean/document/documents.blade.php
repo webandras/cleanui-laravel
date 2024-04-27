@@ -1,4 +1,4 @@
-<div>
+<section>
     <ul wire:sortable="updateOrder" class="document__list no-bullets padding-left-right-0-5">
         @foreach ($documents as $document)
             <li wire:sortable.item="{{ $document->id }}" wire:key="document-{{ $document->id }}"
@@ -46,4 +46,4 @@
             </li>
         @endforeach
     </ul>
-</div>
+</section>

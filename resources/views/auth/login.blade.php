@@ -43,7 +43,7 @@
 
                 {{-- Login with Email and Password --}}
                 <div>
-                    <button type="submit" class="primary margin-top-1 block" style="padding: 10px;">
+                    <button type="submit" class="primary margin-top-1 block increased-button-padding">
                         {{ __('Sign in') }}
                     </button>
 

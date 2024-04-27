@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
@@ -29,9 +29,9 @@
                     name="name"
                 >
 
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('name') ? 'error-message' : '' }}">
                     {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Email -->
@@ -42,9 +42,9 @@
                     name="name"
                 >
 
-                <div class="{{ $errors->has('email') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('email') ? 'error-message' : '' }}">
                     {{ $errors->has('email') ? $errors->first('email') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Phone number -->
@@ -56,9 +56,9 @@
                     name="phone"
                 >
 
-                <div class="{{ $errors->has('phone') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('phone') ? 'error-message' : '' }}">
                     {{ $errors->has('phone') ? $errors->first('phone') : '' }}
-                </div>
+                </p>
 
                 <hr class="divider">
 
@@ -71,9 +71,9 @@
                     name="bankAccountName"
                 >
 
-                <div class="{{ $errors->has('bankAccountName') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('bankAccountName') ? 'error-message' : '' }}">
                     {{ $errors->has('bankAccountName') ? $errors->first('bankAccountName') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Bank Account Number -->
@@ -85,9 +85,9 @@
                     name="bankAccountNumber"
                 >
 
-                <div class="{{ $errors->has('bankAccountNumber') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('bankAccountNumber') ? 'error-message' : '' }}">
                     {{ $errors->has('bankAccountNumber') ? $errors->first('bankAccountNumber') : '' }}
-                </div>
+                </p>
 
             </fieldset>
 
@@ -96,7 +96,7 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="updateUser" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="updateUser">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>
@@ -113,5 +113,5 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>
 

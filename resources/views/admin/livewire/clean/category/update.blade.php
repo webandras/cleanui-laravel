@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true),
     coverImage: $wire.$entangle('cover_image_url', true),
     isValidUrl: function(urlString) {
@@ -54,7 +54,7 @@
                 <label for="cover_image_url">{{ __('Cover Image (optional)') }}</label>
 
                 <template x-if="isValidUrl(coverImage)">
-                    <div class="relative" style="width: fit-content">
+                    <div class="relative fit-content">
                         <img x-bind:src="coverImage" alt="{{ __('Cover image') }}"
                              class="card card-4 margin-bottom-1 image-preview"/>
                         <button @click="coverImage = ''"
@@ -118,4 +118,4 @@
         </script>
 
     </x-global::form-modal>
-</div>
+</article>

@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
@@ -31,4 +31,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true),
     permission: $wire.$entangle('rolePermissions', true),
     init(){
@@ -103,4 +103,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

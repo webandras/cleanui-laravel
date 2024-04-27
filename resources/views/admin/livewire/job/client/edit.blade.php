@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
@@ -23,9 +23,9 @@
                     name="name"
                 >
 
-                <div class="{{ $errors->has('name') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('name') ? 'error-message' : '' }}">
                     {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Email -->
@@ -37,9 +37,9 @@
                     name="address"
                 >
 
-                <div class="{{ $errors->has('address') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('address') ? 'error-message' : '' }}">
                     {{ $errors->has('address') ? $errors->first('address') : '' }}
-                </div>
+                </p>
 
                 <!-- Role -->
                 <label for="type">{{ __('Type') }}<span class="text-red">*</span></label>
@@ -57,9 +57,9 @@
 
                 </select>
 
-                <div class="{{ $errors->has('type') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('type') ? 'error-message' : '' }}">
                     {{ $errors->has('type') ? $errors->first('type') : '' }}
-                </div>
+                </p>
 
             </fieldset>
 
@@ -72,9 +72,9 @@
                     class="{{ $errors->has('contactPerson') ? 'border border-red' : '' }}"
                 >
 
-                <div class="{{ $errors->has('contactPerson') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('contactPerson') ? 'error-message' : '' }}">
                     {{ $errors->has('contactPerson') ? $errors->first('contactPerson') : '' }}
-                </div>
+                </p>
 
                 <!-- phoneNumber -->
                 <label for="phoneNumber">{{ __('Phone number') }}</label>
@@ -85,9 +85,9 @@
                     name="phoneNumber"
                 >
 
-                <div class="{{ $errors->has('phoneNumber') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('phoneNumber') ? 'error-message' : '' }}">
                     {{ $errors->has('phoneNumber') ? $errors->first('phoneNumber') : '' }}
-                </div>
+                </p>
 
                 <!-- $email -->
                 <label for="email">{{ __('Email') }}</label>
@@ -97,9 +97,9 @@
                     class="{{ $errors->has('email') ? 'border border-red' : '' }}"
                 >
 
-                <div class="{{ $errors->has('email') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('email') ? 'error-message' : '' }}">
                     {{ $errors->has('email') ? $errors->first('email') : '' }}
-                </div>
+                </p>
 
 
                 <!-- $taxNumber -->
@@ -110,9 +110,9 @@
                     class="{{ $errors->has('taxNumber') ? 'border border-red' : '' }}"
                 >
 
-                <div class="{{ $errors->has('taxNumber') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('taxNumber') ? 'error-message' : '' }}">
                     {{ $errors->has('taxNumber') ? $errors->first('taxNumber') : '' }}
-                </div>
+                </p>
 
             </fieldset>
 
@@ -127,7 +127,7 @@
                     <span wire:loading.remove
                           wire:target="updateClient"
                     >
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
 
@@ -145,4 +145,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

@@ -1,6 +1,6 @@
-<div>
+<section>
 
-    <div class="mini-calendar-menu">
+    <header class="mini-calendar-menu">
         <nav class="nav-links">
             @auth
                 @role('super-administrator|administrator')
@@ -33,18 +33,20 @@
             @endauth
         </nav>
 
-        <div class="legend-container">
+        <aside class="legend-container">
             <em class="fs-12">{{ __('Timezone:') . ' ' . $timezone }}</em>
-        </div>
-    </div>
+        </aside>
+    </header>
+
+    <hr class="divider">
 
 
-    <div id="calendar-container" wire:ignore>
-        <div id="calendar"></div>
-    </div>
+    <section id="calendar-container" wire:ignore>
+        <article id="calendar"></article>
+    </section>
 
 
-    <div x-data="{
+    <article x-data="{
         isModalOpen: $wire.$entangle('isModalOpen', true),
         isRecurring: $wire.$entangle('isRecurring', true)
     }">
@@ -71,11 +73,13 @@
 
                     <!-- Is event recurring? -->
                     <label for="isRecurring">{{ __('Recurring job') }}<span class="text-red">*</span></label>
+
                     <input type="radio"
                            wire:model="isRecurring"
                            name="isRecurring"
                            value="1"
                     > <span class="padding-right-1">{{ __('Yes') }}</span>
+
                     <input type="radio"
                            wire:model="isRecurring"
                            name="isRecurring"
@@ -83,9 +87,9 @@
                            checked
                     > <span class="padding-right-1">{{ __('No') }}</span>
 
-                    <div class="{{ $errors->has('isRecurring') ? 'red' : '' }}">
+                    <p class="{{ $errors->has('isRecurring') ? 'red' : '' }}">
                         {{ $errors->has('isRecurring') ? $errors->first('isRecurring') : '' }}
-                    </div>
+                    </p>
 
                     <hr class="divider">
 
@@ -106,9 +110,9 @@
                         @endforeach
                     </select>
 
-                    <div class="{{ $errors->has('clientId') ? 'error-message' : '' }}">
+                    <p class="{{ $errors->has('clientId') ? 'error-message' : '' }}">
                         {{ $errors->has('clientId') ? $errors->first('clientId') : '' }}
-                    </div>
+                    </p>
 
                     @if ($isRecurring === 0)
                         <!-- REGULAR EVENTS -->
@@ -122,9 +126,9 @@
                                 name="start"
                             >
 
-                            <div class="{{ $errors->has('start') ? 'error-message' : '' }}">
+                            <p class="{{ $errors->has('start') ? 'error-message' : '' }}">
                                 {{ $errors->has('start') ? $errors->first('start') : '' }}
-                            </div>
+                            </p>
 
 
                             <!-- End date -->
@@ -136,9 +140,9 @@
                                 name="end"
                             >
 
-                            <div class="{{ $errors->has('end') ? 'error-message' : '' }}">
+                            <p class="{{ $errors->has('end') ? 'error-message' : '' }}">
                                 {{ $errors->has('end') ? $errors->first('end') : '' }}
-                            </div>
+                            </p>
                         </div>
                         <!-- REGULAR EVENTS END -->
                     @else
@@ -161,9 +165,9 @@
                                     @endforeach
                                 </select>
 
-                                <div class="{{ $errors->has('frequencyName') ? 'error-message' : '' }}">
+                                <p class="{{ $errors->has('frequencyName') ? 'error-message' : '' }}">
                                     {{ $errors->has('frequencyName') ? $errors->first('frequencyName') : '' }}
-                                </div>
+                                </p>
                             </div>
 
 
@@ -184,9 +188,9 @@
                                         @endforeach
                                     </select>
 
-                                    <div class="{{ $errors->has('byweekday') ? 'error-message' : '' }}">
+                                    <p class="{{ $errors->has('byweekday') ? 'error-message' : '' }}">
                                         {{ $errors->has('byweekday') ? $errors->first('byweekday') : '' }}
-                                    </div>
+                                    </p>
                                 </div>
 
                                 <div class="col s6">
@@ -199,9 +203,9 @@
                                         name="duration"
                                     >
 
-                                    <div class="{{ $errors->has('duration') ? 'error-message' : '' }}">
+                                    <p class="{{ $errors->has('duration') ? 'error-message' : '' }}">
                                         {{ $errors->has('duration') ? $errors->first('duration') : '' }}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
@@ -215,9 +219,9 @@
                                 name="dtstart"
                             >
 
-                            <div class="{{ $errors->has('dtstart') ? 'error-message' : '' }}">
+                            <p class="{{ $errors->has('dtstart') ? 'error-message' : '' }}">
                                 {{ $errors->has('dtstart') ? $errors->first('dtstart') : '' }}
-                            </div>
+                            </p>
 
 
                             <!-- End recurring date -->
@@ -229,9 +233,9 @@
                                 name="until"
                             >
 
-                            <div class="{{ $errors->has('until') ? 'error-message' : '' }}">
+                            <p class="{{ $errors->has('until') ? 'error-message' : '' }}">
                                 {{ $errors->has('until') ? $errors->first('until') : '' }}
-                            </div>
+                            </p>
 
                         </div>
                         <!-- RECURRING EVENT PROPERTIES END -->
@@ -247,9 +251,9 @@
                         name="description"
                     >
 
-                    <div class="{{ $errors->has('description') ? 'error-message' : '' }}">
+                    <p class="{{ $errors->has('description') ? 'error-message' : '' }}">
                         {{ $errors->has('description') ? $errors->first('description') : '' }}
-                    </div>
+                    </p>
 
                     <label class="{{ $errors->has('workerIds') ? 'border border-red' : '' }}">
                         {{ __('Assign workers (optional)') }}
@@ -266,9 +270,9 @@
                             </label>
                         @endforeach
 
-                        <div class="{{ $errors->has('workerIds') ? 'error-message' : '' }}">
+                        <p class="{{ $errors->has('workerIds') ? 'error-message' : '' }}">
                             {{ $errors->has('workerIds') ? $errors->first('workerIds') : '' }}
-                        </div>
+                        </p>
 
                         {{-- var_export($rolePermissions) --}}
                     </div>
@@ -284,7 +288,7 @@
 
                         <span wire:loading.remove
                               wire:target="createOrUpdateJob">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                             {{ __('Save') }}
                         </span>
                     </button>
@@ -313,10 +317,10 @@
 
 
         </x-global::form-modal>
-    </div>
+    </article>
 
     @if( $updateId !== '' )
-        <div x-data="{ isDeleteModalOpen: $wire.$entangle('isDeleteModalOpen', true) }">
+        <article x-data="{ isDeleteModalOpen: $wire.$entangle('isDeleteModalOpen', true) }">
 
             <x-global::form-modal
                 trigger="isDeleteModalOpen"
@@ -345,10 +349,10 @@
                 </div>
 
             </x-global::form-modal>
-        </div>
+        </article>
     @endif
 
-</div>
+</section>
 @push('scripts')
     <!-- include moment and one of the moment-timezone builds -->
     <script src="{{ url('/js/moment.js.min.2.29.4.js') }}"></script>

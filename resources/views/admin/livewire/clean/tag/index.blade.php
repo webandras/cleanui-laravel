@@ -1,4 +1,4 @@
-<div>
+<section>
     <div class="flex flex-row">
 
         <!-- Create new tag -->
@@ -8,7 +8,7 @@
                                    :wire:key="'create-new-tag'">
         </livewire:admin.clean.tag.create>
 
-        <form wire:submit="filterTags" style="width: auto;">
+        <form wire:submit="filterTags" class="width-auto">
             <div class="flex flex-row">
                 <div>
                     <label for="filterKeyword" class="hidden bold fs-14">{{ __('Search keyword') }}</label>
@@ -21,9 +21,9 @@
                            type="text"
                     />
 
-                    <div class="{{ $errors->has('filterKeyword') ? 'error-message' : '' }}">
+                    <p class="{{ $errors->has('filterKeyword') ? 'error-message' : '' }}">
                         {{ $errors->has('filterKeyword') ? $errors->first('filterKeyword') : '' }}
-                    </div>
+                    </p>
                 </div>
                 <div class="actions">
                     <button type="submit" class="primary fs-14">
@@ -135,5 +135,5 @@
         <p class="alert info fs-14">{{ __('No tags found for the query, or you don\'t have any tags yet. Please create one or reset the filters')  }}</p>
     @endif
 
-</div>
+</section>
 

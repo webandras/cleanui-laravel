@@ -1,4 +1,4 @@
-<aside>
+<article class="sidebar">
     <header>
         <h3 class="text-white fs-18">{{ __('Welcome, ') . Auth()->user()->name }}</h3>
     </header>
@@ -28,7 +28,7 @@
                     @endif
                 @else
                     <li>
-                        <h4 class="fs-14 margin-top-bottom-0-5 padding-left-1 text-gray-60">{{ __('Content') }}</h4>
+                        <h4 class="fs-16 margin-top-bottom-0-5 padding-left-1 text-gray-60">{{ __('Content') }}</h4>
                     </li>
 
                     <!-- Custom links -->
@@ -71,7 +71,7 @@
 
 
                     <li>
-                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Taxonomies') }}</h4>
+                        <h4 class="fs-16 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Taxonomies') }}</h4>
                     </li>
 
                     <!-- Manage categories link -->
@@ -96,7 +96,7 @@
 
                     @role('super-administrator')
                     <li>
-                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Manage Events') }}</h4>
+                        <h4 class="fs-16 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Manage Events') }}</h4>
                     </li>
 
                     <!-- Manage events-->
@@ -128,7 +128,7 @@
 
 
                     <li>
-                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Manage Jobs Calendar') }}</h4>
+                        <h4 class="fs-16 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Manage Jobs Calendar') }}</h4>
                     </li>
 
                     <!-- Jobs calendar link -->
@@ -176,7 +176,7 @@
                     @endrole
 
                     <li>
-                        <h4 class="fs-14 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Users & Roles') }}</h4>
+                        <h4 class="fs-16 margin-bottom-0-5 margin-top-2 padding-left-1 text-gray-60">{{ __('Users & Roles') }}</h4>
                     </li>
                     @role('super-administrator')
                     <!-- Manage users link -->
@@ -230,4 +230,4 @@
             </ul>
         </div>
     </div>
-</aside>
+</article>

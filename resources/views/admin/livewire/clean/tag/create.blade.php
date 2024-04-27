@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
         isUploading: false,
         progress: 0,
         isModalOpen: $wire.$entangle('isModalOpen', true)
@@ -76,7 +76,7 @@
                     name="cover_image"
                 />
 
-                <div wire:loading wire:target="cover_image">Uploading...</div>
+                <p wire:loading wire:target="cover_image">Uploading...</p>
 
                 <!-- Progress Bar -->
                 <div x-show="isUploading">
@@ -109,4 +109,4 @@
 
         </form>
     </x-global::form-modal>
-</div>
+</article>

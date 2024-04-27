@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
+<article x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     <button @click="isModalOpen = true" class="danger alt margin-top-0">
         <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
@@ -22,4 +22,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

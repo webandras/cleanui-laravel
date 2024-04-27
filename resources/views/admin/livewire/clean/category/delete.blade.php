@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
@@ -14,7 +14,7 @@
     @endif
 
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete it?') }}"
-                        id="{{ $modalId }}">
+                          id="{{ $modalId }}">
         <form wire:submit="deleteCategory">
             <h2 class="h3">{{ $name }}</h2>
             <hr class="divider">
@@ -40,4 +40,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

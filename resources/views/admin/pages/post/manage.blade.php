@@ -17,7 +17,7 @@
 
         <h1 class="h3 margin-top-bottom-0">{{ __('Manage posts') }}</h1>
 
-        <div class="main-content">
+        <section class="main-content">
 
             <!-- Create new post -->
             <a href="{{ route('post.create') }}"
@@ -80,18 +80,6 @@
                             </div>
 
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
-
-                            <hr class="divider">
-                            <div class="padding-bottom-0-5">
-                                @if($post->categories->count() > 0)
-                                    @foreach($post->categories as $cat)
-                                        <span
-                                            class="badge fs-12 gray-60 text-white">{{ $cat->name }}</span>
-                                    @endforeach
-                                @else
-                                    <p class="fs-14">{{__('No associated category.')}}</p>
-                                @endif
-                            </div>
                         </td>
                         <td>
                             <div class="flex flex-row">
@@ -138,6 +126,6 @@
                 {{ $posts->links('global.components.pagination', [ 'pageName' => 'page']) }}
             @endif
 
-        </div>
+        </section>
     </main>
 @endsection

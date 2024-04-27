@@ -1,4 +1,4 @@
-<div x-data="{
+<article x-data="{
     isModalOpen: $wire.$entangle('isModalOpen', true)
 }">
 
@@ -97,7 +97,7 @@
                 <button type="submit" class="primary">
                     <span wire:loading wire:target="createWorker" class="animate-spin">&#9696;</span>
                     <span wire:loading.remove wire:target="createWorker">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                         {{ __('Save') }}
                     </span>
                 </button>
@@ -114,4 +114,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>

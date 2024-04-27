@@ -1,4 +1,4 @@
-<div x-data="{}" x-cloak>
+<section x-data="{}" x-cloak>
     <form wire:submit="filterTags">
         <div class="flex flex-row">
             <div>
@@ -12,9 +12,9 @@
                        type="text"
                 />
 
-                <div class="{{ $errors->has('filterKeyword') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('filterKeyword') ? 'error-message' : '' }}">
                     {{ $errors->has('filterKeyword') ? $errors->first('filterKeyword') : '' }}
-                </div>
+                </p>
             </div>
             <div class="actions">
                 <button type="submit" class="primary fs-14">
@@ -97,7 +97,7 @@
                     <td>
                         <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
                         <input type="checkbox" value="{{ $tag->id }}" wire:model.live="selectedIds" name="selectedIds" id="selectedIds"></td>
-                    <td><b>{{ $tag->name }}</b><br><small>Archived at: {{ $tag->deleted_at }}</small></td>
+                    <td><b>{{ $tag->name }}</b><br><small>{{ __('Archived at:') }} {{ $tag->deleted_at }}</small></td>
                     <td class="italic">{{ $tag->slug }}</td>
                     <td>
                         <div class="flex flex-row">
@@ -128,4 +128,4 @@
     @else
         <p class="alert info fs-14">{{ __('No archived tags found.')  }}</p>
     @endif
-</div>
+</section>

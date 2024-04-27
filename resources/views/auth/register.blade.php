@@ -74,7 +74,7 @@
                     autocomplete="new-password"
                 >
 
-                <button type="submit" class="primary margin-top-1-5">{{ __('Register') }}</button>
+                <button type="submit" class="primary margin-top-1-5 block increased-button-padding">{{ __('Register') }}</button>
 
 
                 <hr class="divider">

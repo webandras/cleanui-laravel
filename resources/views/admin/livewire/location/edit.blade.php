@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
+<article x-data="{ isModalOpen: $wire.$entangle('isModalOpen', true) }">
 
     @if ($hasSmallButton)
         <button @click="isModalOpen = true" class="info margin-top-0" title="{{ __('Edit location') }}">
@@ -26,10 +26,9 @@
                        name="name"
                        autofocus
                 >
-                <div
-                    class="{{ $errors->has('name') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('name') ? 'error-message' : '' }}">
                     {{ $errors->has('name') ? $errors->first('name') : '' }}
-                </div>
+                </p>
 
                 <!-- City -->
                 <label for="city">{{ __('City') }}<span class="text-red">*</span></label>
@@ -39,10 +38,9 @@
                        name="city"
                 >
 
-                <div
-                    class="{{ $errors->has('city') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('city') ? 'error-message' : '' }}">
                     {{ $errors->has('city') ? $errors->first('city') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Address -->
@@ -53,10 +51,9 @@
                        name="address"
                 >
 
-                <div
-                    class="{{ $errors->has('address') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('address') ? 'error-message' : '' }}">
                     {{ $errors->has('address') ? $errors->first('address') : '' }}
-                </div>
+                </p>
 
 
                 <!-- Slug -->
@@ -67,10 +64,9 @@
                        name="slug"
                 >
 
-                <div
-                    class="{{ $errors->has('slug') ? 'error-message' : '' }}">
+                <p class="{{ $errors->has('slug') ? 'error-message' : '' }}">
                     {{ $errors->has('slug') ? $errors->first('slug') : '' }}
-                </div>
+                </p>
 
 
                 <div class="form-row">
@@ -83,10 +79,9 @@
                                name="latitude"
                         >
 
-                        <div
-                            class="{{ $errors->has('latitude') ? 'error-message' : '' }}">
+                        <p class="{{ $errors->has('latitude') ? 'error-message' : '' }}">
                             {{ $errors->has('latitude') ? $errors->first('latitude') : '' }}
-                        </div>
+                        </p>
                     </div>
                     <div class="col s6">
                         <!-- Logitude -->
@@ -96,10 +91,9 @@
                                class="{{ $errors->has('longitude') ? 'border border-red' : '' }}"
                                name="longitude"
                         >
-                        <div
-                            class="{{ $errors->has('longitude') ? 'error-message' : '' }}">
+                        <p class="{{ $errors->has('longitude') ? 'error-message' : '' }}">
                             {{ $errors->has('longitude') ? $errors->first('longitude') : '' }}
-                        </div>
+                        </p>
 
                     </div>
                 </div>
@@ -118,4 +112,4 @@
         </form>
 
     </x-global::form-modal>
-</div>
+</article>
