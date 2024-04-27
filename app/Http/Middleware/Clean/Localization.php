@@ -33,10 +33,11 @@ class Localization
      */
     private function setLocale(bool $localeInSession): void
     {
-        $user = auth()->user();
-        if ($user && $user->preferences()->exists()) {
+        $userPreferences = auth()->user()->preferences ?? null;
+        if ($userPreferences) {
             // set language from user preferences
-            App::setLocale($user->preferences->locale);
+            App::setLocale($userPreferences->locale);
+            session([ 'locale', $userPreferences->locale]);
         } elseif ($localeInSession === true) {
             App::setLocale(session('locale'));
         }
