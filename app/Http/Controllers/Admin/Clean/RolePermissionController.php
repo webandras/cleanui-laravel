@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin\Clean;
 use App\Http\Controllers\Controller;
 use App\Interface\Services\Clean\RolePermissionServiceInterface;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
 class RolePermissionController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
 
     /**
@@ -42,6 +43,7 @@ class RolePermissionController extends Controller
         return view('admin.pages.role_permission.manage')->with([
             'permissions' => $permissions,
             'roles' => $roles,
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 }

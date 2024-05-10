@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Interface\Entities\Event\OrganizerInterface;
 use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Models\Event\Organizer;
+use App\Trait\Clean\UserPermissions;
 
 class OrganizerController extends Controller
 {
+    use UserPermissions;
+
     /**
      * @var ModelRepositoryInterface
      */
@@ -34,7 +37,8 @@ class OrganizerController extends Controller
         $organizers = $this->modelRepository->paginateEntities('Event\Organizer', OrganizerInterface::RECORDS_PER_PAGE);
 
         return view('admin.pages.organizer.manage')->with([
-            'organizers' => $organizers
+            'organizers' => $organizers,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 }

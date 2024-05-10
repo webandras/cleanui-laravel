@@ -11,6 +11,7 @@ use App\Models\Clean\Category;
 use App\Models\Clean\Post;
 use App\Models\Clean\Tag;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -21,7 +22,7 @@ use Throwable;
 
 class PostController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
 
     /**
@@ -234,6 +235,7 @@ class PostController extends Controller
             'posts' => $posts,
             'postStatuses' => Post::getPostStatuses(),
             'postStatusColors' => Post::getPostStatusColors(),
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 

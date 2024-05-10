@@ -8,6 +8,7 @@ use App\Http\Requests\Clean\DocumentUpdateRequest;
 use App\Interface\Repository\Clean\DocumentRepositoryInterface;
 use App\Models\Clean\Document;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,7 +18,7 @@ use Throwable;
 
 class DocumentController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
 
     /**
@@ -43,7 +44,9 @@ class DocumentController extends Controller
     {
         $this->authorize('viewAny', Document::class);
 
-        return view('admin.pages.document.manage');
+        return view('admin.pages.document.manage')->with([
+            'userPermissions' => $this->getUserPermissions()
+        ]);
     }
 
 

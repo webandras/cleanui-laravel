@@ -39,7 +39,7 @@ class DocumentPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('manage-posts');
+        return $user->hasPermissionTo('manage-documents');
     }
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interface\Repository\Clean\CategoryRepositoryInterface;
 use App\Models\Clean\Category;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,7 +16,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
     private CategoryRepositoryInterface $categoryRepository;
 
@@ -50,6 +51,7 @@ class CategoryController extends Controller
         return view('admin.pages.category.manage')->with([
             'categories' => $categories,
             'parentCategories' => array_reverse($parentCategories, true),
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 

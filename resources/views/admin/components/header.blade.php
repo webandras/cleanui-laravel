@@ -15,7 +15,6 @@
                                 <i class="fa fa-tachometer" aria-hidden="true"></i>{{ __('Dashboard') }}
                             </a>
 
-                            @role('super-administrator|administrator')
 
                             <!-- Demo components link -->
                             <a class="fs-14 {{ request()->routeIs('demo') ? 'active' : '' }}"
@@ -24,76 +23,91 @@
                                 <i class="fa-regular fa-book"></i><span>{{ __('Components') }}</span>
                             </a>
 
-                            <!-- Manage posts/articles link -->
-                            <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
-                               href="{{ route('post.manage') }}"
-                            >
-                                <i class="fa-regular fa-newspaper"></i><span>{{ __('Posts') }}</span>
-                            </a>
 
-
-                            <!-- Manage categories link -->
-                            <a class="fs-14 {{ request()->routeIs('category.manage') ? 'active' : '' }}"
-                               href="{{ route('category.manage') }}"
-                            >
-                                <i class="fa-solid fa-folder-open"></i><span>{{ __('Categories') }}</span>
-                            </a>
-
-
-                            <!-- Manage tags link -->
-                            <a class="fs-14 {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
-                               href="{{ route('tag.manage') }}"
-                            >
-                                <i class="fa-solid fa-tags"></i><span>{{ __('Tags') }}</span>
-                            </a>
-
-                            <a class="fs-14 {{ request()->routeIs('event.manage') ? 'active' : '' }}"
-                               href="{{ route('event.manage') }}">
-                                <i class="fa-solid fa-calendar-days"></i><span>{{ __('Events') }}</span>
-                            </a>
-
-                            @endrole
-
-                            <div
-                                x-data="dropdownData"
-                                class="dropdown-click"
-                                @click.outside="hideDropdown"
-                            >
-                                <a class="fs-14" @click="toggleDropdown">
-                                    <i class="fa fa-user" aria-hidden="true"></i><span>{{ Auth::user()->name }}</span><i class="fa fa-caret-down"></i>
+                            @if(in_array('manage-posts', $userPermissions))
+                                <!-- Manage posts/articles link -->
+                                <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
+                                   href="{{ route('post.manage') }}"
+                                >
+                                    <i class="fa-regular fa-newspaper"></i><span>{{ __('Posts') }}</span>
                                 </a>
+                            @endif
 
-                                <div x-show="openDropdown" x-cloak class="dropdown-content card padding-1">
 
-                                    <a class="fs-14 dropdown-item"
-                                       href="{{ route('user.account', auth()->id()) }}"
-                                    >
-                                        <i class="fa fa-user" aria-hidden="true"></i><span>{{ __('My Account') }}</span>
+                            @if(in_array('manage-categories', $userPermissions))
+                                <!-- Manage categories link -->
+                                <a class="fs-14 {{ request()->routeIs('category.manage') ? 'active' : '' }}"
+                                   href="{{ route('category.manage') }}"
+                                >
+                                    <i class="fa-solid fa-folder-open"></i><span>{{ __('Categories') }}</span>
+                                </a>
+                            @endif
+
+
+                            @if(in_array('manage-tags', $userPermissions))
+                                <!-- Manage tags link -->
+                                <a class="fs-14 {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
+                                   href="{{ route('tag.manage') }}"
+                                >
+                                    <i class="fa-solid fa-tags"></i><span>{{ __('Tags') }}</span>
+                                </a>
+                            @endif
+
+
+                            @if(in_array('manage-events', $userPermissions))
+                                <a class="fs-14 {{ request()->routeIs('event.manage') ? 'active' : '' }}"
+                                   href="{{ route('event.manage') }}">
+                                    <i class="fa-solid fa-calendar-days"></i><span>{{ __('Events') }}</span>
+                                </a>
+                            @endif
+
+
+                            @if(in_array('manage-account', $userPermissions))
+                                <div
+                                    x-data="dropdownData"
+                                    class="dropdown-click"
+                                    @click.outside="hideDropdown"
+                                >
+                                    <a class="fs-14" @click="toggleDropdown">
+                                        <i class="fa fa-user"
+                                           aria-hidden="true"></i><span>{{ Auth::user()->name }}</span><i
+                                            class="fa fa-caret-down"></i>
                                     </a>
 
+                                    <div x-show="openDropdown" x-cloak class="dropdown-content card padding-1">
 
-                                    <a
-                                        id="logout-form-admin-header-trigger"
-                                        class="fs-14 dropdown-item margin-bottom-0"
-                                        href="#"
-                                        role="button"
-                                        onclick="triggerLogout('logout-form-admin-header')"
-                                    >
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i><span>{{ __('Logout') }}</span>
+                                        <a class="fs-14 dropdown-item"
+                                           href="{{ route('user.account', auth()->id()) }}"
+                                        >
+                                            <i class="fa fa-user"
+                                               aria-hidden="true"></i><span>{{ __('My Account') }}</span>
+                                        </a>
 
-                                    </a>
 
-                                    <form
-                                        id="logout-form-admin-header"
-                                        action="{{ route('logout') }}"
-                                        method="POST"
-                                        class="d-none"
-                                    >
-                                        @csrf
-                                        @method('post')
-                                    </form>
+                                        <a
+                                            id="logout-form-admin-header-trigger"
+                                            class="fs-14 dropdown-item margin-bottom-0"
+                                            href="#"
+                                            role="button"
+                                            onclick="triggerLogout('logout-form-admin-header')"
+                                        >
+                                            <i class="fa fa-sign-out"
+                                               aria-hidden="true"></i><span>{{ __('Logout') }}</span>
+
+                                        </a>
+
+                                        <form
+                                            id="logout-form-admin-header"
+                                            action="{{ route('logout') }}"
+                                            method="POST"
+                                            class="d-none"
+                                        >
+                                            @csrf
+                                            @method('post')
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                         @else
 

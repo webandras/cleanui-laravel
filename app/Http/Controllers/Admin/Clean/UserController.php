@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin\Clean;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Repository\Clean\UserRepositoryInterface;
-use App\Models\Clean\Permission;
 use App\Models\Clean\Role;
 use App\Models\Clean\User;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
     /**
      * @var UserRepositoryInterface
@@ -47,14 +47,12 @@ class UserController extends Controller
         $this->authorize('viewAny', User::class);
 
         $users = $this->userRepository->getPaginatedUsersWithRoles();
-
-        $permissions = Permission::all();
         $roles       = Role::all();
 
         return view('admin.pages.user.manage')->with([
             'users'       => $users,
-            'permissions' => $permissions,
             'roles'       => $roles,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 
@@ -166,6 +164,7 @@ class UserController extends Controller
             'defaultTimezone'     => config('app.timezone'),
             'timezoneIdentifiers' => $timezoneIdentifiers,
             'userPreferences'   => $userPreferences,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 

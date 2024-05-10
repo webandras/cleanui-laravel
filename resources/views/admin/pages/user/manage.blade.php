@@ -22,7 +22,6 @@
             <!-- Create new user -->
             <livewire:admin.clean.user.create title="{{ __('New user') }}"
                                   :roles="$roles"
-                                  :permissions="$permissions"
                                   :hasSmallButton="false"
                                   :modalId="'m-create-user'">
             </livewire:admin.clean.user.create>
@@ -61,7 +60,6 @@
                                     <livewire:admin.clean.user.edit title="{{ __('Edit user') }}"
                                                         :user="$user"
                                                         :roles="$roles"
-                                                        :permissions="$permissions"
                                                         :hasSmallButton="false"
                                                         :modalId="'m-edit-user-' . $user->id"
                                     >

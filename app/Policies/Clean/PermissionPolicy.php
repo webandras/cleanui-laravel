@@ -21,7 +21,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): Response|bool
     {
-        return $user->hasRoles('super-administrator');
+        return $user->hasPermissionTo('manage-permissions');
     }
 
 

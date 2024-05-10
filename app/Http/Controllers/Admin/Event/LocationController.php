@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Interface\Entities\Event\LocationInterface;
 use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Models\Clean\User;
+use App\Models\Event\Location;
+use App\Trait\Clean\UserPermissions;
 
 class LocationController extends Controller
 {
+    use UserPermissions;
 
     /**
      * @var ModelRepositoryInterface
@@ -30,13 +33,14 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Location::class);
 
         $locations = $this->modelRepository->paginateEntities('Event\Location',
             LocationInterface::RECORDS_PER_PAGE);
 
         return view('admin.pages.location.manage')->with([
-            'locations' => $locations
+            'locations' => $locations,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 }

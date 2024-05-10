@@ -54,7 +54,7 @@
 
 <div class="admin wrapper">
 
-    <x-admin::header></x-admin::header>
+    <x-admin::header :userPermissions="$userPermissions"></x-admin::header>
 
     <x-global::banner/>
 
@@ -67,7 +67,7 @@
             <?php if (!isset($sidebar)) {
                 $sidebar = null;
             } ?>
-            <x-admin::sidebar :sidebar="$sidebar"></x-admin::sidebar>
+            <x-admin::sidebar :sidebar="$sidebar" :userPermissions="$userPermissions"></x-admin::sidebar>
 
             @yield('content')
 

@@ -22,16 +22,6 @@ class EventRepository implements EventRepositoryInterface
     public function getPaginatedEvents(): LengthAwarePaginator
     {
         return Event::with(['event_detail'])
-            ->with([
-                'location' => function ($query) {
-                    $query->withTrashed();
-                }
-            ])
-            ->with([
-                'organizer' => function ($query) {
-                    $query->withTrashed();
-                }
-            ])
             ->orderBy('start', 'desc')
             ->paginate(EventInterface::POST_PER_PAGE);
     }

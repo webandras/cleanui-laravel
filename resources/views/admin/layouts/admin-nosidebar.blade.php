@@ -48,7 +48,7 @@
 
 <div class="admin wrapper">
 
-    <x-admin::header></x-admin::header>
+    <x-admin::header :userPermissions="$userPermissions"></x-admin::header>
 
     <x-global::banner/>
 

@@ -37,7 +37,7 @@ class UserPolicy
         if (!$user->hasRoles('super-administrator') && $model->hasRoles('super-administrator')) {
             return false;
         }
-        return ($user->id === $model->id && $user->hasPermissionTo('manage-account')) || $user->hasRoles('super-administrator|administrator');
+        return ($user->id === $model->id && $user->hasPermissionTo('manage-account'));
     }
 
 

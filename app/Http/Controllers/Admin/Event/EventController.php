@@ -9,11 +9,11 @@ use App\Interface\Entities\Event\EventInterface;
 use App\Interface\Repository\Event\EventRepositoryInterface;
 use App\Interface\Services\Clean\DateTimeServiceInterface;
 use App\Interface\Services\Clean\ImageServiceInterface;
-use App\Models\Clean\User;
 use App\Models\Event\Event;
 use App\Models\Event\Location;
 use App\Models\Event\Organizer;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -25,7 +25,7 @@ use Throwable;
 
 class EventController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
     /**
      * @var ImageServiceInterface
@@ -66,12 +66,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Event::class);
 
         $events = $this->eventRepository->getPaginatedEvents();
 
         return view('admin.pages.event.manage')->with([
-            'events' => $events
+            'events' => $events,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 
@@ -84,7 +85,7 @@ class EventController extends Controller
      */
     public function create(): View|Factory|Application
     {
-        $this->authorize('create', User::class);
+        $this->authorize('create', Event::class);
 
         $organizers = Organizer::orderBy('name', 'ASC')->get();
         $locations = Location::orderBy('city', 'ASC')->get();

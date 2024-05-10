@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\Admin\Clean;
 
 use App\Http\Controllers\Controller;
+use App\Trait\Clean\UserPermissions;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
 class TagController extends Controller
 {
+    use UserPermissions;
 
-    /**
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * Display a listing of the resource.
@@ -23,7 +20,9 @@ class TagController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        return view('admin.pages.tag.manage');
+        return view('admin.pages.tag.manage')->with([
+            'userPermissions' => $this->getUserPermissions(),
+        ]);
     }
 
 }
