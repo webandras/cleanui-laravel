@@ -6,5 +6,5 @@ interface EventInterface
 {
     public const POST_PER_PAGE = 8;
 
-    public const TIMEZONE = 'Budapest/Europe';
+    public const TIMEZONE = 'Europe/Budapest';
 }
