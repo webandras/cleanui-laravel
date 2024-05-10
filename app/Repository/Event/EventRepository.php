@@ -209,7 +209,7 @@ class EventRepository implements EventRepositoryInterface
      */
     public function getEventDetailByEventId(int $eventId): EventDetail
     {
-        return EventDetail::where('id', '=', $eventId)->firstOrFail();
+        return EventDetail::where('event_id', '=', $eventId)->firstOrFail();
     }
 
 
