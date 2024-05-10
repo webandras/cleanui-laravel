@@ -65,7 +65,7 @@ class DocumentationController extends Controller
 
 
         return view('public.pages.document.show')->with([
-            'currentDocument' => $this->documentRepository->getDocumentBySlug($slug),
+            'currentDocument' => $currentDocument,
             'nextDocument' => $nextDocument,
             'previousDocument' => $previousDocument,
             'documents' => $this->documentRepository->getPublishedDocuments(),
