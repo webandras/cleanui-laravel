@@ -15,32 +15,25 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
         $superAdmin = Role::where('slug', 'super-administrator')->firstOrFail();
         $admin = Role::where('slug', 'administrator')->firstOrFail();
         $customer = Role::where('slug', 'customer')->firstOrFail();
 
-        $user1 = new User();
-        $user1->name = 'Gulácsi András';
-        $user1->email = 'gulandras90@gmail.com';
-        $user1->password = bcrypt('FSrztfvr5gii2');
-        $user1->enable_2fa = 1;
-        $user1->role()->associate($superAdmin);
-        $user1->save();
+        User::factory(1)->create([
+            'name' => 'András Gulácsi',
+            'email' => 'gulandras90@gmail.com',
+            'password' => bcrypt('FSrztfvr5gii2'),
+            'enable_2fa' => 1,
+            'role_id' => $superAdmin->id
+        ]);
 
-        $user2 = new User();
-        $user2->name = 'John Doe';
-        $user2->email = 'john@doe.com';
-        $user2->password = bcrypt('password');
-        $user2->save();
-        $user2->role()->associate($admin);
+        User::factory(1)->create([
+            'role_id' => $admin->id
+        ]);
 
-        $user2 = new User();
-        $user2->name = 'Finn Gabika';
-        $user2->email = 'finn@gabika.com';
-        $user2->password = bcrypt('password');
-        $user2->save();
-        $user2->role()->associate($customer);
+        User::factory(1)->create([
+            'role_id' => $customer->id
+        ]);
 
     }
 }
