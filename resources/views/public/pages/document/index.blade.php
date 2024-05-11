@@ -16,10 +16,10 @@
 @section('content')
     <div x-data="{ showToc: true}" class="main-container container relative">
 
-        <aside x-show="showToc" x-cloak x-transition class="toc round">
+        <article x-show="showToc" x-cloak x-transition class="toc round">
             <h2 class="h4">{{ __('Table of Contents') }}</h2>
 
-            <ul class="padding-right-left-0 no-bullets">
+            <ul class="padding-right-left-0 no-bullets margin-top-0 fs-14">
                 <li><a href="{{ route('document.index') }}" class="active">{{ __('Get Started') }}</a></li>
                 @foreach($documents as $document)
                     <li><a href="{{ route('document.show', $document->slug) }}"
@@ -27,7 +27,7 @@
                     </li>
                 @endforeach
             </ul>
-        </aside>
+        </article>
 
         <main class="content round">
             <h1 class="text-center h1 margin-top-0 margin-bottom-0-5"

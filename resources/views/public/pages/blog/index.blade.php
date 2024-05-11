@@ -25,8 +25,8 @@
                     </a>
                     <div class="padding-left-right-1">
                         <div
-                            class="date">{{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}</div>
-                        <h2 class="margin-top-0 h4 text-white fs-18 margin-bottom-45">
+                            class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}</div>
+                        <h2 class="margin-top-0 h4 text-white fs-16 margin-bottom-45">
                             <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
                                 {{ $newestPosts[0]->title }}
                             </a>
@@ -51,7 +51,7 @@
                             </div>
                         </a>
                         <div class="padding-top-bottom-0-5">
-                            <h2 class="margin-top-bottom-0 h4 fs-20">
+                            <h2 class="margin-top-bottom-0 h4 fs-18">
                                 <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
                                     {{ $newestPosts[$i]->title }}
                                 </a>
@@ -70,8 +70,8 @@
                         <li>
                             <article>
                                 <div
-                                    class="date">{{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}</div>
-                                <h3 class="fs-18">
+                                    class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}</div>
+                                <h3 class="fs-16">
                                     <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
                                         {{$newestPosts[$i]->title }}</a>
                                 </h3>

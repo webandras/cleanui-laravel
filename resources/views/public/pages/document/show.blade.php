@@ -16,9 +16,9 @@
 @section('content')
     <div x-data="{ showToc: true}" class="main-container container relative">
 
-        <aside x-show="showToc" x-cloak x-transition class="toc round">
+        <article x-show="showToc" x-cloak x-transition class="toc round">
             <h2 class="h4">{{ __('Table of Contents') }}</h2>
-            <ul class="padding-right-left-0 no-bullets">
+            <ul class="fs-14 padding-right-left-0 no-bullets margin-top-0">
                 <li><a href="{{ route('document.index') }}">{{ __('Get Started') }}</a></li>
                 @foreach($documents as $document)
                     <li><a href="{{ route('document.show', $document->slug) }}"
@@ -26,19 +26,18 @@
                     </li>
                 @endforeach
             </ul>
-        </aside>
+        </article>
 
         <main class="content round">
 
             <div>
-
                 <span @click="showToc = ! showToc" class="pointer absolute padding-0 topright margin-top-1-5 margin-right-1" role="button"
                       title="{{ __('Table of content') }}">
                 <i :class="{'fa fa-expand' : !showToc,  'fa fa-compress' : showToc }" aria-hidden="true"></i>
                 <span class="fs-12">{{ __('Table of content') }}</span>
-            </span>
+                </span>
 
-                <nav class="breadcrumb breadcrumb-left padding-top-1-5">
+                <nav class="breadcrumb breadcrumb-left padding-top-1-5 fs-12">
                     <ol>
                         <li>
                             <a href="{{ route('document.index') }}">
