@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ArchiveEntityService implements ArchiveEntityServiceInterface
 {
-    private const PREFIX = "\App\Models\Clean\\";
+    private const PREFIX = "\App\Models\\";
 
 
     /**
