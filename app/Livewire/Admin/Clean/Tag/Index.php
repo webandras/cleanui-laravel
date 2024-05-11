@@ -130,7 +130,7 @@ class Index extends Component
      */
     public function initialize(): void
     {
-        $this->tags = $this->tagRepository->paginateEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
+//        $this->tags = $this->tagRepository->paginateEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
     }
 
 

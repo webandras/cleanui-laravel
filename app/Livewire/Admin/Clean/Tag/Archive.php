@@ -139,7 +139,7 @@ class Archive extends Component
      */
     public function initialize(): void
     {
-        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
+//        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
     }
 
 
