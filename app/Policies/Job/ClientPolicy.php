@@ -21,7 +21,7 @@ class ClientPolicy
      */
     public function viewAny(User $user): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-clients');
     }
 
     /**
@@ -34,7 +34,7 @@ class ClientPolicy
      */
     public function view(User $user, Client $client): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-clients');
     }
 
     /**
@@ -46,7 +46,7 @@ class ClientPolicy
      */
     public function create(User $user): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-clients');
     }
 
     /**
@@ -59,7 +59,7 @@ class ClientPolicy
      */
     public function update(User $user, Client $client): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-clients');
     }
 
     /**
@@ -72,7 +72,7 @@ class ClientPolicy
      */
     public function delete(User $user, Client $client): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-clients');
     }
 
     /**

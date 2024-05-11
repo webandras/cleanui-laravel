@@ -9,6 +9,7 @@ use App\Interface\Repository\Clean\DocumentRepositoryInterface;
 use App\Models\Clean\Document;
 use App\Trait\Clean\InteractsWithBanner;
 use App\Trait\Clean\UserPermissions;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -54,11 +55,15 @@ class DocumentController extends Controller
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function create(): View|Factory|Application
     {
+        $this->authorize('create', Document::class);
+
         return view('admin.pages.document.create')->with([
             'documentStatuses' => Document::getDocumentStatuses(),
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 
@@ -67,10 +72,14 @@ class DocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  DocumentStoreRequest  $request
+     *
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(DocumentStoreRequest $request): RedirectResponse
     {
+        $this->authorize('create', Document::class);
+
         $data = $request->all();
         $data = Document::getSlugFromTitle($data);
         $data['order'] = Document::max('order') + 1;
@@ -92,12 +101,16 @@ class DocumentController extends Controller
      * @param  Document  $document
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(Document $document): View|Factory|Application
     {
+        $this->authorize('update', [Document::class, $document]);
+
         return view('admin.pages.document.edit')->with([
             'document' => $document,
             'documentStatuses' => Document::getDocumentStatuses(),
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 

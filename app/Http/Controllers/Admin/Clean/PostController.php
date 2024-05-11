@@ -61,6 +61,7 @@ class PostController extends Controller
             'postStatuses' => Post::getPostStatuses(),
             'categories' => Category::all(),
             'tags' => $tags,
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 
@@ -121,9 +122,12 @@ class PostController extends Controller
      * @param  Post  $post
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(Post $post): View|Factory|Application
     {
+        $this->authorize('update', [Post::class, $post]);
+
         $tags = Tag::all();
 
         $postCategoryIds = $post->categories()->get()->pluck(['id'])->toArray();
@@ -136,6 +140,7 @@ class PostController extends Controller
             'postCategoryIds' => $postCategoryIds,
             'tags' => $tags,
             'postTagIds' => $postTagIds,
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 

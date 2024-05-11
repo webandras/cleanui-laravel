@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin\Event;
 use App\Http\Controllers\Controller;
 use App\Interface\Entities\Event\LocationInterface;
 use App\Interface\Repository\Clean\ModelRepositoryInterface;
-use App\Models\Clean\User;
 use App\Models\Event\Location;
 use App\Trait\Clean\UserPermissions;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class LocationController extends Controller
 {
@@ -30,6 +30,7 @@ class LocationController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index()
     {

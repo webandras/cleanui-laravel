@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin\Job;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Repository\Job\ClientRepositoryInterface;
-use App\Models\Clean\User;
+use App\Models\Job\Client;
+use App\Trait\Clean\UserPermissions;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class JobClientController extends Controller
 {
+    use UserPermissions;
 
     /**
      * @var ClientRepositoryInterface
@@ -26,10 +29,11 @@ class JobClientController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Client::class);
 
         $types = $this->clientRepository->getClientTypes();
         $clients = $this->clientRepository->getPaginatedClients();
@@ -37,7 +41,8 @@ class JobClientController extends Controller
 
         return view('admin.pages.job.client.manage')->with([
             'clients' => $clients,
-            'clientTypes' => $types
+            'clientTypes' => $types,
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 

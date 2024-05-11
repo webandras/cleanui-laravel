@@ -12,7 +12,7 @@ class WorkerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-workers');
     }
 
     /**
@@ -20,7 +20,7 @@ class WorkerPolicy
      */
     public function view(User $user, Worker $worker): bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-workers');
     }
 
     /**
@@ -28,7 +28,7 @@ class WorkerPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-workers');
     }
 
     /**
@@ -36,7 +36,7 @@ class WorkerPolicy
      */
     public function update(User $user, Worker $worker): bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-workers');
     }
 
     /**
@@ -44,7 +44,7 @@ class WorkerPolicy
      */
     public function delete(User $user, Worker $worker): bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-workers');
     }
 
     /**

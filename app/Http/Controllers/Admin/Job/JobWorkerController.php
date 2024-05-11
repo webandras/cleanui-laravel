@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Admin\Job;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Repository\Job\WorkerRepositoryInterface;
-use App\Models\Clean\User;
+use App\Models\Job\Worker;
 use App\Trait\Clean\InteractsWithBanner;
+use App\Trait\Clean\UserPermissions;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 
 class JobWorkerController extends Controller
 {
-    use InteractsWithBanner;
+    use InteractsWithBanner, UserPermissions;
 
 
     /**
@@ -32,13 +34,15 @@ class JobWorkerController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $this->authorize('viewAny', User::class);
+       $this->authorize('viewAny', Worker::class);
 
         return view('admin.pages.job.worker.manage')->with([
             'workers' => $this->workerRepository->getPaginatedWorkers(),
+            'userPermissions' => $this->getUserPermissions()
         ]);
     }
 

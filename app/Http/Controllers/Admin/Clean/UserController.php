@@ -151,7 +151,7 @@ class UserController extends Controller
      */
     public function account(User $user): Factory|View|Application
     {
-        $this->authorize('view', [\App\Models\Clean\User::class, $user]);
+        $this->authorize('view', [User::class, $user]);
 
         $timezoneIdentifiers = ['UTC', ...\DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE)];
 
@@ -180,7 +180,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        $this->authorize('update', [\App\Models\Clean\User::class, $user]);
+        $this->authorize('update', [User::class, $user]);
 
         $rules = [
             'name'      => ['required', 'string', 'max:255'],

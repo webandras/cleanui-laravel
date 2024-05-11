@@ -20,7 +20,7 @@ class JobPolicy
      */
     public function viewAny(User $user): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-jobs');
     }
 
     /**
@@ -33,7 +33,7 @@ class JobPolicy
      */
     public function view(User $user, Job $job): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-jobs');
     }
 
     /**
@@ -45,7 +45,7 @@ class JobPolicy
      */
     public function create(User $user): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-jobs');
     }
 
     /**
@@ -58,7 +58,7 @@ class JobPolicy
      */
     public function update(User $user, Job $job): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-jobs');
     }
 
     /**
@@ -71,7 +71,7 @@ class JobPolicy
      */
     public function delete(User $user, Job $job): Response|bool
     {
-        return $user->hasRoles('super-administrator|administrator');
+        return $user->hasPermissionTo('manage-jobs');
     }
 
     /**

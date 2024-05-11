@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Public\Event;
 
 use App\Http\Controllers\Controller;
 use App\Interface\Repository\Event\EventRepositoryInterface;
-use App\Models\Event\Event;
 use App\Trait\Clean\HasLocalization;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\App;
 
 
 class EventController extends Controller

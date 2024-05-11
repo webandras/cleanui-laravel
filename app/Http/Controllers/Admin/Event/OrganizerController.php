@@ -7,6 +7,7 @@ use App\Interface\Entities\Event\OrganizerInterface;
 use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Models\Event\Organizer;
 use App\Trait\Clean\UserPermissions;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class OrganizerController extends Controller
 {
@@ -29,6 +30,7 @@ class OrganizerController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index()
     {

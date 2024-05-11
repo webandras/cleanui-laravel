@@ -152,8 +152,6 @@ Route::group(
 
         Route::get('user/manage', [UserController::class, 'index'])->name('user.manage');
 
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 
         /* Roles and Permissions */
         Route::get('role-permission/manage',
@@ -169,11 +167,6 @@ Route::group(
         /* Categories */
         Route::get('categories/manage', [CategoryController::class, 'index'])->name('category.manage');
         /* Categories END */
-
-
-        /* Demo page */
-        Route::get('/demo', [DemoController::class, 'index'])->name('demo');
-        /* Demo page END */
 
 
         /* Docs */
@@ -240,6 +233,12 @@ Route::group(
 Route::group(
     ['middleware' => ['auth', 'verified', '2fa'], 'prefix' => 'admin'],
     function () {
+
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        /* Demo page */
+        Route::get('/demo', [DemoController::class, 'index'])->name('demo');
+        /* Demo page END */
 
         /* Account/Users */
         Route::get('user/account/{user}', [UserController::class, 'account'])->name('user.account');
