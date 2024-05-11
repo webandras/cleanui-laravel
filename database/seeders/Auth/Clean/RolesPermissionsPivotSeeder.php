@@ -36,7 +36,7 @@ class RolesPermissionsPivotSeeder extends Seeder
 
         // Add permissions to the admin
         $admin2 = $this->getRoleBySlug('administrator');
-        $admin2->permissions()->sync([$account, $categories, $posts, $tags]);
+        $admin2->permissions()->sync([$account, $categories, $posts, $tags, $jobs]);
 
         // Add permissions to the admin
         $customer = $this->getRoleBySlug('customer');

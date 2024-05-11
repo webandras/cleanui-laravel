@@ -12,6 +12,7 @@ use Database\Seeders\Clean\DocumentSeeder;
 use Database\Seeders\Clean\PostSeeder;
 use Database\Seeders\Clean\PostTagsCategoriesSeeder;
 use Database\Seeders\Clean\TagSeeder;
+use Database\Seeders\Event\ClientsWorkersMediaPermissionsSeeder;
 use Database\Seeders\Event\EventDetailSeeder;
 use Database\Seeders\Event\EventModulePermissionsSeeder;
 use Database\Seeders\Event\EventSeeder;
@@ -59,5 +60,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EventDetailSeeder::class);
 
         $this->call(EventModulePermissionsSeeder::class);
+        $this->call(ClientsWorkersMediaPermissionsSeeder::class);
+
+//        $this->call(CommentSeeder::class);
     }
 }
