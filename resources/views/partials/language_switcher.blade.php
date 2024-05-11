@@ -15,7 +15,7 @@
         @endforeach
 
     </button>
-    <div x-show="openDropdown" class="dropdown-content bar-block card card-4"
+    <div x-cloak x-show="openDropdown" class="dropdown-content bar-block card card-4"
          style="width: 60px; min-width: 60px;margin-top: 8px;">
         @foreach ($available_locales as $locale_name => $available_locale)
             @if ($available_locale !== $current_locale)

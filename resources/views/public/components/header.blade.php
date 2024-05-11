@@ -108,6 +108,7 @@
                     <button
                             class="darkmode-toggle margin-top-0 margin-right-0-5"
                             rel="button"
+                            x-cloak
                             @click="toggleDarkMode"
                             x-text="isDarkModeOn() ? '🔆' : '🌒'"
                             :title="isDarkModeOn() ? '{{ $light }}' : '{{ $dark }}'"
