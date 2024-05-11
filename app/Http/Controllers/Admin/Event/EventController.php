@@ -63,6 +63,7 @@ class EventController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -97,6 +98,7 @@ class EventController extends Controller
             'locations' => $locations,
             'timezoneIdentifiers' => $timezoneIdentifiers,
             'statuses' => $statuses,
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 
@@ -110,6 +112,8 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request): RedirectResponse
     {
+        $this->authorize('create', Event::class);
+
         $data = $request->all();
 
         $data = $this->eventRepository->getSlugFromTitle($data);
@@ -150,6 +154,8 @@ class EventController extends Controller
 
                 // create event details
                 if (!empty($details)) {
+                    $details['event_id'] = $newEvent->id;
+
                     // we need to create a new EventDetail record
                     $this->eventRepository->createEventDetail($details);
                 }
@@ -188,7 +194,8 @@ class EventController extends Controller
             'organizerId' => $ids['organizerId'],
             'locationId' => $ids['locationId'],
             'timezoneIdentifiers' => $timezoneIdentifiers,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'userPermissions' => $this->getUserPermissions(),
         ]);
     }
 
@@ -204,6 +211,8 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event): RedirectResponse
     {
+       $this->authorize('update', [Event::class, $event]);
+
         $rules = [
             'title' => ['required', 'max:255', 'string'],
             'slug' => ['required', 'max:255', Rule::unique('events')->ignore($event->id, 'id')],
