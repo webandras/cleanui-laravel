@@ -80,7 +80,7 @@ class Create extends Component
                 $organizer['slug'] = $this->slug;
                 $organizer['facebook_url'] = $this->facebook_url;
 
-                $this->modelRepository->createEntity('App\Models\Event\Organizer', $organizer);
+                $this->modelRepository->createEntity('Event\Organizer', $organizer);
             },
             2
         );

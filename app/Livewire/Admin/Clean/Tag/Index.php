@@ -214,7 +214,7 @@ class Index extends Component
         $tag   = Tag::first();
         $this->authorize('restore', [Tag::class, $tag]);
 
-        $this->tagRepository->deleteSelectedEntities('Tag', $ids);
+        $this->tagRepository->deleteSelectedEntities('Clean\Tag', $ids);
         $this->toggleArchiveModal();
         $this->banner(__($count.' tags archived.'));
         $this->initialize();

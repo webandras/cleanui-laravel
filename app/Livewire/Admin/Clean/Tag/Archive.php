@@ -123,7 +123,7 @@ class Archive extends Component
     public function render()
     {
         if ($this->filterOn !== true) {
-            $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
+            $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
         }
 
         return view('admin.livewire.clean.tag.archive')->with([
@@ -139,7 +139,7 @@ class Archive extends Component
      */
     public function initialize(): void
     {
-        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
+        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
     }
 
 
@@ -190,7 +190,7 @@ class Archive extends Component
     public function filterTags(): void
     {
         $this->resetPage('archive');
-        $this->archivedTags = $this->archiveEntityService->paginateFilteredTrashedEntities('Tag', TagInterface::RECORDS_PER_PAGE, 'name', $this->filterKeyword, 'archive');
+        $this->archivedTags = $this->archiveEntityService->paginateFilteredTrashedEntities('Clean\Tag', TagInterface::RECORDS_PER_PAGE, 'name', $this->filterKeyword, 'archive');
         $this->filterOn = true;
     }
 
@@ -208,7 +208,7 @@ class Archive extends Component
         $tag = Tag::first();
         $this->authorize('restore', [Tag::class, $tag]);
 
-        $this->archiveEntityService->restoreSelectedTrashedEntities('Tag', $this->selectedIds);
+        $this->archiveEntityService->restoreSelectedTrashedEntities('Clean\Tag', $this->selectedIds);
         $this->toggleRestoreModal();
         $this->banner(__($count . ' tags successfully restored from archive.'));
         $this->initialize();
@@ -233,7 +233,7 @@ class Archive extends Component
         $tag = Tag::first();
         $this->authorize('forceDelete', [Tag::class, $tag]);
 
-        $this->archiveEntityService->destroySelectedTrashedEntities('Tag', $ids);
+        $this->archiveEntityService->destroySelectedTrashedEntities('Clean\Tag', $ids);
 
         $this->toggleDestroyModal();
         $this->banner(__($count . ' tag(s) permanently deleted.'));

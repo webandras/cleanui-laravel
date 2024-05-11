@@ -153,7 +153,7 @@ class Create extends Component
                     $tag['cover_image_url'] = '/storage/' . $this->cover_image_url;
                 }
 
-                $this->tagRepository->createEntity('Tag', $tag);
+                $this->tagRepository->createEntity('Clean\Tag', $tag);
             },
             2
         );

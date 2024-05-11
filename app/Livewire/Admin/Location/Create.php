@@ -89,7 +89,7 @@ class Create extends Component
                 $location['latitude'] = $this->latitude;
                 $location['longitude'] = $this->longitude;
 
-                $this->modelRepository->createEntity('App\Models\Event\Location', $location);
+                $this->modelRepository->createEntity('Event\Location', $location);
             },
             2
         );
