@@ -6,6 +6,9 @@ use App\Models\Clean\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ *  Gate for permissions registration (it is not used anywhere, will be removed in the future!)
+ */
 class PermissionServiceProvider extends ServiceProvider
 {
     /**
