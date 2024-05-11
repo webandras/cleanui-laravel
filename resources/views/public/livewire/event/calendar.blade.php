@@ -100,8 +100,14 @@
                         eventTime.innerText = startTime.format('HH:mm z');
                     }
 
-                  if (event.extendedProps.status === 'cancelled') {
-                        const eventTitle = container.childNodes[1].firstChild;
+                    if (event.extendedProps.status === 'cancelled') {
+                        let eventTitle = null;
+                        if (container === null) {
+                            eventTitle = el.childNodes[2];
+                        } else {
+                            eventTitle = container.childNodes[1].firstChild;
+                        }
+
                         eventTitle.innerText = @js( __('CANCELLED!')) +' ' + event.title
                     }
 
