@@ -18,7 +18,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <label for="name">{{ __('Name') }}</label>
+                <label for="name" class="margin-top-0">{{ __('Name') }}</label>
                 <input
                     id="name"
                     type="text"
@@ -74,10 +74,9 @@
                     autocomplete="new-password"
                 >
 
-                <button type="submit" class="primary margin-top-1-5">{{ __('Register') }}</button>
+                <button type="submit" class="primary margin-top-1-5 block" style="padding: 10px;">{{ __('Register') }}</button>
 
-
-                <hr class="divider">
+                <hr>
 
                 {{-- Login with Facebook --}}
                 <div>
