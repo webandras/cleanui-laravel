@@ -80,18 +80,6 @@
                             </div>
 
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
-
-                            <hr class="divider">
-                            <div class="padding-bottom-0-5">
-                                @if($post->categories->count() > 0)
-                                    @foreach($post->categories as $cat)
-                                        <span
-                                            class="badge fs-12 gray-60 text-white">{{ $cat->name }}</span>
-                                    @endforeach
-                                @else
-                                    <p class="fs-14">{{__('No associated category.')}}</p>
-                                @endif
-                            </div>
                         </td>
                         <td>
                             <div class="flex flex-row">

@@ -30,8 +30,6 @@
                 <tr class="fs-14">
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Address') }}</th>
-
-                    <th>{{ __('Coordinates') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -40,13 +38,6 @@
                     <tr>
                         <td><b>{{ $location->name }}</b><br><span class="fs-12">{{ $location->city }}</span></td>
                         <td class="fs-14">{{ $location->address }}</td>
-
-                        <td class="fs-14">
-                            <i class="fa-solid fa-location-dot"></i>
-                            {{ __('Latitude: ') . $location->latitude }}
-                            <br>
-                            {{ __('Longitude: ') . $location->longitude }}
-                        </td>
                         <td>
                             <div class="flex flex-row">
 
