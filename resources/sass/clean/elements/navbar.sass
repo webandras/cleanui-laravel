@@ -33,6 +33,7 @@
         float: left
         width: auto
         display: block
+
         &.float-right
             float: right
 
@@ -106,7 +107,7 @@
         .bar-item
             justify-content: center
 
-        @media screen and (max-width: 550px)
+        @media screen and (max-width: $mobile)
             width: 100%
 
 
@@ -127,7 +128,7 @@
         column-gap: 0.25em
         padding: 0 0 0 1em
 
-        @media screen and (max-width: 550px)
+        @media screen and (max-width: $mobile)
             padding: 0 1em 0 1em
             margin-bottom: 1em
 
@@ -157,15 +158,18 @@
             display: block
             margin-top: 1em
 
+
 .tab-switcher
     &:first-child
         border-top-left-radius: 0.25em !important
+
         &:hover
             border-top-left-radius: 0.25em
 
     &.tab-switcher-active
         background-color: $gray-80
         color: white
+
         &:hover
             color: white
             background-color: $gray-80

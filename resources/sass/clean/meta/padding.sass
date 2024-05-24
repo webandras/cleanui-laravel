@@ -1,6 +1,7 @@
 $paddings: ("0": 0, "0-5": 0.5em, "1": 1em, "1-5": 1.5em, "2": 2em, "3": 3em, "4": 4em)
 $directions: ("left", "right", "top", "bottom")
 
+
 @each $padding, $i in $paddings
     @each $direction in $directions
         .padding-#{$direction}-#{$padding}
@@ -36,7 +37,6 @@ $directions: ("left", "right", "top", "bottom")
 .row-padding > .quarter,
 .row-padding > .col
     padding: 0 0.5em
-
 
 .row-padding
     margin: 0 -1em

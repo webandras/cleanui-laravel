@@ -12,7 +12,11 @@ a
         outline-width: 0
 
     &:focus
-        outline-width: 2px
+        outline: dotted 1px
+
+    /*&:focus-visible
+        outline-offset: 2px
+        outline: 1px solid white*/
 
     /*&:visited
         color: rebeccapurple*/
@@ -21,13 +25,10 @@ a
     &.no-underline
         text-decoration: none !important
 
-    &.nav-link.active
-        font-weight: 700
-        background-color: $gray-20
-
-
-.pointer
-    cursor: pointer
+    &.nav-link
+        &.active
+            font-weight: 700
+            background-color: $gray-20
 
 
 .link
@@ -42,3 +43,7 @@ a
         background-color: transparent
         border-color: transparent
         color: $primary-dark
+
+
+.pointer
+    cursor: pointer

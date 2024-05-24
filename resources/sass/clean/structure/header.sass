@@ -1,12 +1,13 @@
-header
+.header,
+.page-header
     color: $text
     background-color: $gray-0
 
-    a
+    a:not(.brand)
         color: $link
 
         i.fa
-            margin: 0 8px
+            margin: 0 4px
 
         &:hover
             color: $gray-80
@@ -15,9 +16,11 @@ header
     .darkmode-toggle
         background-color: transparent
         border-color: $gray-20
-        width: 40px
-        justify-content: center
+        width: 36px
+        height: 36px
         display: flex
+        justify-content: center
+        align-items: center
         padding: 6px 9px
 
         &:hover
@@ -35,9 +38,18 @@ header
 
 
 #main-menu-offcanvas-toggle
+    background-color: transparent
+    border-color: $gray-20
     margin: 0
     padding: 0.5em
-    width: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 36px
+    height: 36px
+
+    &:hover
+        border-color: white
 
     .fa
         margin: 0
@@ -76,9 +88,8 @@ html.dark
     padding: 0
     box-shadow: 4px 0 6px -4px #666
 
-    @media screen and (max-height: 550px)
+    @media screen and (max-height: $mobile)
         padding-top: 1em
-
 
     #close-sidenav-button
         text-decoration: none
