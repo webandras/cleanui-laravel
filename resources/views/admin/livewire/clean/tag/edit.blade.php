@@ -27,8 +27,7 @@
     >
         <form wire:submit="updateTag">
             <h2 class="h3">{{ $name }}</h2>
-            <hr class="divider">
-
+            <hr>
             <fieldset>
                 <label for="name">{{ __('Tag name') }}<span class="text-red">*</span></label>
                 <input wire:model="name"

@@ -15,7 +15,7 @@
 
         <h1 class="text-center margin-0 h2">{{ __('Category: ') }}{{ $category->name }}</h1>
 
-        <hr class="divider">
+        <hr>
 
         <div class="public-post-grid">
 

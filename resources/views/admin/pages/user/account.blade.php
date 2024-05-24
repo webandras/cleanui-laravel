@@ -86,7 +86,7 @@
                 </fieldset>
 
 
-                <hr class="divider">
+                <hr>
 
 
                 <fieldset id="settings">
@@ -187,7 +187,7 @@
                             @method('DELETE')
 
                             <h2 class="h3">{{ __('Delete account') }}</h2>
-                            <hr class="divider">
+                            <hr>
                             <p>{{ __('Type in your password to delete your account. This action cannot be undone. ') }}</p>
 
 

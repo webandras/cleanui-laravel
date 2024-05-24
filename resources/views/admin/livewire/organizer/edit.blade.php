@@ -17,7 +17,7 @@
     >
         <form wire:submit="updateOrganizer">
             <h2 class="h3">{{ $name }}</h2>
-            <hr class="divider">
+            <hr>
 
             <fieldset>
 

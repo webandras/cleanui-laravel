@@ -6,8 +6,7 @@
                           id="{{ $modalId }}">
         <form wire:submit="deleteDocument">
             <h2 class="h3">{{ $title }}</h2>
-            <hr class="divider">
-
+            <hr>
             <label for="postId" class="sr-only">{{ __('Document Id') }}</label>
             <input wire:model="documentId"
                    disabled

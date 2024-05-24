@@ -131,7 +131,7 @@
                             </ul>
                         </nav>
 
-                        <hr class="divider">
+                        <hr>
 
                         <h3 class="margin-top-0-5 fs-18 uppercase text-gray-80 semibold">{{ __('Description:') }}</h3>
                         <div class="post-content">
