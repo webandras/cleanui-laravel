@@ -93,7 +93,7 @@
             </thead>
             <tbody>
             @foreach($archivedTags as $tag)
-                <tr>
+                <tr wire:key="{{'archived-tag-item-'. $tag->id}}">
                     <td>
                         <label for="selectedIds" class="sr-only">{{ __('Select tag') }}</label>
                         <input type="checkbox" value="{{ $tag->id }}" wire:model.live="selectedIds" name="selectedIds" id="selectedIds"></td>
