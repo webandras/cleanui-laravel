@@ -50,7 +50,6 @@
         isModalOpen: $wire.$entangle('isModalOpen', true),
         isRecurring: $wire.$entangle('isRecurring', true)
     }">
-
         <x-global::form-modal
             trigger="isModalOpen"
             title="{{ $updateId ? (isset($job->client) ? $job->client->name : $clientName) . ' ('. (isset($job->client) ? $job->client->address : $clientAddress) . ')' : __('Add job') }}"
@@ -75,13 +74,13 @@
                     <label for="isRecurring">{{ __('Recurring job') }}<span class="text-red">*</span></label>
 
                     <input type="radio"
-                           wire:model="isRecurring"
+                           wire:model.live="isRecurring"
                            name="isRecurring"
                            value="1"
                     > <span class="padding-right-1">{{ __('Yes') }}</span>
 
                     <input type="radio"
-                           wire:model="isRecurring"
+                           wire:model.live="isRecurring"
                            name="isRecurring"
                            value="0"
                            checked
@@ -500,7 +499,7 @@
                 if (event.extendedProps.description) {
                     const description = document.createElement('p');
                     description.innerText += event.extendedProps.description;
-                    description.classList.add('description', 'bold', 'black');
+                    description.classList.add('description', 'bold', 'italic');
                     container.appendChild(description)
                 }
 
@@ -511,7 +510,7 @@
 
                     for (let i = 0; i < workers.length; i++) {
                         const badge = document.createElement('span');
-                        badge.classList.add('badge', 'accent', 'semibold', 'fs-14');
+                        badge.classList.add('badge', 'accent', 'semibold', 'fs-12');
                         badge.innerText = workers[i].name;
                         bar.appendChild(badge);
                     }

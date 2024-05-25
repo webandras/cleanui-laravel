@@ -65,7 +65,10 @@ input[readonly]
 
 html.dark
     input[readonly]
-        background-color: $gray-40
+        color: rgba(255, 255, 255, 0.6)
+        background-color: $gray-60
+        &:focus
+            background-color: $gray-60
 
 
 input[type="radio"],
@@ -110,8 +113,6 @@ input[type="checkbox"]:checked
     outline-width: 4px
 
 .checkbox-container
-    margin-top: 1em
-
     label
         margin-top: 0
 

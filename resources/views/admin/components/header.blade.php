@@ -63,10 +63,14 @@
 
 
                             @if(in_array('manage-account', $userPermissions))
-                                <div
+                                <section
                                     x-data="dropdownData"
                                     class="dropdown-click"
                                     @click.outside="hideDropdown"
+                                    @keydown.enter="toggleDropdown"
+                                    aria-label="{{ __('Toggle account dropdown menu') }}"
+                                    role="region"
+                                    tabindex="0"
                                 >
                                     <a class="fs-14" @click="toggleDropdown">
                                         <i class="fa fa-user"
@@ -74,7 +78,13 @@
                                             class="fa fa-caret-down"></i>
                                     </a>
 
-                                    <div x-show="openDropdown" x-cloak class="dropdown-content card padding-1">
+                                    <article
+                                        x-show="openDropdown"
+                                        x-cloak
+                                        class="dropdown-content card padding-1"
+                                        aria-label="{{ __('Account dropdown menu') }}"
+                                        x-bind:aria-expanded="openDropdown"
+                                    >
 
                                         <a class="fs-14 dropdown-item"
                                            href="{{ route('user.account', auth()->id()) }}"
@@ -105,8 +115,8 @@
                                             @csrf
                                             @method('post')
                                         </form>
-                                    </div>
-                                </div>
+                                    </article>
+                                </section>
                             @endif
 
                         @else

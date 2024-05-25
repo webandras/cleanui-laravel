@@ -49,11 +49,7 @@
                             </a>
 
 
-                            <div
-                                    x-data="dropdownData"
-                                    class="dropdown-click"
-                                    @click.outside="hideDropdown"
-                            >
+                            <section x-data="dropdownData" class="dropdown-click" @click.outside="hideDropdown">
                                 <a class="fs-16" @click="toggleDropdown"
                                    href="#"
                                    role="button"
@@ -64,7 +60,12 @@
                                     <i class="fa fa-caret-down"></i>
                                 </a>
 
-                                <div x-show="openDropdown" x-cloak class="dropdown-content card padding-0-5">
+                                <article x-show="openDropdown"
+                                         x-cloak
+                                         class="dropdown-content card padding-0-5"
+                                         aria-label="{{ __('Account dropdown menu') }}"
+                                         x-bind:aria-expanded="openDropdown"
+                                >
 
                                     <a class="fs-16 dropdown-item"
                                        href="{{ route('user.account', auth()->id()) }}"
@@ -75,11 +76,11 @@
 
 
                                     <a
-                                            id="logout-form-admin-header-trigger"
-                                            class="fs-16 dropdown-item"
-                                            href="#"
-                                            role="button"
-                                            onclick="triggerLogout('logout-form-admin-header')"
+                                        id="logout-form-admin-header-trigger"
+                                        class="fs-16 dropdown-item"
+                                        href="#"
+                                        role="button"
+                                        onclick="triggerLogout('logout-form-admin-header')"
                                     >
                                         <i class="fa fa-sign-out" aria-hidden="true"></i>
                                         <span>{{ __('Logout') }}</span>
@@ -87,16 +88,16 @@
                                     </a>
 
                                     <form
-                                            id="logout-form-admin-header"
-                                            action="{{ route('logout') }}"
-                                            method="POST"
-                                            class="d-none"
+                                        id="logout-form-admin-header"
+                                        action="{{ route('logout') }}"
+                                        method="POST"
+                                        class="d-none"
                                     >
                                         @csrf
                                         @method('post')
                                     </form>
-                                </div>
-                            </div>
+                                </article>
+                            </section>
                         @endauth
 
                     </nav>
@@ -106,12 +107,12 @@
                         $dark = __('Dark mode');
                     @endphp
                     <button
-                            class="darkmode-toggle margin-top-0 margin-right-0-5"
-                            rel="button"
-                            x-cloak
-                            @click="toggleDarkMode"
-                            x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                            :title="isDarkModeOn() ? '{{ $light }}' : '{{ $dark }}'"
+                        class="darkmode-toggle margin-top-0 margin-right-0-5"
+                        rel="button"
+                        x-cloak
+                        @click="toggleDarkMode"
+                        x-text="isDarkModeOn() ? '🔆' : '🌒'"
+                        :title="isDarkModeOn() ? '{{ $light }}' : '{{ $dark }}'"
                     >
                     </button>
 

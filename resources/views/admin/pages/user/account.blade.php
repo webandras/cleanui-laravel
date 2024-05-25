@@ -68,7 +68,7 @@
                     <x-global::input-error for="password"/>
 
 
-                    <div class="checkbox-container">
+                    <div class="checkbox-container margin-top-bottom-1">
                         <label for="enable2fa">
                             <input name="enable2fa"
                                    id="enable2fa"
@@ -137,7 +137,7 @@
                     </select>
 
 
-                    <div class="checkbox-container">
+                    <div class="checkbox-container margin-top-1">
                         <label for="darkmode">
                             <input name="preferences[darkmode]"
                                    id="darkmode"
