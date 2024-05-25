@@ -60,7 +60,7 @@
                     {{ $errors->has('phone') ? $errors->first('phone') : '' }}
                 </p>
 
-                <hr class="divider">
+                <hr>
 
                 <!-- Bank Account Name -->
                 <label for="bankAccountName">{{ __('Bank account name') }}</label>

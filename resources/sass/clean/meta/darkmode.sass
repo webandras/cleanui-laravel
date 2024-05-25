@@ -9,8 +9,11 @@ html.dark,
         background-color: $bg-dark !important
         color: $gray-20
 
-    h1, h2, h3, h4, h5, h6, label, form
+    h1, h2, h3, h4, h5, h6, form
         color: $gray-0
+
+    label
+        color: $gray-20
 
     pre, code
         color: $gray-20
@@ -22,17 +25,15 @@ html.dark,
     table
         thead
             th
-                background-color: $bg-primary
+                background-color: $gray-80
                 color: $gray-10
 
-        tr:nth-child(odd)
-            background-color: rgba(255, 255, 255, 0.15)
+        tbody
+            tr:nth-child(odd)
+                background-color: rgba(255, 255, 255, 0.05) !important
 
-        tr:nth-child(even)
-            background-color: rgba(255, 255, 255, 0.05)
-
-        tr:hover
-            background-color: rgba(0, 0, 0, 0.2)
+            tr:hover
+                background-color: rgba(0, 0, 0, 0.2) !important
 
         td
             color: $gray-10
@@ -41,11 +42,15 @@ html.dark,
 
     /* Forms */
     select
-        background: $gray-20
+        color-scheme: dark
+        color: white
+        background: $bg-dark
+        border-color: $gray-10
 
     input, textarea
-        color: $black
-        background: $gray-20
+        color-scheme: dark
+        color: white
+        background: $bg-dark
         border-color: $gray-10
 
         &:disabled
@@ -53,14 +58,20 @@ html.dark,
             background: $gray-40
             border-color: $gray-40
 
-            &:focus
+            &:focus,&:hover,&:active
                 background: $gray-40
                 border-color: $gray-40
 
         &:focus
-            border-color: $primary-light
-            background-color: rgba(255, 255, 225, 0.85)
+            border-color: $gray-10
+            //background-color: rgba(255, 255, 225, 0.85)
+            background-color: rgb(33, 37, 41)
     /* Forms END */
+
+
+    .card
+        color: $gray-10
+        background-color: $bg-content
 
 
     /* General */
@@ -70,7 +81,6 @@ html.dark,
 
         #calendar-container #calendar
             background-color: $bg-content
-
 
         .card.white
             h1
@@ -92,8 +102,11 @@ html.dark,
            .bar.post-content-width.white
                background-color: $bg-content
 
-        article .post-content blockquote p
-            color: $gray-20
+        article
+            .post-content
+                blockquote
+                    p
+                        color: $gray-20
 
         .event-list-grid
             .event-item.card.white
@@ -115,8 +128,11 @@ html.dark,
             .event-content-aside
                 color: $gray-20
 
-        .event-container .event-card .event-card-header .event-dates
-            color: $pale-dark !important
+        .event-container
+            .event-card
+                .event-card-header
+                    .event-dates
+                        color: $pale-dark !important
 
     .dropdown-content
         color: #fff

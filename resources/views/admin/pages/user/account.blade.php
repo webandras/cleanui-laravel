@@ -86,7 +86,7 @@
                 </fieldset>
 
 
-                <hr class="divider">
+                <hr>
 
 
                 <fieldset id="settings">

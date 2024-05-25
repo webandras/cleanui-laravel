@@ -1,6 +1,6 @@
 <footer class="page-footer public-footer">
     <div class="footer-content">
-        <div class="logo margin-bottom-1">
+        <div class="logo margin-bottom-1 margin-left-right-auto fit-content">
             <a href="/" class="brand">
                 <img src="{{ url('/images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
             </a>

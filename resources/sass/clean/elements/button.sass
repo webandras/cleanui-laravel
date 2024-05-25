@@ -1,42 +1,55 @@
 .button, button
     @include button()
     background-color: $primary-light
-    border: 2px solid $primary-light
+    border: 1px solid $primary-light
     color: #fff
+
+    &:hover
+        background-color: $primary-dark
+        border: 1px solid $primary-dark
+
+    &:focus
+        outline-offset: 2px
+
+    &:focus-visible
+        outline-offset: 2px
+        outline: 1px solid
+
+    &:disabled,
+    &.disabled
+        cursor: not-allowed
+        color: #fff
+        border-color: $black
+        background-color: $black
+        opacity: 0.5
+
+        &:hover
+            box-shadow: none
+            border: 1px solid transparent
+            background-color: $black
+
+
+    &.button-small
+        padding: 0.25em 0.5em
+        font-size: 14px
+        line-height: 100%
+
+        @media screen and (max-width: $mobile)
+            padding: 0.5em 1em
 
     &.button-large
         padding: 0.75em 1.25em
         font-size: 16px
 
-    &:hover
-        background-color: $primary-dark
-        border: 2px solid $primary-dark
-
-    &:focus
-        outline-offset: 4px
-        outline-color: $primary-light
-
-    &:disabled
-        cursor: not-allowed
-        color: #fff
-        border-color: $black
-        background-color: $black
-        opacity: 0.3
-
-        &:hover
-            box-shadow: none
-            border: 2px solid transparent
-            cursor: not-allowed
-
     &.alt
         background-color: #fff
-        border: 2px solid $primary-light
+        border: 1px solid $primary-light
         color: $primary-light
 
         &:hover,
         &:focus
             background-color: $primary-dark
-            border: 2px solid $primary-dark
+            border: 1px solid $primary-dark
             color: #fff
 
 
@@ -45,20 +58,45 @@
         background-color: $primary-light
         border-color: $primary-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $primary-dark
+
         &:hover
             border-color: $primary-dark
             background-color: $primary-dark
             color: white
+
+        &:disabled,
+        &:disabled:hover
+            border-color: $primary-light
+            background-color: $primary-light
 
         &.alt
             color: $primary-light
             border-color: $primary-light
             background-color: transparent
 
+            &:focus
+                outline: none
+
+            &:focus-visible
+                outline-offset: 2px
+                outline: 1px solid $primary-dark
+
             &:hover, &:focus
                 border-color: $primary-dark
                 background-color: white
                 color: $primary-dark
+
+            &:disabled,
+            &:disabled:hover
+                color: $primary-light
+                border-color: $primary-light
+                background-color: transparent
 
 
     &.secondary
@@ -66,10 +104,22 @@
         background-color: $accent-light
         border-color: $accent-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $accent-light
+
         &:hover
             border-color: $accent-dark
             background-color: $accent-dark
             color: white
+
+        &:disabled,
+        &:disabled:hover
+            border-color: $accent-light
+            background-color: $accent-light
 
         &.alt
             color: $accent-light
@@ -81,15 +131,32 @@
                 background-color: $accent-dark
                 color: white
 
+            &:disabled,
+            &:disabled:hover
+                border-color: $accent-light
+                background-color: transparent
+
 
     &.danger
         color: white
         background-color: $error-light
         border-color: $error-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $error-light
+
         &:hover
             border-color: $error-dark
             background-color: $error-dark
+
+        &:disabled,
+        &:disabled:hover
+            border-color: $error-light
+            background-color: $error-light
 
         &.alt
             border: 1px solid $error-light
@@ -101,15 +168,33 @@
                 color: white
                 background-color: $error-dark
 
+            &:disabled,
+            &:disabled:hover
+                color: $error-light
+                border-color: $error-light
+                background-color: transparent
+
 
     &.info
         color: white
         background-color: $info-light
         border-color: $info-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $info-light
+
         &:hover
             background-color: #186c77
             border-color: #186c77
+
+        &:disabled,
+        &:disabled:hover
+            border-color: $info-light
+            background-color: $info-light
 
         &.alt
             border: 1px solid $info-light
@@ -121,15 +206,32 @@
                 color: white
                 background-color: #186c77
 
+            &:disabled,
+            &:disabled:hover
+                border-color: $info-light
+                color: $info-light
+                background-color: transparent
+
 
     &.success
         color: white
         background-color: $success-light
         border-color: $success-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $success-light
+
         &:hover
             background-color: $success-dark
             border-color: $success-dark
+
+        &:disabled,
+        &:disabled:hover
+            background-color: $success-light
 
         &.alt
             border: 1px solid $success-light
@@ -141,16 +243,34 @@
                 border-color: $success-dark
                 background-color: $success-dark
 
+            &:disabled,
+            &:disabled:hover
+                color: $success-light
+                background-color: transparent
+
 
     &.warning
         color: $black
         background-color: $warning-light
         border-color: $warning-light
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $warning-light
+
         &:hover
             background-color: $warning-dark
             border-color: $warning-dark
             color: white
+
+        &:disabled,
+        &:disabled:hover
+            color: $black
+            border-color: $warning-light
+            background-color: $warning-light
 
         &.alt
             border: 1px solid $warning-light
@@ -161,6 +281,11 @@
                 color: white
                 border-color: $warning-dark
                 background-color: $warning-dark
+
+            &:disabled,
+            &:disabled:hover
+                color: $warning-light
+                background-color: transparent
 
 
     &.transparent
@@ -200,9 +325,16 @@
         background-color: $gray-60
         border-color: $gray-60
 
+        &:focus
+            outline: none
+
+        &:focus-visible
+            outline-offset: 2px
+            outline: 1px solid $gray-80
+
         &:hover
             background-color: $gray-80
-            border-color: white
+            border-color: $gray-80
             color: white
 
 
@@ -263,8 +395,8 @@ button.button-circle
     display: flex
     align-items: center
     justify-content: center
-    width: 30px
-    height: 30px
+    width: 32px
+    height: 32px
     text-decoration: none
 
     i
@@ -311,7 +443,7 @@ button.button-circle
             color: white
             background-color: $gray-60
 
-    .button.disabled
+    .button:disabled
         &:hover, &:active
             color: inherit
             background-color: transparent
@@ -323,7 +455,7 @@ button.button-circle
             border-color: $gray-80
 
 
-@media screen and (max-width: 550px)
+@media screen and (max-width: $mobile)
     button:not(.scroll-to-top-button):not(.button-circle):not(.button-square):not(.darkmode-toggle):not(.event-list-widget--search-button):not(.close-button):not(.bar-item),
     .button:not(.scroll-to-top-button):not(.button-circle):not(.button-square):not(.darkmode-toggle):not(.event-list-widget--search-button):not(.close-button):not(.bar-item)
         width: 100%

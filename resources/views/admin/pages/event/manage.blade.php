@@ -53,37 +53,17 @@
                             @endif
                         </td>
                         <td>
+                            <h2 class="padding-right-0-5 h4 margin-top-bottom-0">
+                                {{ $event->title }}
+                            </h2>
+                            <small>/{{ $event->slug }}</small>
+
                             @isset ($event->event_detail->cover_image_url)
                                 <img
                                     src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                     alt="{{__('Cover image preview') }}"
-                                    class="hover-opacity border" width="140px">
+                                    class="hover-opacity border margin-bottom-0-5" width="140px">
                             @endisset
-
-                            <h2 class="padding-right-0-5 h4 margin-bottom-0">
-                                {{ $event->title }}
-                            </h2>
-                            <small>/{{ $event->slug }}</small>
-                            <div class="padding-top-1 flex flex-column">
-                                @isset($event->event_detail->facebook_url)
-                                    <a href="{{ htmlspecialchars($event->event_detail->facebook_url) }}"
-                                       target="_blank"
-                                       class="fs-14"
-                                    >
-                                        <i class="fa-brands fa-facebook"></i>
-                                        {{ $event->event_detail->facebook_url }}
-                                    </a>
-                                @endisset
-
-                                @isset($event->event_detail->tickets_url)
-                                    <a href="{{ htmlspecialchars($event->event_detail->tickets_url) }}"
-                                       target="_blank"
-                                       class="fs-14">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        {{ $event->event_detail->tickets_url }}
-                                    </a>
-                                @endisset
-                            </div>
                         </td>
 
                         @php
@@ -99,12 +79,11 @@
                         @endphp
 
                         <td>
-                            {{ $startDate->format("Y-m-d H:i T (O)") }}
+                            {{ $startDate->format("Y-m-d H:i T") }}
                         </td>
                         <td>
-                            {{ $endDate->format("Y-m-d H:i T (O)") }}
+                            {{ $endDate->format("Y-m-d H:i T") }}
                         </td>
-
 
                         <td>
                             <div class="flex flex-row">
@@ -132,9 +111,9 @@
 
                                     <!-- Delete post -->
                                     <livewire:admin.event.delete title="{{ __('Delete event') }}"
-                                                           :event="$event"
-                                                           :hasSmallButton="false"
-                                                           :modalId="'m-delete-event-' . $event->id"
+                                                                 :event="$event"
+                                                                 :hasSmallButton="false"
+                                                                 :modalId="'m-delete-event-' . $event->id"
                                     >
                                     </livewire:admin.event.delete>
                                 @endif

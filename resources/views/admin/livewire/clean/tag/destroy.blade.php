@@ -8,8 +8,7 @@
     <x-global::form-modal trigger="isModalOpen" title="{{ __('Are you sure you want to delete it permanently?') }}" id="{{ $modalId }}">
         <form wire:submit="destroyTag">
             <h2 class="h3">{{ $name }}</h2>
-            <hr class="divider">
-
+            <hr>
             <div class="actions">
                 <button type="submit" class="danger">
                     <span wire:loading wire:target="destroyTag" class="animate-spin">&#9696;</span>

@@ -17,7 +17,7 @@
                         id="{{ $modalId }}">
         <form wire:submit="deleteEvent">
             <h2 class="h3">{{ $title }}</h2>
-            <hr class="divider">
+            <hr>
 
             <input wire:model="eventId"
                    disabled

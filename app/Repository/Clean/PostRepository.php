@@ -65,8 +65,7 @@ class PostRepository implements PostRepositoryInterface
      */
     public function getPaginatedPosts(): LengthAwarePaginator
     {
-        return Post::with('categories')
-            ->orderBy('created_at', 'DESC')
+        return Post::orderBy('created_at', 'DESC')
             ->paginate(PostInterface::RECORDS_PER_PAGE)
             ->withQueryString();
     }

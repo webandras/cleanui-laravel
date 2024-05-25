@@ -18,7 +18,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <label for="name">{{ __('Name') }}</label>
+                <label for="name" class="margin-top-0">{{ __('Name') }}</label>
                 <input
                     id="name"
                     type="text"
@@ -76,8 +76,7 @@
 
                 <button type="submit" class="primary margin-top-1-5 block increased-button-padding">{{ __('Register') }}</button>
 
-
-                <hr class="divider">
+                <hr>
 
                 {{-- Login with Facebook --}}
                 <div>

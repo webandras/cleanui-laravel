@@ -91,7 +91,7 @@
                         {{ $errors->has('isRecurring') ? $errors->first('isRecurring') : '' }}
                     </p>
 
-                    <hr class="divider">
+                    <hr>
 
                     <!-- Client id -->
                     <label for="clientId">{{ __('Client') }}<span class="text-red">*</span></label>
@@ -329,7 +329,7 @@
             >
                 <div>
                     <h3 class="h5">{{ $clientName }}</h3>
-                    <hr class="divider">
+                    <hr>
 
                     <button wire:click="$dispatch('deleteJobListener')"
                             type="button"

@@ -17,8 +17,7 @@
                           id="{{ $modalId }}">
         <form wire:submit="deleteTag">
             <h2 class="h3">{{ $name }}</h2>
-            <hr class="divider">
-
+            <hr>
             <label for="tagId" class="sr-only">{{ __('Tag Id') }}</label>
             <input wire:model="tagId"
                    disabled

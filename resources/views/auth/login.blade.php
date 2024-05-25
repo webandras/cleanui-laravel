@@ -16,7 +16,7 @@
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <label for="email">{{ __('Email Address') }}</label>
+                <label for="email" class="margin-top-0">{{ __('Email Address') }}</label>
                 <input id="email" type="email" class="@error('email') border border-red @enderror" name="email"
                        value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -33,12 +33,10 @@
                 <span role="alert"><strong class="text-red fs-14">{{ $message }}</strong></span>
                 @enderror
 
-                <div class="inline-block margin-top-1 margin-bottom-1">
+                <div class="flex align-items-center margin-top-1 margin-bottom-1">
                     <input type="checkbox" name="remember" id="remember"
                            class="margin-left-0" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="remember" style="display: inline">
-                        {{ __('Remember Me') }}
-                    </label>
+                    <label for="remember" class="margin-0">{{ __('Remember Me') }}</label>
                 </div>
 
                 {{-- Login with Email and Password --}}
@@ -54,7 +52,7 @@
                     @endif
                 </div>
 
-                <hr class="divider">
+                <hr>
 
                 {{-- Login with Facebook --}}
                 <a class="button block text-center relative" href="{{ route('facebook.redirect') }}"

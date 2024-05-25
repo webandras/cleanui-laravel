@@ -26,7 +26,12 @@ textarea
     @include field()
 
     &:focus
+        outline: none
         border-color: $primary-light
+
+    &:focus-visible
+        outline-offset: 0px
+        outline: 2px solid $primary-light
 
 
 input[type="text"]:focus,
@@ -42,9 +47,6 @@ input[type="url"]:focus,
 input[type="tel"]:focus,
 select:focus
     border: 1px solid $primary-light
-    outline-offset: 2px
-    outline-color: $primary-light
-    outline-width: 4px
 
 input
     overflow: hidden
@@ -52,6 +54,9 @@ input
     &:disabled
         cursor: not-allowed
         background-color: $gray-20
+
+    &.input-small
+        padding: 0.2em
 
 
 input[readonly]
@@ -92,6 +97,7 @@ label
     margin: 1.4em 0 0.4em 0
     clear: both
     display: block
+    font-size: 14px
 
     span
         color: inherit
@@ -102,7 +108,6 @@ input[type="checkbox"]:checked
     outline-offset: 4px
     outline-color: $primary-light
     outline-width: 4px
-
 
 .checkbox-container
     margin-top: 1em
@@ -127,7 +132,6 @@ textarea
     border: 1px solid $border
     line-height: 1.6em
 
-
 select
     background: white
 
@@ -136,9 +140,9 @@ select
     cursor: not-allowed
     opacity: 0.3
 
-
 .disabled *, :disabled *
     pointer-events: none
+
 
 .form-row
     padding: 0 0.5em
@@ -172,6 +176,7 @@ html.dark
 
     .ts-wrapper.multi .ts-control
         background-color: $gray-80
+/* TomSelect END */
 
 
 /* Switch component */
@@ -193,7 +198,6 @@ html.dark
     .simple-switch
         display: none
 
-
     .simple-switch-circle
         background: #fff
         border-radius: 100%
@@ -202,7 +206,6 @@ html.dark
         position: absolute
         top: 0
         width: 24px
-
 
     &.unchecked
         box-shadow: rgb(223, 223, 223) 0 0 0 0 inset
@@ -214,7 +217,6 @@ html.dark
             left: 0
             transition: background-color 0.4s, left 0.2s
 
-
     &.checked
         border-color: $gray-20
         box-shadow: $primary-light 0 0 0 16px inset
@@ -225,3 +227,4 @@ html.dark
             left: 36px
             transition: background-color 0.4s, left 0.2s
             background-color: rgb(255, 255, 255)
+/* Switch component END */
