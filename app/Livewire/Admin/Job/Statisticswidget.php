@@ -57,6 +57,8 @@ class Statisticswidget extends Component
 
     public $totalJobs;
 
+    public float $sumOfHours = 0.0;
+
 
     protected array $rules = [
         'clientId' => ['required', 'int', 'max:255'],
@@ -129,7 +131,6 @@ class Statisticswidget extends Component
         $result = DB::table('jobs')
             ->selectRaw(
                 "clients.name,
-                        jobs.status,
                         jobs.is_recurring,
                         CASE
                             WHEN (jobs.is_recurring = 0) THEN
@@ -148,13 +149,12 @@ class Statisticswidget extends Component
                         jobs.end,
                         jobs.rrule"
             )
-            ->join('clients', 'jobs.client_id', '=', 'clients.id');
+            ->leftJoin('clients', 'jobs.client_id', '=', 'clients.id');
 
         $result = $this->addWhereConditionsToQueries($result);
         $result = $result
             ->orderByDesc('clients.name')
             ->groupBy('clients.name',
-                'jobs.status',
                 'jobs.is_recurring',
                 'durationCalc',
                 'hours',
@@ -164,6 +164,7 @@ class Statisticswidget extends Component
             )
             ->paginate(Job::RECORDS_PER_PAGE);
 
+        $this->sumOfHours = (float) $result->sum('hours');
         $this->jobs = $result;
     }
 
@@ -190,14 +191,14 @@ class Statisticswidget extends Component
 
         if ($this->clientId === 0) {
             $query = $query
-                ->whereRaw("jobs.start > ? AND jobs.start < ?", [$this->startDate, $this->endDate])
-                ->orWhereRaw("DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) > ?", [$this->startDate]);
+                ->whereRaw("jobs.start >= ? AND jobs.start <= ?", [$this->startDate, $this->endDate])
+                ->orWhereRaw("DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) >= ? OR DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) <= ?", [$this->startDate, $this->startDate]);
         } else {
             $query = $query
-                ->whereRaw("jobs.start > ? AND jobs.start < ? AND jobs.client_id = ?",
+                ->whereRaw("jobs.start >= ? AND jobs.start <= ? AND jobs.client_id = ?",
                     [$this->startDate, $this->endDate, $this->clientId])
-                ->orWhereRaw("DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) > ? AND jobs.client_id = ? ",
-                    [$this->startDate, $this->clientId]);
+                ->orWhereRaw("( DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) >= ? OR DATE(JSON_UNQUOTE(JSON_EXTRACT(jobs.rrule , '$.dtstart'))) <= ? ) AND jobs.client_id = ? ",
+                    [$this->startDate, $this->startDate, $this->clientId]);
         }
 
         return $query;
@@ -217,30 +218,38 @@ class Statisticswidget extends Component
         $endDate = new DateTime($this->endDate, $tz);
         $interval = $startDate->diff($endDate);
 
+        $statement = DB::statement("SET @per_week=0");
         $statistics = DB::table('jobs')
             ->selectRaw(
                 "clients.name,
-                        CAST( 7 * JSON_UNQUOTE( JSON_EXTRACT( jobs.rrule, '$.interval' ) ) AS UNSIGNED ) AS per_week,
+                        @per_week:=(CAST( 7 * JSON_UNQUOTE( JSON_EXTRACT( jobs.rrule, '$.interval' ) ) AS UNSIGNED )),
                             ( CASE
                                 WHEN ( jobs.is_recurring = 0 ) THEN
                                     SUM( TIME_TO_SEC( TIMEDIFF( jobs.end, jobs.start ) ) / 3600 )
                                 WHEN ( jobs.is_recurring = 1 ) THEN
                                    SUM( TIME_TO_SEC( jobs.duration ) / 3600 * (
                                         WITH RECURSIVE DateRange AS (
-                                            SELECT ? AS StartDate
+                                            SELECT
+                                            (CASE
+                                                WHEN ? < DATE( REPLACE(REPLACE(JSON_UNQUOTE( JSON_EXTRACT( jobs.rrule, '$.dtstart' ) ), 'T', ' '), 'Z', '') ) THEN
+                                                    DATE( REPLACE(REPLACE(JSON_UNQUOTE( JSON_EXTRACT( jobs.rrule, '$.dtstart' ) ), 'T', ' '), 'Z', '') )
+                                                ELSE
+                                                    ?
+                                            END) AS StartDate
                                             UNION ALL
-                                            SELECT DATE_ADD( StartDate, INTERVAL per_week DAY )
+                                            SELECT DATE_ADD( StartDate, INTERVAL @per_week DAY )
                                             FROM DateRange
-                                            WHERE StartDate < DATE_ADD( ?, INTERVAL -per_week DAY )
+                                            WHERE StartDate < DATE_ADD( ?, INTERVAL -@per_week DAY )
                                     ) SELECT COUNT( StartDate ) FROM DateRange ) )
-                            END ) AS hours", [$this->startDate, $this->endDate]
+                            END ) AS hours", [$this->startDate, $this->startDate, $this->endDate]
             )
-            ->join('clients', 'jobs.client_id', '=', 'clients.id');
+            ->leftJoin('clients', 'jobs.client_id', '=', 'clients.id');
 
         $statistics = $this->addWhereConditionsToQueries($statistics);
         $statistics = $statistics
             ->groupBy('clients.name', 'jobs.is_recurring', 'jobs.rrule')
             ->get();
+
 
         $this->chartData = $statistics;
     }

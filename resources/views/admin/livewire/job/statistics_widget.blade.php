@@ -10,7 +10,7 @@
         chartColor: $wire.entangle('chartColor'),
         chartXAxisTitle: $wire.entangle('chartXAxisTitle'),
         chartVAxisTitle: $wire.entangle('chartVAxisTitle'),
-        sumOfHours: 0,
+        sumOfHours: $wire.$entangle('sumOfHours', true),
 
         /* Basic chart options */
         getOptions() {
@@ -92,10 +92,10 @@
             <div>
                 <label for="clientId">{{ __('Client name') }}<span class="text-red">*</span></label>
                 <select
-                    wire:model="clientId"
-                    class="{{ $errors->has('clientId') ? 'border border-red' : '' }}"
-                    aria-label="{{ __("Select a client") }}"
-                    name="clientId"
+                        wire:model="clientId"
+                        class="{{ $errors->has('clientId') ? 'border border-red' : '' }}"
+                        aria-label="{{ __("Select a client") }}"
+                        name="clientId"
                 >
                     @foreach ($clientsData as $key => $value)
                         <option {{ $clientId === $value ? "selected": "" }} value="{{ $value }}">
@@ -112,7 +112,7 @@
         </form>
     </div>
 
-    <div wire:ignore id="chart_div"></div>
+    <div wire:ignore id="chart_div" style="min-height: 400px;"></div>
 
     <h4 class="fs-18">{{ __('Total number of works: ') }}
         <span class="badge gray-60 text-white round">{{ $jobs->total() }}</span>
@@ -172,12 +172,12 @@
 
 						$firstRun = 0;
 
-						while ($iteratedDate <= $endDate) {
-							if ($iteratedDate <= $startDate) {
+                        while ($iteratedDate < $endDate) {
+                            if ($iteratedDate <= $startDate) {
+                                $iteratedDate->modify($intervalToAdd);
 								continue;
-							}
-
-							// the first datetime
+                            }
+                            	// the first datetime
 							if ($firstRun === 0) {
 							    $recurringStartDates[] = $iteratedDate->format(DateTimeInterface::ATOM);
 
@@ -197,11 +197,10 @@
 								continue;
 							}
 
-							// increase datetime by the recurrence interval (for example: '+1 week')
-							$iteratedDate->modify($intervalToAdd);
+                            $iteratedDate->modify($intervalToAdd);
 
-							// if the increased datetime is outside the end date of the interval
-						    if ($iteratedDate >= $endDate) {
+                            // if the increased datetime is outside the end date of the interval
+						    if ($iteratedDate > $endDate) {
 								continue;
 							}
 
@@ -218,7 +217,7 @@
 							// add the duration for the end datetime
 							$tempDate->modify($duration);
 							$recurringEndDates[] = $tempDate->format(DateTimeInterface::ATOM);
-						}
+                        }
 					}
                 @endphp
 
