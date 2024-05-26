@@ -69,7 +69,7 @@
 
 
                     <div class="checkbox-container margin-top-bottom-1">
-                        <label for="enable2fa">
+                        <label for="enable2fa" class="fit-content">
                             <input name="enable2fa"
                                    id="enable2fa"
                                    type="checkbox"
@@ -138,7 +138,7 @@
 
 
                     <div class="checkbox-container margin-top-1">
-                        <label for="darkmode">
+                        <label for="darkmode" class="fit-content">
                             <input name="preferences[darkmode]"
                                    id="darkmode"
                                    type="checkbox"
