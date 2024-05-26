@@ -112,15 +112,6 @@
                                     <a href="{{ $event->event_detail->facebook_url }}" class="word-break">
                                         <i class="fa-brands fa-facebook margin-right-0-5"></i>{{ __('Facebook event link') }}</a>
                                 </li>
-                                @isset($event->event_detail->tickets_url)
-                                    <li class="margin-bottom-0-5">
-                                        <a href="{{ $event->event_detail->tickets_url }}"
-                                           class="word-break">
-                                            <i class="fa-solid fa-ticket margin-right-0-5"></i>{{ __('Buy tickets link') }}
-                                        </a>
-                                    </li>
-                                @endisset
-
                                 <li class="margin-bottom-0-5">
                                     <a title="{{ __('Google Map search') }}"
                                        href="{{ 'https://www.google.com/maps/search/?api=1&query=' . urlencode($event->location->address) }}"
