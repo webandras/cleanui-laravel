@@ -24,7 +24,7 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:255', 'string'],
-            'slug' => ['nullable', 'max:255', 'string', 'unique:events'],
+            'slug' => ['nullable', 'max:255', 'alpha_dash', 'unique:events'],
             'description' => ['required', 'string'],
             'start' => ['required', 'string'],
             'end' => ['required', 'string'],

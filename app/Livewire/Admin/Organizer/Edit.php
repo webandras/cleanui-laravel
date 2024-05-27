@@ -31,7 +31,7 @@ class Edit extends Component
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',
         'facebook_url' => 'required|string|min:10|max:255',
-        'slug' => 'required|string|unique:locations',
+        'slug' => 'required|alpha_dash|unique:locations',
     ];
 
 

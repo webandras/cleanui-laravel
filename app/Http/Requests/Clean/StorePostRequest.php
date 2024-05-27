@@ -25,7 +25,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required', 'max:255', 'string'],
             'status' => ['required', 'in:draft,under-review,published', 'string'],
-            'slug' => ['nullable', 'max:255', 'string'],
+            'slug' => ['nullable', 'max:255', 'alpha_dash'],
             'cover_image_url' => ['nullable', 'max:255', 'string'],
             'content' => ['required', 'string'],
             'excerpt' => ['required', 'string'],

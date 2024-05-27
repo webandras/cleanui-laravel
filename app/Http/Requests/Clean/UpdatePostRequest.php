@@ -25,7 +25,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => ['required', 'max:255', 'string'],
             'status' => ['required', 'in:draft,under-review,published', 'string'],
-            'slug' => ['required', 'max:255', 'string'],
+            'slug' => ['required', 'max:255', 'alpha_dash'],
             'cover_image_url' => ['required', 'max:255', 'string'],
             'content' => ['required', 'string'],
             'excerpt' => ['required', 'string'],

@@ -215,7 +215,7 @@ class EventController extends Controller
 
         $rules = [
             'title' => ['required', 'max:255', 'string'],
-            'slug' => ['required', 'max:255', Rule::unique('events')->ignore($event->id, 'id')],
+            'slug' => ['required', 'alpha_dash', 'max:255', Rule::unique('events')->ignore($event->id, 'id')],
             'description' => ['required', 'string'],
             'start' => ['required', 'string'],
             'end' => ['required', 'string'],

@@ -35,7 +35,7 @@ class Create extends Component
 
     protected array $rules = [
         'name' => ['required', 'string', 'max:255'],
-        'slug' => ['required', 'string', 'max:255', 'unique:permissions'],
+        'slug' => ['required', 'alpha_dash', 'max:255', 'unique:permissions'],
         'permissionRoles' => ['array'],
     ];
 

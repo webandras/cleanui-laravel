@@ -29,7 +29,7 @@ class CreateRoot extends Component
 
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',
-        'slug' => 'required|string|unique:categories',
+        'slug' => 'required|alpha_dash|unique:categories',
         'cover_image_url' => 'nullable|string',
     ];
 

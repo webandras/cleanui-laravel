@@ -75,7 +75,7 @@ class Create extends Component
      */
     protected array $rules = [
         'name' => 'required|string|min:1|max:255',
-        'slug' => 'required|string|unique:tags',
+        'slug' => 'required|alpha_dash|unique:tags',
         'cover_image_url' => 'nullable|string',
         'cover_image' => 'nullable|image|max:2048',
     ];

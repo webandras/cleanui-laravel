@@ -31,7 +31,7 @@ class Create extends Component
         'name' => 'required|string|min:1|max:255',
         'city' => 'required|string|min:1|max:255',
         'address' => 'required|string|min:1|max:255',
-        'slug' => 'required|string|unique:locations',
+        'slug' => 'required|alpha_dash|unique:locations',
         'latitude' => 'required|between:-90.00000000000000,90.00000000000000',
         'longitude' => 'required|between:-180.00000000000000,180.00000000000000',
     ];
