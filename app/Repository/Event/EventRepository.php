@@ -85,18 +85,28 @@ class EventRepository implements EventRepositoryInterface
         int $organizerId,
         string $searchTerm
     ): LengthAwarePaginator {
-        $q = Event::with(['event_detail', 'location', 'organizer'])
+        $q = Event::with('event_detail')
+            ->with([
+                'location' => function ($query) {
+                    $query->withTrashed();
+                }
+            ])
+            ->with([
+                'organizer' => function ($query) {
+                    $query->withTrashed();
+                }
+            ])
             ->whereDate('start', '>', $dateString);
 
         if ($city !== '') {
             $q->whereHas('location', function ($q) use ($city) {
-                $q->where('city', '=', $city);
+                $q->where('city', '=', $city)->withTrashed();
             });
         }
 
         if ($organizerId > 0) {
             $q->whereHas('organizer', function ($q) use ($organizerId) {
-                $q->where('id', '=', $organizerId);
+                $q->where('id', '=', $organizerId)->withTrashed();
             });
         }
 
