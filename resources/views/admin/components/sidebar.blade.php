@@ -2,7 +2,7 @@
     <header>
         <h3 class="text-white fs-18">{{ __('Welcome, ') . Auth()->user()->name }}</h3>
     </header>
-    <div class="sidebar-content fs-14">
+    <div class="sidebar-content">
 
         <!-- Custom content goes here -->
         <?php if (isset($sidebar)) { ?>

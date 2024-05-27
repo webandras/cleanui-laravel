@@ -7,7 +7,7 @@
                 </a>
             </div>
             @if (Route::has('login'))
-                <div class="main-navigation fs-14">
+                <div class="main-navigation">
                     <nav id="main-menu">
 
                         <a class="{{ request()->routeIs('frontpage') ? 'active' : '' }}"
