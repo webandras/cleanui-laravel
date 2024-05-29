@@ -15,7 +15,13 @@ use App\Http\Controllers\Admin\Job\JobClientController;
 use App\Http\Controllers\Admin\Job\JobCalendarController;
 use App\Http\Controllers\Admin\Job\JobStatsController;
 use App\Http\Controllers\Admin\Job\JobWorkerController;
+use App\Http\Controllers\Auth\Clean\ConfirmPasswordController;
+use App\Http\Controllers\Auth\Clean\ForgotPasswordController;
+use App\Http\Controllers\Auth\Clean\LoginController;
+use App\Http\Controllers\Auth\Clean\RegisterController;
+use App\Http\Controllers\Auth\Clean\ResetPasswordController;
 use App\Http\Controllers\Auth\Clean\UserCodeController;
+use App\Http\Controllers\Auth\Clean\VerificationController;
 use App\Http\Controllers\Demo\Clean\DemoController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Public\Clean\BlogController;
@@ -110,36 +116,28 @@ Route::group(
     function () {
 
         /* Login/Logout/Register */
-        Route::get('login', 'App\Http\Controllers\Auth\Clean\LoginController@showLoginForm')->name('login');
-        Route::post('login', 'App\Http\Controllers\Auth\Clean\LoginController@login');
-        Route::post('logout', 'App\Http\Controllers\Auth\Clean\LoginController@logout')->name('logout');
-        Route::get('register', 'App\Http\Controllers\Auth\Clean\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'App\Http\Controllers\Auth\Clean\RegisterController@register');
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [LoginController::class, 'login']);
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+        Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('register', [RegisterController::class, 'register']);
         /* Login/Logout/Register END */
 
 
         /* Password */
-        Route::get('password/reset',
-            'App\Http\Controllers\Auth\Clean\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        Route::post('password/email',
-            'App\Http\Controllers\Auth\Clean\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        Route::get('password/reset/{token}',
-            'App\Http\Controllers\Auth\Clean\ResetPasswordController@showResetForm')->name('password.reset');
-        Route::post('password/reset',
-            'App\Http\Controllers\Auth\Clean\ResetPasswordController@reset')->name('password.update');
-        Route::get('password/confirm',
-            'App\Http\Controllers\Auth\Clean\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-        Route::post('password/confirm', 'App\Http\Controllers\Auth\Clean\ConfirmPasswordController@confirm');
+        Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+        Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+        Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+        Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
         /* Password END */
 
 
         /* Email */
-        Route::get('email/verify',
-            'App\Http\Controllers\Auth\Clean\VerificationController@show')->name('verification.notice');
-        Route::get('email/verify/{id}/{hash}',
-            'App\Http\Controllers\Auth\Clean\VerificationController@verify')->name('verification.verify');
-        Route::post('email/resend',
-            'App\Http\Controllers\Auth\Clean\VerificationController@resend')->name('verification.resend');
+        Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+        Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+        Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
         /* Email END */
 
     });
@@ -150,7 +148,9 @@ Route::group(
     ['middleware' => ['auth', 'verified', '2fa', 'role:super-administrator|administrator'], 'prefix' => 'admin'],
     function () {
 
+        /* Manage Users */
         Route::get('user/manage', [UserController::class, 'index'])->name('user.manage');
+        /* Manage Users END */
 
 
         /* Roles and Permissions */
