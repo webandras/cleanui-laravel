@@ -22,7 +22,7 @@ class Job extends Model
     public const RECORDS_PER_PAGE = 10;
     public const TIMEZONE = 'Europe/Budapest';
 
-    // the primary key is non-incrementing and a uuid string
+    // the primary key is non-incrementing and an uuid string
     // if we want to use uuid as primary key
 //    public $incrementing = false;
 //    protected $keyType = 'string';

@@ -2,7 +2,6 @@
 
 namespace App\Models\Clean;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Mail\Clean\SendCodeMail;
 use App\Trait\Clean\HasRolesAndPermissions;
 use App\Trait\Clean\HasPreferences;
