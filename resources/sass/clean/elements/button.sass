@@ -9,11 +9,10 @@
         border: 1px solid $primary-dark
 
     &:focus
-        outline-offset: 2px
+    //outline: none
 
     &:focus-visible
-        outline-offset: 2px
-        outline: 1px solid
+        box-shadow: $primary-light-shadow
 
     &:disabled,
     &.disabled
@@ -21,7 +20,11 @@
         color: #fff
         border-color: $black
         background-color: $black
-        opacity: 0.5
+        opacity: 0.4
+
+        &:focus, &:focus-visible
+            outline: none
+            box-shadow: none
 
         &:hover
             box-shadow: none
@@ -49,8 +52,8 @@
         &:hover,
         &:focus
             background-color: $primary-dark
-            border: 1px solid $primary-dark
             color: #fff
+            outline: none
 
 
     &.primary
@@ -58,12 +61,8 @@
         background-color: $primary-light
         border-color: $primary-light
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $primary-dark
+            box-shadow: $primary-light-shadow
 
         &:hover
             border-color: $primary-dark
@@ -80,17 +79,11 @@
             border-color: $primary-light
             background-color: transparent
 
-            &:focus
-                outline: none
-
-            &:focus-visible
-                outline-offset: 2px
-                outline: 1px solid $primary-dark
-
             &:hover, &:focus
                 border-color: $primary-dark
                 background-color: white
                 color: $primary-dark
+                outline: none
 
             &:disabled,
             &:disabled:hover
@@ -142,12 +135,8 @@
         background-color: $error-light
         border-color: $error-light
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $error-light
+            box-shadow: $error-light-shadow
 
         &:hover
             border-color: $error-dark
@@ -180,12 +169,8 @@
         background-color: $info-light
         border-color: $info-light
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $info-light
+            box-shadow: $info-light-shadow
 
         &:hover
             background-color: #186c77
@@ -218,12 +203,8 @@
         background-color: $success-light
         border-color: $success-light
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $success-light
+            box-shadow: $success-light-shadow
 
         &:hover
             background-color: $success-dark
@@ -254,12 +235,8 @@
         background-color: $warning-light
         border-color: $warning-light
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $warning-light
+            box-shadow: $warning-light-shadow
 
         &:hover
             background-color: $warning-dark
@@ -325,12 +302,8 @@
         background-color: $gray-60
         border-color: $gray-60
 
-        &:focus
-            outline: none
-
         &:focus-visible
-            outline-offset: 2px
-            outline: 1px solid $gray-80
+            box-shadow: $gray-light-shadow
 
         &:hover
             background-color: $gray-80
@@ -464,4 +437,27 @@ button.button-circle
     .accordion
         button
             display: flex !important
+
+
+.google-login-button
+    background: rgb(62, 130, 247)
+    color: #ffffff
+    padding: 10px
+
+    img
+        height: 26px
+
+    &:hover
+        color: white
+
+.facebook-login-button
+    background: #3B5499
+    color: #ffffff
+    padding: 10px
+
+    img
+        height: 26px
+
+    &:hover
+        color: white
 

@@ -55,19 +55,18 @@
                 <hr>
 
                 {{-- Login with Facebook --}}
-                <a class="button block text-center relative" href="{{ route('facebook.redirect') }}"
-                   style="background: #3B5499; color: #ffffff; padding: 10px;">
-                    <img class="absolute left margin-left-1" style="height: 26px;" src="{{ asset('images/social/facebook.png') }}"
+                <a class="facebook-login-button button flex justify-center align-items-center text-center relative"
+                   href="{{ route('facebook.redirect') }}">
+                    <img class="margin-right-0-5" src="{{ asset('images/social/facebook.png') }}"
                          alt="Facebook logo"> {{ __('Sign in with Facebook') }}
                 </a>
 
                 {{-- Login with Google --}}
                 <div>
-                    <a class="button block text-center relative" href="{{ route('google.redirect') }}"
-                       style="background: rgb(62,130,247); color: #ffffff; padding: 10px;">
-                        <img class="absolute left margin-left-1" style="height: 26px;"
-                             src="{{ asset('images/social/google.png') }}" alt="Google logo"> <span
-                            class="text-center">{{ __('Sign in with Google') }}</span>
+                    <a class="google-login-button button flex justify-center align-items-center text-center relative"
+                       href="{{ route('google.redirect') }}">
+                        <img class="margin-right-0-5"
+                             src="{{ asset('images/social/google.png') }}" alt="Google logo"> {{ __('Sign in with Google') }}
                     </a>
                 </div>
 
