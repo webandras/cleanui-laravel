@@ -74,8 +74,7 @@
         </div>
     </div>
 
-    <span class="light-gray pointer scroll-to-top-button padding-0-5 round"
-          role="button"
+    <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
           aria-label="{{ __('To the top button') }}"
           title="{{ __('To the top button') }}"
           x-show="scrollTop > 800"
@@ -83,7 +82,7 @@
           x-transition
     >
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
-    </span>
+    </button>
 
     <x-admin::footer></x-admin::footer>
 
