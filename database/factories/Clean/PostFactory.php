@@ -5,7 +5,7 @@ namespace Database\Factories\Clean;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Clean\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Clean\Models\Post>
  */
 class PostFactory extends Factory
 {

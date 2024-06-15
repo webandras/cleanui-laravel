@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Auth\Clean;
 
-use App\Models\Clean\Role;
-use App\Models\Clean\User;
 use Illuminate\Database\Seeder;
+use Modules\Auth\Models\User;
+use Modules\Clean\Models\Role;
 
 class UserSeeder extends Seeder
 {

@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Public\Event;
 
-use App\Interface\Repository\Event\EventRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
 
 class Calendar extends Component
 {

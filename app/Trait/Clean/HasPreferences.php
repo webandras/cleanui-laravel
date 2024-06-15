@@ -2,9 +2,8 @@
 
 namespace App\Trait\Clean;
 
-use App\Models\Clean\UserPreference;
-
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Modules\Clean\Models\UserPreference;
 
 
 trait HasPreferences {

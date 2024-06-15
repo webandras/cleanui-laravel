@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Job\Worker;
 
-use App\Models\Job\Worker;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Job\Models\Worker;
 
 class Delete extends Component
 {

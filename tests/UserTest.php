@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use App\Models\Clean\Role;
-use App\Models\Clean\User;
 use Illuminate\Support\Facades\DB;
+use Modules\Auth\Models\User;
+use Modules\Clean\Models\Role;
 
 
 class UserTest extends TestCase

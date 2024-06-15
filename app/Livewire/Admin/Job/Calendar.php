@@ -2,11 +2,6 @@
 
 namespace App\Livewire\Admin\Job;
 
-use App\Interface\Repository\Job\ClientRepositoryInterface;
-use App\Interface\Repository\Job\JobRepositoryInterface;
-use App\Interface\Services\Clean\DateTimeServiceInterface;
-use App\Models\Job\Job;
-use App\Models\Job\Worker;
 use App\Trait\Clean\InteractsWithBanner;
 use DateTimeInterface;
 use Illuminate\Contracts\Foundation\Application;
@@ -19,6 +14,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
+use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
+use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Interfaces\JobRepositoryInterface;
+use Modules\Job\Models\Job;
+use Modules\Job\Models\Worker;
 
 class Calendar extends Component
 {

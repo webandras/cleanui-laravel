@@ -14,24 +14,24 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        'App\Models\Clean\Category' => 'App\Policies\Clean\CategoryPolicy',
-        'App\Models\Clean\Document' => 'App\Policies\Clean\DocumentPolicy',
-        'App\Models\Clean\Permission' => 'App\Policies\Clean\PermissionPolicy',
-        'App\Models\Clean\Post' => 'App\Policies\Clean\PostPolicy',
-        'App\Models\Clean\Role' => 'App\Policies\Clean\RolePolicy',
-        'App\Models\Clean\Tag' => 'App\Policies\Clean\TagPolicy',
-        'App\Models\Clean\User' => 'App\Policies\Clean\UserPolicy',
+        'Modules\Clean\Models\Category' => 'Modules\Clean\Policies\CategoryPolicy',
+        'Modules\Clean\Models\Document' => 'Modules\Clean\Policies\DocumentPolicy',
+        'Modules\Clean\Models\Permission' => 'Modules\Clean\Policies\PermissionPolicy',
+        'Modules\Clean\Models\Post' => 'Modules\Clean\Policies\PostPolicy',
+        'Modules\Clean\Models\Role' => 'Modules\Clean\Policies\RolePolicy',
+        'Modules\Clean\Models\Tag' => 'Modules\Clean\Policies\TagPolicy',
+        'Modules\Auth\Models\User' => 'Modules\Clean\Policies\UserPolicy',
 
         /* Jobs module */
-        'App\Models\Job\Job' => 'App\Policies\Job\JobPolicy',
-        'App\Models\Job\Client' => 'App\Policies\Job\ClientPolicy',
-        'App\Models\Job\Worker' => 'App\Policies\Job\WorkerPolicy',
+        'Modules\Job\Models\Job' => 'Modules\Job\Policies\JobPolicy',
+        'Modules\Job\Models\Client' => 'Modules\Job\Policies\ClientPolicy',
+        'Modules\Job\Models\Worker' => 'Modules\Job\Policies\WorkerPolicy',
         /* Jobs module END */
 
         /* Events module */
-        'App\Models\Event\Event' => 'App\Policies\Event\EventPolicy',
-        'App\Models\Event\Location' => 'App\Policies\Event\LocationPolicy',
-        'App\Models\Event\Organizer' => 'App\Policies\Event\OrganizerPolicy',
+        'Modules\Event\Model\Event' => 'Modules\Event\Event\EventPolicy',
+        'Modules\Event\Model\Location' => 'Modules\Event\Event\LocationPolicy',
+        'Modules\Event\Model\Organizer' => 'Modules\Event\Event\OrganizerPolicy',
         /* Events module END */
 
     ];

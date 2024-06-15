@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Organizer;
 
-use App\Interface\Repository\Clean\ModelRepositoryInterface;
-use App\Models\Event\Organizer;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Event\Models\Organizer;
 
 class Delete extends Component
 {

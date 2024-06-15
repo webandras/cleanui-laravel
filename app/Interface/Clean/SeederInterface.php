@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interface\Utils\Clean;
+namespace App\Interface\Clean;
 
 
 interface SeederInterface

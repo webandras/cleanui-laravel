@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Public\Event;
 
-use App\Interface\Repository\Event\EventRepositoryInterface;
-use App\Models\Event\Event;
-use App\Models\Event\Location;
-use App\Models\Event\Organizer;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
+use Modules\Event\Models\Event;
+use Modules\Event\Models\Location;
+use Modules\Event\Models\Organizer;
 
 class Widget extends Component
 {

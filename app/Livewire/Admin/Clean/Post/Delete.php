@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin\Clean\Post;
 
-use App\Interface\Repository\Clean\PostRepositoryInterface;
-use App\Models\Clean\Post;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\PostRepositoryInterface;
+use Modules\Clean\Models\Post;
 
 class Delete extends Component
 {

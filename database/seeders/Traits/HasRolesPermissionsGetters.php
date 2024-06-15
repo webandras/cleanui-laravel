@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Traits;
 
-use App\Models\Clean\Permission;
-use App\Models\Clean\Role;
+use Modules\Clean\Models\Permission;
+use Modules\Clean\Models\Role;
 
 trait HasRolesPermissionsGetters
 {

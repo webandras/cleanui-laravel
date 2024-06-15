@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Public\Clean\Post;
 
-use App\Interface\Repository\Clean\PostRepositoryInterface;
 use App\Trait\Clean\HasLocalization;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Clean\Interfaces\Repositories\PostRepositoryInterface;
 
 class PostGrid extends Component
 {

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\Clean;
 
-use App\Interface\Utils\Clean\SeederInterface;
+use App\Interface\Clean\SeederInterface;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

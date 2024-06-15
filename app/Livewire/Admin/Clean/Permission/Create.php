@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Admin\Clean\Permission;
 
-use App\Interface\Services\Clean\RolePermissionServiceInterface;
-use App\Models\Clean\Permission;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,6 +11,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Clean\Models\Permission;
 
 class Create extends Component
 {

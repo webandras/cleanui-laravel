@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Clean;
 
-use App\Interface\Utils\Clean\SeederInterface;
-use App\Models\Clean\Post;
+use App\Interface\Clean\SeederInterface;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Post;
 
 class PostSeeder extends Seeder implements SeederInterface
 {

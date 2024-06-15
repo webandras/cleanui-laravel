@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Clean;
 
-use App\Models\Clean\Document;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Document;
 
 class DocumentSeeder extends Seeder
 {

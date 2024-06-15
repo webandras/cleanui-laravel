@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Event;
 
-use App\Models\Clean\Permission;
 use Database\Seeders\Traits\HasRolesPermissionsGetters;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Permission;
 
 class ClientsWorkersMediaPermissionsSeeder extends Seeder
 {

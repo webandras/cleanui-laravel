@@ -2,9 +2,6 @@
 
 namespace App\Livewire\Admin\Clean\User;
 
-use App\Interface\Repository\Clean\UserRepositoryInterface;
-use App\Models\Clean\Role;
-use App\Models\Clean\User;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
@@ -12,6 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
+use Modules\Auth\Models\User;
+use Modules\Clean\Models\Role;
 
 class Edit extends Component
 {

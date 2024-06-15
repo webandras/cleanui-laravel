@@ -5,7 +5,7 @@ namespace Database\Factories\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event\Location>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Location>
  */
 class LocationFactory extends Factory
 {

@@ -5,7 +5,7 @@ namespace Database\Factories\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event\Organizer>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Organizer>
  */
 class OrganizerFactory extends Factory
 {

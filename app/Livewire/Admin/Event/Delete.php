@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin\Event;
 
-use App\Interface\Repository\Event\EventRepositoryInterface;
-use App\Models\Event\Event;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
+use Modules\Event\Models\Event;
 
 class Delete extends Component
 {

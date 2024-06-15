@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Auth\Clean;
 
-use App\Models\Clean\Role;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Role;
 
 class RoleSeeder extends Seeder
 {

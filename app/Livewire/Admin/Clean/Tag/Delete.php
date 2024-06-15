@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin\Clean\Tag;
 
-use App\Interface\Repository\Clean\ModelRepositoryInterface;
 use App\Livewire\Admin\Clean\Tag\Trait\Reactive;
-use App\Models\Clean\Tag;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Models\Tag;
 
 class Delete extends Component
 {

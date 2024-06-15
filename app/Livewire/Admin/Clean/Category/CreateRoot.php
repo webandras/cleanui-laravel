@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Admin\Clean\Category;
 
-use App\Interface\Repository\Clean\CategoryRepositoryInterface;
-use App\Interface\Services\Clean\ImageServiceInterface;
-use App\Models\Clean\Category;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\CategoryRepositoryInterface;
+use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Models\Category;
 
 class CreateRoot extends Component
 {

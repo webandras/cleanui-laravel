@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\App\Trait;
 
-use App\Models\Clean\Permission;
-use App\Models\Clean\Role;
-use App\Models\Clean\User;
-use App\Trait\Clean\HasRolesAndPermissions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\Auth\Models\User;
+use Modules\Auth\Traits\HasRolesAndPermissions;
+use Modules\Clean\Models\Permission;
+use Modules\Clean\Models\Role;
 use Tests\TestCase;
 
 class HasRolesAndPermissionsTest extends TestCase

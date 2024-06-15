@@ -2,10 +2,10 @@
 
 namespace Database\Seeders\Job;
 
-use App\Models\Job\Client;
-use App\Models\Job\ClientDetail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Modules\Job\Models\Client;
+use Modules\Job\Models\ClientDetail;
 
 class ClientSeeder extends Seeder
 {

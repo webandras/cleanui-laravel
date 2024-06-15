@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\Clean\Role;
-use App\Models\Clean\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Session;
+use Modules\Auth\Models\User;
+use Modules\Clean\Models\Role;
 use Tests\UserTest;
 
 class SuperadminUserAccessTest extends UserTest

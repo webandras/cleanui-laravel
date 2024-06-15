@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin\Clean\Document;
 
-use App\Interface\Repository\Clean\DocumentRepositoryInterface;
-use App\Models\Clean\Document;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\DocumentRepositoryInterface;
+use Modules\Clean\Models\Document;
 
 class Delete extends Component
 {

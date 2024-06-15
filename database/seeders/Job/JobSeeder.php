@@ -2,11 +2,11 @@
 
 namespace Database\Seeders\Job;
 
-use App\Models\Job\Job;
-use App\Models\Job\Worker;
 use DateTimeInterface;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Modules\Job\Models\Job;
+use Modules\Job\Models\Worker;
 
 class JobSeeder extends Seeder
 {

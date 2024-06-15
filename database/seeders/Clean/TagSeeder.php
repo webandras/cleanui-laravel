@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Clean;
 
-use App\Interface\Utils\Clean\SeederInterface;
-use App\Models\Clean\Tag;
+use App\Interface\Clean\SeederInterface;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Tag;
 
 class TagSeeder extends Seeder implements SeederInterface
 {

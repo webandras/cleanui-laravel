@@ -2,37 +2,37 @@
 
 namespace App\Providers\Clean;
 
-use App\Interface\Repository\Clean\CategoryRepositoryInterface;
-use App\Interface\Repository\Clean\DocumentRepositoryInterface;
-use App\Interface\Repository\Clean\ModelRepositoryInterface;
-use App\Interface\Repository\Clean\PostRepositoryInterface;
-use App\Interface\Repository\Clean\TagRepositoryInterface;
-use App\Interface\Repository\Clean\UserRepositoryInterface;
-use App\Interface\Repository\Event\EventRepositoryInterface;
-use App\Interface\Repository\Job\ClientRepositoryInterface;
-use App\Interface\Repository\Job\JobRepositoryInterface;
-use App\Interface\Repository\Job\WorkerRepositoryInterface;
-use App\Interface\Services\Clean\ArchiveEntityServiceInterface;
-use App\Interface\Services\Clean\DateTimeServiceInterface;
-use App\Interface\Services\Clean\ImageServiceInterface;
-use App\Interface\Services\Clean\RolePermissionServiceInterface;
-use App\Interface\Services\Clean\SocialServiceInterface;
-use App\Repository\Clean\CategoryRepository;
-use App\Repository\Clean\DocumentRepository;
-use App\Repository\Clean\ModelRepository;
-use App\Repository\Clean\PostRepository;
-use App\Repository\Clean\TagRepository;
-use App\Repository\Clean\UserRepository;
-use App\Repository\Event\EventRepository;
-use App\Repository\Job\ClientRepository;
-use App\Repository\Job\JobRepository;
-use App\Repository\Job\WorkerRepository;
-use App\Services\Clean\ArchiveEntityService;
-use App\Services\Clean\DateTimeService;
-use App\Services\Clean\ImageService;
-use App\Services\Clean\RolePermissionService;
-use App\Services\Clean\SocialService;
 use Illuminate\Support\ServiceProvider;
+use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
+use Modules\Clean\Interfaces\Repositories\CategoryRepositoryInterface;
+use Modules\Clean\Interfaces\Repositories\DocumentRepositoryInterface;
+use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\Repositories\PostRepositoryInterface;
+use Modules\Clean\Interfaces\Repositories\TagRepositoryInterface;
+use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Clean\Repositories\CategoryRepository;
+use Modules\Clean\Repositories\DocumentRepository;
+use Modules\Clean\Repositories\ModelRepository;
+use Modules\Clean\Repositories\PostRepository;
+use Modules\Clean\Repositories\TagRepository;
+use Modules\Clean\Repositories\UserRepository;
+use Modules\Clean\Services\ArchiveEntityService;
+use Modules\Clean\Services\DateTimeService;
+use Modules\Clean\Services\ImageService;
+use Modules\Clean\Services\RolePermissionService;
+use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
+use Modules\Event\Repositories\EventRepository;
+use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Interfaces\JobRepositoryInterface;
+use Modules\Job\Interfaces\WorkerRepositoryInterface;
+use Modules\Job\Repositories\ClientRepository;
+use Modules\Job\Repositories\JobRepository;
+use Modules\Job\Repositories\WorkerRepository;
+use Modules\Social\Interfaces\Services\SocialServiceInterface;
+use Modules\Social\Servives\SocialService;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

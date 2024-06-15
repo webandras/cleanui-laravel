@@ -5,7 +5,7 @@ namespace Database\Factories\Clean;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Clean\Document>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Clean\Models\Document>
  */
 class DocumentFactory extends Factory
 {

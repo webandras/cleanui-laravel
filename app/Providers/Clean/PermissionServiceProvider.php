@@ -2,9 +2,9 @@
 
 namespace App\Providers\Clean;
 
-use App\Models\Clean\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Modules\Clean\Models\Permission;
 
 /**
  *  Gate for permissions registration (it is not used anywhere, will be removed in the future!)

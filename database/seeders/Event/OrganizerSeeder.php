@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Event;
 
-use App\Interface\Utils\Clean\SeederInterface;
-use App\Models\Event\Organizer;
+use App\Interface\Clean\SeederInterface;
 use Illuminate\Database\Seeder;
+use Modules\Event\Models\Organizer;
 
 class OrganizerSeeder extends Seeder  implements SeederInterface
 {

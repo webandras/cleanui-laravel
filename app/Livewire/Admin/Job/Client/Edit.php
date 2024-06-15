@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Job\Client;
 
-use App\Interface\Repository\Job\ClientRepositoryInterface;
-use App\Models\Job\Client;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Models\Client;
 
 
 class Edit extends Component

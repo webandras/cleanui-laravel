@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin\Clean\Role;
 
-use App\Interface\Services\Clean\RolePermissionServiceInterface;
-use App\Models\Clean\Role;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Clean\Models\Role;
 
 class Delete extends Component
 {

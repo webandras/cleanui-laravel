@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Clean;
 
-use App\Models\Clean\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Clean\Models\Category;
 
 /**
  * @extends Factory<Category>

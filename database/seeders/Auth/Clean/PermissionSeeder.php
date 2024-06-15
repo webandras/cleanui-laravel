@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Auth\Clean;
 
-use App\Models\Clean\Permission;
 use Illuminate\Database\Seeder;
+use Modules\Clean\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {

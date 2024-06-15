@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Event;
 
-use App\Interface\Utils\Clean\SeederInterface;
-use App\Models\Event\Location;
+use App\Interface\Clean\SeederInterface;
 use Illuminate\Database\Seeder;
+use Modules\Event\Models\Location;
 
 class LocationSeeder extends Seeder implements SeederInterface
 {

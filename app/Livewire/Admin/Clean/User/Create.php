@@ -2,9 +2,6 @@
 
 namespace App\Livewire\Admin\Clean\User;
 
-use App\Interface\Repository\Clean\UserRepositoryInterface;
-use App\Interface\Services\Clean\RolePermissionServiceInterface;
-use App\Models\Clean\User;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
+use Modules\Auth\Models\User;
+use Modules\Clean\Interfaces\Services\RolePermissionServiceInterface;
 
 
 class Create extends Component

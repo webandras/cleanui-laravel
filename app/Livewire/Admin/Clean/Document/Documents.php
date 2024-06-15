@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin\Clean\Document;
 
-use App\Interface\Repository\Clean\DocumentRepositoryInterface;
-use App\Models\Clean\Document;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\DocumentRepositoryInterface;
+use Modules\Clean\Models\Document;
 
 class Documents extends Component
 {

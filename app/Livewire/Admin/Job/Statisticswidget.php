@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Admin\Job;
 
-use App\Models\Job\Client;
-use App\Models\Job\Job;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -11,6 +9,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Job\Models\Client;
+use Modules\Job\Models\Job;
 
 class Statisticswidget extends Component
 {

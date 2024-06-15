@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Location;
 
-use App\Interface\Repository\Clean\ModelRepositoryInterface;
-use App\Models\Event\Location;
 use App\Trait\Clean\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Event\Models\Location;
 
 class Create extends Component
 {

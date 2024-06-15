@@ -5,7 +5,7 @@ namespace Database\Factories\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event\Event>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Event>
  */
 class WorkerFactory extends Factory
 {

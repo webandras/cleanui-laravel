@@ -4,11 +4,11 @@ namespace Tests\Unit\App\TwoFactor;
 
 
 use App\Mail\Clean\SendCodeMail;
-use App\Models\Clean\User;
-use App\Models\Clean\UserCode;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Modules\Auth\Models\User;
+use Modules\Auth\Models\UserCode;
 use Tests\TestCase;
 
 class Check2FaTest extends TestCase
@@ -121,7 +121,7 @@ class Check2FaTest extends TestCase
     public function test_login_user_2fa_enabled(): void
     {
         $this->assertTrue(Route::has('2fa.index'), '2FA verification route should exists');
-        $this->assertTrue(class_exists('\App\Http\Controllers\Auth\Clean\UserCodeController'), 'UserCodeController should exists');
+        $this->assertTrue(class_exists('\Modules\Auth\Clean\UserCodeController'), 'UserCodeController should exists');
 
 
         $response = $this->actingAs($this->user)->get('/admin/dashboard');
