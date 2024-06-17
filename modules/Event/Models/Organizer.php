@@ -2,6 +2,8 @@
 
 namespace Modules\Event\Models;
 
+use Database\Factories\Event\OrganizerFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +21,17 @@ class Organizer extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return OrganizerFactory::new();
+    }
 
 
     /**

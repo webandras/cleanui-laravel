@@ -3,12 +3,19 @@
 namespace Database\Factories\Job;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Job\Models\Worker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Event>
  */
 class WorkerFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Worker::class;
+
+
     /**
      * Define the model's default state.
      *

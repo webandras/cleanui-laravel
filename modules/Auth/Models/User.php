@@ -4,7 +4,9 @@ namespace Modules\Auth\Models;
 
 use App\Mail\Clean\SendCodeMail;
 use App\Trait\Clean\HasPreferences;
+use Database\Factories\Auth\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,6 +59,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
+    }
+
+
+    /**
      * Creates a 2FA code for the user
      * @return void
      */
@@ -85,4 +98,5 @@ class User extends Authenticatable implements MustVerifyEmail
             exit;
         }
     }
+
 }

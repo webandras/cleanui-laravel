@@ -4,6 +4,8 @@ namespace Modules\Event\Models;
 
 use App\Casts\HtmlSpecialCharsCast;
 use App\Casts\StripTagsCast;
+use Database\Factories\Event\EventFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -60,6 +62,17 @@ class Event extends Model implements EventInterface
         'backgroundColor' => StripTagsCast::class,
         'backgroundColorDark' => StripTagsCast::class,
     ];
+
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return EventFactory::new();
+    }
 
 
     /**

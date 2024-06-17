@@ -3,12 +3,19 @@
 namespace Database\Factories\Event;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Event\Models\Location;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Location>
  */
 class LocationFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Location::class;
+
+
     /**
      * Define the model's default state.
      *

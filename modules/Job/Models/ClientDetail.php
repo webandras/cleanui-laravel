@@ -2,6 +2,9 @@
 
 namespace Modules\Job\Models;
 
+use Database\Factories\Clean\DocumentFactory;
+use Database\Factories\Job\ClientDetailFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,6 +23,18 @@ class ClientDetail extends Model
         'tax_number',
     ];
 
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return ClientDetailFactory::new();
+    }
+
+    
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'id', 'client_id');

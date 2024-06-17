@@ -4,12 +4,19 @@ namespace Database\Factories\Job;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
+use Modules\Job\Models\Client;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class ClientFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Client::class;
+
+
     /**
      * Define the model's default state.
      *

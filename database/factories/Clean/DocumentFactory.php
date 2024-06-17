@@ -3,12 +3,19 @@
 namespace Database\Factories\Clean;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Clean\Models\Document;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Clean\Models\Document>
  */
 class DocumentFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Document::class;
+
+
     /**
      * Define the model's default state.
      *

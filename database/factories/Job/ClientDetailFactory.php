@@ -3,12 +3,19 @@
 namespace Database\Factories\Job;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Job\Models\ClientDetail;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Job\Models\ClientDetail>
  */
 class ClientDetailFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = ClientDetail::class;
+
+
     /**
      * Define the model's default state.
      *

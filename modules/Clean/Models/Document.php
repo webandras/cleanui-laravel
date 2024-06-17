@@ -2,6 +2,8 @@
 
 namespace Modules\Clean\Models;
 
+use Database\Factories\Clean\DocumentFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -34,6 +36,17 @@ class Document extends Model
         'under-review',
         'published',
     ];
+
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return DocumentFactory::new();
+    }
 
 
     /**

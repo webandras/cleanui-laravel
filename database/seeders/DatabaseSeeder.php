@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Seeders\Auth\Clean\PermissionSeeder;
-use Database\Seeders\Auth\Clean\RoleSeeder;
-use Database\Seeders\Auth\Clean\RolesPermissionsPivotSeeder;
-use Database\Seeders\Auth\Clean\UserSeeder;
+use Database\Seeders\Auth\PermissionSeeder;
+use Database\Seeders\Auth\RoleSeeder;
+use Database\Seeders\Auth\RolesPermissionsPivotSeeder;
+use Database\Seeders\Auth\UserSeeder;
 use Database\Seeders\Clean\CategorySeeder;
 use Database\Seeders\Clean\DocumentSeeder;
 use Database\Seeders\Clean\PostSeeder;

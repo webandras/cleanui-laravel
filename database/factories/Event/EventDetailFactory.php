@@ -3,12 +3,19 @@
 namespace Database\Factories\Event;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Event\Models\EventDetail;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\EventDetail>
  */
 class EventDetailFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = EventDetail::class;
+
+
     /**
      * Define the model's default state.
      *

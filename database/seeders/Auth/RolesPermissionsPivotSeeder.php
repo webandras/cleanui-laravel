@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Auth\Clean;
+namespace Database\Seeders\Auth;
 
 use Database\Seeders\Traits\HasRolesPermissionsGetters;
 use Illuminate\Database\Seeder;

@@ -3,12 +3,19 @@
 namespace Database\Factories\Clean;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Clean\Models\Post;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Clean\Models\Post>
  */
 class PostFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Post::class;
+
+
     /**
      * Define the model's default state.
      *

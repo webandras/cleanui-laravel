@@ -4,12 +4,19 @@ namespace Database\Factories\Event;
 
 use DateInterval;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Event\Models\Event;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Event\Models\Event>
  */
 class EventFactory extends Factory
 {
+    /**
+     * @var string
+     */
+    protected $model = Event::class;
+
+
     /**
      * Define the model's default state.
      *

@@ -3,7 +3,9 @@
 namespace Modules\Job\Models;
 
 use App\Casts\HtmlSpecialCharsCast;
+use Database\Factories\Job\ClientFactory;
 use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,6 +44,17 @@ class Client extends Model
         'title' => HtmlSpecialCharsCast::class,
         'address' => HtmlSpecialCharsCast::class,
     ];
+
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return ClientFactory::new();
+    }
 
 
     /**
