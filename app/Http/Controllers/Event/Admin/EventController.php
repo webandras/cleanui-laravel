@@ -117,7 +117,7 @@ class EventController extends Controller
         $data = $request->all();
 
         $data = $this->eventRepository->getSlugFromTitle($data);
-        $data = $this->dateTimeService->convertDateTimesToUTC($data, EventInterface::TIMEZONE);
+        $data = $this->dateTimeService->convertDateTimesToUTC($data, $data['timezone']);
         $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
 
         DB::transaction(
@@ -235,7 +235,7 @@ class EventController extends Controller
 
         $data = $request->all();
         $data = $this->eventRepository->getSlugFromTitle($data);
-        $data = $this->dateTimeService->convertDateTimesToUTC($data, EventInterface::TIMEZONE);
+        $data = $this->dateTimeService->convertDateTimesToUTC($data, $data['timezone']);
         $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
 
 
