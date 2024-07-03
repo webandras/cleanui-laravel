@@ -2,13 +2,12 @@
 
 namespace Modules\Job\Models;
 
-use Database\Factories\Clean\DocumentFactory;
-use Database\Factories\Job\ClientDetailFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Job\Database\Factories\ClientDetailFactory;
 
 class ClientDetail extends Model
 {
@@ -34,7 +33,7 @@ class ClientDetail extends Model
         return ClientDetailFactory::new();
     }
 
-    
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'id', 'client_id');

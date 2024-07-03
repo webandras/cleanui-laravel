@@ -1,8 +1,8 @@
 <?php
 namespace Modules\Auth\Traits;
 
+use Modules\Auth\Models\Role;
 use Modules\Auth\Models\User;
-use Modules\Clean\Models\Role;
 
 trait UserPermissions
 {

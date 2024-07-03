@@ -2,9 +2,6 @@
 
 namespace Modules\Auth\Models;
 
-use App\Mail\Clean\SendCodeMail;
-use App\Trait\Clean\HasPreferences;
-use Database\Factories\Auth\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Auth\Database\Factories\UserFactory;
+use Modules\Auth\Mail\SendCodeMail;
+use Modules\Auth\Traits\HasPreferences;
 use Modules\Auth\Traits\HasRolesAndPermissions;
 
 class User extends Authenticatable implements MustVerifyEmail

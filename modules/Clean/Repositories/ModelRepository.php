@@ -12,7 +12,7 @@ use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
  */
 class ModelRepository implements ModelRepositoryInterface
 {
-    private const PREFIX = "\Modules\Models\\";
+    private const PREFIX = "\Modules\\";
 
     /**
      * @param string $modelClass

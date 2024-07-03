@@ -3,24 +3,25 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Seeders\Auth\PermissionSeeder;
-use Database\Seeders\Auth\RoleSeeder;
-use Database\Seeders\Auth\RolesPermissionsPivotSeeder;
-use Database\Seeders\Auth\UserSeeder;
-use Database\Seeders\Clean\CategorySeeder;
-use Database\Seeders\Clean\DocumentSeeder;
-use Database\Seeders\Clean\PostSeeder;
-use Database\Seeders\Clean\PostTagsCategoriesSeeder;
-use Database\Seeders\Clean\TagSeeder;
-use Database\Seeders\Event\ClientsWorkersMediaPermissionsSeeder;
-use Database\Seeders\Event\EventDetailSeeder;
-use Database\Seeders\Event\EventModulePermissionsSeeder;
-use Database\Seeders\Event\EventSeeder;
-use Database\Seeders\Event\LocationSeeder;
-use Database\Seeders\Event\OrganizerSeeder;
-use Database\Seeders\Job\ClientSeeder;
-use Database\Seeders\Job\JobSeeder;
 use Illuminate\Database\Seeder;
+use Modules\Auth\Database\Seeders\PermissionSeeder;
+use Modules\Auth\Database\Seeders\RoleSeeder;
+use Modules\Auth\Database\Seeders\RolesPermissionsPivotSeeder;
+use Modules\Auth\Database\Seeders\UserSeeder;
+use Modules\Blog\Database\Seeders\CategorySeeder;
+use Modules\Blog\Database\Seeders\CleanModulePermissionsSeeder;
+use Modules\Blog\Database\Seeders\DocumentSeeder;
+use Modules\Blog\Database\Seeders\PostSeeder;
+use Modules\Blog\Database\Seeders\PostTagsCategoriesSeeder;
+use Modules\Blog\Database\Seeders\TagSeeder;
+use Modules\Event\Database\Seeders\EventDetailSeeder;
+use Modules\Event\Database\Seeders\EventModulePermissionsSeeder;
+use Modules\Event\Database\Seeders\EventSeeder;
+use Modules\Event\Database\Seeders\LocationSeeder;
+use Modules\Event\Database\Seeders\OrganizerSeeder;
+use Modules\Job\Database\Seeders\ClientSeeder;
+use Modules\Job\Database\Seeders\JobModulePermissionsSeeder;
+use Modules\Job\Database\Seeders\JobSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,38 +31,42 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Seeders for users, authorization
-        $this->call(RoleSeeder::class);
-        $this->call(PermissionSeeder::class);
-        $this->call(RolesPermissionsPivotSeeder::class);
-        $this->call(UserSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            RolesPermissionsPivotSeeder::class,
+            UserSeeder::class
+        ]);
         // Seeders for users, authorization END
 
 
         // BLOG
-        $this->call(CategorySeeder::class);
-        $this->call(TagSeeder::class);
-        $this->call(PostSeeder::class);
-        $this->call(PostTagsCategoriesSeeder::class);
-
-
-        // DOCS
-        $this->call(DocumentSeeder::class);
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+            PostSeeder::class,
+            PostTagsCategoriesSeeder::class,
+            DocumentSeeder::class,
+            CleanModulePermissionsSeeder::class,
+        ]);
 
 
         // JOBS
-        $this->call(ClientSeeder::class);
-        $this->call(JobSeeder::class);
+        $this->call([
+            ClientSeeder::class,
+            JobSeeder::class,
+            JobModulePermissionsSeeder::class,
+        ]);
 
 
         // EVENTS
-        $this->call(LocationSeeder::class);
-        $this->call(OrganizerSeeder::class);
-        $this->call(EventSeeder::class);
-        $this->call(EventDetailSeeder::class);
+        $this->call([
+            LocationSeeder::class,
+            OrganizerSeeder::class,
+            EventSeeder::class,
+            EventDetailSeeder::class,
+            EventModulePermissionsSeeder::class,
+        ]);
 
-        $this->call(EventModulePermissionsSeeder::class);
-        $this->call(ClientsWorkersMediaPermissionsSeeder::class);
-
-//        $this->call(CommentSeeder::class);
     }
 }

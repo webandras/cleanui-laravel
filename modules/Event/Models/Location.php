@@ -2,12 +2,12 @@
 
 namespace Modules\Event\Models;
 
-use Database\Factories\Event\LocationFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Event\Database\Factories\LocationFactory;
 
 class Location extends Model
 {

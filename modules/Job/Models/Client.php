@@ -2,8 +2,6 @@
 
 namespace Modules\Job\Models;
 
-use App\Casts\HtmlSpecialCharsCast;
-use Database\Factories\Job\ClientFactory;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Application;
+use Modules\Clean\Casts\HtmlSpecialCharsCast;
+use Modules\Job\Database\Factories\ClientFactory;
 
 class Client extends Model
 {
