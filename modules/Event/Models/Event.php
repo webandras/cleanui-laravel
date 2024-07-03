@@ -2,15 +2,15 @@
 
 namespace Modules\Event\Models;
 
-use App\Casts\HtmlSpecialCharsCast;
-use App\Casts\StripTagsCast;
-use Database\Factories\Event\EventFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Mews\Purifier\Casts\CleanHtml;
+use Modules\Clean\Casts\HtmlSpecialCharsCast;
+use Modules\Clean\Casts\StripTagsCast;
+use Modules\Event\Database\Factories\EventFactory;
 use Modules\Event\Interfaces\Entities\EventInterface;
 
 class Event extends Model implements EventInterface

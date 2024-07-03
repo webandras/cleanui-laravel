@@ -15,7 +15,7 @@ use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
  */
 class ArchiveEntityService implements ArchiveEntityServiceInterface
 {
-    private const PREFIX = "\App\Models\\";
+    private const PREFIX = "\Modules\\";
 
 
     /**

@@ -2,8 +2,8 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\Clean\Check2FA;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Modules\Clean\Middleware\SecureHeaders;
 
 class Kernel extends HttpKernel
 {
@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
+        SecureHeaders::class,
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
@@ -34,7 +35,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            \App\Http\Middleware\Clean\Localization::class,
+            \Modules\Auth\Middleware\Localization::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -66,7 +67,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'role'  =>  Middleware\Clean\RoleMiddleware::class, // our role middleware
-        '2fa' => Check2FA::class,
+        'role'  =>  \Modules\Auth\Middleware\RoleMiddleware::class, // our role middleware
+        '2fa' => \Modules\Auth\Middleware\Check2FA::class,
     ];
 }

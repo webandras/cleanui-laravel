@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Session;
+use Modules\Auth\Models\Role;
 use Modules\Auth\Models\User;
-use Modules\Clean\Models\Role;
 use Tests\UserTest;
 
 
@@ -21,7 +21,7 @@ class AdminUserAccessTest extends UserTest
         parent::setUp();
 
         // create user
-        $this->user = User::findOrFail(4);
+        $this->user = User::findOrFail(2);
     }
 
 

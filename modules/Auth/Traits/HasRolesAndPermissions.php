@@ -4,8 +4,8 @@ namespace Modules\Auth\Traits;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Modules\Clean\Models\Permission;
-use Modules\Clean\Models\Role;
+use Modules\Auth\Models\Permission;
+use Modules\Auth\Models\Role;
 
 /**
  * User authorization based on roles, and permissions

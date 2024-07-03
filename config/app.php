@@ -195,11 +195,19 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \App\Providers\Clean\RolesServiceProvider::class, // registers @role Blade directive
-        \App\Providers\Clean\PermissionServiceProvider::class, // add permissions to @can directive
         \Spatie\Csp\CspServiceProvider::class,
-        \App\Providers\Clean\RepositoryServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class, // social login providers
+
+        /*
+         * Module Service Providers
+         */
+        \Modules\Clean\Providers\CleanModuleProvider::class,
+        \Modules\Auth\Providers\AuthModuleProvider::class,
+        \Modules\Auth\Providers\RolesServiceProvider::class, // registers @role Blade directive
+        \Modules\Auth\Providers\PermissionServiceProvider::class, // add permissions to @can directive
+        \Modules\Blog\Providers\BlogModuleProvider::class,
+        \Modules\Event\Providers\EventModuleProvider::class,
+        \Modules\job\Providers\JobModuleProvider::class,
     ])->toArray(),
 
     /*
