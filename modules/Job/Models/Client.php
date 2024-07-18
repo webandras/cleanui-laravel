@@ -57,20 +57,11 @@ class Client extends Model
     }
 
 
-    /**
-     * @param  string  $key
-     * @return Application|array|string|Translator|\Illuminate\Contracts\Foundation\Application|null
-     */
-    public static function getClientTypeLabels(string $key): Application|array|string|Translator|\Illuminate\Contracts\Foundation\Application|null
+    public function scopePaginatedClients($query)
     {
-        switch ($key) {
-            case 'company':
-                return __('Company');
-            case 'private person':
-                return __('Private Person');
-            default:
-                return __('Private Person');
-        }
+        return $query->orderBy('name', 'ASC')
+            ->with(['jobs', 'client_detail'])
+            ->paginate(Client::RECORDS_PER_PAGE)->withQueryString();
     }
 
 

@@ -40,6 +40,18 @@ class Worker extends Model
 
 
     /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePaginatedWorkers($query)
+    {
+        return $query->orderBy('created_at', 'DESC')
+            ->paginate(Worker::RECORDS_PER_PAGE)
+            ->withQueryString();
+    }
+
+
+    /**
      * @return BelongsToMany
      */
     public function jobs(): BelongsToMany

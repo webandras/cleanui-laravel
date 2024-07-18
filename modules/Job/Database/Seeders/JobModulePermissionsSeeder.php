@@ -16,7 +16,7 @@ class JobModulePermissionsSeeder extends Seeder
      * @return void
      * @throws \Exception
      */
-    public function run()
+    public function run(): void
     {
         $manageJobs       = new Permission();
         $manageJobs->name = 'Manage Jobs';

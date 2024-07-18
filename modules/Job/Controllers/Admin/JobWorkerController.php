@@ -9,27 +9,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Modules\Auth\Traits\UserPermissions;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Job\Interfaces\WorkerRepositoryInterface;
 use Modules\Job\Models\Worker;
 
 class JobWorkerController extends Controller
 {
     use InteractsWithBanner, UserPermissions;
-
-
-    /**
-     * @var WorkerRepositoryInterface
-     */
-    private WorkerRepositoryInterface $workerRepository;
-
-
-    /**
-     * @param  WorkerRepositoryInterface  $workerRepository
-     */
-    public function __construct(WorkerRepositoryInterface $workerRepository)
-    {
-        $this->workerRepository = $workerRepository;
-    }
 
 
     /**
@@ -41,7 +25,7 @@ class JobWorkerController extends Controller
        $this->authorize('viewAny', Worker::class);
 
         return view('admin.pages.job.worker.manage')->with([
-            'workers' => $this->workerRepository->getPaginatedWorkers(),
+            'workers' => Worker::paginatedWorkers(),
             'userPermissions' => $this->getUserPermissions()
         ]);
     }

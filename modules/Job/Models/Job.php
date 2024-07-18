@@ -60,6 +60,36 @@ class Job extends Model
         'duration' => HtmlSpecialCharsCast::class,
     ];
 
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeGetJobsWith($query)
+    {
+        return $query->with(['workers'])->with([
+            'client' => function ($query) {
+                $query->withTrashed();
+            }
+        ])->get();
+    }
+
+
+    /**
+     * @param $query
+     * @param $jobId
+     * @return mixed
+     */
+    public function scopeGetJobById($query, $jobId)
+    {
+        return $query->with(['workers'])->with([
+            'client' => function ($query) {
+                $query->withTrashed();
+            }
+        ])->where('id', '=', $jobId)->first();
+    }
+
+
     /**
      * @return BelongsToMany
      */
