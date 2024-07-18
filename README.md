@@ -1,38 +1,43 @@
-# Laravel Clean UI starter
+# Clean.UI Laravel starter
 
-**Laravel UI** provides a simple starter pack that is a far better starting point for my Laravel
-apps. I prefer this over the bloated starter packs like Breeze, or Jetstream.
+Provides a simple starter pack that is as great starting point for my Laravel apps. Use it on your responsibility.
 
-Laravel Clean.UI is a modification of the Laravel UI, where I removed Bootstrap and replaced it with my Clean.UI CSS
-library with some extra JS codes. It is intended for a fullstack Laravel app with the usual blade templates/views, and
-Livewire.
+Laravel Clean.UI is Laravel blog starter project that includes the Laravel UI package for authentication with 2fa and
+user profile
+as additions. It does not use Bootstrap, Tailwind or any other CSS framework. My Clean.UI CSS library, with some extra
+JS codes, is used instead,
+hence the name of the starter project.
+It is intended for a monolithic Laravel app with the usual blade views, and Livewire.
 
-It includes a demo blog as an example with posts, post tags, post categories, and a documentation section (re-orderable docs
-pages). However, it will not contain more
-example codes to keep this starter slim.
+Has a fully-modular structure (outside the `app` folder).
+It includes the following modules:
 
-In the project, I try to use good practices when organizing the codes (usage of service, and repository classes,
-use clean code, etc.)
+- the **clean module** (_always required_; some general codes)
+- the **auth module** (_always required_; provides authentication, 2fa, role-pres-mission-based authorization, profile
+  and
+  preferences management, and user management)
+- the **blog module** with posts, post tags, post categories, and a documentation (_optional_, can be deleted)
+  section
+- the **job** calendar (_optional_, can be deleted)
+- the **events** module (_optional_, can be deleted)
 
-_Disclaimer: This project is under development, not 100% ready, but close._
+However, it will not contain more example modules to keep this starter slim.
 
+_This project is under development, so no stable version is available yet._
 
-## TODOs
-
-- ~~TODO: Add the public-facing side of the demo blog, after the admin-side is finalized~~ -> DONE
-- Create a better documentation
-- ~~Check Laravel 11, and PHP 8.2 compatibility -> DONE (merged to master)~~
+## News
 
 This project supports Laravel 11. Livewire was updated to version 3 (with all the necessary changes in components).
-The application structure was not upgraded to the new Laravel 11 structure. As stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#application-structure),
+The application structure was not upgraded to the new Laravel 11 structure. As
+stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#application-structure),
 
-> However, **we do not recommend** (emphasis mine) that Laravel 10 applications upgrading to Laravel 11 attempt to migrate their application structure, as Laravel 11 has been carefully tuned to also support the Laravel 10 application structure.
-
+> However, **we do not recommend** (emphasis mine) that Laravel 10 applications upgrading to Laravel 11 attempt to
+> migrate their application structure, as Laravel 11 has been carefully tuned to also support the Laravel 10 application
+> structure.
 
 ## Screenshot
 
 ![Screenshot](screenshot.png "Screenshot of the app")
-
 
 ## Installation
 
@@ -56,42 +61,18 @@ Setup `.env` variables. Especially database and email settings. You need to have
 interface to receive and view emails (account verification, 2fa code emails). For example, one solution is to
 install [mailcatcher](https://mailcatcher.me/), or [PaperCut SMTP](https://www.papercut-smtp.com/) on your computer.
 
-**These old steps below are not needed:**
-
-_Only install it for new Laravel projects, because we will overwrite some files (and you may lose your changes you have
-already made, e.g. vite.config.js, package.json)!_
-
-1. Install Laravel
-
-2. Install Laravel UI
-
-```shell
-composer require laravel/ui
-# Generate login / registration scaffolding...
-php artisan ui bootstrap --auth
-```
-
-3. Copy the `resources` folder over the `resources` folder in your project (overwrite all files)
-4. Copy the `public` folder over the `resources` folder in your project (overwrite all files)
-5. Overwrite `package.json` and `vite.config` file
-6. Add `postcss.config.js` file
-7. Add Composer dependencies (see the example config file). Install packages afterward
-8. Install npm packages. Use your Laravel app as usual (npm run dev, php artisan serve)
-
-
 ## Important notes! - Updating laravel/ui
 
 When updating `laravel/ui`, do not run `php artisan ui bootstrap --auth` again, because it will overwrite your custom
 auth controllers and views!
 
+## Laravel version compatibility (9.x-11.x)
 
-## Laravel version compatibility
-
-Laravel versions 9.x, 10.x & 11.x (since the starter is based on laravel/ui 4.x) are supported. The starter has Laravel 11.x
+Laravel versions 9.x, 10.x & 11.x (since the starter is based on laravel/ui 4.x) are supported. The starter has Laravel
+11.x
 support, but versions can be downgraded to Laravel 10.x.
 
-
-## Other dependencies & configuration
+## Third party dependencies & configuration
 
 **mews/purifier**, **tinymce**, and **alexusmai/laravel-file-manager** are installed.
 
@@ -127,15 +108,9 @@ replace it with `unisharp/laravel-filemanager` or with other packages.
 Currently, the posts and the categories use the file manager, tags have a separate image upload implementation (TODO:
 Use the file manager there as well).
 
-
-## Credits
-
-**Laravel UI**: Copyright (c) Taylor Otwell (MIT license).
-
-
 ## License
 
-**Laravel Clean UI** is a modification / extension for the Laravel UI.
+**Clean.UI Laravel starter**
 
 &copy; András Gulácsi 2023 - MIT license
 
