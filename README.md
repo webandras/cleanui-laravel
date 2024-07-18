@@ -16,8 +16,7 @@ It includes the following modules:
 - the **auth module** (_always required_; provides authentication, 2fa, role-pres-mission-based authorization, profile
   and
   preferences management, and user management)
-- the **blog module** with posts, post tags, post categories, and a documentation (_optional_, can be deleted)
-  section
+- the **blog module** with posts, post tags, post categories, and a documentation section (_optional_, can be deleted)
 - the **job** calendar (_optional_, can be deleted)
 - the **events** module (_optional_, can be deleted)
 
