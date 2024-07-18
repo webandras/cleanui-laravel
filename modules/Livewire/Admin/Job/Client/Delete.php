@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Actions\Client\DeleteClient;
 use Modules\Job\Models\Client;
 
 class Delete extends Component
@@ -20,13 +20,6 @@ class Delete extends Component
     use AuthorizesRequests;
 
 
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private ClientRepositoryInterface $clientRepository;
-
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +32,6 @@ class Delete extends Component
     public bool $isModalOpen;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -67,16 +59,6 @@ class Delete extends Component
 
 
     /**
-     * @param  ClientRepositoryInterface  $clientRepository
-     * @return void
-     */
-    public function boot(ClientRepositoryInterface $clientRepository): void
-    {
-        $this->clientRepository = $clientRepository;
-    }
-
-
-    /**
      * @param  string  $modalId
      * @param  Client  $client
      * @return void
@@ -101,10 +83,11 @@ class Delete extends Component
 
 
     /**
+     * @param  DeleteClient  $deleteClient
      * @return Redirector
      * @throws AuthorizationException
      */
-    public function deleteClient(): Redirector
+    public function deleteClient(DeleteClient $deleteClient): Redirector
     {
         $this->client = Client::findOrFail($this->clientId);
 
@@ -115,13 +98,14 @@ class Delete extends Component
 
         // save category, rollback transaction if fails
         DB::transaction(
-            function () {
-                $this->clientRepository->deleteClient($this->client);
+            function () use ($deleteClient) {
+                $deleteClient($this->client);
             },
             2
         );
 
-        $this->banner(__('The client with the name ":name" was successfully deleted.', ['name' => strip_tags($this->name)]));
+        $this->banner(__('The client with the name ":name" was successfully deleted.',
+            ['name' => strip_tags($this->name)]));
         return redirect()->route('client.manage');
     }
 }

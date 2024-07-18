@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Actions\Client\CreateClient;
+use Modules\Job\Enums\ClientType;
 use Modules\Job\Models\Client;
 
 
@@ -21,13 +22,6 @@ class Create extends Component
     use AuthorizesRequests;
 
 
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private ClientRepositoryInterface $clientRepository;
-
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -40,7 +34,6 @@ class Create extends Component
     public bool $isModalOpen;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -65,7 +58,6 @@ class Create extends Component
     public array $typesArray;
 
 
-    // client details
     /**
      * @var string|null
      */
@@ -122,18 +114,7 @@ class Create extends Component
         $this->email = null;
         $this->taxNumber = null;
 
-        $this->typesArray = $this->clientRepository->getClientTypes();
-
-    }
-
-
-    /**
-     * @param  ClientRepositoryInterface  $clientRepository
-     * @return void
-     */
-    public function boot(ClientRepositoryInterface $clientRepository): void
-    {
-        $this->clientRepository = $clientRepository;
+        $this->typesArray = ClientType::options();
     }
 
 
@@ -147,10 +128,11 @@ class Create extends Component
 
 
     /**
+     * @param  CreateClient  $createClient
      * @return Redirector
      * @throws AuthorizationException
      */
-    public function createClient(): Redirector
+    public function createClient(CreateClient $createClient): Redirector
     {
         $this->authorize('create', Client::class);
 
@@ -158,7 +140,7 @@ class Create extends Component
         $this->validate();
 
         DB::transaction(
-            function () {
+            function () use ($createClient) {
 
                 $details = [];
                 // populate details if the props are set
@@ -184,7 +166,7 @@ class Create extends Component
                     'type' => strip_tags($this->type),
                 ];
 
-                $this->clientRepository->createClient($clientData, $details);
+                $createClient($clientData, $details);
             },
             2
         );

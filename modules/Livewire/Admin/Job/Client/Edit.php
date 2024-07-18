@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Job\Interfaces\ClientRepositoryInterface;
+use Modules\Job\Actions\Client\UpdateClient;
+use Modules\Job\Enums\ClientType;
 use Modules\Job\Models\Client;
 
 
@@ -21,13 +22,6 @@ class Edit extends Component
     use AuthorizesRequests;
 
 
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private ClientRepositoryInterface $clientRepository;
-
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -118,16 +112,6 @@ class Edit extends Component
 
 
     /**
-     * @param  ClientRepositoryInterface  $clientRepository
-     * @return void
-     */
-    public function boot(ClientRepositoryInterface $clientRepository): void
-    {
-        $this->clientRepository = $clientRepository;
-    }
-
-
-    /**
      * @param  Client  $client
      * @return void
      */
@@ -142,7 +126,7 @@ class Edit extends Component
         $this->address = $this->client->address ?? '';
         $this->type = $this->client->type;
 
-        $this->typesArray = $this->clientRepository->getClientTypes();
+        $this->typesArray = ClientType::options();
 
         if ($this->client->client_detail !== null) {
             $this->contactPerson = $this->client->client_detail->contact_person ?? null;
@@ -150,8 +134,6 @@ class Edit extends Component
             $this->email = $this->client->client_detail->email ?? null;
             $this->taxNumber = $this->client->client_detail->tax_number ?? null;
         }
-
-
     }
 
 
@@ -165,10 +147,11 @@ class Edit extends Component
 
 
     /**
+     * @param  UpdateClient  $updateClient
      * @return Redirector
      * @throws AuthorizationException
      */
-    public function updateClient(): Redirector
+    public function updateClient(UpdateClient $updateClient): Redirector
     {
         $this->authorize('update', [Client::class, $this->client]);
 
@@ -176,7 +159,7 @@ class Edit extends Component
         $this->validate();
 
         DB::transaction(
-            function () {
+            function () use ($updateClient) {
 
                 $client = [
                     'name' => strip_tags(trim($this->name)),
@@ -202,8 +185,7 @@ class Edit extends Component
                     $details['tax_number'] = strip_tags(trim($this->taxNumber));
                 }
 
-                $this->clientRepository->updateClient($this->client, $client, $details,
-                    $this->client->client_detail_id);
+                $updateClient($this->client, $client, $details, $this->client->client_detail_id);
             },
             2
         );

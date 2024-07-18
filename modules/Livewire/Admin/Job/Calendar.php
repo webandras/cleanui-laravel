@@ -15,8 +15,10 @@ use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Job\Interfaces\ClientRepositoryInterface;
-use Modules\Job\Interfaces\JobRepositoryInterface;
+use Modules\Job\Actions\Job\CreateJob;
+use Modules\Job\Actions\Job\DeleteJob;
+use Modules\Job\Actions\Job\UpdateJob;
+use Modules\Job\Models\Client;
 use Modules\Job\Models\Job;
 use Modules\Job\Models\Worker;
 
@@ -204,10 +206,10 @@ class Calendar extends Component
     public string $byweekday;
 
 
-	/**
-	 * @var bool
-	 */
-	public bool	$allDay;
+    /**
+     * @var bool
+     */
+    public bool $allDay;
 
 
     /**
@@ -239,18 +241,6 @@ class Calendar extends Component
      * @var Collection
      */
     public Collection $jobs;
-
-
-    /**
-     * @var JobRepositoryInterface
-     */
-    private JobRepositoryInterface $jobRepository;
-
-
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private ClientRepositoryInterface $clientRepository;
 
 
     /**
@@ -305,18 +295,12 @@ class Calendar extends Component
 
 
     /**
-     * @param  JobRepositoryInterface  $jobRepository
-     * @param  ClientRepositoryInterface  $clientRepository
      * @param  DateTimeServiceInterface  $dateTimeService
      * @return void
      */
     public function boot(
-        JobRepositoryInterface $jobRepository,
-        ClientRepositoryInterface $clientRepository,
         DateTimeServiceInterface $dateTimeService
     ): void {
-        $this->jobRepository = $jobRepository;
-        $this->clientRepository = $clientRepository;
         $this->dateTimeService = $dateTimeService;
     }
 
@@ -413,7 +397,7 @@ class Calendar extends Component
             'closed' => '#62626b'
         ];
 
-        $this->clients = $this->clientRepository->getAllClients();
+        $this->clients = Client::all();
 
         $this->timezone = auth()->user()->preferences->timezone ?? 'UTC';
     }
@@ -425,7 +409,7 @@ class Calendar extends Component
     public function render(): View|Factory|Application
     {
         /* Also query soft-deleted clients (needed for the job view) */
-        $this->jobs = $this->jobRepository->getJobs();
+        $this->jobs = Job::getJobsWith();
 
         return view('admin.livewire.job.calendar');
     }
@@ -472,7 +456,7 @@ class Calendar extends Component
             // always use the uuid column here (which is the 'id')!
             $jobId = $changedJob->id;
             $this->updateId = (int) $jobId;
-            $this->job = $this->jobRepository->getJobById($jobId);
+            $this->job = Job::getJobById($jobId);
 
             if ($this->checkIfJobExists() === null) {
                 $this->banner(__('Job does not exists!'), 'danger');
@@ -553,14 +537,16 @@ class Calendar extends Component
     /**
      * Create new or update existing job
      *
+     * @param  CreateJob  $createJob
+     * @param  UpdateJob  $updateJob
      * @return Redirector
      */
-    public function createOrUpdateJob(): Redirector
+    public function createOrUpdateJob(CreateJob $createJob, UpdateJob $updateJob): Redirector
     {
         $this->validate();
 
         DB::transaction(
-            function () {
+            function () use ($createJob, $updateJob) {
 
                 // all job have these
                 $jobProps = [
@@ -579,7 +565,7 @@ class Calendar extends Component
 
                     $this->setJobProperties($jobProps);
 
-                    $jobEntity = $this->jobRepository->updateJob($jobEntity, $jobProps, $this->workerIds);
+                    $jobEntity = $updateJob($jobEntity, $jobProps, $this->workerIds);
                     $jobEntity->save();
                     // refresh would also refresh relations, but client will be null here, because
                     // it does not query trashed (soft-deleted) clients as relations
@@ -590,7 +576,7 @@ class Calendar extends Component
                 } else {
                     $this->setJobProperties($jobProps);
 
-                    $jobEntity = $this->jobRepository->createJob($jobProps, $this->workerIds);
+                    $jobEntity = $createJob($jobProps, $this->workerIds);
                     $jobEntity->save();
                     // $jobEntity->refresh();
 
@@ -610,9 +596,10 @@ class Calendar extends Component
     /**
      * Delete the selected job
      *
+     * @param  DeleteJob  $deleteJob
      * @return Redirector|null
      */
-    public function deleteJob(): ?Redirector
+    public function deleteJob(DeleteJob $deleteJob): ?Redirector
     {
 
         // if we have an id, delete existing job
@@ -628,8 +615,8 @@ class Calendar extends Component
 
             // delete role, rollback transaction if fails
             DB::transaction(
-                function () use ($job) {
-                    $this->jobRepository->deleteJob($job);
+                function () use ($job, $deleteJob) {
+                    $deleteJob($job);
                 },
                 2
             );
@@ -729,9 +716,11 @@ class Calendar extends Component
             }
         } else {
             // regular jobs; input YYYY-MM-DDThh:mm, output: 'Y-m-d H:i:s'
-            $jobProps['start'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->start), Job::TIMEZONE);
+            $jobProps['start'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->start),
+                Job::TIMEZONE);
             // input 'Y-m-d H:i:s', output: 'Y-m-d H:i:s'
-            $jobProps['end'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->end), Job::TIMEZONE);
+            $jobProps['end'] = $this->dateTimeService->convertFromLocalToUtc($this->dateTimeService->transformDateTimeLocalInput($this->end),
+                Job::TIMEZONE);
         }
 
         // If a client need to be associated with the job
@@ -752,7 +741,7 @@ class Calendar extends Component
     {
         foreach ($this->jobs as $job) {
             if ($job->id === (int) $this->updateId) {
-                $this->job = $this->jobRepository->getJobById($this->updateId);
+                $this->job = Job::getJobById($this->updateId);
                 break;
             }
         }
@@ -768,7 +757,7 @@ class Calendar extends Component
     {
         foreach ($this->jobs as $job) {
             if ($job->id === (int) $this->updateId) {
-                return $this->jobRepository->getJobById($this->updateId);
+                return Job::getJobById($this->updateId);
             }
         }
 
@@ -877,7 +866,6 @@ class Calendar extends Component
                 $this->end = $this->job->end->setTimezone(Job::TIMEZONE) ?? null;
             }
         }
-
 
 
         if ($this->dtstart === '') {
