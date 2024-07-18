@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
 use Modules\Auth\Models\Role;
 use Modules\Auth\Models\User;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -22,8 +21,6 @@ class Edit extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -42,7 +39,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -93,22 +89,6 @@ class Edit extends Component
         'password' => ['string'],
         'role' => ['required', 'integer'],
     ];
-
-
-    /**
-     * @var UserRepositoryInterface
-     */
-    private UserRepositoryInterface $userRepository;
-
-
-    /**
-     * @param  UserRepositoryInterface  $userRepository
-     * @return void
-     */
-    public function boot(UserRepositoryInterface $userRepository): void
-    {
-        $this->userRepository = $userRepository;
-    }
 
 
     /**
@@ -189,12 +169,12 @@ class Edit extends Component
 
                 // only save password if a new one is supplied
                 if ($this->password !== '') {
-                    $this->userRepository->updateUser($this->user, [
+                    $this->user->updateOrFail([
                         'name' => htmlspecialchars($this->name),
                         'password' => Hash::make($this->password),
                     ]);
                 } else {
-                    $this->userRepository->updateUser($this->user, [
+                    $this->user->updateOrFail([
                         'name' => htmlspecialchars($this->name),
                     ]);
                 }

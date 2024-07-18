@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
 use Modules\Auth\Models\User;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -19,8 +18,6 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -67,22 +64,6 @@ class Delete extends Component
 
 
     /**
-     * @var UserRepositoryInterface
-     */
-    private UserRepositoryInterface $userRepository;
-
-
-    /**
-     * @param  UserRepositoryInterface  $userRepository
-     * @return void
-     */
-    public function boot(UserRepositoryInterface $userRepository): void
-    {
-        $this->userRepository = $userRepository;
-    }
-
-
-    /**
      * @param  string  $modalId
      * @param  User  $user
      * @param  bool  $hasSmallButton
@@ -122,7 +103,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->userRepository->deleteUser($this->user);
+                $this->user->deleteOrFail();
             },
             2
         );

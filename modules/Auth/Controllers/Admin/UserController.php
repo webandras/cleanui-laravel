@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
 use Modules\Auth\Models\Role;
 use Modules\Auth\Models\User;
 use Modules\Auth\Traits\UserPermissions;
@@ -20,21 +19,6 @@ use Modules\Clean\Traits\InteractsWithBanner;
 class UserController extends Controller
 {
     use InteractsWithBanner, UserPermissions;
-
-    /**
-     * @var UserRepositoryInterface
-     */
-    private UserRepositoryInterface $userRepository;
-
-
-    /**
-     * @param  UserRepositoryInterface  $userRepository
-     */
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
 
     /**
      * Display a listing of the resource.
@@ -46,7 +30,7 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $users = $this->userRepository->getPaginatedUsersWithRoles();
+        $users = User::getPaginatedUsersWithRoles();
         $roles = Role::all();
 
         return view('admin.pages.auth.user.manage')->with([
@@ -76,7 +60,7 @@ class UserController extends Controller
             'role' => ['required', 'numeric', 'min:1', 'max:2'],
         ]);
 
-        $this->userRepository->createUser([
+        User::create([
             'name' => htmlspecialchars($request->name),
             'email' => htmlspecialchars($request->email),
             'password' => Hash::make($request->password),
@@ -98,13 +82,14 @@ class UserController extends Controller
      *
      * @return RedirectResponse
      * @throws AuthorizationException
+     * @throws \Throwable
      */
     public function destroy(User $user): RedirectResponse
     {
         $this->authorize('delete', [User::class, $user]);
 
         $oldName = htmlentities($user->name);
-        $user->delete();
+        $user->deleteOrFail();
 
         $this->banner(__('Successfully deleted the user with the name of ":name"!', [$oldName]));
 
@@ -127,7 +112,7 @@ class UserController extends Controller
         $oldName = htmlentities($user->name);
 
         if (Hash::check($request->input('password'), $user->password)) {
-            $this->userRepository->deleteUser($user);
+            $user->deleteOrFail();
 
             $this->banner(__('Successfully deleted the user with the name of ":name"!', [$oldName]));
 
@@ -177,6 +162,7 @@ class UserController extends Controller
      *
      * @return RedirectResponse
      * @throws AuthorizationException
+     * @throws \Throwable
      */
     public function update(Request $request, User $user): RedirectResponse
     {
@@ -188,7 +174,7 @@ class UserController extends Controller
             'enable2fa' => ['nullable', 'boolean'],
         ];
 
-        if ($this->userRepository->userHasPreferences()) {
+        if ($user->hasPreferences()) {
             $rules = [
                 ...$rules,
                 'preferences.darkmode' => ['nullable', 'boolean'],
@@ -200,12 +186,12 @@ class UserController extends Controller
         $request->validate($rules);
 
         if ($request->password === null) {
-            $this->userRepository->updateUser($user, [
+            $user->updateOrFail([
                 'name' => strip_tags($request->name),
                 'enable_2fa' => intval($request->enable2fa),
             ]);
         } else {
-            $this->userRepository->updateUser($user, [
+            $user->updateOrFail([
                 'name' => $request->name,
                 'password' => Hash::make($request->password),
                 'enable_2fa' => intval($request->enable2fa),
@@ -213,7 +199,7 @@ class UserController extends Controller
         }
 
         // Save your preferences
-        if ($this->userRepository->userHasPreferences()) {
+        if ($user->hasPreferences()) {
 
             $preferences = $request->input('preferences');
 
@@ -222,7 +208,7 @@ class UserController extends Controller
                 $preferences['darkmode'] = false;
             }
 
-            $this->userRepository->updateUserPreferences($user, $preferences);
+            $user->updatePreferences($preferences);
         }
 
         $this->banner(__('Successfully updated your account!'));

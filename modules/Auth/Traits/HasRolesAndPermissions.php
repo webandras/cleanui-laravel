@@ -58,6 +58,8 @@ trait HasRolesAndPermissions
     public function hasRoles(string $roles): bool
     {
         $rolesArray = [];
+        $hasRole = false;
+
         // multiple roles from middleware arguments
         if (str_contains($roles, '|')) {
             $rolesTemp = explode('|', $roles);
@@ -74,11 +76,11 @@ trait HasRolesAndPermissions
 
         foreach ($rolesArray as $role) {
             if (isset($this->role) && $this->role->slug === $role) {
-                return true;
+                $hasRole = true;
             }
         }
 
-        return false;
+        return $hasRole;
     }
 
 
@@ -142,7 +144,7 @@ trait HasRolesAndPermissions
 
     /**
      * Get the role entity by the slug value
-     * User should have onl one role!
+     * User should have only one role!
      *
      */
     public function deleteUserRole(): void

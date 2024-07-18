@@ -5,11 +5,15 @@ namespace Modules\Auth\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Auth\Database\Factories\UserFactory;
+use Modules\Auth\Interfaces\Entities\UserInterface;
 use Modules\Auth\Mail\SendCodeMail;
 use Modules\Auth\Traits\HasPreferences;
 use Modules\Auth\Traits\HasRolesAndPermissions;
@@ -19,7 +23,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions, HasPreferences;
 
     public const RECORDS_PER_PAGE = 10;
-
 
     /**
      * The attributes that are mass assignable.
@@ -83,10 +86,9 @@ class User extends Authenticatable implements MustVerifyEmail
         );
 
         try {
-
             $details = [
                 'title' => __('Login code'),
-                'code'  => $code,
+                'code' => $code,
             ];
 
             // Send the code in email
@@ -94,9 +96,36 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
         } catch (\Exception $e) {
-            info("Error: ".$e->getMessage());
+            Log::info("Error: ".$e->getMessage());
             exit;
         }
+    }
+
+
+    public function scopeGetPaginatedUsersWithRoles($query)
+    {
+        return $query->orderBy('created_at', 'DESC')
+            ->with('role')
+            ->paginate(UserInterface::RECORDS_PER_PAGE)
+            ->withQueryString();
+    }
+
+
+    /**
+     * @param  array  $data
+     * @return Model
+     */
+    public function updatePreferences(array $data): Model
+    {
+        return $this->preferences()->updateOrCreate(['user_id' => $this->id], $data);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPreferences(): bool
+    {
+        return array_key_exists('Modules\Auth\Traits\HasPreferences', class_uses_recursive(User::class));
     }
 
 }

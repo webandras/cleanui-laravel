@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
 use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
 use Modules\Auth\Models\User;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -93,20 +92,12 @@ class Create extends Component
 
 
     /**
-     * @var UserRepositoryInterface
-     */
-    private UserRepositoryInterface $userRepository;
-
-
-    /**
      * @param  RolePermissionServiceInterface  $rolePermissionService
-     * @param  UserRepositoryInterface  $userRepository
      * @return void
      */
-    public function boot(RolePermissionServiceInterface $rolePermissionService, UserRepositoryInterface $userRepository): void
+    public function boot(RolePermissionServiceInterface $rolePermissionService): void
     {
         $this->rolePermissionService = $rolePermissionService;
-        $this->userRepository = $userRepository;
     }
 
 
@@ -156,7 +147,7 @@ class Create extends Component
 
         DB::transaction(
             function () {
-                $newUser = $this->userRepository->createUser([
+                $newUser = User::create([
                     'name' => htmlspecialchars($this->name),
                     'email' => htmlspecialchars($this->email),
                     'password' => Hash::make($this->password),
