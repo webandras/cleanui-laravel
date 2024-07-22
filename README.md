@@ -13,7 +13,7 @@ Has a fully-modular structure (outside the `app` folder).
 It includes the following modules:
 
 - the **clean module** (_always required_; some general codes)
-- the **auth module** (_always required_; provides authentication, 2fa, role-pres-mission-based authorization, profile
+- the **auth module** (_always required_; provides authentication, 2fa, role-permission based authorization, profile
   and
   preferences management, and user management)
 - the **blog module** with posts, post tags, post categories, and a documentation section (_optional_, can be deleted)
