@@ -25,7 +25,7 @@ class JobStatsController extends Controller
     {
         $this->authorize('viewAny', Job::class);
 
-        return view('admin.pages.job.statistics')->with([
+        return view('job::admin.job.statistics')->with([
             'userPermissions' => $this->getUserPermissions()
         ]);
     }

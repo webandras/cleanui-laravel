@@ -24,7 +24,7 @@ class JobWorkerController extends Controller
     {
        $this->authorize('viewAny', Worker::class);
 
-        return view('admin.pages.job.worker.manage')->with([
+        return view('job::admin.worker.manage')->with([
             'workers' => Worker::paginatedWorkers(),
             'userPermissions' => $this->getUserPermissions()
         ]);
