@@ -65,7 +65,7 @@ class EventController extends Controller
             ->orderBy('start', 'desc')
             ->paginate(EventInterface::POST_PER_PAGE);
 
-        return view('event::event.admin.manage')->with([
+        return view('event::admin.event.manage')->with([
             'events' => $events,
             'userPermissions' => $this->getUserPermissions()
         ]);
@@ -87,7 +87,7 @@ class EventController extends Controller
         $timezoneIdentifiers = \DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE);
         $statuses = EventStatus::options();
 
-        return view('event::event.admin.create')->with([
+        return view('event::admin.event.create')->with([
             'organizers' => $organizers,
             'locations' => $locations,
             'timezoneIdentifiers' => $timezoneIdentifiers,
@@ -178,7 +178,7 @@ class EventController extends Controller
 
         $ids = $this->getLocationAndOrganizerIds($event);
 
-        return view('event::event.admin.edit')->with([
+        return view('event::admin.event.edit')->with([
             'event' => $event,
             'organizers' => $organizers,
             'locations' => $locations,

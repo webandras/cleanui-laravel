@@ -20,7 +20,7 @@ class EventController extends Controller
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
 //        return view('Event.Views.event.index');
-        return view('event::event.public.index');
+        return view('event::public.event.index');
     }
 
 
@@ -29,7 +29,7 @@ class EventController extends Controller
      */
     public function show(string $slug): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('event::event.public.show')->with([
+        return view('event::public.event.show')->with([
             'event' => Event::getBySlug($slug),
             'dtFormat' => $this->getLocaleDateTimeFormat(),
             'utcTz' => new \DateTimeZone("UTC")

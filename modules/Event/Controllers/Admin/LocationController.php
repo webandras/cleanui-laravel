@@ -39,7 +39,7 @@ class LocationController extends Controller
         $locations = $this->modelRepository->paginateEntities('Event\Models\Location',
             LocationInterface::RECORDS_PER_PAGE);
 
-        return view('event::event.admin.location.manage')->with([
+        return view('event::admin.location.manage')->with([
             'locations' => $locations,
             'userPermissions' => $this->getUserPermissions()
         ]);
