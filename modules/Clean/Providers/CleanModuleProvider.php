@@ -5,7 +5,6 @@ namespace Modules\Clean\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Modules\Auth\Interfaces\Repositories\UserRepositoryInterface;
 use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
 use Modules\Auth\Interfaces\Services\SocialServiceInterface;
 use Modules\Auth\Services\RolePermissionService;
@@ -18,7 +17,6 @@ use Modules\Blog\Repositories\CategoryRepository;
 use Modules\Blog\Repositories\DocumentRepository;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Blog\Repositories\TagRepository;
-use Modules\Blog\Repositories\UserRepository;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
 use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
@@ -27,14 +25,6 @@ use Modules\Clean\Repositories\ModelRepository;
 use Modules\Clean\Services\ArchiveEntityService;
 use Modules\Clean\Services\DateTimeService;
 use Modules\Clean\Services\ImageService;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
-use Modules\Event\Repositories\EventRepository;
-use Modules\Job\Interfaces\ClientRepositoryInterface;
-use Modules\Job\Interfaces\JobRepositoryInterface;
-use Modules\Job\Interfaces\WorkerRepositoryInterface;
-use Modules\Job\Repositories\ClientRepository;
-use Modules\Job\Repositories\JobRepository;
-use Modules\Job\Repositories\WorkerRepository;
 
 class CleanModuleProvider extends ServiceProvider
 {
@@ -54,17 +44,10 @@ class CleanModuleProvider extends ServiceProvider
         $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
 
         /* Custom */
-        $this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
-        $this->app->bind(JobRepositoryInterface::class, JobRepository::class);
-        $this->app->bind(WorkerRepositoryInterface::class, WorkerRepository::class);
-
-
-        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         /* $this->app->when([LocationController::class])
             ->needs(ModelRepositoryInterface::class)
             ->give(LocationRepository::class);
