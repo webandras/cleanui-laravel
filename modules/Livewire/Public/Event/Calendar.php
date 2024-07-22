@@ -8,11 +8,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Application;
 use Livewire\Component;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
+use Modules\Event\Models\Event;
 
 class Calendar extends Component
 {
-    // Event list as collection
     /**
      * @var Collection
      */
@@ -29,22 +28,6 @@ class Calendar extends Component
      * @var string
      */
     public string $timezone;
-
-
-    /**
-     * @var EventRepositoryInterface
-     */
-    private EventRepositoryInterface $eventRepository;
-
-
-    /**
-     * @param  EventRepositoryInterface  $eventRepository
-     * @return void
-     */
-    public function boot(EventRepositoryInterface $eventRepository): void
-    {
-        $this->eventRepository = $eventRepository;
-    }
 
 
     /**
@@ -73,7 +56,7 @@ class Calendar extends Component
     public function render(): Factory|View|Application|\Illuminate\Contracts\Foundation\Application
     {
         $lastMonth = Carbon::now()->startOfMonth()->subMonths(3);
-        $this->events = $this->eventRepository->getEventsNewerThan($lastMonth->toDateString());
+        $this->events = Event::newerThan($lastMonth->toDateString());
 
         return view('public.livewire.event.calendar');
     }

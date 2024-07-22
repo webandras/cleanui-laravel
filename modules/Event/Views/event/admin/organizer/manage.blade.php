@@ -30,17 +30,14 @@
                 <tr class="fs-14">
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Slug') }}</th>
-                    <th>{{ __('Facebook Url') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($organizers as $organizer)
                     <tr>
-                        <td><b>{{ $organizer->name }}</b></td>
-                        <td class="fs-14">{{ $organizer->slug }}</td>
-                        <td class="fs-14" style="word-break: break-word;">{{ $organizer->facebook_url }}</td>
-
+                        <td><a href="{{ $organizer->facebook_url }}" target="_blank" class="bold">{{ $organizer->name }}</a></td>
+                        <td>{{ $organizer->slug }}</td>
                         <td>
                             <div class="flex flex-row">
 

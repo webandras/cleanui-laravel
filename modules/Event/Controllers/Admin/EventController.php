@@ -9,23 +9,24 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 use Modules\Auth\Traits\UserPermissions;
 use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
 use Modules\Clean\Interfaces\Services\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
+use Modules\Event\Enum\EventStatus;
 use Modules\Event\Interfaces\Entities\EventInterface;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
 use Modules\Event\Models\Event;
+use Modules\Event\Models\EventDetail;
 use Modules\Event\Models\Location;
 use Modules\Event\Models\Organizer;
 use Modules\Event\Requests\StoreEventRequest;
 use Modules\Event\Requests\UpdateEventRequest;
+use Modules\Event\Traits\EventTrait;
 use Throwable;
 
 class EventController extends Controller
 {
-    use InteractsWithBanner, UserPermissions;
+    use InteractsWithBanner, UserPermissions, EventTrait;
 
     /**
      * @var ImageServiceInterface
@@ -40,24 +41,15 @@ class EventController extends Controller
 
 
     /**
-     * @var EventRepositoryInterface
-     */
-    private EventRepositoryInterface $eventRepository;
-
-
-    /**
      * @param  ImageServiceInterface  $imageService
      * @param  DateTimeServiceInterface  $dateTimeService
-     * @param  EventRepositoryInterface  $eventRepository
      */
     public function __construct(
         ImageServiceInterface $imageService,
         DateTimeServiceInterface $dateTimeService,
-        EventRepositoryInterface $eventRepository
     ) {
         $this->imageService = $imageService;
         $this->dateTimeService = $dateTimeService;
-        $this->eventRepository = $eventRepository;
     }
 
 
@@ -65,13 +57,15 @@ class EventController extends Controller
      * Display a listing of the resource.
      * @throws AuthorizationException
      */
-    public function index()
+    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $this->authorize('viewAny', Event::class);
 
-        $events = $this->eventRepository->getPaginatedEvents();
+        $events = Event::with(['event_detail'])
+            ->orderBy('start', 'desc')
+            ->paginate(EventInterface::POST_PER_PAGE);
 
-        return view('admin.pages.event.manage')->with([
+        return view('event::event.admin.manage')->with([
             'events' => $events,
             'userPermissions' => $this->getUserPermissions()
         ]);
@@ -91,9 +85,9 @@ class EventController extends Controller
         $organizers = Organizer::orderBy('name', 'ASC')->get();
         $locations = Location::orderBy('city', 'ASC')->get();
         $timezoneIdentifiers = \DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE);
-        $statuses = Event::getStatuses();
+        $statuses = EventStatus::options();
 
-        return view('admin.pages.event.create')->with([
+        return view('event::event.admin.create')->with([
             'organizers' => $organizers,
             'locations' => $locations,
             'timezoneIdentifiers' => $timezoneIdentifiers,
@@ -114,15 +108,13 @@ class EventController extends Controller
     {
         $this->authorize('create', Event::class);
 
-        $data = $request->all();
-
-        $data = $this->eventRepository->getSlugFromTitle($data);
+        $data = $request->validated();
+        $data = $this->addSlugFromTitle($data);
         $data = $this->dateTimeService->convertDateTimesToUTC($data, $data['timezone']);
         $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
 
         DB::transaction(
             function () use ($data) {
-
                 // event details
                 $details = [];
                 // populate details if the props are set
@@ -147,19 +139,18 @@ class EventController extends Controller
                 }
 
                 // create event
-                $newEvent = $this->eventRepository->createEvent($data);
+                $newEvent = Event::create($data);
                 $newEvent->save();
                 $newEvent->refresh();
-
 
                 // create event details
                 if (!empty($details)) {
                     $details['event_id'] = $newEvent->id;
 
                     // we need to create a new EventDetail record
-                    $this->eventRepository->createEventDetail($details);
+                    $newEventDetail = new EventDetail($details);
+                    $newEventDetail->saveOrFail();
                 }
-
 
             }, 2);
 
@@ -183,11 +174,11 @@ class EventController extends Controller
         $organizers = Organizer::withTrashed()->orderBy('name', 'ASC')->get();
         $locations = Location::withTrashed()->orderBy('city', 'ASC')->get();
         $timezoneIdentifiers = \DateTimeZone::listIdentifiers(\DateTimeZone::EUROPE);
-        $statuses = Event::getStatuses();
+        $statuses = EventStatus::options();
 
-        $ids = $this->eventRepository->getLocationAndOrganizerIds($event);
+        $ids = $this->getLocationAndOrganizerIds($event);
 
-        return view('admin.pages.event.edit')->with([
+        return view('event::event.admin.edit')->with([
             'event' => $event,
             'organizers' => $organizers,
             'locations' => $locations,
@@ -211,33 +202,12 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event): RedirectResponse
     {
-       $this->authorize('update', [Event::class, $event]);
+        $this->authorize('update', [Event::class, $event]);
 
-        $rules = [
-            'title' => ['required', 'max:255', 'string'],
-            'slug' => ['required', 'alpha_dash', 'max:255', Rule::unique('events')->ignore($event->id, 'id')],
-            'description' => ['required', 'string'],
-            'start' => ['required', 'string'],
-            'end' => ['required', 'string'],
-            'timezone' => ['required', 'string'],
-            'backgroundColor' => ['nullable', 'string', 'max:20'],
-            'backgroundColorDark' => ['nullable', 'string', 'max:20'],
-            'cover_image_url' => ['required', 'max:255', 'string'],
-            'facebook_url' => ['required', 'string'],
-            'tickets_url' => ['nullable', 'string'],
-            'organizer_id' => ['required', 'int', 'min:1'],
-            'location_id' => ['required', 'int', 'min:1'],
-            'allDay' => ['nullable', 'boolean'],
-            'status' => ['required', 'string', 'in:posted,cancelled'],
-        ];
-
-        $request->validate($rules);
-
-        $data = $request->all();
-        $data = $this->eventRepository->getSlugFromTitle($data);
+        $data = $request->validated();
+        $data = $this->addSlugFromTitle($data);
         $data = $this->dateTimeService->convertDateTimesToUTC($data, $data['timezone']);
         $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
-
 
         DB::transaction(
             function () use ($event, $data) {
@@ -264,26 +234,25 @@ class EventController extends Controller
                     $data['allDay'] = 0;
                 }
 
-
-                // update post
-                $this->eventRepository->updateEvent($event, $data);
+                // update event
+                $event->updateOrFail($data);
 
                 // update event details (or create if not exists -> deleted from db by hand)
                 if (!empty($details)) {
-                    $eventDetail = $this->eventRepository->getEventDetailByEventId($event->id);
+                    $eventDetail = EventDetail::where('event_id', '=', $event->id)->firstOrFail();
 
                     if ($eventDetail === null) {
                         $details['id'] = $event->id;
 
-                        // we need to create a new EventDetail record
-                        $this->eventRepository->createEventDetail($details);
+                        // create a new EventDetail record
+                        $newEventDetail = new EventDetail($details);
+                        $newEventDetail->saveOrFail();
                     } else {
-                        $this->eventRepository->updateEventDetail($eventDetail, $details);
+                        $eventDetail->updateOrFail($details);
                     }
                 }
 
             }, 2);
-
 
         $this->banner(__('Successfully updated the event'));
         return redirect()->route('event.manage');
@@ -302,8 +271,8 @@ class EventController extends Controller
     {
         $this->authorize('delete', Event::class);
 
-        $oldTitle = htmlentities($event->title);
-        $this->eventRepository->deleteEvent($event);
+        $oldTitle = $event->title;
+        $event->deleteOrFail();
 
         $this->banner(__('":title" successfully deleted!', ['title' => $oldTitle]));
         return redirect()->route('event.manage');

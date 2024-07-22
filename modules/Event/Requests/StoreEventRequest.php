@@ -40,4 +40,29 @@ class StoreEventRequest extends FormRequest
             'status' => ['required', 'string', 'in:posted,cancelled'],
         ];
     }
+
+
+    /**
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'title' => __('title'),
+            'slug' => __('slug'),
+            'description' => __('description'),
+            'start' => __('start'),
+            'end' => __('end'),
+            'timezone' => __('timezone'),
+            'backgroundColor' => __('backgroundColor'),
+            'backgroundColorDark' => __('backgroundColorDark'),
+            'cover_image_url' => __('cover_image_url'),
+            'facebook_url' => __('facebook_url'),
+            'tickets_url' => __('tickets_url'),
+            'organizer_id' => __('organizer_id'),
+            'location_id' => __('location_id'),
+            'allDay' => __('allDay'),
+            'status' => __('status'),
+        ];
+    }
 }

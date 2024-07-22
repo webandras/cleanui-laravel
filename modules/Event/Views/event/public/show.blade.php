@@ -47,8 +47,8 @@
 
     <article class="event-container margin-top-0">
         <div class="relative event-cover-image-container event-image-bg-gradient">
-            <div class="absolute topleft margin-left-2 margin-top-0-5 z-3">
-                <a href="{{ route('event.index') }}" class="text-white fs-14 back-to-event-calendar-link">
+            <div class="absolute topleft margin-left-2 margin-top-1 z-3">
+                <a href="{{ route('event.index') }}" class="text-white back-to-event-calendar-link">
                     <i class="fa-regular fa-calendar-days margin-right-0-5"></i>{{ __('Back to Events') }}</a>
             </div>
 
@@ -74,11 +74,13 @@
                 </div>
             </div>
 
-            <div class="absolute topright facebook-icon-event">
-                <a href="{{ $event->event_detail->facebook_url }}" title="{{ __('Go to the Facebook event') }}">
-                    <img src="{{ url('/images/social/facebook-blue.png') }}" class="event-facebook-logo" alt="Facebook logo">
-                </a>
-            </div>
+
+            <a href="{{ $event->event_detail->facebook_url }}" title="{{ __('Go to the Facebook event') }}"
+               class="text-white absolute topright facebook-icon-event">
+                <img src="{{ url('/images/social/facebook-blue.png') }}" class="event-facebook-logo"
+                     alt="Facebook logo">
+            </a>
+
 
             <header class="event-card-header">
                 <h1 class="text-left event-title margin-top-0 padding-top-0 h1 single-post-title {{ $event->status === 'cancelled' ? 'text-gray-60 strikethrough' : '' }}">{{ $event->status === 'cancelled' ? __('CANCELLED!') : '' }} {{ $event->title }}</h1>
@@ -106,11 +108,13 @@
                             <ul class="no-bullets padding-left-right-0 margin-top-0">
                                 <li class="margin-bottom-0-5">
                                     <a href="{{ $event->organizer->facebook_url }}">
-                                        <i class="fa-solid fa-user margin-right-0-5"></i>{{ $event->organizer->name }}</a> {{ __('(organizer)') }}
+                                        <i class="fa-solid fa-user margin-right-0-5"></i>{{ $event->organizer->name }}
+                                    </a> {{ __('(organizer)') }}
                                 </li>
                                 <li class="margin-bottom-0-5">
                                     <a href="{{ $event->event_detail->facebook_url }}" class="word-break">
-                                        <i class="fa-brands fa-facebook margin-right-0-5"></i>{{ __('Facebook event link') }}</a>
+                                        <i class="fa-brands fa-facebook margin-right-0-5"></i>{{ __('Facebook event link') }}
+                                    </a>
                                 </li>
                                 <li class="margin-bottom-0-5">
                                     <a title="{{ __('Google Map search') }}"
@@ -139,10 +143,18 @@
                         @isset($event->event_detail->tickets_url)
                             <h3 class="margin-top-0 fs-18 uppercase text-gray-80 semibold">{{ __('Tickets:') }}</h3>
 
-                            <a class="button primary button-large margin-top-0 {{ $event->status === 'cancelled' ? 'disabled' : '' }}" href="{{  $event->status !== 'cancelled' ? $event->event_detail->tickets_url : '#' }}">
-                                <i class="fa-solid fa-ticket margin-right-0-5"></i>
-                                {{ __('Buy tickets here') }}
-                            </a>
+                            @if ($event->status !== 'cancelled')
+                                <a class="button primary button-large margin-top-0"
+                                   href="{{ $event->event_detail->tickets_url }}">
+                                    <i class="fa-solid fa-ticket margin-right-0-5"></i>
+                                    {{ __('Buy tickets here') }}
+                                </a>
+                            @else
+                                <div class="button gray-button button-large margin-top-0 disabled">
+                                    <i class="fa-solid fa-ticket margin-right-0-5"></i>
+                                    {{ __('Buy tickets here') }}
+                                </div>
+                            @endif
                         @endisset
 
 

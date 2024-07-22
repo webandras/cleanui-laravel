@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
 use Modules\Event\Models\Event;
 use Modules\Event\Models\Location;
 use Modules\Event\Models\Organizer;
@@ -19,8 +18,6 @@ class Widget extends Component
     use WithPagination;
 
     /**
-     * Event list as collection
-     *
      * @var LengthAwarePaginator|null
      */
     protected ?LengthAwarePaginator $events;
@@ -32,7 +29,6 @@ class Widget extends Component
     public bool $show;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -64,22 +60,6 @@ class Widget extends Component
 
 
     /**
-     * @var EventRepositoryInterface
-     */
-    private EventRepositoryInterface $eventRepository;
-
-
-    /**
-     * @param  EventRepositoryInterface  $eventRepository
-     * @return void
-     */
-    public function boot(EventRepositoryInterface $eventRepository): void
-    {
-        $this->eventRepository = $eventRepository;
-    }
-
-
-    /**
      * @return void
      */
     public function mount(): void
@@ -91,7 +71,6 @@ class Widget extends Component
         $this->searchTerm = '';
 
         $this->cities = Location::select('city')->distinct()->get()->toArray();
-
         $this->organizers = Organizer::get()->toArray();
     }
 
@@ -101,11 +80,10 @@ class Widget extends Component
      */
     public function render(): Factory|View|\Illuminate\Foundation\Application|Application
     {
-
         $lastDay = Carbon::today()->subDay();
 
         if (!isset($this->events)) {
-            $this->events = $this->eventRepository->getPaginatedEventsNewerThan($lastDay->toDateString());
+            $this->events = Event::newerThanPaginated($lastDay->toDateString());
         }
 
         $this->resetPage();
@@ -159,8 +137,7 @@ class Widget extends Component
         $lastDay = Carbon::today()->subDay();
         $organizerId = intval($this->organizerId);
 
-        $this->events = $this->eventRepository->filterEvents($lastDay->toDateString(), $this->city, $organizerId,
-            $this->searchTerm);
+        $this->events = Event::filter($lastDay->toDateString(), $this->city, $organizerId, $this->searchTerm);
     }
 
 

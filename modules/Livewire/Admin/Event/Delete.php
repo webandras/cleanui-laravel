@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
 use Modules\Event\Models\Event;
 
 class Delete extends Component
@@ -66,21 +65,6 @@ class Delete extends Component
 
 
     /**
-     * @var EventRepositoryInterface
-     */
-    private EventRepositoryInterface $eventRepository;
-
-
-    /**
-     * @param  EventRepositoryInterface  $eventRepository
-     */
-    public function boot(EventRepositoryInterface $eventRepository): void
-    {
-        $this->eventRepository = $eventRepository;
-    }
-
-
-    /**
      * @param  string  $modalId
      * @param  Event  $event
      * @param  bool  $hasSmallButton
@@ -120,7 +104,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->eventRepository->deleteEvent($this->event);
+                $this->event->deleteOrFail();
             },
             2
         );

@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Modules\Clean\Traits\HasLocalization;
-use Modules\Event\Interfaces\Repositories\EventRepositoryInterface;
+use Modules\Event\Models\Event;
 
 
 class EventController extends Controller
@@ -15,26 +15,12 @@ class EventController extends Controller
     use HasLocalization;
 
     /**
-     * @var EventRepositoryInterface
-     */
-    private EventRepositoryInterface $eventRepository;
-
-
-    /**
-     * @param  EventRepositoryInterface  $eventRepository
-     */
-    public function __construct(EventRepositoryInterface $eventRepository)
-    {
-        $this->eventRepository = $eventRepository;
-    }
-
-
-    /**
      * Display a listing of the resource.
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('public.pages.event.index');
+//        return view('Event.Views.event.index');
+        return view('event::event.public.index');
     }
 
 
@@ -43,8 +29,8 @@ class EventController extends Controller
      */
     public function show(string $slug): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('public.pages.event.show')->with([
-            'event' => $this->eventRepository->getEventBySlug($slug),
+        return view('event::event.public.show')->with([
+            'event' => Event::getBySlug($slug),
             'dtFormat' => $this->getLocaleDateTimeFormat(),
             'utcTz' => new \DateTimeZone("UTC")
         ]);

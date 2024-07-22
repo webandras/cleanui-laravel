@@ -36,8 +36,8 @@
                 <tbody>
                 @foreach($locations as $location)
                     <tr>
-                        <td><b>{{ $location->name }}</b><br><span class="fs-12">{{ $location->city }}</span></td>
-                        <td class="fs-14">{{ $location->address }}</td>
+                        <td><b>{{ $location->name }}</b><br>{{ $location->city }}</td>
+                        <td>{{ $location->address }}</td>
                         <td>
                             <div class="flex flex-row">
 

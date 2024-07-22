@@ -29,6 +29,10 @@ class EventModuleProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
+        $this->loadViewsFrom(__DIR__.'/../Views', 'event');
+
+        //$this->loadJsonTranslationsFrom();
+
         Gate::policy(Event::class, EventPolicy::class);
         Gate::policy(Location::class, LocationPolicy::class);
         Gate::policy(Organizer::class, OrganizerPolicy::class);

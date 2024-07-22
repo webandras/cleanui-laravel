@@ -10,17 +10,17 @@
 
 @section('content')
 
-    <div class="event-calendar-container container margin-bottom-3">
+    <section class="event-calendar-container container margin-bottom-3">
         <h1 class="h2 margin-bottom-0 margin-top-0-5">{{ __('Upcoming Events') }}</h1>
-        <div>
+        <section>
             <livewire:public.event.widget></livewire:public.event.widget>
             <hr>
-        </div>
-        <div>
+        </section>
+        <section>
             <livewire:public.event.calendar></livewire:public.event.calendar>
-        </div>
+        </section>
 
-    </div>
+    </section>
 @endsection
 
 

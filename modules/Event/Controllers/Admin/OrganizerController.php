@@ -38,7 +38,7 @@ class OrganizerController extends Controller
 
         $organizers = $this->modelRepository->paginateEntities('Event\Models\Organizer', OrganizerInterface::RECORDS_PER_PAGE);
 
-        return view('admin.pages.event.organizer.manage')->with([
+        return view('event::event.admin.organizer.manage')->with([
             'organizers' => $organizers,
             'userPermissions' => $this->getUserPermissions()
         ]);
