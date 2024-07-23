@@ -33,7 +33,7 @@ return [
             'HTML.SafeObject' => true,
             'Output.FlashCompat' => true,
             'URI.DisableExternalResources' => false,
-            'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()), /* Be careful with this one -> if it is enabled, you can't cache the config! */
+            // 'Filter.Custom' => array (new HTMLPurifier_Filter_MyIframe()), /* Be careful with this one -> if it is enabled, you can't cache the config! */
         ],
         'test'    => [
             'Attr.EnableID' => 'true',
