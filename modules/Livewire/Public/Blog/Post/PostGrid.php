@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Modules\Blog\Interfaces\Repositories\PostRepositoryInterface;
+use Modules\Blog\Interfaces\Entities\PostInterface;
+use Modules\Blog\Models\Post;
 use Modules\Clean\Traits\HasLocalization;
 
 class PostGrid extends Component
@@ -24,27 +25,14 @@ class PostGrid extends Component
 
 
     /**
-     * @var PostRepositoryInterface
-     */
-    private PostRepositoryInterface $postRepository;
-
-
-    /**
-     * @param  PostRepositoryInterface  $postRepository
-     * @return void
-     */
-    public function boot(PostRepositoryInterface $postRepository): void
-    {
-        $this->postRepository = $postRepository;
-    }
-
-
-    /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function render(): Factory|View|\Illuminate\Foundation\Application|Application
     {
-        $this->posts = $this->postRepository->getPaginatedPublishedPosts();
+        $this->posts = Post::where('status', '=', 'published')
+            ->with('categories', 'tags')
+            ->orderByDesc('created_at')
+            ->paginate(PostInterface::RECORDS_PER_PAGE);;
 
         $this->resetPage();
 

@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Blog\Interfaces\Repositories\CategoryRepositoryInterface;
 use Modules\Blog\Models\Category;
 use Modules\Clean\Interfaces\Services\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -18,8 +17,6 @@ class Update extends Component
 {
     use InteractsWithBanner, AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +35,6 @@ class Update extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -79,9 +75,30 @@ class Update extends Component
 
 
     /**
-     * @var CategoryRepositoryInterface
+     * @return string[]
      */
-    private CategoryRepositoryInterface $categoryRepository;
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The :attribute is required.',
+            'slug.required' => 'The :attribute is required.',
+            'categoryId.required' => 'The :attribute is required.',
+        ];
+    }
+
+
+    /**
+     * @return array
+     */
+    public function validationAttributes(): array
+    {
+        return [
+            'name' => __('name'),
+            'slug' => __('slug'),
+            'cover_image_url' => __('cover image url'),
+            'categoryId' => __('category id'),
+        ];
+    }
 
 
     /**
@@ -91,13 +108,11 @@ class Update extends Component
 
 
     /**
-     * @param  CategoryRepositoryInterface  $categoryRepository
      * @param  ImageServiceInterface  $imageService
      * @return void
      */
-    public function boot(CategoryRepositoryInterface $categoryRepository, ImageServiceInterface $imageService): void
+    public function boot(ImageServiceInterface $imageService): void
     {
-        $this->categoryRepository = $categoryRepository;
         $this->imageService = $imageService;
     }
 
@@ -149,7 +164,7 @@ class Update extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->categoryRepository->updateCategory($this->category, [
+                $this->category->updateOrFail([
                     'name' => $this->name,
                     'slug' => $this->slug,
                     'cover_image_url' => $this->cover_image_url === '' ? null : $this->imageService->getImageAbsolutePath($this->cover_image_url),

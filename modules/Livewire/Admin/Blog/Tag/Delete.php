@@ -12,7 +12,7 @@ use Livewire\Component;
 use Modules\Blog\Models\Tag;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Livewire\Admin\Clean\Tag\Trait\Reactive;
+use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Delete extends Component
 {
@@ -20,8 +20,6 @@ class Delete extends Component
     use AuthorizesRequests;
     use Reactive;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -40,7 +38,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -65,22 +62,6 @@ class Delete extends Component
     protected array $rules = [
         'tagId' => 'required|int|min:1',
     ];
-
-
-    /**
-     * @var ModelRepositoryInterface
-     */
-    private ModelRepositoryInterface $tagRepository;
-
-
-    /**
-     * @param  ModelRepositoryInterface  $tagRepository
-     * @return void
-     */
-    public function boot(ModelRepositoryInterface $tagRepository): void
-    {
-        $this->tagRepository = $tagRepository;
-    }
 
 
     /**
@@ -126,7 +107,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->tagRepository->deleteEntity($this->tag);
+                $this->tag->deleteOrFail();
             },
             2
         );

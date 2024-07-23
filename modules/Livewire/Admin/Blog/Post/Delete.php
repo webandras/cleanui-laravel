@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Blog\Interfaces\Repositories\PostRepositoryInterface;
 use Modules\Blog\Models\Post;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -19,8 +18,6 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +36,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -64,22 +60,6 @@ class Delete extends Component
     protected array $rules = [
         'postId' => 'required|int|min:1',
     ];
-
-
-    /**
-     * @var PostRepositoryInterface
-     */
-    private PostRepositoryInterface $postRepository;
-
-
-    /**
-     * @param  PostRepositoryInterface  $postRepository
-     * @return void
-     */
-    public function boot(PostRepositoryInterface $postRepository): void
-    {
-        $this->postRepository = $postRepository;
-    }
 
 
     /**
@@ -122,7 +102,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->postRepository->deletePost($this->post);
+                $this->post->deleteOrFail();
             },
             2
         );

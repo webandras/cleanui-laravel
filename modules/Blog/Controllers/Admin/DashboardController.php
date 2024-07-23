@@ -21,7 +21,7 @@ class DashboardController extends Controller
      */
     public function index(): Application|Factory|View
     {
-        return view('admin.pages.dashboard')->with([
+        return view('blog::admin.dashboard')->with([
             'userPermissions' => $this->getUserPermissions()
         ]);
     }

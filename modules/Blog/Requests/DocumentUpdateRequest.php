@@ -30,4 +30,19 @@ class DocumentUpdateRequest extends FormRequest
             'excerpt' => ['required', 'string'],
         ];
     }
+
+
+    /**
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'title' => __('title'),
+            'status' => __('status'),
+            'slug' => __('slug'),
+            'content' => __('content'),
+            'excerpt' => __('excerpt'),
+        ];
+    }
 }

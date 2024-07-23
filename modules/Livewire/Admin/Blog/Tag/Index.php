@@ -16,7 +16,7 @@ use Modules\Blog\Interfaces\Entities\TagInterface;
 use Modules\Blog\Models\Tag;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
-use Modules\Livewire\Admin\Clean\Tag\Trait\Reactive;
+use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Index extends Component
 {

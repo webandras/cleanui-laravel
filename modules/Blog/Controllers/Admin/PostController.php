@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
-use Modules\Blog\Interfaces\Repositories\PostRepositoryInterface;
+use Modules\Blog\Interfaces\Entities\PostInterface;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Tag;
@@ -24,13 +24,6 @@ class PostController extends Controller
 {
     use InteractsWithBanner, UserPermissions;
 
-
-    /**
-     * @var PostRepositoryInterface
-     */
-    private PostRepositoryInterface $postRepository;
-
-
     /**
      * @var ImageServiceInterface
      */
@@ -39,12 +32,10 @@ class PostController extends Controller
 
     /**
      * @param  ImageServiceInterface  $imageService
-     * @param  PostRepositoryInterface  $postRepository
      */
-    public function __construct(ImageServiceInterface $imageService, PostRepositoryInterface $postRepository)
+    public function __construct(ImageServiceInterface $imageService)
     {
         $this->imageService = $imageService;
-        $this->postRepository = $postRepository;
     }
 
 
@@ -57,7 +48,7 @@ class PostController extends Controller
     {
         $tags = Tag::all();
 
-        return view('admin.pages.blog.post.create')->with([
+        return view('blog::admin.post.create')->with([
             'postStatuses' => Post::getPostStatuses(),
             'categories' => Category::all(),
             'tags' => $tags,
@@ -74,7 +65,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request): RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data = Post::getSlugFromTitle($data);
 
         if (isset($data['cover_image_url'])) {
@@ -96,7 +87,7 @@ class PostController extends Controller
 
         DB::transaction(
             function () use ($data, $categoriesArray, $tagsArray) {
-                $newPost = $this->postRepository->createPost($data);
+                $newPost = Post::create($data);
 
                 // synchronize post categories
                 if (!empty($categoriesArray)) {
@@ -133,7 +124,7 @@ class PostController extends Controller
         $postCategoryIds = $post->categories()->get()->pluck(['id'])->toArray();
         $postTagIds = $post->tags()->get()->pluck(['id'])->toArray();
 
-        return view('admin.pages.blog.post.edit')->with([
+        return view('blog::admin.post.edit')->with([
             'post' => $post,
             'postStatuses' => Post::getPostStatuses(),
             'categories' => Category::all(),
@@ -158,7 +149,7 @@ class PostController extends Controller
     {
         $this->authorize('update', [Post::class, $post]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data = Post::getSlugFromTitle($data);
         if (isset($data['cover_image_url'])) {
             $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
@@ -169,12 +160,10 @@ class PostController extends Controller
             unset($data['categories']);
         }
 
-
         $tagsArray = $data['tags'] ?? [];
         if (empty($tagsArray)) {
             unset($data['tags']);
         }
-
 
         // If not checked, the value should be 0 to be able to update this property
         if (!isset($data['is_highlighted'])) {
@@ -185,7 +174,7 @@ class PostController extends Controller
         DB::transaction(
             function () use ($post, $data, $categoriesArray, $tagsArray) {
                 // update post
-                $this->postRepository->updatePost($post, $data);
+                $post->updateOrFail($data);
 
                 // synchronize post categories
                 if (!empty($categoriesArray)) {
@@ -217,9 +206,8 @@ class PostController extends Controller
     {
         $this->authorize('delete', Post::class);
 
-        $oldTitle = htmlentities($post->title);
-
-        $this->postRepository->deletePost($post);
+        $oldTitle = $post->title;
+        $post->deleteOrFail();
 
         $this->banner(__('":title" successfully deleted!', ['title' => $oldTitle]));
         return redirect()->route('post.manage');
@@ -234,9 +222,11 @@ class PostController extends Controller
     {
         $this->authorize('viewAny', Post::class);
 
-        $posts = $this->postRepository->getPaginatedPosts();
+        $posts = Post::orderBy('created_at', 'DESC')
+            ->paginate(PostInterface::RECORDS_PER_PAGE)
+            ->withQueryString();;
 
-        return view('admin.pages.blog.post.manage')->with([
+        return view('blog::admin.post.manage')->with([
             'posts' => $posts,
             'postStatuses' => Post::getPostStatuses(),
             'postStatusColors' => Post::getPostStatusColors(),

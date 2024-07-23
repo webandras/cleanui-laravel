@@ -19,7 +19,7 @@
         <article x-show="showToc" x-cloak x-transition class="toc round">
             <h2 class="h4">{{ __('Table of Contents') }}</h2>
 
-            <ul class="padding-right-left-0 no-bullets margin-top-0 fs-14">
+            <ul class="padding-right-left-0 no-bullets margin-top-0 fs-16">
                 <li><a href="{{ route('document.index') }}" class="active">{{ __('Get Started') }}</a></li>
                 @foreach($documents as $document)
                     <li><a href="{{ route('document.show', $document->slug) }}"

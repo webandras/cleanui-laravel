@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Blog\Interfaces\Repositories\CategoryRepositoryInterface;
 use Modules\Blog\Models\Category;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -18,8 +17,6 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +35,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -63,22 +59,6 @@ class Delete extends Component
     protected array $rules = [
         'categoryId' => 'required|int|min:1',
     ];
-
-
-    /**
-     * @var CategoryRepositoryInterface
-     */
-    private CategoryRepositoryInterface $categoryRepository;
-
-
-    /**
-     * @param  CategoryRepositoryInterface  $categoryRepository
-     * @return void
-     */
-    public function boot(CategoryRepositoryInterface $categoryRepository): void
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
 
 
     /**
@@ -118,7 +98,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->categoryRepository->deleteTag($this->category);
+                $this->category->deleteOrFail();
             },
             2
         );

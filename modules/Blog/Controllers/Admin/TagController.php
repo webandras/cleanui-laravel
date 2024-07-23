@@ -25,7 +25,7 @@ class TagController extends Controller
     {
         $this->authorize('viewAny', Tag::class);
 
-        return view('admin.pages.blog.tag.manage')->with([
+        return view('blog::admin.tag.manage')->with([
             'userPermissions' => $this->getUserPermissions(),
         ]);
     }

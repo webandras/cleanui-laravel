@@ -19,21 +19,6 @@ class BlogController extends Controller
     use HasLocalization;
 
     /**
-     * @var PostRepositoryInterface
-     */
-    private PostRepositoryInterface $postRepository;
-
-
-    /**
-     * @param  PostRepositoryInterface  $postRepository
-     */
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
-        $this->postRepository = $postRepository;
-    }
-
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
@@ -42,12 +27,9 @@ class BlogController extends Controller
     {
         $newestPosts = Post::newestPosts();
         $highlightedPosts = Post::highlightedPosts();
-
-        // Most popular categories
         $categories = Category::mostPopularCategories();
 
-
-        return view('public.pages.blog.index')->with([
+        return view('blog::public.blog.index')->with([
             'newestPosts' => $newestPosts,
             'categories' => $categories,
             'highlightedPosts' => $highlightedPosts,
@@ -65,11 +47,12 @@ class BlogController extends Controller
      */
     public function show(string $slug): View|Factory|Application
     {
-        $post = $this->postRepository->getPostBySlug($slug);
-        $posts = $this->postRepository->getPosts();
+        $post = Post::where('slug', '=', $slug)
+            ->with('categories', 'tags')
+            ->firstOrFail();
 
+        $posts = Post::all();
         $maxPostId = Post::orderByDesc('id')->limit(1)->pluck('id')[0];
-
         $neighbouringPosts = [];
 
         for ($i = 0; $i < $posts->count(); $i++) {
@@ -100,8 +83,7 @@ class BlogController extends Controller
             }
         }
 
-
-        return view('public.pages.blog.show')->with([
+        return view('blog::public.blog.show')->with([
             'post' => $post,
             'neighbouringPosts' => $neighbouringPosts,
             'dtFormat' => $this->getLocaleDateTimeFormat(),
@@ -115,15 +97,13 @@ class BlogController extends Controller
      */
     public function category(string $slug): View|Factory|Application
     {
-
-        $category = Category::where('slug', '=', strip_tags($slug))
+        $category = Category::where('slug', '=', $slug)
             ->with('posts')
             ->first();
 
-
         $posts = $category->posts()->paginate(PostInterface::RECORDS_PER_PAGE);
 
-        return view('public.pages.blog.category')->with([
+        return view('blog::public.blog.category')->with([
             'category' => $category,
             'posts' => $posts,
             'dtFormat' => $this->getLocaleDateTimeFormat(),
@@ -138,14 +118,13 @@ class BlogController extends Controller
      */
     public function tag(string $slug): View|Factory|Application
     {
-
         $tag = Tag::where('slug', '=', strip_tags($slug))
             ->with('posts')
             ->first();
 
         $posts = $tag->posts()->paginate(Post::RECORDS_PER_PAGE);
 
-        return view('public.pages.blog.tag')->with([
+        return view('blog::public.blog.tag')->with([
             'tag' => $tag,
             'posts' => $posts,
             'dtFormat' => $this->getLocaleDateTimeFormat(),

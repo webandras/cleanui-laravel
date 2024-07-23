@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
-use Modules\Blog\Interfaces\Repositories\DocumentRepositoryInterface;
 use Modules\Blog\Models\Document;
 use Modules\Blog\Requests\DocumentStoreRequest;
 use Modules\Blog\Requests\DocumentUpdateRequest;
@@ -21,22 +20,6 @@ class DocumentController extends Controller
 {
     use InteractsWithBanner, UserPermissions;
 
-
-    /**
-     * @var DocumentRepositoryInterface
-     */
-    private DocumentRepositoryInterface $documentRepository;
-
-
-    /**
-     * @param  DocumentRepositoryInterface  $documentRepository
-     */
-    public function __construct(DocumentRepositoryInterface $documentRepository)
-    {
-        $this->documentRepository = $documentRepository;
-    }
-
-
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      * @throws AuthorizationException
@@ -45,7 +28,7 @@ class DocumentController extends Controller
     {
         $this->authorize('viewAny', Document::class);
 
-        return view('admin.pages.blog.document.manage')->with([
+        return view('blog::admin.document.manage')->with([
             'userPermissions' => $this->getUserPermissions()
         ]);
     }
@@ -87,10 +70,10 @@ class DocumentController extends Controller
 
         DB::transaction(
             function () use ($data) {
-                $this->documentRepository->createDocument($data);
+                Document::create($data);
             }, 2);
 
-        $this->banner(__('New doc is added.'));
+        $this->banner(__('New document is added.'));
         return redirect()->route('document.manage');
     }
 
@@ -128,15 +111,13 @@ class DocumentController extends Controller
     {
         $this->authorize('update', [Document::class, $document]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data = Document::getSlugFromTitle($data);
-
 
         DB::transaction(
             function () use ($document, $data) {
-                $this->documentRepository->updateDocument($document, $data);
+                $document->updateOrFail($data);
             }, 2);
-
 
         $this->banner(__('Successfully updated the document'));
         return redirect()->route('document.manage');
@@ -155,9 +136,8 @@ class DocumentController extends Controller
     {
         $this->authorize('delete', Document::class);
 
-        $oldTitle = htmlentities($document->title);
-
-        $this->documentRepository->deleteDocument($document);
+        $oldTitle = $document->title;
+        $document->deleteOrFail();
 
         $this->banner(__('":title" successfully deleted!', ['title' => $oldTitle]));
         return redirect()->route('document.manage');

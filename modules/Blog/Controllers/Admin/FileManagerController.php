@@ -14,6 +14,6 @@ class FileManagerController extends Controller
      */
     public function index(): Factory|View|Application|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.pages.blog.filemanager.filemanager');
+        return view('blog::admin.filemanager.filemanager');
     }
 }

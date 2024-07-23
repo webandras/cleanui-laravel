@@ -7,34 +7,17 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Modules\Blog\Interfaces\Repositories\DocumentRepositoryInterface;
 use Modules\Blog\Models\Document;
 
 class Documents extends Component
 {
-    /**
-     * @var DocumentRepositoryInterface
-     */
-    private DocumentRepositoryInterface $documentRepository;
-
-
-    /**
-     * @param  DocumentRepositoryInterface  $documentRepository
-     * @return void
-     */
-    public function boot(DocumentRepositoryInterface $documentRepository): void
-    {
-        $this->documentRepository = $documentRepository;
-    }
-
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
      */
     public function render(): Factory|View|Application|\Illuminate\Contracts\Foundation\Application
     {
         return view('admin.livewire.blog.document.documents')->with([
-            'documents' => $this->documentRepository->getDocuments(),
+            'documents' => Document::orderBy('order', 'ASC')->get(),
             'documentStatuses' => Document::getDocumentStatuses(),
             'documentStatusColors' => Document::getDocumentStatusColors(),
         ]);

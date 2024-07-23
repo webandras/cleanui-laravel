@@ -6,17 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
-use Modules\Auth\Interfaces\Services\SocialServiceInterface;
 use Modules\Auth\Services\RolePermissionService;
-use Modules\Auth\Services\SocialService;
-use Modules\Blog\Interfaces\Repositories\CategoryRepositoryInterface;
-use Modules\Blog\Interfaces\Repositories\DocumentRepositoryInterface;
-use Modules\Blog\Interfaces\Repositories\PostRepositoryInterface;
-use Modules\Blog\Interfaces\Repositories\TagRepositoryInterface;
-use Modules\Blog\Repositories\CategoryRepository;
-use Modules\Blog\Repositories\DocumentRepository;
-use Modules\Blog\Repositories\PostRepository;
-use Modules\Blog\Repositories\TagRepository;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
 use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
@@ -38,14 +28,9 @@ class CleanModuleProvider extends ServiceProvider
         $this->app->bind(ImageServiceInterface::class, ImageService::class);
         $this->app->bind(DateTimeServiceInterface::class, DateTimeService::class);
         $this->app->bind(ArchiveEntityServiceInterface::class, ArchiveEntityService::class);
-        $this->app->bind(SocialServiceInterface::class, SocialService::class);
 
         /* repositories */
-        $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
-        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
-        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
-        $this->app->bind(DocumentRepositoryInterface::class, DocumentRepository::class);
 
         /* Custom */
         /* $this->app->when([LocationController::class])

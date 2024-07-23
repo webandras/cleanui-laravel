@@ -29,7 +29,7 @@
                         <div class="padding-left-right-1">
                             <div
                                 class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}</div>
-                            <h2 class="margin-top-0 h4 text-white fs-16 margin-bottom-45">
+                            <h2 class="margin-top-0 h4 text-white fs-20 margin-bottom-45">
                                 <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
                                     {{ $newestPosts[0]->title }}
                                 </a>
@@ -75,7 +75,7 @@
                                 <article>
                                     <div
                                         class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}</div>
-                                    <h3 class="fs-16">
+                                    <h3 class="fs-18">
                                         <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
                                             {{$newestPosts[$i]->title }}</a>
                                     </h3>
@@ -92,7 +92,7 @@
 
         <hr>
 
-        <livewire:public.clean.post.post-grid></livewire:public.clean.post.post-grid>
+        <livewire:public.blog.post.post-grid></livewire:public.blog.post.post-grid>
 
 
         <section>
@@ -104,7 +104,7 @@
             <nav class="categories-container">
                 @foreach($categories as $cat)
 
-                    <a href="{{ route('blog.category', $cat->slug) }}">{{ $cat->name }}</a>
+                    <a class="fs-16" href="{{ route('blog.category', $cat->slug) }}">{{ $cat->name }}</a>
                 @endforeach
             </nav>
             @else

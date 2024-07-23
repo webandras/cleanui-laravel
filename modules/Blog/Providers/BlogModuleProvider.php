@@ -30,6 +30,7 @@ class BlogModuleProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../views', 'blog');
 
         Gate::policy(Category::class, CategoryPolicy::class);
         Gate::policy(Document::class, DocumentPolicy::class);

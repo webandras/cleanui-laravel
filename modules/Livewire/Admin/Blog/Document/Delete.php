@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Blog\Interfaces\Repositories\DocumentRepositoryInterface;
 use Modules\Blog\Models\Document;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -20,7 +19,6 @@ class Delete extends Component
     use AuthorizesRequests;
 
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -79,22 +77,6 @@ class Delete extends Component
 
 
     /**
-     * @var DocumentRepositoryInterface
-     */
-    private DocumentRepositoryInterface $documentRepository;
-
-
-    /**
-     * @param  DocumentRepositoryInterface  $documentRepository
-     * @return void
-     */
-    public function boot(DocumentRepositoryInterface $documentRepository): void
-    {
-        $this->documentRepository = $documentRepository;
-    }
-
-
-    /**
      * @param  string  $modalId
      * @return void
      */
@@ -143,7 +125,7 @@ class Delete extends Component
         // save category, rollback transaction if fails
         DB::transaction(
             function () {
-                $this->documentRepository->deleteDocument($this->document);
+                $this->document->deleteOrFail();
             },
             1
         );

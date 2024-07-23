@@ -27,9 +27,9 @@
                 {{ __('New doc') }}
             </a>
 
-            <livewire:admin.clean.document.documents></livewire:admin.clean.document.documents>
+            <livewire:admin.blog.document.documents></livewire:admin.blog.document.documents>
 
-            <livewire:admin.clean.document.delete title="{{ __('Delete document') }}"  :modalId="'m-delete-document'"></livewire:admin.clean.document.delete>
+            <livewire:admin.blog.document.delete title="{{ __('Delete document') }}"  :modalId="'m-delete-document'"></livewire:admin.blog.document.delete>
         </div>
     </main>
 @endsection

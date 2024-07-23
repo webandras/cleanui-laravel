@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Modules\Blog\Interfaces\Repositories\DocumentRepositoryInterface;
 use Modules\Blog\Models\Document;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -14,29 +13,13 @@ class DocumentationController extends Controller
 {
     use InteractsWithBanner;
 
-
-    /**
-     * @var DocumentRepositoryInterface
-     */
-    private DocumentRepositoryInterface $documentRepository;
-
-
-    /**
-     * @param  DocumentRepositoryInterface  $documentRepository
-     */
-    public function __construct(DocumentRepositoryInterface $documentRepository)
-    {
-        $this->documentRepository = $documentRepository;
-    }
-
-
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function index(): \Illuminate\Foundation\Application|View|Factory|Application
     {
-        return view('public.pages.document.index')->with([
-            'documents' => $this->documentRepository->getPublishedDocuments(),
+        return view('blog::public.document.index')->with([
+            'documents' => Document::publishedDocuments(),
         ]);
     }
 
@@ -49,7 +32,9 @@ class DocumentationController extends Controller
      */
     public function show(string $slug): View|Factory|Application
     {
-        $currentDocument = $this->documentRepository->getDocumentBySlug($slug);
+        $currentDocument = Document::where('slug', '=', $slug)
+            ->where('status', '=', 'published')
+            ->firstOrFail();
         $currentOrder = $currentDocument->order;
 
         $nextDocument = Document::where('order', '<', $currentOrder)
@@ -64,11 +49,11 @@ class DocumentationController extends Controller
             ->first();
 
 
-        return view('public.pages.document.show')->with([
+        return view('blog::public.document.show')->with([
             'currentDocument' => $currentDocument,
             'nextDocument' => $nextDocument,
             'previousDocument' => $previousDocument,
-            'documents' => $this->documentRepository->getPublishedDocuments(),
+            'documents' => Document::publishedDocuments(),
         ]);
     }
 

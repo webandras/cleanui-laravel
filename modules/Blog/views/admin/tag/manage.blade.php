@@ -54,11 +54,11 @@
                 </div>
 
                 <div id="Tags" class="box tabs animate-opacity">
-                    <livewire:admin.clean.tag.index></livewire:admin.clean.tag.index>
+                    <livewire:admin.blog.tag.index></livewire:admin.blog.tag.index>
                 </div>
 
                 <div id="Archive" class="box tabs animate-opacity">
-                    <livewire:admin.clean.tag.archive></livewire:admin.clean.tag.archive>
+                    <livewire:admin.blog.tag.archive></livewire:admin.blog.tag.archive>
                 </div>
             </div>
 

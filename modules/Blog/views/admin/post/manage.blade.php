@@ -63,7 +63,8 @@
                                     <small>/{{ $post->slug }}</small>
 
                                     <div class="flex flex-row margin-top-0-5">
-                                        <span class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
+                                        <span
+                                            class="badge fs-12 medium {{ $postStatusColors[$post->status] }}">{{ $postStatuses[$post->status] }}</span>
                                         <span class="fs-12 medium">{{ $post->created_at }}</span>
                                     </div>
                                 </div>
@@ -106,12 +107,12 @@
 
 
                                     <!-- Delete post -->
-                                    <livewire:admin.clean.post.delete title="{{ __('Delete post') }}"
-                                                                :post="$post"
-                                                                :hasSmallButton="false"
-                                                                :modalId="'m-delete-post-' . $post->id"
+                                    <livewire:admin.blog.post.delete title="{{ __('Delete post') }}"
+                                                                     :post="$post"
+                                                                     :hasSmallButton="false"
+                                                                     :modalId="'m-delete-post-' . $post->id"
                                     >
-                                    </livewire:admin.clean.post.delete>
+                                    </livewire:admin.blog.post.delete>
                                 @endif
                             </div>
 

@@ -56,7 +56,7 @@ trait Reactive
         $this->dispatch(
             'onAlert',
             ['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')]
-        )->to('global.clean.banner');
+        )->to('global.banner');
     }
 }
 

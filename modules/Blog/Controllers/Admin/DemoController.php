@@ -28,7 +28,7 @@ class DemoController extends Controller
      */
     public function index(): Renderable
     {
-        return view('admin.pages.demo')->with([
+        return view('blog::admin.demo')->with([
             'fruits' => [
                 'Apple', 'Banana', 'Watermelon', 'Orange', 'Cherry', 'Blackberry', 'Strawberry', 'Apricot', 'Kiwi',
             ],

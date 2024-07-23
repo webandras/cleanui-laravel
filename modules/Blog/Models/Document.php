@@ -2,11 +2,14 @@
 
 namespace Modules\Blog\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 use Modules\Blog\Database\Factories\DocumentFactory;
+use Modules\Blog\Interfaces\Entities\DocumentInterface;
 
 class Document extends Model
 {
@@ -106,5 +109,43 @@ class Document extends Model
         }
 
         return $data;
+    }
+
+
+    /**
+     * @param $query
+     * @return LengthAwarePaginator
+     */
+    public function scopePaginatedDocuments($query): LengthAwarePaginator
+    {
+        return $query->with('documents')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(DocumentInterface::RECORDS_PER_PAGE)
+            ->withQueryString();
+    }
+
+
+    /**
+     * @param $query
+     * @return LengthAwarePaginator
+     */
+    public function scopePaginatedPublishedDocuments($query): LengthAwarePaginator
+    {
+        return $query->where('status', '=', 'published')
+            ->with('documents')
+            ->orderByDesc('created_at')
+            ->paginate(DocumentInterface::RECORDS_PER_PAGE);
+    }
+
+
+    /**
+     * @param $query
+     * @return Collection
+     */
+    public function scopePublishedDocuments($query): Collection
+    {
+        return $query->where('status', '=', 'published')
+            ->orderBy('order', 'asc')
+            ->get();
     }
 }

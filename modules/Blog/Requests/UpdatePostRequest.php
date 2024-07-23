@@ -33,4 +33,22 @@ class UpdatePostRequest extends FormRequest
             'categories' => ['array'],
         ];
     }
+
+
+    /**
+     * @return array[]
+     */
+    public function attributes(): array
+    {
+        return [
+            'title' => __('title'),
+            'status' => __('status'),
+            'slug' => __('slug'),
+            'cover_image_url' => __('cover_image_url'),
+            'content' => __('content'),
+            'excerpt' => __('excerpt'),
+            'is_highlighted' => __('is_highlighted'),
+            'categories' => __('categories'),
+        ];
+    }
 }

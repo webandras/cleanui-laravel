@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Blog\Interfaces\Repositories\CategoryRepositoryInterface;
 use Modules\Blog\Models\Category;
 use Modules\Clean\Interfaces\Services\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -20,7 +19,6 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +37,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -82,9 +79,30 @@ class Create extends Component
 
 
     /**
-     * @var CategoryRepositoryInterface
+     * @return string[]
      */
-    private CategoryRepositoryInterface $categoryRepository;
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The :attribute is required.',
+            'slug.required' => 'The :attribute is required.',
+            'categoryId.required' => 'The :attribute is required.',
+        ];
+    }
+
+
+    /**
+     * @return array
+     */
+    public function validationAttributes(): array
+    {
+        return [
+            'name' => __('name'),
+            'slug' => __('slug'),
+            'cover_image_url' => __('cover image url'),
+            'categoryId' => __('category id'),
+        ];
+    }
 
 
     /**
@@ -94,13 +112,11 @@ class Create extends Component
 
 
     /**
-     * @param  CategoryRepositoryInterface  $categoryRepository
      * @param  ImageServiceInterface  $imageService
      * @return void
      */
-    public function boot(CategoryRepositoryInterface $categoryRepository, ImageServiceInterface $imageService): void
+    public function boot(ImageServiceInterface $imageService): void
     {
-        $this->categoryRepository = $categoryRepository;
         $this->imageService = $imageService;
     }
 
@@ -159,7 +175,7 @@ class Create extends Component
 
                 $category['category_id'] = $this->categoryId;
 
-                $this->categoryRepository->createCategory($category);
+                Category::create($category);
             },
             2
         );
