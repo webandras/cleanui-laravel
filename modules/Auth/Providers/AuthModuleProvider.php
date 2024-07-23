@@ -28,6 +28,7 @@ class AuthModuleProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../views', 'auth');
 
         Gate::policy(User::class, UserPolicy::class);
         Gate::policy(Role::class, RolePolicy::class);

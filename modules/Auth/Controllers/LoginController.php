@@ -55,7 +55,7 @@ class LoginController extends Controller
     public function showLoginForm(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         Session::put('callback_page', 'login');
-        return view('public.pages.auth.login');
+        return view('auth::public.login');
     }
 
 

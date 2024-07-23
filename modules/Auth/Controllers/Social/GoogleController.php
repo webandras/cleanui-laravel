@@ -7,7 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
-use Modules\Auth\Interfaces\Services\SocialServiceInterface;
+use Modules\Auth\Actions\SocialCallback;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class GoogleController extends Controller
@@ -16,21 +16,6 @@ class GoogleController extends Controller
      * @var string
      */
     private string $driver = 'google';
-
-
-    /**
-     * @var SocialServiceInterface
-     */
-    private SocialServiceInterface $socialService;
-
-
-    /**
-     * @param  SocialServiceInterface  $socialService
-     */
-    public function __construct(SocialServiceInterface $socialService)
-    {
-        $this->socialService = $socialService;
-    }
 
 
     /**
@@ -44,11 +29,12 @@ class GoogleController extends Controller
 
 
     /**
+     * @param  SocialCallback  $socialCallback
      * @return Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
      */
-    public function handleCallback(): Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function handleCallback(SocialCallback $socialCallback): Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $status = $this->socialService->socialCallback($this->driver);
+        $status = $socialCallback($this->driver);
         $callbackPage = Session::pull('callback_page');
         if ($status === true) {
             return redirect()->route('dashboard');

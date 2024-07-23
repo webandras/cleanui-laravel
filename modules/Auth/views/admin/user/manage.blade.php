@@ -39,8 +39,8 @@
                 @foreach($users as $user)
                     <tr>
                         <td><b>{{ $user->name }}</b></td>
-                        <td class="fs-14">{{ $user->email }}</td>
-                        <td class="fs-14">{{ isset($user->role) ? $user->role->name : '' }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ isset($user->role) ? $user->role->name : '' }}</td>
                         <td>
                             <div class="flex flex-row">
 
@@ -67,7 +67,7 @@
                                     @endif
 
                                 @else
-                                    <p class="fs-14 italic">{{ __('Super-admin cannot be deleted or edited here.') }}</p>
+                                    <p class="italic">{{ __('Super-admin cannot be deleted or edited here.') }}</p>
                                 @endif
                             </div>
 

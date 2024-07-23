@@ -45,7 +45,7 @@ class RolePermissionController extends Controller
         $permissions = $this->rolePermissionService->getPermissionsWithRoles();
         $roles = $this->rolePermissionService->getRolesWithPermissions();
 
-        return view('admin.pages.auth.role_permission.manage')->with([
+        return view('auth::admin.role_permission.manage')->with([
             'permissions' => $permissions,
             'roles' => $roles,
             'userPermissions' => $this->getUserPermissions(),

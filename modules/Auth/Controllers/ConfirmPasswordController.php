@@ -49,6 +49,6 @@ class ConfirmPasswordController extends Controller
      */
     public function showConfirmForm(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('public.pages.auth.passwords.confirm');
+        return view('auth::public.passwords.confirm');
     }
 }

@@ -33,7 +33,7 @@ class UserController extends Controller
         $users = User::getPaginatedUsersWithRoles();
         $roles = Role::all();
 
-        return view('admin.pages.auth.user.manage')->with([
+        return view('auth::admin.user.manage')->with([
             'users' => $users,
             'roles' => $roles,
             'userPermissions' => $this->getUserPermissions()
@@ -104,7 +104,7 @@ class UserController extends Controller
      * @param  User  $user
      *
      * @return RedirectResponse
-     * @throws AuthorizationException
+     * @throws AuthorizationException|\Throwable
      */
     public function deleteAccount(Request $request, User $user): RedirectResponse
     {
@@ -142,7 +142,7 @@ class UserController extends Controller
 
         $userPreferences = $user->preferences ?? null;
 
-        return view('admin.pages.auth.user.account')->with([
+        return view('auth::admin.user.account')->with([
             'user' => $user,
             'languagesArray' => config('app.available_locales'),
             'defaultLocale' => config('app.locale'),

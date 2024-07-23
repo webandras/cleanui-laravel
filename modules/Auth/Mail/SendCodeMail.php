@@ -51,7 +51,7 @@ class SendCodeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.code',
+            markdown: 'auth::email.code',
             with: $this->details
         );
     }

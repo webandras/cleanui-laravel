@@ -31,7 +31,7 @@ class UserCodeController extends Controller
             auth()->user()->generateCode();
         } */
 
-        return view('public.pages.auth.2fa-verification');
+        return view('auth::public.2fa-verification');
     }
 
 

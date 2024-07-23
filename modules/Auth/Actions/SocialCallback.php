@@ -1,22 +1,21 @@
 <?php
 
-namespace Modules\Auth\Services;
+namespace Modules\Auth\Actions;
 
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
-use Modules\Auth\Interfaces\Services\SocialServiceInterface;
 use Modules\Auth\Models\User;
 
-class SocialService implements SocialServiceInterface
+class SocialCallback
 {
     /**
      * @param string $driver
      * @return bool
      */
-    public function socialCallback(string $driver): bool
+    public function __invoke(string $driver): bool
     {
         try {
             $user = Socialite::driver($driver)->user();
@@ -44,7 +43,6 @@ class SocialService implements SocialServiceInterface
                         'role_id' => 2,
                     ]);
                 }
-
 
                 Auth::login($userToLogin);
                 return true;

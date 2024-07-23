@@ -29,6 +29,6 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('public.pages.auth.passwords.email');
+        return view('auth::public.passwords.email');
     }
 }

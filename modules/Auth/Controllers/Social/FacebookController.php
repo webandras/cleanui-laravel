@@ -7,7 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
-use Modules\Auth\Interfaces\Services\SocialServiceInterface;
+use Modules\Auth\Actions\SocialCallback;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class FacebookController extends Controller
@@ -16,22 +16,6 @@ class FacebookController extends Controller
      * @var string
      */
     private string $driver = 'facebook';
-
-
-    /**
-     * @var SocialServiceInterface
-     */
-    private SocialServiceInterface $socialService;
-
-
-    /**
-     * @param  SocialServiceInterface  $socialService
-     */
-    public function __construct(SocialServiceInterface $socialService)
-    {
-        $this->socialService = $socialService;
-    }
-
 
     /**
      * @return RedirectResponse|\Illuminate\Http\RedirectResponse
@@ -43,11 +27,12 @@ class FacebookController extends Controller
 
 
     /**
+     * @param  SocialCallback  $socialCallback
      * @return Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
      */
-    public function handleCallback(): Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function handleCallback(SocialCallback $socialCallback): Application|Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $status = $this->socialService->socialCallback($this->driver);
+        $status = $socialCallback($this->driver);
         $callbackPage = Session::pull('callback_page');
         if ($status === true) {
             return redirect()->route('dashboard');
