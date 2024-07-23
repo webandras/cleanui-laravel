@@ -20,19 +20,25 @@ It includes the following modules:
 - the **job** calendar (_optional_, can be deleted)
 - the **events** module (_optional_, can be deleted)
 
+If you want to delete an optional module, make sure to remove its seeders from `DatabaseSeeder.php`. In addition, you
+have to remove parts from the blade templates, remove Livewire components (classes and views). Unfortunately, I haven't
+found the way to fully modularize the Livewire parts yet.
+
 However, it will not contain more example modules to keep this starter slim.
 
 _This project is under development, so no stable version is available yet._
 
 ## News
 
-This project supports Laravel 11. Livewire was updated to version 3 (with all the necessary changes in components).
-The application structure was not upgraded to the new Laravel 11 structure. As
-stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#application-structure),
+- This project supports Laravel 11. Livewire was updated to version 3 (with all the necessary changes in components).
+  The application structure was not upgraded to the new Laravel 11 structure. As
+  stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#application-structure),
 
 > However, **we do not recommend** (emphasis mine) that Laravel 10 applications upgrading to Laravel 11 attempt to
 > migrate their application structure, as Laravel 11 has been carefully tuned to also support the Laravel 10 application
 > structure.
+
+- TODO: Livewire components needs to be modular as the rest of the codebase.
 
 ## Screenshot
 
@@ -40,7 +46,7 @@ stated [in their upgrade guide](https://laravel.com/docs/11.x/upgrade#applicatio
 
 ## Installation
 
-**Recommended (new projects): Clone the repository or download as zip file.**
+**New projects: Clone the repository or download as zip file.**
 
 And go ahead with the usual steps.
 
@@ -62,8 +68,9 @@ install [mailcatcher](https://mailcatcher.me/), or [PaperCut SMTP](https://www.p
 
 ## Important notes! - Updating laravel/ui
 
-When updating `laravel/ui`, do not run `php artisan ui bootstrap --auth` again, because it will overwrite your custom
-auth controllers and views!
+When updating `laravel/ui`, do not run `php artisan ui bootstrap --auth` again, ~~because it will overwrite your custom
+auth controllers and views~~ because it is unnecessary, and those reworked auth code parts have already moved to
+the `modules` folder, so it won't have any effect anyway.
 
 ## Laravel version compatibility (9.x-11.x)
 
