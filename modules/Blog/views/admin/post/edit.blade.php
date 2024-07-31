@@ -11,7 +11,7 @@
 
 
 @section('content')
-    <main class="padding-1" style="">
+    <main class="padding-1">
 
         <form action="{{ route('post.update', $post->id)}}"
               method="POST"
@@ -22,7 +22,7 @@
             @method("PUT")
             @csrf
 
-            <div class="row-padding margin-top-0">
+            <section class="row-padding margin-top-0">
 
                 <div class="col s12 m12 l8" style="padding-right: 1em">
 
@@ -72,13 +72,13 @@
                     <!-- Content -->
                     <div class="mb-5">
                         <label for="content" class="bold">{{ __('Body') }}<span class="text-red">*</span></label>
-                        <div>
+                        <article>
                                 <textarea name="content" id="content" rows="5" id="update-content-editor"
                                           class="{{ $errors->has('content') ? 'border border-red' : '' }}"
                                 >
                                     {!! $post->content !!}
                                 </textarea>
-                        </div>
+                        </article>
 
                         <x-global::input-error for="content"/>
 
@@ -169,7 +169,7 @@
                                    type="text"
                                    readonly
                                    name="cover_image_url"
-                                   value="{{ old('cover_image_url') ?? (edit.blade.phpconfig('app.url').$post->cover_image_url) }}"
+                                   value="{{ old('cover_image_url') ?? $post->cover_image_url }}"
                                    autofocus
                             />
                         </div>
@@ -217,7 +217,7 @@
 
                 </div>
 
-            </div>
+            </section>
 
         </form>
     </main>

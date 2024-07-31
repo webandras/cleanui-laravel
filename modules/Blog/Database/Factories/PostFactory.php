@@ -3,6 +3,7 @@
 namespace Modules\Blog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Blog\Enum\PostStatus;
 use Modules\Blog\Models\Post;
 
 /**
@@ -30,14 +31,13 @@ class PostFactory extends Factory
             '/images/img_snowtops.jpg',
         ];
 
-
         return [
-            'title'           => $this->faker->words(3, true),
-            'status'          => 'published',
+            'title'           => $this->faker->words(6, true),
+            'status'          => $this->faker->randomElement(PostStatus::values()),
             'slug'            => $this->faker->slug(),
             'content'         => $this->faker->randomHtml(),
             'excerpt'         => $this->faker->realText(),
-            'is_highlighted'  => $this->faker->numberBetween(0, 1),
+            'is_highlighted'  => $this->faker->boolean(),
             'cover_image_url' => $this->faker->randomElement($imagePaths),
         ];
     }

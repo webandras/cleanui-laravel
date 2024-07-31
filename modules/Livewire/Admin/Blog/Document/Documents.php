@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Modules\Blog\Enum\PostStatus;
 use Modules\Blog\Models\Document;
 
 class Documents extends Component
@@ -18,8 +19,8 @@ class Documents extends Component
     {
         return view('admin.livewire.blog.document.documents')->with([
             'documents' => Document::orderBy('order', 'ASC')->get(),
-            'documentStatuses' => Document::getDocumentStatuses(),
-            'documentStatusColors' => Document::getDocumentStatusColors(),
+            'documentStatuses' => PostStatus::options(),
+            'documentStatusColors' => PostStatus::colors(),
         ]);
     }
 

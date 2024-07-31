@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Auth\Models\User;
-use Modules\Blog\Interfaces\Entities\TagInterface;
 use Modules\Blog\Models\Tag;
 use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -128,7 +127,7 @@ class Archive extends Component
     public function render(): Factory|View|Application|\Illuminate\Contracts\Foundation\Application
     {
         if ($this->filterOn !== true) {
-            $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Blog\Models\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
+            $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'archive');
         }
 
         return view('admin.livewire.blog.tag.archive')->with([
@@ -144,7 +143,7 @@ class Archive extends Component
      */
     public function initialize(): void
     {
-//        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Blog\Models\Tag', TagInterface::RECORDS_PER_PAGE, 'archive');
+//        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'archive');
     }
 
 
@@ -195,7 +194,7 @@ class Archive extends Component
     public function filterTags(): void
     {
         $this->resetPage('archive');
-        $this->archivedTags = $this->archiveEntityService->paginateFilteredTrashedEntities('Blog\Models\Tag', TagInterface::RECORDS_PER_PAGE, 'name', $this->filterKeyword, 'archive');
+        $this->archivedTags = $this->archiveEntityService->paginateFilteredTrashedEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'name', $this->filterKeyword, 'archive');
         $this->filterOn = true;
     }
 

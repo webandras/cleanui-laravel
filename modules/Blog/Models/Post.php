@@ -9,23 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Mews\Purifier\Casts\CleanHtml;
 use Modules\Blog\Database\Factories\PostFactory;
-use Modules\Blog\Interfaces\Entities\PostInterface;
 use Modules\Clean\Casts\HtmlSpecialCharsCast;
 
-class Post extends Model implements  PostInterface
+class Post extends Model
 {
     use HasFactory;
 
-
-    /**
-     * Post statuses (enum in the table)
-     */
-    public const STATUSES = [
-        'draft',
-        'under-review',
-        'published',
-    ];
-
+    public const RECORDS_PER_PAGE = 6;
 
     /**
      * The attributes that are mass assignable.
@@ -89,48 +79,6 @@ class Post extends Model implements  PostInterface
 
 
     /**
-     * Get post statuses with translatable labels
-     * @return array
-     */
-    public static function getPostStatuses(): array {
-        // Multi-language texts for the statuses
-        $statusNames = [
-            __('Draft'),
-            __('Under review'),
-            __('Published'),
-        ];
-
-        $postStatuses = [];
-        for($i = 0; $i < 3; $i++) {
-            $postStatuses[Post::STATUSES[$i]] = $statusNames[$i];
-        }
-
-        return $postStatuses;
-    }
-
-
-    /**
-     * Get post statuses with translatable labels
-     * @return array
-     */
-    public static function getPostStatusColors(): array {
-        // Multi-language texts for the statuses
-        $colors = [
-            'red',
-            'orange',
-            'green',
-        ];
-
-        $postStatusColors = [];
-        for($i = 0; $i < 3; $i++) {
-            $postStatusColors[Post::STATUSES[$i]] = $colors[$i];
-        }
-
-        return $postStatusColors;
-    }
-
-
-    /**
      * Gets the slug from the post title
      *
      * @param  array  $data
@@ -138,7 +86,7 @@ class Post extends Model implements  PostInterface
      */
     public static function getSlugFromTitle(array $data): array
     {
-        if (!isset($data['slug']) || $data['slug'] === '') {
+        if ( ! isset($data['slug']) || $data['slug'] === '') {
             $data['slug'] = Str::slug($data['title']);
         }
 

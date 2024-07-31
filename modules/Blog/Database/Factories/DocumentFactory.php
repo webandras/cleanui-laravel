@@ -3,6 +3,7 @@
 namespace Modules\Blog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Blog\Enum\PostStatus;
 use Modules\Blog\Models\Document;
 
 /**
@@ -24,12 +25,12 @@ class DocumentFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'           => $this->faker->words(3, true),
+            'title'           => $this->faker->words(6, true),
             'slug'            => $this->faker->slug(),
             'excerpt'         => $this->faker->text(255),
             'content'         => $this->faker->randomHtml(),
-            'status'          => 'published',
-            'order'         => 0,
+            'status'          => $this->faker->randomElement(PostStatus::values()),
+            'order'           => 0,
         ];
     }
 }

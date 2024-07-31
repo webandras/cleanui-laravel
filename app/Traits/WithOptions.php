@@ -13,4 +13,11 @@ trait WithOptions
             ]
             )->toArray();
     }
+
+    public static function values(): array
+    {
+        return collect(self::cases())
+            ->map(fn ($enum) => $enum->value)
+            ->toArray();
+    }
 }

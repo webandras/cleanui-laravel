@@ -13,9 +13,6 @@ use Modules\Clean\Traits\InteractsWithBanner;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     use InteractsWithBanner, UserPermissions;
 
 

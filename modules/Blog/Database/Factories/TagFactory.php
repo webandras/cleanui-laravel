@@ -24,7 +24,7 @@ class TagFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'            => $this->faker->words(3, true),
+            'name'            => $this->faker->words(2, true),
             'slug'            => $this->faker->slug,
             'cover_image_url' => '/images/img_forest.jpg',
         ];

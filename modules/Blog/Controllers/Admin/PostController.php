@@ -8,9 +8,10 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
-use Modules\Blog\Interfaces\Entities\PostInterface;
+use Modules\Blog\Actions\CreatePost;
+use Modules\Blog\Actions\UpdatePost;
+use Modules\Blog\Enum\PostStatus;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Tag;
@@ -49,7 +50,7 @@ class PostController extends Controller
         $tags = Tag::all();
 
         return view('blog::admin.post.create')->with([
-            'postStatuses' => Post::getPostStatuses(),
+            'postStatuses' => PostStatus::options(),
             'categories' => Category::all(),
             'tags' => $tags,
             'userPermissions' => $this->getUserPermissions(),
@@ -61,46 +62,31 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StorePostRequest  $request
+     * @param  CreatePost  $createPost
      * @return RedirectResponse
      */
-    public function store(StorePostRequest $request): RedirectResponse
+    public function store(StorePostRequest $request, CreatePost $createPost): RedirectResponse
     {
-        $data = $request->validated();
-        $data = Post::getSlugFromTitle($data);
+        $validated = $request->validated();
+        $validated = Post::getSlugFromTitle($validated);
 
-        if (isset($data['cover_image_url'])) {
-            $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($request->input('cover_image_url'));
+        if (isset($validated['cover_image_url'])) {
+            $validated['cover_image_url'] = $this->imageService->getImageAbsolutePath($validated['cover_image_url']);
         }
 
-        $categoriesArray = $data['categories'] ?? [];
-        unset($data['categories']);
+        $categoriesArray = $validated['categories'] ?? [];
+        unset($validated['categories']);
 
-        $tagsArray = $data['tags'] ?? [];
-        unset($data['tags']);
+        $tagsArray = $validated['tags'] ?? [];
+        unset($validated['tags']);
 
 
         // If not checked, the value should be 0 to be able to update this property
-        if (!isset($data['is_highlighted'])) {
-            $data['is_highlighted'] = 0;
+        if ( ! isset($validated['is_highlighted'])) {
+            $validated['is_highlighted'] = 0;
         }
 
-
-        DB::transaction(
-            function () use ($data, $categoriesArray, $tagsArray) {
-                $newPost = Post::create($data);
-
-                // synchronize post categories
-                if (!empty($categoriesArray)) {
-                    $newPost->categories()->sync($categoriesArray);
-                }
-
-                // synchronize post tags
-                if (!empty($tagsArray)) {
-                    $newPost->tags()->sync($tagsArray);
-                }
-
-            }, 2);
-
+        $createPost($validated, $categoriesArray, $tagsArray);
 
         $this->banner(__('New post is added.'));
         return redirect()->route('post.manage');
@@ -120,13 +106,12 @@ class PostController extends Controller
         $this->authorize('update', [Post::class, $post]);
 
         $tags = Tag::all();
-
         $postCategoryIds = $post->categories()->get()->pluck(['id'])->toArray();
         $postTagIds = $post->tags()->get()->pluck(['id'])->toArray();
 
         return view('blog::admin.post.edit')->with([
             'post' => $post,
-            'postStatuses' => Post::getPostStatuses(),
+            'postStatuses' => PostStatus::options(),
             'categories' => Category::all(),
             'postCategoryIds' => $postCategoryIds,
             'tags' => $tags,
@@ -141,53 +126,38 @@ class PostController extends Controller
      *
      * @param  UpdatePostRequest  $request
      * @param  Post  $post
-     *
+     * @param  UpdatePost  $updatePost
      * @return RedirectResponse
+     * @throws AuthorizationException
      * @throws Throwable
      */
-    public function update(UpdatePostRequest $request, Post $post): RedirectResponse
+    public function update(UpdatePostRequest $request, Post $post, UpdatePost $updatePost): RedirectResponse
     {
         $this->authorize('update', [Post::class, $post]);
 
-        $data = $request->validated();
-        $data = Post::getSlugFromTitle($data);
-        if (isset($data['cover_image_url'])) {
-            $data['cover_image_url'] = $this->imageService->getImageAbsolutePath($data['cover_image_url']);
+        $validated = $request->validated();
+        $validated = Post::getSlugFromTitle($validated);
+
+        if (isset($validated['cover_image_url'])) {
+            $validated['cover_image_url'] = $this->imageService->getImageAbsolutePath($validated['cover_image_url']);
         }
 
-        $categoriesArray = $data['categories'] ?? [];
+        $categoriesArray = $validated['categories'] ?? [];
         if (empty($categoriesArray)) {
-            unset($data['categories']);
+            unset($validated['categories']);
         }
 
-        $tagsArray = $data['tags'] ?? [];
+        $tagsArray = $validated['tags'] ?? [];
         if (empty($tagsArray)) {
-            unset($data['tags']);
+            unset($validated['tags']);
         }
 
         // If not checked, the value should be 0 to be able to update this property
-        if (!isset($data['is_highlighted'])) {
-            $data['is_highlighted'] = 0;
+        if ( ! isset($validated['is_highlighted'])) {
+            $validated['is_highlighted'] = 0;
         }
 
-
-        DB::transaction(
-            function () use ($post, $data, $categoriesArray, $tagsArray) {
-                // update post
-                $post->updateOrFail($data);
-
-                // synchronize post categories
-                if (!empty($categoriesArray)) {
-                    $post->categories()->sync($categoriesArray);
-                }
-
-                // synchronize post categories
-                if (!empty($tagsArray)) {
-                    $post->tags()->sync($tagsArray);
-                }
-
-            }, 2);
-
+        $updatePost($post, $validated, $categoriesArray, $tagsArray);
 
         $this->banner(__('Successfully updated the post'));
         return redirect()->route('post.manage');
@@ -223,13 +193,13 @@ class PostController extends Controller
         $this->authorize('viewAny', Post::class);
 
         $posts = Post::orderBy('created_at', 'DESC')
-            ->paginate(PostInterface::RECORDS_PER_PAGE)
-            ->withQueryString();;
+            ->paginate(Post::RECORDS_PER_PAGE)
+            ->withQueryString();
 
         return view('blog::admin.post.manage')->with([
             'posts' => $posts,
-            'postStatuses' => Post::getPostStatuses(),
-            'postStatusColors' => Post::getPostStatusColors(),
+            'postStatuses' => PostStatus::options(),
+            'postStatusColors' => PostStatus::colors(),
             'userPermissions' => $this->getUserPermissions(),
         ]);
     }

@@ -9,16 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 use Modules\Blog\Database\Factories\DocumentFactory;
-use Modules\Blog\Interfaces\Entities\DocumentInterface;
 
 class Document extends Model
 {
     use HasFactory;
 
+    public const RECORDS_PER_PAGE = 6;
 
     /**
-     * The attributes that are mass assignable.
-     *
      * @var string[]
      */
     protected $fillable = [
@@ -28,16 +26,6 @@ class Document extends Model
         'excerpt',
         'status',
         'order',
-    ];
-
-
-    /**
-     * Document statuses (enum in the table)
-     */
-    public const STATUSES = [
-        'draft',
-        'under-review',
-        'published',
     ];
 
 
@@ -53,58 +41,14 @@ class Document extends Model
 
 
     /**
-     * Get document statuses with translatable labels
-     * @return array
-     */
-    public static function getDocumentStatuses(): array
-    {
-        // Multi-language texts for the statuses
-        $statusNames = [
-            __('Draft'),
-            __('Under review'),
-            __('Published'),
-        ];
-
-        $documentStatuses = [];
-        for ($i = 0; $i < 3; $i++) {
-            $documentStatuses[Document::STATUSES[$i]] = $statusNames[$i];
-        }
-
-        return $documentStatuses;
-    }
-
-
-    /**
-     * Get document statuses with translatable labels
-     * @return array
-     */
-    public static function getDocumentStatusColors(): array
-    {
-        // Multi-language texts for the statuses
-        $colors = [
-            'red',
-            'orange',
-            'green',
-        ];
-
-        $documentStatusColors = [];
-        for ($i = 0; $i < 3; $i++) {
-            $documentStatusColors[Document::STATUSES[$i]] = $colors[$i];
-        }
-
-        return $documentStatusColors;
-    }
-
-
-    /**
      * Gets the slug from the document title
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     public static function getSlugFromTitle(array $data): array
     {
-        if (!isset($data['slug']) || $data['slug'] === '') {
+        if ( ! isset($data['slug']) || $data['slug'] === '') {
             $data['slug'] = Str::slug($data['title']);
         }
 
@@ -120,7 +64,7 @@ class Document extends Model
     {
         return $query->with('documents')
             ->orderBy('created_at', 'DESC')
-            ->paginate(DocumentInterface::RECORDS_PER_PAGE)
+            ->paginate(Document::RECORDS_PER_PAGE)
             ->withQueryString();
     }
 
@@ -134,7 +78,7 @@ class Document extends Model
         return $query->where('status', '=', 'published')
             ->with('documents')
             ->orderByDesc('created_at')
-            ->paginate(DocumentInterface::RECORDS_PER_PAGE);
+            ->paginate(Document::RECORDS_PER_PAGE);
     }
 
 

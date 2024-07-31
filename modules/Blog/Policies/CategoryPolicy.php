@@ -3,7 +3,6 @@
 namespace Modules\Blog\Policies;
 
 use Modules\Auth\Models\User;
-use Modules\Blog\Models\Category;
 
 class CategoryPolicy
 {
@@ -19,7 +18,7 @@ class CategoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Category $category): bool
+    public function view(User $user): bool
     {
         return $user->hasPermissionTo('manage-categories');
     }
@@ -37,7 +36,7 @@ class CategoryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Category $category): bool
+    public function update(User $user): bool
     {
         return $user->hasPermissionTo('manage-categories');
     }
@@ -46,26 +45,9 @@ class CategoryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Category $category): bool
+    public function delete(User $user): bool
     {
         return $user->hasPermissionTo('manage-categories');
     }
 
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Category $category): bool
-    {
-        return false;
-    }
-
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Category $category): bool
-    {
-        return false;
-    }
 }

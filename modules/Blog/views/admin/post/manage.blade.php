@@ -30,11 +30,11 @@
 
             <table>
                 <thead>
-                <tr class="fs-14">
-                    <th>#</th>
-                    <th class="content-800">{{ __('Article') }}</th>
-                    <th>{{ __('Actions') }}</th>
-                </tr>
+                    <tr class="fs-14">
+                        <th>#</th>
+                        <th class="content-800">{{ __('Article') }}</th>
+                        <th>{{ __('Actions') }}</th>
+                    </tr>
                 </thead>
                 <tbody>
                 @php
@@ -51,7 +51,7 @@
                             @endif
                         </td>
                         <td class="content-800">
-                            <div class="flex flex-row" style="row-gap: 1em;justify-content: space-between;">
+                            <section class="flex flex-row" style="row-gap: 1em;justify-content: space-between;">
                                 <div>
                                     <h2 class="padding-right-0-5 h3 margin-top-bottom-0">
                                         {{ $post->title }}
@@ -78,12 +78,12 @@
                                     @endisset
 
                                 </div>
-                            </div>
+                            </section>
 
                             <p class="fs-16">{{ $post->excerpt ?? '' }}</p>
                         </td>
                         <td>
-                            <div class="flex flex-row">
+                            <section class="flex flex-row">
 
                                 @if(auth()->user()->hasRoles('super-administrator|administrator') )
 
@@ -114,7 +114,7 @@
                                     >
                                     </livewire:admin.blog.post.delete>
                                 @endif
-                            </div>
+                            </section>
 
                         </td>
 

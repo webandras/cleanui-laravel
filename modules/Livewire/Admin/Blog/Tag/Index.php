@@ -12,7 +12,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Auth\Models\User;
-use Modules\Blog\Interfaces\Entities\TagInterface;
 use Modules\Blog\Models\Tag;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
@@ -120,7 +119,7 @@ class Index extends Component
     public function render(): Factory|View|Application|\Illuminate\Contracts\Foundation\Application
     {
         if ($this->filterOn !== true) {
-            $this->tags = $this->tagRepository->paginateEntities('Blog\Models\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
+            $this->tags = $this->tagRepository->paginateEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'page');
         }
 
         return view('admin.livewire.blog.tag.index')->with([
@@ -135,7 +134,7 @@ class Index extends Component
      */
     public function initialize(): void
     {
-//        $this->tags = $this->tagRepository->paginateEntities('Blog\Models\Tag', TagInterface::RECORDS_PER_PAGE, 'page');
+//        $this->tags = $this->tagRepository->paginateEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'page');
     }
 
 
@@ -198,11 +197,11 @@ class Index extends Component
         if ($keyword !== '') {
             $q = Tag::where('name', 'LIKE', '%'.$keyword.'%');
         } else {
-            return Tag::paginate(TagInterface::RECORDS_PER_PAGE);
+            return Tag::paginate(Tag::RECORDS_PER_PAGE);
         }
 
         return $q->orderBy('id', 'desc')
-                 ->paginate(TagInterface::RECORDS_PER_PAGE);
+                 ->paginate(Tag::RECORDS_PER_PAGE);
     }
 
 

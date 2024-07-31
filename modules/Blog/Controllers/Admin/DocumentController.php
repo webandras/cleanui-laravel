@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
+use Modules\Blog\Enum\PostStatus;
 use Modules\Blog\Models\Document;
 use Modules\Blog\Requests\DocumentStoreRequest;
 use Modules\Blog\Requests\DocumentUpdateRequest;
@@ -44,8 +45,8 @@ class DocumentController extends Controller
     {
         $this->authorize('create', Document::class);
 
-        return view('admin.pages.blog.document.create')->with([
-            'documentStatuses' => Document::getDocumentStatuses(),
+        return view('blog::admin.document.create')->with([
+            'documentStatuses' => PostStatus::options(),
             'userPermissions' => $this->getUserPermissions(),
         ]);
     }
@@ -90,9 +91,9 @@ class DocumentController extends Controller
     {
         $this->authorize('update', [Document::class, $document]);
 
-        return view('admin.pages.blog.document.edit')->with([
+        return view('blog::admin.document.edit')->with([
             'document' => $document,
-            'documentStatuses' => Document::getDocumentStatuses(),
+            'documentStatuses' => PostStatus::options(),
             'userPermissions' => $this->getUserPermissions(),
         ]);
     }
@@ -111,13 +112,12 @@ class DocumentController extends Controller
     {
         $this->authorize('update', [Document::class, $document]);
 
-        $data = $request->validated();
-        $data = Document::getSlugFromTitle($data);
+        $validated = $request->validated();
+        $validated = Document::getSlugFromTitle($validated);
 
-        DB::transaction(
-            function () use ($document, $data) {
-                $document->updateOrFail($data);
-            }, 2);
+        dd($validated);
+
+        $document->updateOrFail($validated);
 
         $this->banner(__('Successfully updated the document'));
         return redirect()->route('document.manage');

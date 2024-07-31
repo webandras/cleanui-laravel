@@ -10,11 +10,6 @@ class DemoController extends Controller
 {
     use UserPermissions;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         // $this->middleware('auth');

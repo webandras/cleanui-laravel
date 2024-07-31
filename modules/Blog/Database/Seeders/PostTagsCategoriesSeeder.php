@@ -31,9 +31,7 @@ class PostTagsCategoriesSeeder extends Seeder implements SeederInterface
      */
     public function run(): void
     {
-        $faker = new \Faker\Generator();
-
-        DB::transaction(function () use ($faker) {
+        DB::transaction(function () {
 
             for ($postId = 1; $postId <= self::DEFAULT_MAX; $postId++) {
                 $tags = $this->getRandomIds();

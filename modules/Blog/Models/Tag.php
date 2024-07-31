@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Blog\Database\Factories\TagFactory;
-use Modules\Blog\Interfaces\Entities\TagInterface;
 use Modules\Clean\Casts\HtmlSpecialCharsCast;
 
-class Tag extends Model implements TagInterface
+class Tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
+    public const RECORDS_PER_PAGE = 5;
 
     /**
      * The attributes that are mass assignable.

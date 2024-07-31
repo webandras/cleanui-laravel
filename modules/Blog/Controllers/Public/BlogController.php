@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Modules\Blog\Interfaces\Entities\PostInterface;
-use Modules\Blog\Interfaces\Repositories\PostRepositoryInterface;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Tag;
@@ -69,7 +67,6 @@ class BlogController extends Controller
                         'title' => $posts[1]->title,
                     ];
                 } else {
-
                     $neighbouringPosts['next'] = [
                         'slug' => $posts[$i + 1]->slug,
                         'title' => $posts[$i + 1]->title,
@@ -101,11 +98,9 @@ class BlogController extends Controller
             ->with('posts')
             ->first();
 
-        $posts = $category->posts()->paginate(PostInterface::RECORDS_PER_PAGE);
-
         return view('blog::public.blog.category')->with([
             'category' => $category,
-            'posts' => $posts,
+            'posts' => $category->posts()->paginate(Post::RECORDS_PER_PAGE),
             'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
 
@@ -122,11 +117,9 @@ class BlogController extends Controller
             ->with('posts')
             ->first();
 
-        $posts = $tag->posts()->paginate(Post::RECORDS_PER_PAGE);
-
         return view('blog::public.blog.tag')->with([
             'tag' => $tag,
-            'posts' => $posts,
+            'posts' => $tag->posts()->paginate(Post::RECORDS_PER_PAGE),
             'dtFormat' => $this->getLocaleDateTimeFormat(),
         ]);
 
