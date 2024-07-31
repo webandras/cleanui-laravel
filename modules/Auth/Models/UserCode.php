@@ -9,6 +9,11 @@ class UserCode extends Model
 {
     use HasFactory;
 
+    /**
+     * Code validity expiration in minutes
+     */
+    public const CODE_VALIDITY_EXPIRATION = 1;
+
 
     /**
      * @var string[]

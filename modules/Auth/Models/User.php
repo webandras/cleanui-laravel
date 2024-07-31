@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Auth\Database\Factories\UserFactory;
-use Modules\Auth\Interfaces\Entities\UserInterface;
 use Modules\Auth\Mail\SendCodeMail;
 use Modules\Auth\Traits\HasPreferences;
 use Modules\Auth\Traits\HasRolesAndPermissions;
@@ -106,7 +104,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->orderBy('created_at', 'DESC')
             ->with('role')
-            ->paginate(UserInterface::RECORDS_PER_PAGE)
+            ->paginate(User::RECORDS_PER_PAGE)
             ->withQueryString();
     }
 

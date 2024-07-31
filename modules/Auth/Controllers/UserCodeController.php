@@ -11,12 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
-use Modules\Auth\Interfaces\Entities\UserCodeInterface;
 use Modules\Auth\Models\UserCode;
 
-/**
- *
- */
 class UserCodeController extends Controller
 {
     /**
@@ -50,7 +46,7 @@ class UserCodeController extends Controller
 
         $find = UserCode::where('user_id', auth()->id())
             ->where('code', $request->code)
-            ->where('updated_at', '>=', now()->subMinutes(UserCodeInterface::CODE_VALIDITY_EXPIRATION))
+            ->where('updated_at', '>=', now()->subMinutes(UserCode::CODE_VALIDITY_EXPIRATION))
             ->first();
 
         if (!is_null($find)) {
