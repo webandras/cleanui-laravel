@@ -4,6 +4,7 @@ namespace Modules\Job\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
+use Modules\Job\Enums\ClientType;
 use Modules\Job\Models\Client;
 
 /**
@@ -29,7 +30,7 @@ class ClientFactory extends Factory
         return [
             'name'             => $this->faker->company(),
             'address'          => $this->faker->streetAddress(),
-            'type'             => $this->faker->randomElement(['company', 'private person']),
+            'type'             => $this->faker->randomElement(ClientType::values()),
             'client_detail_id' => 1,
             'created_at'       => $now,
             'updated_at'       => $now,

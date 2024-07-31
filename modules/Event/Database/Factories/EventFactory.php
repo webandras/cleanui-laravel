@@ -4,6 +4,7 @@ namespace Modules\Event\Database\Factories;
 
 use DateInterval;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Event\Enum\EventStatus;
 use Modules\Event\Models\Event;
 
 /**
@@ -48,7 +49,7 @@ class EventFactory extends Factory
             'end' => $end,
             'timezone' => $this->faker->randomElement(['Europe/Budapest', 'Europe/Lisbon']),
             'allDay' => $dayOffset === 0 ? 0 : 1,
-            'status' => $this->faker->randomElement(['posted', 'cancelled']),
+            'status' => $this->faker->randomElement(EventStatus::values()),
         ];
     }
 }
