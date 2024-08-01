@@ -4,9 +4,8 @@ namespace Modules\Blog\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Blog\Models\Post;
-use Modules\Clean\Interfaces\SeederInterface;
 
-class PostSeeder extends Seeder implements SeederInterface
+class PostSeeder extends Seeder
 {
     /**
      * Run the database seeds.

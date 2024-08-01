@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Modules\Auth\Traits\UserPermissions;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
-use Modules\Event\Interfaces\Entities\LocationInterface;
 use Modules\Event\Models\Location;
 
 class LocationController extends Controller
@@ -37,7 +36,7 @@ class LocationController extends Controller
         $this->authorize('viewAny', Location::class);
 
         $locations = $this->modelRepository->paginateEntities('Event\Models\Location',
-            LocationInterface::RECORDS_PER_PAGE);
+            Location::RECORDS_PER_PAGE);
 
         return view('event::admin.location.manage')->with([
             'locations' => $locations,

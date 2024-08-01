@@ -14,6 +14,8 @@ class Organizer extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public const RECORDS_PER_PAGE = 10;
+
     protected $fillable = [
         'name',
         'slug',

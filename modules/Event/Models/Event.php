@@ -13,11 +13,12 @@ use Mews\Purifier\Casts\CleanHtml;
 use Modules\Clean\Casts\HtmlSpecialCharsCast;
 use Modules\Clean\Casts\StripTagsCast;
 use Modules\Event\Database\Factories\EventFactory;
-use Modules\Event\Interfaces\Entities\EventInterface;
 
-class Event extends Model implements EventInterface
+class Event extends Model
 {
     use HasFactory;
+
+    public const POST_PER_PAGE = 8;
 
     // no need for timestamps
     public $timestamps = false;
@@ -74,18 +75,6 @@ class Event extends Model implements EventInterface
     protected static function newFactory(): Factory
     {
         return EventFactory::new();
-    }
-
-
-    /**
-     * @return array
-     */
-    public static function getStatuses(): array
-    {
-        return [
-            'posted' => __('Posted'),
-            'cancelled' => __('Cancelled'),
-        ];
     }
 
 
@@ -150,7 +139,7 @@ class Event extends Model implements EventInterface
         }
 
         return $query->orderBy('start', 'asc')
-            ->paginate(EventInterface::POST_PER_PAGE);
+            ->paginate(Event::POST_PER_PAGE);
     }
 
 
@@ -174,7 +163,7 @@ class Event extends Model implements EventInterface
                 }
             ])
             ->orderBy('start', 'asc')
-            ->paginate(EventInterface::POST_PER_PAGE);
+            ->paginate(Event::POST_PER_PAGE);
     }
 
 

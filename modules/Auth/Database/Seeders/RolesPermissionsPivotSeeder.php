@@ -3,12 +3,11 @@
 namespace Modules\Auth\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Auth\Traits\HasRolesPermissionsGetters;
+use Modules\Auth\Traits\RolesPermissionsGetters;
 
 class RolesPermissionsPivotSeeder extends Seeder
 {
-    use HasRolesPermissionsGetters;
-
+    use RolesPermissionsGetters;
 
     /**
      * Run the database seeds.

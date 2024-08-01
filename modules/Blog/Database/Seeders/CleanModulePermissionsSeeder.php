@@ -4,11 +4,11 @@ namespace Modules\Blog\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Auth\Models\Permission;
-use Modules\Auth\Traits\HasRolesPermissionsGetters;
+use Modules\Auth\Traits\RolesPermissionsGetters;
 
 class CleanModulePermissionsSeeder extends Seeder
 {
-    use HasRolesPermissionsGetters;
+    use RolesPermissionsGetters;
 
     /**
      * Run the database seeds.

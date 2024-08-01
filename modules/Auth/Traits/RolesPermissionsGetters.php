@@ -5,7 +5,7 @@ namespace Modules\Auth\Traits;
 use Modules\Auth\Models\Permission;
 use Modules\Auth\Models\Role;
 
-trait HasRolesPermissionsGetters
+trait RolesPermissionsGetters
 {
     /**
      * Get the permission entity by the slug value

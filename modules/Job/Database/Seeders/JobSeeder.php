@@ -4,6 +4,7 @@ namespace Modules\Job\Database\Seeders;
 
 use DateTimeInterface;
 use Faker\Factory;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Modules\Job\Models\Job;
 use Modules\Job\Models\Worker;
@@ -11,9 +12,9 @@ use Modules\Job\Models\Worker;
 class JobSeeder extends Seeder
 {
     /**
-     * @var \Faker\Generator
+     * @var Generator
      */
-    private \Faker\Generator $faker;
+    private Generator $faker;
 
 
     /**

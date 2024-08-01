@@ -2,12 +2,14 @@
 
 namespace Modules\Blog\Database\Seeders;
 
+use App\Traits\SeederTrait;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Clean\Interfaces\SeederInterface;
 
-class PostTagsCategoriesSeeder extends Seeder implements SeederInterface
+class PostTagsCategoriesSeeder extends Seeder
 {
+    use SeederTrait;
+
     private function getRandomIds(): array
     {
         $numbers = [];
@@ -33,7 +35,7 @@ class PostTagsCategoriesSeeder extends Seeder implements SeederInterface
     {
         DB::transaction(function () {
 
-            for ($postId = 1; $postId <= self::DEFAULT_MAX; $postId++) {
+            for ($postId = 1; $postId <= self::MAX; $postId++) {
                 $tags = $this->getRandomIds();
 
                 foreach ($tags as $tag) {
@@ -44,7 +46,7 @@ class PostTagsCategoriesSeeder extends Seeder implements SeederInterface
                 }
             }
 
-            for ($postId = 1; $postId <= self::DEFAULT_MAX; $postId++) {
+            for ($postId = 1; $postId <= self::MAX; $postId++) {
                 $categories = $this->getRandomIds();
 
                 foreach ($categories as $category) {

@@ -14,7 +14,6 @@ use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
 use Modules\Clean\Interfaces\Services\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Enum\EventStatus;
-use Modules\Event\Interfaces\Entities\EventInterface;
 use Modules\Event\Models\Event;
 use Modules\Event\Models\EventDetail;
 use Modules\Event\Models\Location;
@@ -63,7 +62,7 @@ class EventController extends Controller
 
         $events = Event::with(['event_detail'])
             ->orderBy('start', 'desc')
-            ->paginate(EventInterface::POST_PER_PAGE);
+            ->paginate(Event::POST_PER_PAGE);
 
         return view('event::admin.event.manage')->with([
             'events' => $events,

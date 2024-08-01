@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Modules\Auth\Traits\UserPermissions;
 use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
-use Modules\Event\Interfaces\Entities\OrganizerInterface;
 use Modules\Event\Models\Organizer;
 
 class OrganizerController extends Controller
@@ -36,7 +35,7 @@ class OrganizerController extends Controller
     {
         $this->authorize('viewAny', Organizer::class);
 
-        $organizers = $this->modelRepository->paginateEntities('Event\Models\Organizer', OrganizerInterface::RECORDS_PER_PAGE);
+        $organizers = $this->modelRepository->paginateEntities('Event\Models\Organizer', Organizer::RECORDS_PER_PAGE);
 
         return view('event::admin.organizer.manage')->with([
             'organizers' => $organizers,
