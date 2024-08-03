@@ -64,7 +64,7 @@ class DocumentController extends Controller
     {
         $this->authorize('create', Document::class);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data = Document::getSlugFromTitle($data);
         $data['order'] = Document::max('order') + 1;
 
