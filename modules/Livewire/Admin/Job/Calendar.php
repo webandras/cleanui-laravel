@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\DateTimeServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Job\Actions\Job\CreateJob;
 use Modules\Job\Actions\Job\DeleteJob;

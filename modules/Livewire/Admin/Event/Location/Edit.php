@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Models\Location;
 
@@ -100,15 +100,15 @@ class Edit extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $modelRepository;
+    private ModelServiceInterface $modelRepository;
 
 
     /**
-     * @param  ModelRepositoryInterface  $modelRepository
+     * @param  ModelServiceInterface  $modelRepository
      */
-    public function boot(ModelRepositoryInterface $modelRepository): void
+    public function boot(ModelServiceInterface $modelRepository): void
     {
         $this->modelRepository = $modelRepository;
     }

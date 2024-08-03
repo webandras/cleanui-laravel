@@ -3,7 +3,7 @@
 namespace Modules\Auth\Services;
 
 use Illuminate\Database\Eloquent\Collection;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Models\Permission;
 use Modules\Auth\Models\Role;
 use Modules\Auth\Models\User;

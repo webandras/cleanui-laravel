@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Blog\Models\Category;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 
 class Update extends Component

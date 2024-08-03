@@ -2,7 +2,7 @@
 
 namespace Modules\Clean\Services;
 
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 
 class ImageService implements ImageServiceInterface
 {

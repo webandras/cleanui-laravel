@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Clean\Interfaces\Services;
+namespace Modules\Clean\Interfaces;
 
 interface ImageServiceInterface
 {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
 
 
 /**

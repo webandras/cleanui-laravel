@@ -12,7 +12,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Auth\Models\User;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 

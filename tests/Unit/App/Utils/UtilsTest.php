@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\App\Utils;
 
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Services\ImageService;
 use PHPUnit\Framework\TestCase;
 

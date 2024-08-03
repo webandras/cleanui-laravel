@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
@@ -100,9 +100,9 @@ class Edit extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $tagRepository;
+    private ModelServiceInterface $tagRepository;
 
 
     /**
@@ -112,11 +112,11 @@ class Edit extends Component
 
 
     /**
-     * @param  ModelRepositoryInterface  $tagRepository
+     * @param  ModelServiceInterface  $tagRepository
      * @param  ImageServiceInterface  $imageService
      * @return void
      */
-    public function boot(ModelRepositoryInterface $tagRepository, ImageServiceInterface $imageService): void
+    public function boot(ModelServiceInterface $tagRepository, ImageServiceInterface $imageService): void
     {
         $this->tagRepository = $tagRepository;
         $this->imageService = $imageService;

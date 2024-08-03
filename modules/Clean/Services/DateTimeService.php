@@ -4,7 +4,7 @@ namespace Modules\Clean\Services;
 
 use DateTime;
 use Exception;
-use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\DateTimeServiceInterface;
 
 class DateTimeService implements DateTimeServiceInterface
 {

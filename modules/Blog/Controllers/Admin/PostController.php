@@ -18,7 +18,7 @@ use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Tag;
 use Modules\Blog\Requests\StorePostRequest;
 use Modules\Blog\Requests\UpdatePostRequest;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Throwable;
 
