@@ -151,8 +151,7 @@ class EventController extends Controller
                     $newEventDetail->saveOrFail();
                 }
 
-            }, 2);
-
+            });
 
         $this->banner(__('New event is added.'));
         return redirect()->route('event.manage');
@@ -251,7 +250,7 @@ class EventController extends Controller
                     }
                 }
 
-            }, 2);
+            });
 
         $this->banner(__('Successfully updated the event'));
         return redirect()->route('event.manage');
