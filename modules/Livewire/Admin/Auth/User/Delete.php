@@ -36,7 +36,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -104,8 +103,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->user->deleteOrFail();
-            },
-            2
+            }
         );
 
         $this->banner(__('The user with the name ":name" was successfully deleted.',

@@ -19,7 +19,6 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +37,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -129,8 +127,7 @@ class Create extends Component
                 $organizer['facebook_url'] = $this->facebook_url;
 
                 $this->modelRepository->createEntity('Event\Models\Organizer', $organizer);
-            },
-            2
+            }
         );
 
         $this->banner(__('New organizer successfully added.'));

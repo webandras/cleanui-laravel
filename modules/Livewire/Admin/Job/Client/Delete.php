@@ -16,9 +16,7 @@ use Modules\Job\Models\Client;
 
 class Delete extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-
+    use InteractsWithBanner, AuthorizesRequests;
 
     /**
      * @var string
@@ -100,8 +98,7 @@ class Delete extends Component
         DB::transaction(
             function () use ($deleteClient) {
                 $deleteClient($this->client);
-            },
-            2
+            }
         );
 
         $this->banner(__('The client with the name ":name" was successfully deleted.',

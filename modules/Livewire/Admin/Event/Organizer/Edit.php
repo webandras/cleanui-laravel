@@ -20,7 +20,6 @@ class Edit extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +38,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -145,8 +143,7 @@ class Edit extends Component
                     'facebook_url' => $this->facebook_url,
                     'slug' => $this->slug,
                 ]);
-            },
-            2
+            }
         );
 
         $this->banner(__('Organizer successfully updated.'));

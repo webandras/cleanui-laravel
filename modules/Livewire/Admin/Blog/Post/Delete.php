@@ -103,8 +103,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->post->deleteOrFail();
-            },
-            2
+            }
         );
 
         $this->banner(__('Post successfully deleted'));

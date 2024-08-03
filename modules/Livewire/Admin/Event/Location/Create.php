@@ -16,10 +16,8 @@ use Modules\Event\Models\Location;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
+    use InteractsWithBanner, AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +36,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -154,8 +151,7 @@ class Create extends Component
                 $location['longitude'] = $this->longitude;
 
                 $this->modelRepository->createEntity('Event\Models\Location', $location);
-            },
-            2
+            }
         );
 
         $this->banner(__('New location successfully added.'));

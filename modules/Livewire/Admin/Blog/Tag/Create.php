@@ -18,13 +18,8 @@ use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-    use WithFileUploads;
-    use Reactive;
+    use InteractsWithBanner, AuthorizesRequests, WithFileUploads, Reactive;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -43,7 +38,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -159,8 +153,7 @@ class Create extends Component
                 }
 
                 $this->tagRepository->createEntity('Blog\Models\Tag', $tag);
-            },
-            2
+            }
         );
 
         $this->banner(__('New tag successfully added.'));

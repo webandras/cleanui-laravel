@@ -18,7 +18,6 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -37,7 +36,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -105,8 +103,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->event->deleteOrFail();
-            },
-            2
+            }
         );
 
         $this->banner(__('Event successfully deleted'));

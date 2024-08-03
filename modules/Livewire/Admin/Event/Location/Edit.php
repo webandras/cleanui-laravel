@@ -20,7 +20,6 @@ class Edit extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +38,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -172,8 +170,7 @@ class Edit extends Component
                     'latitude' => $this->latitude,
                     'longitude' => $this->longitude,
                 ]);
-            },
-            2
+            }
         );
 
         $this->banner(__('Location successfully updated.'));

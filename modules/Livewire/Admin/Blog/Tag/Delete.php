@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
@@ -108,8 +107,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->tag->deleteOrFail();
-            },
-            2
+            }
         );
 
         $this->banner(__('Tag successfully archived'));

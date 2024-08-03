@@ -24,8 +24,6 @@ class Edit extends Component
     use WithFileUploads;
     use Reactive;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -50,7 +48,6 @@ class Edit extends Component
     public int $iteration = 0;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -201,8 +198,7 @@ class Edit extends Component
                     'slug' => $this->slug,
                     'cover_image_url' => $this->cover_image_url !== '' ? $this->cover_image_url : null,
                 ]);
-            },
-            2
+            }
         );
 
         $this->banner(__('Tag successfully updated.'));

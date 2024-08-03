@@ -169,8 +169,7 @@ class Update extends Component
                     'slug' => $this->slug,
                     'cover_image_url' => $this->cover_image_url === '' ? null : $this->imageService->getImageAbsolutePath($this->cover_image_url),
                 ]);
-            },
-            2
+            }
         );
 
         $this->banner(__('Category successfully updated.'));

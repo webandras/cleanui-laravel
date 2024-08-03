@@ -20,7 +20,6 @@ class Delete extends Component
     use AuthorizesRequests;
 
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +38,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -123,8 +121,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->rolePermissionService->deleteRole($this->role);
-            },
-            2
+            }
         );
 
         $this->banner(__('The role with the name ":name" was successfully deleted.',

@@ -15,7 +15,7 @@ use Livewire\WithPagination;
 use Modules\Job\Models\Client;
 use Modules\Job\Models\Job;
 
-class Statisticswidget extends Component
+class StatisticsWidget extends Component
 {
     use WithPagination;
 

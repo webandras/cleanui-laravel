@@ -136,7 +136,6 @@ class Create extends Component
 
         $this->name = '';
         $this->slug = '';
-        //$this->cover_image_url = '';
         $this->category = $category;
         $this->categoryId = $category->id;
     }
@@ -176,8 +175,7 @@ class Create extends Component
                 $category['category_id'] = $this->categoryId;
 
                 Category::create($category);
-            },
-            2
+            }
         );
 
         $this->banner(__('New subcategory successfully added.'));

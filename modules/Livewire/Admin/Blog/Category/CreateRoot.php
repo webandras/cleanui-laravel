@@ -43,7 +43,6 @@ class CreateRoot extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -162,8 +161,7 @@ class CreateRoot extends Component
                 $category['category_id'] = null;
 
                 Category::create($category);
-            },
-            2
+            }
         );
 
         $this->banner(__('New category successfully added.'));

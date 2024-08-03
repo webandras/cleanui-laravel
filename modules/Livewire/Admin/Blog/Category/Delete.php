@@ -99,8 +99,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->category->deleteOrFail();
-            },
-            2
+            }
         );
 
         $this->banner(__('Category successfully deleted.'));

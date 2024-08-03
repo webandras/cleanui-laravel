@@ -151,7 +151,7 @@ class Edit extends Component
         DB::transaction(
             function () {
 
-                if (!isset($this->user->role)) {
+                if ( ! isset($this->user->role)) {
                     $role = Role::where('slug', 'worker')->first();
                     // attach can only be used on m-m relation
                     // associate <-> dissociate
@@ -179,8 +179,7 @@ class Edit extends Component
                     ]);
                 }
 
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully updated the user ":name"!', ['name' => htmlspecialchars($this->name)]));
