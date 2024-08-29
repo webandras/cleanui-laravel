@@ -35,6 +35,8 @@ header.page-header
                 border-width: 2px
 
         #event-link-mobile-menu
+            &:focus
+                color: $primary-light
             @media screen and (min-width: 1024px)
                 display: none
 
@@ -63,7 +65,7 @@ header.page-header
 
 // Sidenav menu
 .sidenav
-    background-color: #F2F2F2
+    background-color: #f5f0ed
 
     #main-menu
         a:not(.dropdown-item)
@@ -132,7 +134,6 @@ footer.page-footer.public-footer
     font-size: 18px
     font-weight: 500
     line-height: 150%
-    letter-spacing: 1px
 
 
 .dark
@@ -163,12 +164,17 @@ footer.page-footer.public-footer
                 &:hover, &:focus
                     color: white
 
-
 .post-header
-    display: flex
-    align-items: center
-    justify-content: flex-start
-    column-gap: 1em
+    @media screen and (max-width: 600px)
+        padding-left: 1rem
+        padding-right: 1rem
+
+    .post-header-meta
+        margin-top: 0.5rem
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        column-gap: 1em
 
 .a2a_buttons__small
     a

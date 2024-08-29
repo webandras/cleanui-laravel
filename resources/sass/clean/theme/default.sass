@@ -20,7 +20,7 @@ $gray-80: $grey-80
 
 $bg-light: #e5e7ea
 $border: #c5c5c5
-
+$gray-light-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .25)
 $gray-light-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .25)
 
 $text: #333333
@@ -39,8 +39,7 @@ $pale-dark: $accent-dark
 
 // Dark mode
 $bg-dark: #2e3033
-$bg-content: #2e3033
-//$bg-content: #393B3D
+$bg-content: #393B3D
 
 $primary-darkmode: #dedcdc
 $primary-darkmode-hover: #ffffff
@@ -94,6 +93,10 @@ $mono: monospace
 @mixin primary-gradient
     background: $primary-dark
     background: linear-gradient(0deg, $primary-dark 0%, $primary-light 80%)
+
+@mixin primary-muted-gradient
+    background: #475179
+    background: linear-gradient(0deg, #373F60 0%, #475179 80%)
 
 
 h1, h2, h3, h4, h5, h6

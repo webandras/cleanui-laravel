@@ -30,8 +30,7 @@ textarea
         border-color: $primary-light
 
     &:focus-visible
-        outline-offset: 0px
-        outline: 2px solid $primary-light
+        box-shadow: $primary-light-shadow
 
 
 input[type="text"]:focus,
@@ -46,7 +45,7 @@ input[type="password"]:focus,
 input[type="url"]:focus,
 input[type="tel"]:focus,
 select:focus
-    border: 1px solid $primary-light
+    box-shadow: $primary-light-shadow
 
 input
     overflow: hidden
@@ -54,6 +53,10 @@ input
     &:disabled
         cursor: not-allowed
         background-color: $gray-20
+
+        &:focus, &:focus-visible
+            outline: none !important
+            box-shadow: none !important
 
     &.input-small
         padding: 0.2em
@@ -65,10 +68,7 @@ input[readonly]
 
 html.dark
     input[readonly]
-        color: rgba(255, 255, 255, 0.6)
-        background-color: $gray-60
-        &:focus
-            background-color: $gray-60
+        background-color: $gray-40
 
 
 input[type="radio"],
@@ -82,15 +82,22 @@ input[type="checkbox"]
 
     &:disabled
         cursor: not-allowed
+        &:focus, &:focus-visible
+            outline: none !important
+            box-shadow: none !important
 
 
-input[type="radio"]
+input[type="radio"],
+input[type="checkbox"]
     accent-color: $primary-light
+    border-radius: 0.25rem
 
     &:focus
-        outline-offset: 2px
-        outline-color: $primary-light
-        outline-width: 4px
+        outline: none
+        border-color: $primary-light
+
+    &:focus-visible
+        box-shadow: $primary-light-shadow
 
 
 label ~ input[type="radio"]
@@ -99,8 +106,8 @@ label ~ input[type="radio"]
 label
     margin: 1.4em 0 0.4em 0
     clear: both
-    display: block
-    font-size: 14px
+    display: block !important
+    font-size: 16px
 
     span
         color: inherit
@@ -113,6 +120,8 @@ input[type="checkbox"]:checked
     outline-width: 4px
 
 .checkbox-container
+    margin-top: 1em
+
     label
         margin-top: 0
 
