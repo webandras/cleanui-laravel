@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
 use Modules\Blog\Actions\CreatePost;
 use Modules\Blog\Actions\UpdatePost;
@@ -17,7 +18,7 @@ use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Tag;
 use Modules\Blog\Requests\StorePostRequest;
 use Modules\Blog\Requests\UpdatePostRequest;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Throwable;
 
@@ -86,7 +87,9 @@ class PostController extends Controller
             $validated['is_highlighted'] = 0;
         }
 
-        $createPost($validated, $categoriesArray, $tagsArray);
+        DB::transaction(function () use ($createPost, $validated, $categoriesArray, $tagsArray) {
+            $createPost($validated, $categoriesArray, $tagsArray);
+        });
 
         $this->banner(__('New post is added.'));
         return redirect()->route('post.manage');
@@ -157,7 +160,9 @@ class PostController extends Controller
             $validated['is_highlighted'] = 0;
         }
 
-        $updatePost($post, $validated, $categoriesArray, $tagsArray);
+        DB::transaction(function() use($updatePost, $post, $validated, $categoriesArray, $tagsArray) {
+            $updatePost($post, $validated, $categoriesArray, $tagsArray);
+        });
 
         $this->banner(__('Successfully updated the post'));
         return redirect()->route('post.manage');

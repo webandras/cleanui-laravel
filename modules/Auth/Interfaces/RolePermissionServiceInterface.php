@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Auth\Interfaces\Services;
+namespace Modules\Auth\Interfaces;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Auth\Models\Permission;
@@ -47,7 +47,7 @@ interface RolePermissionServiceInterface
 
     /**
      * Get the role entity by the slug value
-     * User should have onl one role!
+     * User should have only one role
      *
      * @param  User  $user
      * @return void

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Models\Permission;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -21,7 +21,6 @@ class Edit extends Component
     use AuthorizesRequests;
 
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -40,7 +39,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -109,8 +107,12 @@ class Edit extends Component
      * @param  bool  $hasSmallButton
      * @return void
      */
-    public function mount(string $modalId, Collection $roles, Permission $permission, bool $hasSmallButton = false): void
-    {
+    public function mount(
+        string $modalId,
+        Collection $roles,
+        Permission $permission,
+        bool $hasSmallButton = false
+    ): void {
         $this->modalId = $modalId;
         $this->isModalOpen = false;
         $this->hasSmallButton = $hasSmallButton;
@@ -165,8 +167,7 @@ class Edit extends Component
                 }
 
                 $this->rolePermissionService->syncRolesToPermission($this->permission, $this->permissionRoles);
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully updated the permission ":name"!', ['name' => htmlspecialchars($this->name)]));

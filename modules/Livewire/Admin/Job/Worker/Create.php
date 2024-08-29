@@ -15,10 +15,8 @@ use Modules\Job\Models\Worker;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
+    use InteractsWithBanner, AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -37,7 +35,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -129,8 +126,7 @@ class Create extends Component
                 ]);
 
                 $newWorker->save();
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully created the worker ":name"!', ['name' => htmlspecialchars($this->name)]));

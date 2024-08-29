@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Models\User;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -23,8 +23,6 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -43,7 +41,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -160,8 +157,7 @@ class Create extends Component
                 $role = $this->rolePermissionService->getRoleById($this->role);
 
                 $this->rolePermissionService->associateRoleWithUser($role, $newUser);
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully created the user ":name"!', ['name' => htmlspecialchars($this->name)]));

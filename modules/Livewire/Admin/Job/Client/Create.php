@@ -18,9 +18,7 @@ use Modules\Job\Models\Client;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-
+    use InteractsWithBanner, AuthorizesRequests;
 
     /**
      * @var string
@@ -167,8 +165,7 @@ class Create extends Component
                 ];
 
                 $createClient($clientData, $details);
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully created the client ":name"!', ['name' => strip_tags($this->name)]));

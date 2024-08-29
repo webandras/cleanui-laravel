@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
@@ -27,7 +27,7 @@ class Restore extends Component
     private ArchiveEntityServiceInterface $archiveEntityService;
 
 
-    /** Used by blade / alpinejs
+    /**
      * @var string
      */
     public string $modalId;
@@ -86,8 +86,7 @@ class Restore extends Component
         DB::transaction(
             function () {
                 $this->archiveEntityService->restoreTrashedEntity($this->tag);
-            },
-            2
+            }
         );
 
         $this->banner(__('"'.$this->tag->name.'" tag successfully restored.'));

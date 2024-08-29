@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Models\Organizer;
 
@@ -19,7 +19,6 @@ class Delete extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +37,6 @@ class Delete extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -66,15 +64,15 @@ class Delete extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $modelRepository;
+    private ModelServiceInterface $modelRepository;
 
 
     /**
-     * @param  ModelRepositoryInterface  $modelRepository
+     * @param  ModelServiceInterface  $modelRepository
      */
-    public function boot(ModelRepositoryInterface $modelRepository): void
+    public function boot(ModelServiceInterface $modelRepository): void
     {
         $this->modelRepository = $modelRepository;
     }
@@ -121,8 +119,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->modelRepository->deleteEntity($this->organizer);
-            },
-            2
+            }
         );
 
         $this->banner(__('Organizer successfully deleted'));

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 use Modules\Blog\Models\Category;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 
 class CreateRoot extends Component
@@ -43,7 +43,6 @@ class CreateRoot extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -162,8 +161,7 @@ class CreateRoot extends Component
                 $category['category_id'] = null;
 
                 Category::create($category);
-            },
-            2
+            }
         );
 
         $this->banner(__('New category successfully added.'));

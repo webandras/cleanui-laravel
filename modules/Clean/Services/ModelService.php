@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Clean\Repositories;
+namespace Modules\Clean\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 
 /**
  * Manage entity CRUD
  */
-class ModelRepository implements ModelRepositoryInterface
+class ModelService implements ModelServiceInterface
 {
     private const PREFIX = "\Modules\\";
 

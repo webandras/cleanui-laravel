@@ -13,22 +13,18 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Auth\Models\User;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Index extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-    use WithPagination;
-    use Reactive;
-
+    use InteractsWithBanner, AuthorizesRequests, WithPagination, Reactive;
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $tagRepository;
+    private ModelServiceInterface $tagRepository;
 
 
     /**
@@ -91,11 +87,11 @@ class Index extends Component
 
 
     /**
-     * @param  ModelRepositoryInterface  $tagRepository
+     * @param  ModelServiceInterface  $tagRepository
      *
      * @return void
      */
-    public function boot(ModelRepositoryInterface $tagRepository): void
+    public function boot(ModelServiceInterface $tagRepository): void
     {
         $this->tagRepository = $tagRepository;
     }
@@ -125,16 +121,6 @@ class Index extends Component
         return view('admin.livewire.blog.tag.index')->with([
             'tags' => $this->tags,
         ]);
-    }
-
-
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    public function initialize(): void
-    {
-//        $this->tags = $this->tagRepository->paginateEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'page');
     }
 
 

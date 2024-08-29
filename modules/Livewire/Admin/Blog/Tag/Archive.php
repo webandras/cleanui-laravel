@@ -12,17 +12,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Modules\Auth\Models\User;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Archive extends Component
 {
-    use WithPagination;
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-    use Reactive;
-
+    use WithPagination, InteractsWithBanner, AuthorizesRequests, Reactive;
 
     /**
      * General service class for managing archives for any entities
@@ -115,7 +111,6 @@ class Archive extends Component
      */
     public function mount(): void
     {
-        // $this->initialize();
         $this->archivedTags = null;
         $this->selectedIds = [];
     }
@@ -133,17 +128,6 @@ class Archive extends Component
         return view('admin.livewire.blog.tag.archive')->with([
             'archivedTags' => $this->archivedTags,
         ]);
-    }
-
-
-    /**
-     *
-     * @return void
-     * @throws \Exception
-     */
-    public function initialize(): void
-    {
-//        $this->archivedTags = $this->archiveEntityService->paginateTrashedEntities('Blog\Models\Tag', Tag::RECORDS_PER_PAGE, 'archive');
     }
 
 

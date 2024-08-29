@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Clean\Interfaces\Services;
+namespace Modules\Clean\Interfaces;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

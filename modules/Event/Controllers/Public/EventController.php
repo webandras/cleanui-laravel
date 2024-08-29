@@ -19,7 +19,6 @@ class EventController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        return view('Event.Views.event.index');
         return view('event::public.event.index');
     }
 

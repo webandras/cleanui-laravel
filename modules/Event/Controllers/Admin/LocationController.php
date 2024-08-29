@@ -5,7 +5,7 @@ namespace Modules\Event\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Modules\Auth\Traits\UserPermissions;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Event\Models\Location;
 
 class LocationController extends Controller
@@ -13,15 +13,15 @@ class LocationController extends Controller
     use UserPermissions;
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $modelRepository;
+    private ModelServiceInterface $modelRepository;
 
 
     /**
-     * @param  ModelRepositoryInterface  $modelRepository
+     * @param  ModelServiceInterface  $modelRepository
      */
-    public function __construct(ModelRepositoryInterface $modelRepository)
+    public function __construct(ModelServiceInterface $modelRepository)
     {
         $this->modelRepository = $modelRepository;
     }

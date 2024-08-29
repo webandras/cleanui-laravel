@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Models\Location;
 
@@ -20,7 +20,6 @@ class Edit extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -39,7 +38,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -102,15 +100,15 @@ class Edit extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $modelRepository;
+    private ModelServiceInterface $modelRepository;
 
 
     /**
-     * @param  ModelRepositoryInterface  $modelRepository
+     * @param  ModelServiceInterface  $modelRepository
      */
-    public function boot(ModelRepositoryInterface $modelRepository): void
+    public function boot(ModelServiceInterface $modelRepository): void
     {
         $this->modelRepository = $modelRepository;
     }
@@ -172,8 +170,7 @@ class Edit extends Component
                     'latitude' => $this->latitude,
                     'longitude' => $this->longitude,
                 ]);
-            },
-            2
+            }
         );
 
         $this->banner(__('Location successfully updated.'));

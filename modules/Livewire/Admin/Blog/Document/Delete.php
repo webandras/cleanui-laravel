@@ -126,8 +126,7 @@ class Delete extends Component
         DB::transaction(
             function () {
                 $this->document->deleteOrFail();
-            },
-            1
+            }
         );
 
         $this->banner(__('Document successfully deleted'));

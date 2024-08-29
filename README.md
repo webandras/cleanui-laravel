@@ -39,6 +39,8 @@ _This project is under development, so no stable version is available yet._
 > structure.
 
 - TODO: Livewire components needs to be modular as the rest of the codebase.
+- TODO: Add feature, and e2e tests for the modules in preparation for a release.
+- TODO: Improve frontend design
 
 ## Screenshot
 
@@ -111,8 +113,7 @@ Copy the tinymce folder from inside `vendor/tinymce` folder to `public/assets`!
 
 For file management the `alexusmai/laravel-file-manager` is used here. As an alternative, you can
 replace it with `unisharp/laravel-filemanager` or with other packages.
-Currently, the posts and the categories use the file manager, tags have a separate image upload implementation (TODO:
-Use the file manager there as well).
+Currently, the posts and the categories use the file manager, tags have a separate image upload implementation.
 
 ## License
 

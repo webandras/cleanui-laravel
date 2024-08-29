@@ -11,20 +11,15 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-    use WithFileUploads;
-    use Reactive;
+    use InteractsWithBanner, AuthorizesRequests, WithFileUploads, Reactive;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -43,7 +38,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -86,9 +80,9 @@ class Create extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $tagRepository;
+    private ModelServiceInterface $tagRepository;
 
 
     /**
@@ -98,11 +92,11 @@ class Create extends Component
 
 
     /**
-     * @param  ModelRepositoryInterface  $tagRepository
+     * @param  ModelServiceInterface  $tagRepository
      * @param  ImageServiceInterface  $imageService
      * @return void
      */
-    public function boot(ModelRepositoryInterface $tagRepository, ImageServiceInterface $imageService): void
+    public function boot(ModelServiceInterface $tagRepository, ImageServiceInterface $imageService): void
     {
         $this->tagRepository = $tagRepository;
         $this->imageService = $imageService;
@@ -159,8 +153,7 @@ class Create extends Component
                 }
 
                 $this->tagRepository->createEntity('Blog\Models\Tag', $tag);
-            },
-            2
+            }
         );
 
         $this->banner(__('New tag successfully added.'));

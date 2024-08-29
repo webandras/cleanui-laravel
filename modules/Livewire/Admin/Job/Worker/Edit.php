@@ -15,10 +15,8 @@ use Modules\Job\Models\Worker;
 
 class Edit extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
+    use InteractsWithBanner, AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -37,7 +35,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -152,8 +149,7 @@ class Edit extends Component
                     'bank_account_name' => trim(htmlspecialchars($this->bankAccountName)),
                 ]);
                 $this->worker->save();
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully updated the worker ":name"!', ['name' => htmlspecialchars($this->name)]));

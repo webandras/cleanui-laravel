@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Models\Role;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -21,7 +21,6 @@ class Edit extends Component
     use AuthorizesRequests;
 
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +37,6 @@ class Edit extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -167,8 +165,7 @@ class Edit extends Component
                 }
 
                 $this->rolePermissionService->syncPermissionsToRole($role, $this->rolePermissions);
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully updated the role ":name"!', ['name' => htmlspecialchars($this->name)]));

@@ -5,16 +5,16 @@ namespace Modules\Clean\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Services\RolePermissionService;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
-use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
-use Modules\Clean\Repositories\ModelRepository;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Services\ArchiveEntityService;
 use Modules\Clean\Services\DateTimeService;
 use Modules\Clean\Services\ImageService;
+use Modules\Clean\Services\ModelService;
 
 class CleanModuleProvider extends ServiceProvider
 {
@@ -30,7 +30,7 @@ class CleanModuleProvider extends ServiceProvider
         $this->app->bind(ArchiveEntityServiceInterface::class, ArchiveEntityService::class);
 
         /* repositories */
-        $this->app->bind(ModelRepositoryInterface::class, ModelRepository::class);
+        $this->app->bind(ModelServiceInterface::class, ModelService::class);
 
         /* Custom */
         /* $this->app->when([LocationController::class])

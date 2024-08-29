@@ -10,16 +10,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Repositories\ModelRepositoryInterface;
+use Modules\Clean\Interfaces\ModelServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Models\Location;
 
 class Create extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
+    use InteractsWithBanner, AuthorizesRequests;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -38,7 +36,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -89,15 +86,15 @@ class Create extends Component
 
 
     /**
-     * @var ModelRepositoryInterface
+     * @var ModelServiceInterface
      */
-    private ModelRepositoryInterface $modelRepository;
+    private ModelServiceInterface $modelRepository;
 
 
     /**
-     * @param  ModelRepositoryInterface  $modelRepository
+     * @param  ModelServiceInterface  $modelRepository
      */
-    public function boot(ModelRepositoryInterface $modelRepository): void
+    public function boot(ModelServiceInterface $modelRepository): void
     {
         $this->modelRepository = $modelRepository;
     }
@@ -154,8 +151,7 @@ class Create extends Component
                 $location['longitude'] = $this->longitude;
 
                 $this->modelRepository->createEntity('Event\Models\Location', $location);
-            },
-            2
+            }
         );
 
         $this->banner(__('New location successfully added.'));

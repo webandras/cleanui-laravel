@@ -18,9 +18,7 @@ use Modules\Job\Models\Client;
 
 class Edit extends Component
 {
-    use InteractsWithBanner;
-    use AuthorizesRequests;
-
+    use InteractsWithBanner, AuthorizesRequests;
 
     /**
      * @var string
@@ -46,7 +44,6 @@ class Edit extends Component
     public int $clientId;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -71,7 +68,6 @@ class Edit extends Component
     public array $typesArray;
 
 
-    // client details
     /**
      * @var string|null
      */
@@ -186,13 +182,10 @@ class Edit extends Component
                 }
 
                 $updateClient($this->client, $client, $details, $this->client->client_detail_id);
-            },
-            2
+            }
         );
 
-
         $this->banner(__('Successfully updated the client ":name"!', ['name' => strip_tags($this->name)]));
-
         return redirect()->route('client.manage');
     }
 

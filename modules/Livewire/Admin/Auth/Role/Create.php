@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Auth\Interfaces\Services\RolePermissionServiceInterface;
+use Modules\Auth\Interfaces\RolePermissionServiceInterface;
 use Modules\Auth\Models\Role;
 use Modules\Clean\Traits\InteractsWithBanner;
 
@@ -20,8 +20,6 @@ class Create extends Component
     use InteractsWithBanner;
     use AuthorizesRequests;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -40,7 +38,6 @@ class Create extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var string
      */
@@ -138,8 +135,7 @@ class Create extends Component
                 ]);
 
                 $this->rolePermissionService->syncPermissionsToRole($newRole, $this->rolePermissions);
-            },
-            2
+            }
         );
 
         $this->banner(__('Successfully created the role ":name"!', ['name' => htmlspecialchars($this->name)]));

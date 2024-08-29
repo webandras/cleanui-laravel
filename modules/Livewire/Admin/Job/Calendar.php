@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
-use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\DateTimeServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Job\Actions\Job\CreateJob;
 use Modules\Job\Actions\Job\DeleteJob;
@@ -26,7 +26,6 @@ class Calendar extends Component
 {
     use InteractsWithBanner;
 
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -51,7 +50,6 @@ class Calendar extends Component
     public bool $isDeleteModalOpen;
 
 
-    // inputs
     /**
      * id for new job
      *
@@ -236,8 +234,9 @@ class Calendar extends Component
     public string $timezone;
 
 
-    // Job list as collection
     /**
+     * Job list as collection
+     *
      * @var Collection
      */
     public Collection $jobs;
@@ -583,8 +582,7 @@ class Calendar extends Component
                     $this->banner(__('Successfully created the job ":name"!',
                         ['name' => htmlspecialchars($jobEntity->client->name)]));
                 }
-            },
-            2
+            }
         );
 
         // Need to clear previous job data
@@ -601,7 +599,6 @@ class Calendar extends Component
      */
     public function deleteJob(DeleteJob $deleteJob): ?Redirector
     {
-
         // if we have an id, delete existing job
         if (isset($this->updateId)) {
 
@@ -617,8 +614,7 @@ class Calendar extends Component
             DB::transaction(
                 function () use ($job, $deleteJob) {
                     $deleteJob($job);
-                },
-                2
+                }
             );
 
             // reset loaded job properties for the modal

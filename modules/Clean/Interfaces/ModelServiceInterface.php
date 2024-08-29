@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Clean\Interfaces\Repositories;
+namespace Modules\Clean\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-interface ModelRepositoryInterface
+interface ModelServiceInterface
 {
 
     /**

@@ -7,7 +7,7 @@
         <div>
             @auth
                 @role('super-administrator|administrator')
-                <livewire:admin.job.statisticswidget></livewire:admin.job.statisticswidget>
+                <livewire:admin.job.statistics-widget></livewire:admin.job.statistics-widget>
                 @endrole
             @endauth
         </div>

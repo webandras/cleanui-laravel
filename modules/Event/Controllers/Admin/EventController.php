@@ -10,8 +10,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Auth\Traits\UserPermissions;
-use Modules\Clean\Interfaces\Services\DateTimeServiceInterface;
-use Modules\Clean\Interfaces\Services\ImageServiceInterface;
+use Modules\Clean\Interfaces\DateTimeServiceInterface;
+use Modules\Clean\Interfaces\ImageServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Event\Enum\EventStatus;
 use Modules\Event\Models\Event;
@@ -151,8 +151,7 @@ class EventController extends Controller
                     $newEventDetail->saveOrFail();
                 }
 
-            }, 2);
-
+            });
 
         $this->banner(__('New event is added.'));
         return redirect()->route('event.manage');
@@ -251,7 +250,7 @@ class EventController extends Controller
                     }
                 }
 
-            }, 2);
+            });
 
         $this->banner(__('Successfully updated the event'));
         return redirect()->route('event.manage');

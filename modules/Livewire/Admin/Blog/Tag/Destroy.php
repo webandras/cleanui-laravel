@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Modules\Blog\Models\Tag;
-use Modules\Clean\Interfaces\Services\ArchiveEntityServiceInterface;
+use Modules\Clean\Interfaces\ArchiveEntityServiceInterface;
 use Modules\Clean\Traits\InteractsWithBanner;
 use Modules\Livewire\Admin\Blog\Tag\Trait\Reactive;
 
@@ -20,8 +20,6 @@ class Destroy extends Component
     use AuthorizesRequests;
     use Reactive;
 
-
-    // used by blade / alpinejs
     /**
      * @var string
      */
@@ -40,7 +38,6 @@ class Destroy extends Component
     public bool $hasSmallButton;
 
 
-    // inputs
     /**
      * @var int
      */
@@ -126,8 +123,7 @@ class Destroy extends Component
         DB::transaction(
             function () {
                 $this->archiveEntityService->destroyEntity($this->tag);
-            },
-            2
+            }
         );
 
         $this->banner(__('Tag deleted permanently.'));
