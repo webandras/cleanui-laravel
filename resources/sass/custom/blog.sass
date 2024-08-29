@@ -14,7 +14,7 @@
             img
                 &:hover, &:focus, &:active
                     transition: 0.35s all
-                    box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px
+                    box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
             h3
                 &:hover, &:focus
@@ -38,7 +38,7 @@
                 column-gap: 1em
                 row-gap: 2em
 
-                span
+                time
                     position: relative
                     color: rgba(0, 0, 0, 0.7)
                     font-size: 14px
@@ -59,7 +59,7 @@
                 h3
                     margin-top: 2px
                     color: rgba(0, 0, 0, 0.80)
-                    font-size: 20px
+                    font-size: 24px
                     line-height: 120%
                     letter-spacing: 1px
 
@@ -73,7 +73,7 @@
 
                     &:hover, &:focus, &:active
                         transition: 0.35s all
-                        box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px
+                        box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
 
 .public-post-grid
@@ -86,12 +86,12 @@
         grid-template-columns: repeat(auto-fill, minmax(248px, 1fr))
 
     article
-        @include primary-gradient()
+        @include primary-muted-gradient()
 
         &.card:hover,
         &.card:active
             transition: 0.35s all
-            box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px
+            box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
         a
             .cover-image-container
@@ -104,7 +104,6 @@
                     font-size: 14px
                     font-weight: 500
                     text-transform: none
-                    /*font-variant: all-small-caps*/
                     line-height: 150%
                     letter-spacing: 1px
 
@@ -168,22 +167,9 @@
         a
             position: relative
             width: fit-content
-            /*margin-right: 4em*/
-            /*padding-left: 1.5em*/
 
             @media screen and (max-width: $s-960)
                 margin-right: 0
-
-            /*&:before
-                position: absolute
-                top: 3px
-                left: 0
-                content: ""
-                height: 16px
-                width: 16px
-                background-size: cover
-                background-image: url('./../../public/images/point-1.png')*/
-
 
     .title
         color: $primary-dark
@@ -222,11 +208,11 @@
             grid-area: left-panel-1
 
             .card
-                @include primary-gradient
+                @include primary-muted-gradient
 
                 &:hover, &:focus, &:active
                     transition: 0.35s all
-                    box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px
+                    box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
             .cover-image-container
                 img
@@ -240,10 +226,11 @@
                     @media screen and (max-width: $s-600)
                         height: 186px
 
-
             .date
+                display: block
                 position: relative
                 margin-top: 10px
+                padding-left: 1em
                 margin-bottom: 1px
                 color: rgba(255, 255, 255, 0.90)
                 font-size: 14px
@@ -253,19 +240,18 @@
 
                 &:before
                     position: absolute
-                    top: 6px
                     left: 0
+                    top: 6px
                     content: ""
-                    height: 14px
-                    width: 14px
-                    background-size: cover
-                    background-image: url('./../../public/images/point-1.png')
-
+                    width: 8px
+                    height: 8px
+                    border-radius: 8px
+                    background: #fec23b
 
             a.read-more
                 display: inline-block !important
                 width: auto !important
-                margin-bottom: 33px
+                margin-bottom: 1rem
                 border-radius: 1px
                 border: 1px solid $pale-dark
                 background: transparent
@@ -307,13 +293,12 @@
             flex-direction: column
             row-gap: 20px
 
-            article
-                a
-                    .card
-                        &:hover, &:focus, &:active
-                            transition: 0.35s all
-                            box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px
+            article.card
+                @include primary-muted-gradient
 
+                &:hover, &:focus, &:active
+                    transition: 0.35s all
+                    box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
             .cover-image-container
                 margin-bottom: 0
@@ -325,7 +310,6 @@
 
             h2
                 position: relative
-                color: #000
                 font-size: 20px
                 line-height: 120%
                 font-family: $sans
@@ -333,7 +317,7 @@
                 padding-bottom: 5px
 
                 a
-                    color: black
+                    color: #fff
                     word-break: break-word
 
                     &:hover, &:focus
@@ -397,7 +381,6 @@
                     color: rgba(0, 0, 0, 0.65)
                     font-size: 14px
                     font-weight: 500
-
                     line-height: 150%
                     letter-spacing: 1px
 
@@ -415,7 +398,6 @@
                     margin-top: 3px
                     margin-bottom: 0
                     color: rgba(0, 0, 0, 0.80)
-                    /*font-size: 1em*/
                     line-height: 120%
                     letter-spacing: 1px
 
@@ -455,9 +437,8 @@
                     background: $primary-dark
 
 article
-
     .post-date
-        font-size: 14px
+        font-size: 16px
 
     .card-body
         .post-content
