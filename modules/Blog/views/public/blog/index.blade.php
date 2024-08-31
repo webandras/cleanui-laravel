@@ -8,74 +8,79 @@
     ></x-public::meta>
 @endsection
 
-
 @section('content')
-    <div class="card">
-
-        <h1 class="text-left margin-top-0 margin-bottom-0-5">{{ __('Newest articles') }}</h1>
+    <section class="card">
+        <h1 class="text-left margin-top-0 margin-bottom-0-5 text-center">
+            {{ __('Newest articles') }}
+        </h1>
 
         @if ($newestPosts->count() === 0)
-            <p>No posts in the database. Run the seeder.</p>
+            <p>
+                No posts in the database. Run the seeder.
+            </p>
         @else
             <section class="intro">
-                <div class="left-panel-1">
+                <section class="left-panel-1">
                     <article class="card margin-bottom-0">
                         <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
-                            <div class="relative cover-image-container">
-                                <img class="round-top" src="{{ $newestPosts[0]->cover_image_url }}"
+                            <figure class="relative cover-image-container margin-0">
+                                <img class="round-top hover-opacity" src="{{ $newestPosts[0]->cover_image_url }}"
                                      alt="{{ $newestPosts[0]->title }}">
-                            </div>
+                            </figure>
                         </a>
-                        <div class="padding-left-right-1">
-                            <div
-                                class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}</div>
-                            <h2 class="margin-top-0 h4 text-white fs-20 margin-bottom-45">
+                        <section class="padding-left-right-1">
+                            <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
+                                {{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}
+                            </time>
+                            <h2 class="margin-top-0 h4 text-white fs-24 margin-bottom-1">
                                 <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
                                     {{ $newestPosts[0]->title }}
                                 </a>
                             </h2>
+                            <p class="text-gray-10">
+                                {{ $newestPosts[0]->excerpt ?? substr($newestPosts[0]->content, 0, 255) . '...' }}
+                            </p>
                             <a href="{{ route('blog.show', $newestPosts[0]->slug) }}"
                                class="button read-more margin-top-0">
                                 {{ __('Read more') }}<i class="fa-solid fa-angles-right margin-left-0-5"></i>
                             </a>
-                        </div>
+                        </section>
                     </article>
+                </section>
 
-                </div>
-                <div class="right-panel-2">
-
+                <section class="right-panel-2">
                     @for($i = 1; $i <= 2; $i++)
-                        <article>
+                        <article class="card">
                             <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
-                                <div class="relative cover-image-container card">
-                                    <img class="round"
+                                <figure class="relative cover-image-container margin-0">
+                                    <img class="round-top hover-opacity"
                                          src="{{ asset($newestPosts[$i]->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                          alt="{{ $newestPosts[0]->title }}"
                                     >
-                                </div>
+                                </figure>
                             </a>
-                            <div class="padding-top-bottom-0-5">
-                                <h2 class="margin-top-bottom-0 h4 fs-18">
+                            <section class="padding-0-5">
+                                <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
+                                    {{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}
+                                </time>
+                                <h2 class="margin-top-bottom-0 h4 fs-20">
                                     <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
                                         {{ $newestPosts[$i]->title }}
                                     </a>
                                 </h2>
-                            </div>
-
+                            </section>
                         </article>
                     @endfor
-                </div>
-                <div class="side-panel-4">
-
-                    <h2>{{ __('Additional articles') }}</h2>
-
+                </section>
+                <section class="side-panel-4">
                     <ul class="no-bullets">
                         @for($i = 3; $i < $newestPosts->count(); $i++)
                             <li>
                                 <article>
-                                    <div
-                                        class="date fs-14">{{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}</div>
-                                    <h3 class="fs-18">
+                                    <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
+                                        {{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}
+                                    </time>
+                                    <h3 class="fs-20">
                                         <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
                                             {{$newestPosts[$i]->title }}</a>
                                     </h3>
@@ -83,95 +88,91 @@
                             </li>
                         @endfor
                     </ul>
-
-                </div>
-
+                </section>
             </section>
-
         @endif
 
         <hr>
 
         <livewire:public.blog.post.post-grid></livewire:public.blog.post.post-grid>
 
-
         <section>
-            <div class="most-popular-categories-title">
-                <h2>{{ __('Most popular categories') }}</h2>
-                <div class="separator"></div>
-            </div>
+            <section class="most-popular-categories-title">
+                <h2>
+                    {{ __('Most popular categories') }}
+                </h2>
+                <aside class="separator"></aside>
+            </section>
             @if ($categories->count() > 0)
-            <nav class="categories-container">
-                @foreach($categories as $cat)
-
-                    <a class="fs-16" href="{{ route('blog.category', $cat->slug) }}">{{ $cat->name }}</a>
-                @endforeach
-            </nav>
+                <nav class="categories-container">
+                    @foreach($categories as $cat)
+                        <a class="fs-16" href="{{ route('blog.category', $cat->slug) }}">
+                            {{ $cat->name }}
+                        </a>
+                    @endforeach
+                </nav>
             @else
-            <p>No categories in the database. Run the seeder.</p>
+                <p>
+                    No categories in the database. Create one or run the seeder.
+                </p>
             @endif
         </section>
 
         <hr>
 
         @if ($highlightedPosts->count() > 0)
-        <section class="highlighted-posts-container">
-            <div class="featured">
-                @foreach($highlightedPosts as $highlightedPost)
-                    @if($highlightedPost->id === 1)
-                        <article class="post-item white">
-                            <a href="{{ route('blog.show', $highlightedPost->slug) }}" class="no-underline">
-                                <div class="cover-image-container relative">
-                                    <i class="fa-regular fa-star absolute margin-top-0-5 margin-left-0-5 topleft fs-24 gold"
-                                       title="{{ __('Highlighted post') }}"></i>
-                                    <img class="round card"
-                                         src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
-                                         alt="{{ $highlightedPost->title }}">
-                                </div>
-                                <div>
+            <section class="highlighted-posts-container">
+                <section class="featured">
+                    @foreach($highlightedPosts as $highlightedPost)
+                        @if($highlightedPost->id === 1)
+                            <article class="post-item white">
+                                <a href="{{ route('blog.show', $highlightedPost->slug) }}" class="no-underline">
+                                    <figure class="cover-image-container relative margin-0">
+                                        <i class="fa-regular fa-star absolute margin-top-0-5 margin-left-0-5 topleft fs-24 gold"
+                                           title="{{ __('Highlighted post') }}"></i>
+                                        <img class="round card"
+                                             src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                             alt="{{ $highlightedPost->title }}">
+                                    </figure>
                                     <h3 class="margin-bottom-0 margin-top-0-5">{{ $highlightedPost->title }}</h3>
-                                </div>
-                            </a>
-                        </article>
-                    @endif
-                @endforeach
-            </div>
+                                </a>
+                            </article>
+                        @endif
+                    @endforeach
+                </section>
 
+                <section class="highlighted">
+                    @foreach($highlightedPosts as $highlightedPost)
+                        @if($highlightedPost->is_highlighted === 1 && $highlightedPost->id !== 4)
+                            <article class="highlighted-post-item">
+                                <section class="width-65">
+                                    <time datetime="{{ $newestPosts[0]->created_at }}">
+                                        {{ Carbon\Carbon::parse($highlightedPost->created_at)->translatedFormat($dtFormat) }}
+                                    </time>
+                                    <h3>
+                                        <a href="{{ route('blog.show', $highlightedPost->slug) }}">
+                                            {{ $highlightedPost->title }}
+                                        </a>
+                                    </h3>
+                                </section>
 
-            <div class="highlighted">
-                @foreach($highlightedPosts as $highlightedPost)
-                    @if($highlightedPost->is_highlighted === 1 && $highlightedPost->id !== 4)
-                        <article class="highlighted-post-item">
-                            <div class="width-65">
-                                <span
-                                    class="">{{ Carbon\Carbon::parse($highlightedPost->created_at)->translatedFormat($dtFormat) }}</span>
-                                <h3>
-                                    <a href="{{ route('blog.show', $highlightedPost->slug) }}">
-                                        {{ $highlightedPost->title }}
-                                    </a>
-                                </h3>
-                            </div>
-
-                            <a href="{{ route('blog.show', $highlightedPost->slug) }}"
-                               class="no-underline width-45">
-                                <div class="relative cover-image-container">
-                                    <img class="round-top"
-                                         src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
-                                         alt="{{ $highlightedPost->title }}">
-                                </div>
-                            </a>
-
-                        </article>
-                    @endif
-                @endforeach
-            </div>
-
-        </section>
+                                <a href="{{ route('blog.show', $highlightedPost->slug) }}"
+                                   class="no-underline width-45">
+                                    <figure class="relative cover-image-container margin-0">
+                                        <img class="round"
+                                             src="{{ asset($highlightedPost->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                             alt="{{ $highlightedPost->title }}">
+                                    </figure>
+                                </a>
+                            </article>
+                        @endif
+                    @endforeach
+                </section>
+            </section>
         @else
-            <p>No highlighted posts in the database. Run the seeder.</p>
+            <p>
+                No highlighted posts in the database. Run the seeder.
+            </p>
         @endif
-
-
-    </div>
-
+    </section>
 @endsection

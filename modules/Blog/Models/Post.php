@@ -103,7 +103,7 @@ class Post extends Model
         return $query->where('status', '=', 'published')
             ->orderByDesc('created_at')
             ->limit(8)
-            ->get(['title', 'cover_image_url', 'slug', 'created_at']);
+            ->get(['title', 'excerpt', 'cover_image_url', 'slug', 'created_at']);
     }
 
 

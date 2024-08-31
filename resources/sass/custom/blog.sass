@@ -294,8 +294,6 @@
             row-gap: 20px
 
             article.card
-                @include primary-muted-gradient
-
                 &:hover, &:focus, &:active
                     transition: 0.35s all
                     box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
@@ -310,6 +308,7 @@
 
             h2
                 position: relative
+                margin-bottom: 0.1rem
                 font-size: 20px
                 line-height: 120%
                 font-family: $sans
@@ -317,22 +316,33 @@
                 padding-bottom: 5px
 
                 a
-                    color: #fff
+                    color: black
                     word-break: break-word
 
                     &:hover, &:focus
                         color: black
                         text-decoration: underline !important
 
+            .date
+                display: block
+                position: relative
+                margin-top: 1px
+                padding-left: 1em
+                margin-bottom: 5px
+                font-size: 14px
+                font-weight: 500
+                line-height: 150%
+                letter-spacing: 1px
 
-                &:after
-                    position: absolute
-                    bottom: -3px
-                    left: 0
-                    content: ""
-                    width: 55px
-                    height: 4px
-                    background: $accent-light
+                &:before
+                        position: absolute
+                        left: 0
+                        top: 6px
+                        content: ""
+                        width: 8px
+                        height: 8px
+                        border-radius: 8px
+                        background: #fec23b
 
 
         .side-panel-4
