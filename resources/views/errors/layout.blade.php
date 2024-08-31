@@ -42,12 +42,12 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <main class="flex-center position-ref full-height">
             <div class="content">
-                <div class="title">
+                <section class="title">
                     @yield('message')
-                </div>
+                </section>
             </div>
-        </div>
+        </main>
     </body>
 </html>

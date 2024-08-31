@@ -10,30 +10,23 @@
 @endsection
 
 @section('content')
-    <x-public::breadcrumb :homeLink="route('blog.index')" :homeLabel="__('Blog')"
-                          :title="$post->title"></x-public::breadcrumb>
-
     <article class="card white post-content-width">
+        <div class="relative card-header post-header padding-left-right-2 padding-top-0-5">
+            <h1 class="text-left margin-0 single-post-title">{{ $post->title }}</h1>
 
-        <div class="relative card-header">
-            <img src="{{ asset($post->cover_image_url) ?? asset('/images/placeholder.png') }}" alt="{{ $post->title }}"
-                 class="round-top single-post-image">
-        </div>
-
-
-        <div class="card-body">
-            <h1 class="text-left margin-0 padding-top-0-5 single-post-title">{{ $post->title }}</h1>
-
-            <div class="flex post-header">
-                <div class="text-gray-60 post-date">
+            <div class="flex post-header-meta">
+                <div class="text-gray-60 post-date fs-14">
                     {{ Carbon\Carbon::parse($post->created_at)->translatedFormat($dtFormat) }}
                 </div>
-
-                <!-- AddToAny -->
-                <x-public::share :className="'a2a_buttons__small margin-top-0-5 margin-right-0-5'"
-                                 :titleEnabled="false" title="{{ $post->title }}"></x-public::share>
             </div>
-            <hr class="margin-top-0 margin-bottom-1">
+        </div>
+
+        <hr class="margin-top-0-5 margin-bottom-1 margin-right-left-2">
+
+        <div class="card-body">
+
+            <img src="{{ asset($post->cover_image_url) ?? asset('/images/placeholder.png') }}" alt="{{ $post->title }}"
+                 class="round single-post-image">
 
             <div class="post-content">
                 {!! $post->content !!}
@@ -48,7 +41,7 @@
                     <div class="flex flex-row margin-top-0-5">
                         @foreach($post->categories as $category)
                             <a href="{{ route('blog.category', $category->slug) }}"
-                               class="badge gray-60 text-gray-10 round-1 fs-14 semibold padding-0-5 margin-top-0-5">
+                               class="badge round-1 fs-14 padding-0-25 margin-top-0-5">
                                 <i class="fa-solid fa-folder-open"></i>
                                 {{ $category->name }}</a>
                         @endforeach
@@ -57,7 +50,7 @@
 
                     <h4 class="margin-bottom-0">{{ __('Tags:') }}</h4>
 
-                    <nav class="flex flex-row flex-wrap fs-14 margin-top-0-5">
+                    <nav class="flex flex-row flex-wrap margin-top-0-5">
                         @foreach($post->tags as $tag)
                             <a href="{{ route('blog.tag', $tag->slug) }}">#{{ $tag->name }}</a>
                         @endforeach
@@ -69,21 +62,19 @@
         </div>
     </article>
 
-    <aside>
-        <div class="next-prev-navigation bar border border-20 round margin-top-bottom-1 post-content-width white">
-            @if (isset($neighbouringPosts['next']))
-                <a href="{{ route('blog.show', $neighbouringPosts['next']['slug'] ) }}"
-                   class="button link-button text-primary"><i
-                        class="fa-solid fa-chevron-left"></i> {{ $neighbouringPosts['next']['title'] }}</a>
-            @endif
+    <aside class="next-prev-navigation bar border border-20 round margin-top-bottom-1 post-content-width white">
+        @if (isset($neighbouringPosts['next']))
+            <a href="{{ route('blog.show', $neighbouringPosts['next']['slug'] ) }}"
+               class="button link-button text-primary"><i
+                    class="fa-solid fa-chevron-left"></i> {{ $neighbouringPosts['next']['title'] }}</a>
+        @endif
 
-            @if (isset($neighbouringPosts['previous']))
-                <a href="{{ route('blog.show', $neighbouringPosts['previous']['slug'] ) }}"
-                   class="button float-right link-button">{{ $neighbouringPosts['previous']['title'] }} <i
-                        class="fa-solid fa-chevron-right"></i></a>
-            @endif
+        @if (isset($neighbouringPosts['previous']))
+            <a href="{{ route('blog.show', $neighbouringPosts['previous']['slug'] ) }}"
+               class="button float-right link-button">{{ $neighbouringPosts['previous']['title'] }} <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        @endif
 
-        </div>
     </aside>
 
 @endsection

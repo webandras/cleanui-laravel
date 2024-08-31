@@ -1,32 +1,23 @@
 <header class="page-header">
-    <div class="header__container">
-        <div class="header-content">
+    <section class="header__container">
+        <section class="header-content">
             <div class="logo">
                 <a href="/" class="brand">
                     <img src="{{ url('/images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
             </div>
             @if (Route::has('login'))
-                <div class="main-navigation">
+                <section class="main-navigation">
                     <nav id="main-menu">
                         @auth
-                            <a class="fs-14 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                            <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"
                                href="{{ url('/admin/dashboard') }}">
                                 <i class="fa fa-tachometer" aria-hidden="true"></i>{{ __('Dashboard') }}
                             </a>
 
-
-                            <!-- Demo components link -->
-                            <a class="fs-14 {{ request()->routeIs('demo') ? 'active' : '' }}"
-                               href="{{ route('demo') }}"
-                            >
-                                <i class="fa-regular fa-book"></i><span>{{ __('Components') }}</span>
-                            </a>
-
-
                             @if(in_array('manage-posts', $userPermissions))
                                 <!-- Manage posts/articles link -->
-                                <a class="fs-14 {{ request()->routeIs('post.manage') ? 'active' : '' }}"
+                                <a class="{{ request()->routeIs('post.manage') ? 'active' : '' }}"
                                    href="{{ route('post.manage') }}"
                                 >
                                     <i class="fa-regular fa-newspaper"></i><span>{{ __('Posts') }}</span>
@@ -36,7 +27,7 @@
 
                             @if(in_array('manage-categories', $userPermissions))
                                 <!-- Manage categories link -->
-                                <a class="fs-14 {{ request()->routeIs('category.manage') ? 'active' : '' }}"
+                                <a class="{{ request()->routeIs('category.manage') ? 'active' : '' }}"
                                    href="{{ route('category.manage') }}"
                                 >
                                     <i class="fa-solid fa-folder-open"></i><span>{{ __('Categories') }}</span>
@@ -46,7 +37,7 @@
 
                             @if(in_array('manage-tags', $userPermissions))
                                 <!-- Manage tags link -->
-                                <a class="fs-14 {{ request()->routeIs('tag.manage') ? 'active' : '' }}"
+                                <a class="{{ request()->routeIs('tag.manage') ? 'active' : '' }}"
                                    href="{{ route('tag.manage') }}"
                                 >
                                     <i class="fa-solid fa-tags"></i><span>{{ __('Tags') }}</span>
@@ -55,7 +46,7 @@
 
 
                             @if(in_array('manage-events', $userPermissions))
-                                <a class="fs-14 {{ request()->routeIs('event.manage') ? 'active' : '' }}"
+                                <a class="{{ request()->routeIs('event.manage') ? 'active' : '' }}"
                                    href="{{ route('event.manage') }}">
                                     <i class="fa-solid fa-calendar-days"></i><span>{{ __('Events') }}</span>
                                 </a>
@@ -72,7 +63,7 @@
                                     role="region"
                                     tabindex="0"
                                 >
-                                    <a class="fs-14" @click="toggleDropdown">
+                                    <a class="" @click="toggleDropdown">
                                         <i class="fa fa-user"
                                            aria-hidden="true"></i><span>{{ Auth::user()->name }}</span><i
                                             class="fa fa-caret-down"></i>
@@ -86,7 +77,7 @@
                                         x-bind:aria-expanded="openDropdown"
                                     >
 
-                                        <a class="fs-14 dropdown-item"
+                                        <a class="dropdown-item"
                                            href="{{ route('user.account', auth()->id()) }}"
                                         >
                                             <i class="fa fa-user"
@@ -96,7 +87,7 @@
 
                                         <a
                                             id="logout-form-admin-header-trigger"
-                                            class="fs-14 dropdown-item margin-bottom-0"
+                                            class="dropdown-item margin-bottom-0"
                                             href="#"
                                             role="button"
                                             onclick="triggerLogout('logout-form-admin-header')"
@@ -170,10 +161,10 @@
                         </div>
 
                     </div>
-                </div>
+                </section>
             @endif
-        </div>
-    </div>
+        </section>
+    </section>
 </header>
 
 

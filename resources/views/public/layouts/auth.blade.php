@@ -40,28 +40,24 @@
 
 <x-public::header></x-public::header>
 
-
-<div class="public wrapper">
-
-    <div class="public-content container relative">
-
+<section class="public wrapper">
+    <section class="public-content container relative">
         @yield('content')
-
-    </div>
+    </section>
 
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
-          aria-label="{{ __('To the top button') }}"
-          title="{{ __('To the top button') }}"
-          x-show="scrollTop > 800"
-          @click="scrollToTop"
-          x-transition
+            aria-label="{{ __('To the top button') }}"
+            title="{{ __('To the top button') }}"
+            x-show="scrollTop > 800"
+            @click="scrollToTop"
+            x-transition
     >
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </button>
 
     <x-public::footer></x-public::footer>
 
-</div>
+</section>
 <?php $nonce = ["nonce" => csp_nonce()] ?>
 @livewireScriptConfig($nonce)
 @stack('scripts')

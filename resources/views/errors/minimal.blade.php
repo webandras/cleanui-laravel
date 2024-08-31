@@ -20,9 +20,9 @@
 
 </head>
 <body class="error-page">
-<div class="relative gray-10 error-page-content">
+<main class="relative gray-10 error-page-content">
     <div class="absolute middle center content-800 margin-left-right-auto">
-        <div class="text-center">
+        <section class="text-center">
             <div class="logo">
                 <a href="/" class="brand">
                     <img src="{{ url('/images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
@@ -38,8 +38,8 @@
             </div>
 
             <a href="/" class="button primary">{{ __('Front page') }}</a>
-        </div>
+        </section>
     </div>
-</div>
+</main>
 </body>
 </html>

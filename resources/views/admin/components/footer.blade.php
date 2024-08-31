@@ -1,5 +1,5 @@
 <footer class="page-footer">
-    <div class="footer-content">
+    <section class="footer-content">
         <nav>
             <?php ?>
             @auth
@@ -14,5 +14,5 @@
             <?php ?>
         </nav>
         <small>&copy; 2023 {{ config('app.name', 'Laravel') }}. {{ __('All rights reserved!') }}</small>
-    </div>
+    </section>
 </footer>

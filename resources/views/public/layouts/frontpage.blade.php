@@ -49,14 +49,10 @@
 
 <x-global::banner/>
 
-<div class="public wrapper frontpage">
-
-    <div class="public-content container relative">
-
+<main class="public wrapper frontpage">
+    <section class="public-content container relative">
         @yield('content')
-
-    </div>
-
+    </section>
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
           aria-label="{{ __('To the top button') }}"
           title="{{ __('To the top button') }}"
@@ -68,8 +64,7 @@
     </button>
 
     <x-public::footer></x-public::footer>
-
-</div>
+</main>
 
 @livewireScriptConfig($nonce)
 

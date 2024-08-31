@@ -46,20 +46,16 @@
 </head>
 <body @scroll="setScrollToTop()">
 
-<div class="admin wrapper">
+<section class="admin wrapper">
 
     <x-admin::header :userPermissions="$userPermissions"></x-admin::header>
 
     <x-global::banner/>
 
-
     <div class="container">
-
-        <div class="admin-content admin-nosidebar relative">
-
+        <section class="admin-content admin-nosidebar relative">
             @yield('content')
-
-        </div>
+        </section>
     </div>
 
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
@@ -74,7 +70,7 @@
 
     <x-admin::footer></x-admin::footer>
 
-</div>
+</section>
 
 @stack('modals')
 

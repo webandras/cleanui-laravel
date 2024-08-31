@@ -1,4 +1,4 @@
-<div class="padding-left-2">
+<section class="padding-left-2">
     <label for="categories">
         <input name="categories[]"
                type="checkbox"
@@ -18,4 +18,4 @@
             </x-admin::child-category-checkbox>
         @endforeach
     @endif
-</div>
+</section>

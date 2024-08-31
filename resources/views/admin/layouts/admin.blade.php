@@ -46,7 +46,7 @@
 </head>
 <body @scroll="setScrollToTop()">
 
-<div class="admin wrapper">
+<section class="admin wrapper">
 
     <x-admin::header :userPermissions="$userPermissions"></x-admin::header>
 
@@ -56,19 +56,16 @@
 
     @yield('search')
 
-    <div class="container">
-
-        <div class="admin-content relative">
-
+    <section class="container">
+        <section class="admin-content relative">
             <?php if (!isset($sidebar)) {
                 $sidebar = null;
             } ?>
             <x-admin::sidebar :sidebar="$sidebar" :userPermissions="$userPermissions"></x-admin::sidebar>
 
             @yield('content')
-
-        </div>
-    </div>
+        </section>
+    </section>
 
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
           aria-label="{{ __('To the top button') }}"
@@ -82,7 +79,7 @@
 
     <x-admin::footer></x-admin::footer>
 
-</div>
+</section>
 
 @stack('modals')
 

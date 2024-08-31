@@ -40,17 +40,14 @@
 </head>
 <body @scroll="setScrollToTop()">
 
-<div class="admin wrapper">
+<section class="admin wrapper">
 
     <x-global::banner/>
 
     <div class="container padding-top-0">
-
-        <div class="admin-content admin-nosidebar relative">
-
+        <section class="admin-content admin-nosidebar relative">
             @yield('content')
-
-        </div>
+        </section>
     </div>
 
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
@@ -63,7 +60,7 @@
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </button>
 
-</div>
+</section>
 
 @stack('modals')
 

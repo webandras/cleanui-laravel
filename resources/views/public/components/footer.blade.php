@@ -1,5 +1,5 @@
 <footer class="page-footer public-footer">
-    <div class="footer-content">
+    <section class="footer-content">
         <div class="logo margin-bottom-1 margin-left-right-auto fit-content">
             <a href="/" class="brand">
                 <img src="{{ url('/images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
@@ -18,5 +18,5 @@
         </nav>
 
         <small class="text-gray-40 fs-12">&copy; 2023 {{ config('app.name', 'Laravel') }}. {{ __('All rights reserved!') }}</small>
-    </div>
+    </section>
 </footer>

@@ -1,11 +1,10 @@
-<div class="event-list-widget">
-
-    <div x-data="{ show: false }" class="margin-bottom-2 event-list-widget--container" x-cloak>
+<section class="event-list-widget">
+    <section x-data="{ show: false }" class="margin-bottom-2 event-list-widget--container" x-cloak>
         <button @click="show = !show"
                 class="button alt primary left-align event-list-widget--search-button">{{ __('Search events') }}<i
                 class="fa-solid margin-left-0-5" :class="show ? 'fa-chevron-up': 'fa-chevron-down'"></i>
         </button>
-        <div x-show="show" class="accordion-item">
+        <section x-show="show" class="accordion-item">
 
             <div class="row-padding margin-top-0 margin-bottom-0">
                 <div class="col s12 m4 l4 margin-top-1">
@@ -18,9 +17,9 @@
                            name="searchTerm"
                            placeholder="{{ __('Search for...') }}"
                     />
-                    <div class="{{ $errors->has('searchTerm') ? 'error-message' : '' }}">
+                    <p class="{{ $errors->has('searchTerm') ? 'error-message' : '' }}">
                         {{ $errors->has('searchTerm') ? $errors->first('searchTerm') : '' }}
-                    </div>
+                    </p>
                 </div>
 
                 <div class="col s12 m4 l4 margin-top-1">
@@ -38,9 +37,9 @@
                                 </option>
                             @endforeach
                         </select>
-                        <div class="{{ $errors->has('city') ? 'error-message' : '' }}">
+                        <p class="{{ $errors->has('city') ? 'error-message' : '' }}">
                             {{ $errors->has('city') ? $errors->first('city') : '' }}
-                        </div>
+                        </p>
                     </div>
                 </div>
                 <div class="col s12 m4 l4 margin-top-1">
@@ -59,9 +58,9 @@
                             </option>
                         @endforeach
                     </select>
-                    <div class="{{ $errors->has('organizerId') ? 'error-message' : '' }}">
+                    <p class="{{ $errors->has('organizerId') ? 'error-message' : '' }}">
                         {{ $errors->has('organizerId') ? $errors->first('organizerId') : '' }}
-                    </div>
+                    </p>
                 </div>
             </div>
 
@@ -81,11 +80,11 @@
             </div>
 
 
-        </div>
-    </div>
+        </section>
+    </section>
 
 
-    <div class="event-list-grid">
+    <section class="event-list-grid">
         @if(count($events) == 0)
             <p>{{ __('No events found for this query.') }}</p>
         @endif
@@ -114,49 +113,47 @@
 
                 <style nonce="{{ csp_nonce() }}">
                     .event-image-grayscale {
-                        filter: {{ $event->status === 'cancelled' ? 'grayscale(60%)' : 'grayscale(0)' }}
+                        filter: grayscale(60%)
                     }
                 </style>
 
 
-                <div class="event-item card white">
-                    <a href="{{ route('event.show', $event->slug) }}" class="no-underline">
-                        <div class="relative cover-image-container">
-                            @if($event->status === 'cancelled')
-                                <div class="absolute bold fs-24 absolute-center z-2"
-                                >
-                                    <div class="event-cancelled">{{ __('CANCELLED!') }}</div>
-                                </div>
-                            @endif
-                            <img class="round-top event-item-image event-image-grayscale"
-                                 src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
-                                 alt="{{ $event->title }}">
+                <a href="{{ route('event.show', $event->slug) }}" class="no-underline event-item card white">
+                    <figure class="relative cover-image-container">
+                        @if($event->status === 'cancelled')
+                            <span class="absolute bold fs-24 absolute-center z-2"
+                            >
+                                <strong class="event-cancelled">{{ __('CANCELLED!') }}</strong>
+                            </span>
+                        @endif
+                        <img
+                            class="round-top event-item-image {{ $event->status === 'cancelled' ? 'event-image-grayscale' : '' }}"
+                            src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                            alt="{{ $event->title }}">
+                    </figure>
+                    <article class="padding-1">
+                        <h2 class="margin-top-0 margin-bottom-0-5 fs-22 {{ $event->status === 'cancelled' ? 'text-gray-60 strikethrough' : '' }}">{{ $event->status === 'cancelled' ? __('CANCELLED!') : '' }} {{ $event->title }}</h2>
+
+                        <div class="event-date-red text-danger fs-14 semibold margin-bottom-1">{{ $startDateFormatted }}
+                            - {{ $endDateCarbon }} <small
+                                class="fs-16">{{ $endDate->format('T') }}</small>
                         </div>
-                        <div class="padding-1">
-                            <h2 class="margin-top-0 margin-bottom-0-5 fs-22 {{ $event->status === 'cancelled' ? 'text-gray-60 strikethrough' : '' }}">{{ $event->status === 'cancelled' ? __('CANCELLED!') : '' }} {{ $event->title }}</h2>
 
-                            <div class="event-date-red text-danger fs-14 semibold margin-bottom-1">{{ $startDateFormatted }}
-                                - {{ $endDateCarbon }} <small
-                                    class="fs-16">{{ $endDate->format('T') }}</small>
-                            </div>
-
-                            <div>
-                                <small><i class="fa-solid fa-user margin-right-0-5"></i>{{ $event->organizer->name }}
-                                </small><br>
-                                <small><i
-                                        class="fa-solid fa-location-dot margin-right-0-5"></i>{{ $event->location->city }}
-                                </small>
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
+                        <section>
+                            <small><i class="fa-solid fa-user margin-right-0-5"></i>{{ $event->organizer->name }}
+                            </small><br>
+                            <small><i
+                                    class="fa-solid fa-location-dot margin-right-0-5"></i>{{ $event->location->city }}
+                            </small>
+                        </section>
+                    </article>
+                </a>
             @endforeach
         @endisset
 
-    </div>
+    </section>
 
     @if (isset($events))
         {{ $events->links('global.components.pagination-livewire', [ 'pageName' => 'page']) }}
     @endif
-</div>
+</section>

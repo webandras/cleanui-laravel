@@ -1,6 +1,5 @@
 <li>
-    <div class="flex inactive-category">
-
+    <section class="flex inactive-category">
         <div class="padding-0-5 category-title">
             @if (count($childCategory->categories) > 0)
                 <span class="caret"></span>
@@ -11,7 +10,6 @@
                 </a>
             </h3>
         </div>
-
         <div class="button-group padding-left-0-5 margin-bottom-0">
             <!-- Update category -->
             <livewire:admin.blog.category.update :modalId="'m-update-' . $childCategory->id"
@@ -31,9 +29,7 @@
                                       :hasSmallButton="false">
             </livewire:admin.blog.category.create>
         </div>
-
-    </div>
-
+    </section>
 
     <ul class="no-bullets padding-left-1-5 margin-top-0 margin-bottom-0 padding-bottom-0 padding-right-0 nested">
         @if (count($childCategory->categories) > 0)

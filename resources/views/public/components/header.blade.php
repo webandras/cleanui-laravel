@@ -1,6 +1,6 @@
 <header class="page-header">
-    <div class="header__container">
-        <div class="header-content">
+    <section class="header__container">
+        <section class="header-content">
             <div class="logo">
                 <a href="/" class="brand">
                     <img src="{{ url('/images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}">
@@ -159,8 +159,8 @@
                 </div>
             @endif
 
-        </div>
-    </div>
+        </section>
+    </section>
 
 </header>
 

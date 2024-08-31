@@ -1070,7 +1070,7 @@
 
             <div x-data="modalData">
                 <button @click="openModal()"
-                        class="black-button padding-1">Click to Open Modal
+                        class="black-button">Click to Open Modal
                 </button>
 
                 <div x-show="modal" x-cloak class="modal" :class="{'show': modal}">

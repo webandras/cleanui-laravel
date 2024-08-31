@@ -31,11 +31,11 @@
 </head>
 <body @scroll="setScrollToTop()">
 
-<div class="admin wrapper">
+<section class="admin wrapper">
     <div class="container-fluid">
         @yield('content')
     </div>
-</div>
+</section>
 
 <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 

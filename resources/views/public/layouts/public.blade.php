@@ -44,14 +44,10 @@
 
 <x-public::header></x-public::header>
 
-
-<div class="public wrapper">
-
-    <div class="public-content container relative">
-
+<main class="public wrapper">
+    <section class="public-content container relative" style="padding-top: 0">
         @yield('content')
-
-    </div>
+    </section>
 
     <button class="light-gray pointer scroll-to-top-button padding-0-5 round"
           aria-label="{{ __('To the top button') }}"
@@ -65,7 +61,7 @@
 
     <x-public::footer></x-public::footer>
 
-</div>
+</main>
 
 <?php $nonce = ["nonce" => csp_nonce()] ?>
 @livewireScriptConfig($nonce)
