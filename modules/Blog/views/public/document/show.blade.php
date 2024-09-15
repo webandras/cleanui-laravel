@@ -37,7 +37,7 @@
                 <span class="fs-12">{{ __('Table of content') }}</span>
                 </span>
 
-                <nav class="breadcrumb breadcrumb-left padding-top-1-5 fs-12">
+                <nav class="breadcrumb breadcrumb-left padding-top-3 fs-12">
                     <ol>
                         <li>
                             <a href="{{ route('document.index') }}">
@@ -53,8 +53,8 @@
                 </nav>
                 <hr class="margin-0">
 
-                <h1 class="text-left h1 margin-top-0 margin-bottom-0-5"
-                    style="text-align: left; margin-top: 0;">{{ $currentDocument->title }}</h1>
+                <h1 class="text-left h1 margin-top-bottom-0-5"
+                    style="text-align: left;">{{ $currentDocument->title }}</h1>
             </div>
 
 

@@ -15,7 +15,7 @@
         @endforeach
 
     </button>
-    <nav x-cloak x-show="openDropdown" class="dropdown-content bar-block"
+    <div x-cloak x-show="openDropdown" class="dropdown-content bar-block"
          style="width: 48px; min-width: 48px; margin-left: 3px; margin-top: 8px; background-color: transparent;">
         @foreach ($available_locales as $locale_name => $available_locale)
             @if ($available_locale !== $current_locale)
@@ -25,6 +25,6 @@
                 </a>
             @endif
         @endforeach
-    </nav>
+    </div>
 </article>
 

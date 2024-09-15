@@ -9,7 +9,6 @@
             @if (Route::has('login'))
                 <div class="main-navigation">
                     <nav id="main-menu">
-
                         <a class="{{ request()->routeIs('frontpage') ? 'active' : '' }}"
                            href="{{ route('frontpage') }}">
                             <i class="fa fa-home" aria-hidden="true"></i>{{ __('Home') }}
@@ -47,7 +46,6 @@
                                href="{{ route('dashboard') }}">
                                 <i class="fa fa-tachometer" aria-hidden="true"></i>{{ __('Dashboard') }}
                             </a>
-
 
                             <section x-data="dropdownData" class="dropdown-click" @click.outside="hideDropdown">
                                 <a class="fs-16" @click="toggleDropdown"
@@ -102,6 +100,8 @@
 
                     </nav>
 
+                    @include('partials/language_switcher')
+
                     @php
                         $light = __('Light mode');
                         $dark = __('Dark mode');
@@ -115,8 +115,6 @@
                         :title="isDarkModeOn() ? '{{ $light }}' : '{{ $dark }}'"
                     >
                     </button>
-
-                    @include('partials/language_switcher')
 
                     <div x-data="offCanvasMenuData">
                         <div class="flex flex-row">

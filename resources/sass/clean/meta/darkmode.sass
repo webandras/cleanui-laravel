@@ -3,6 +3,9 @@ html.dark,
     background-color: $bg-dark !important
     color: $gray-20
 
+    .error-message, .box p.error-message
+        color: $text !important
+
 
     /* General */
     body
@@ -54,9 +57,10 @@ html.dark,
         border-color: $gray-10
 
         &:focus
+            outline-color: $gray-10
             border-color: $gray-10
-            //background-color: rgba(255, 255, 225, 0.85)
-            background-color: rgb(33, 37, 41)
+            box-shadow: 0 0 0 0.25rem rgb(255, 255, 255, 0.3) !important
+            background-color: $bg-content
 
         &:disabled
             cursor: not-allowed
@@ -323,8 +327,14 @@ html.dark,
             .sidebar-content
                 .navbar-nav
                     li
-                        a.nav-link:hover
-                            background-color: $gray-60
+                        a.nav-link
+                            border-bottom: 1px solid $gray-60
+
+                            &.active
+                                border-left: 0.5rem solid #eee
+
+                            &:hover
+                                background-color: $black !important
 
         .roles-permissions-bar
             background-color: $gray-60

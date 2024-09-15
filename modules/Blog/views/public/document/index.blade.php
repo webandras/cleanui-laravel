@@ -31,7 +31,7 @@
 
         <main class="content round padding-top-0">
             <h1 class="text-center h1 margin-top-0 margin-bottom-0-5">{{ __('Documentation') }}</h1>
-            <p class="bold fs-18 text-center text-gray-60">This is the index page of the documentation.</p>
+            <p class="bold fs-18 text-center text-muted">This is the index page of the documentation.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius aliquam egestas. Cras posuere libero
                 sed quam sollicitudin vestibulum. Cras pharetra, velit eu tristique viverra, lacus sem aliquet ligula,
                 eu aliquet ipsum felis ut velit. Quisque sed vestibulum nunc, eu consequat velit. Donec vel mattis

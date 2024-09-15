@@ -32,7 +32,7 @@
                        href="#"
                        role="button"
                        aria-label="{{ __('Roles tab') }}"
-                       class="bar-item tab-switcher fs-14"
+                       class="bar-item tab-switcher"
                        @click="switchTab('Roles')"
                        :class="{'tab-switcher-active': tabId === 'Roles'}"
                     >
@@ -43,7 +43,7 @@
                        href="#"
                        role="button"
                        aria-label="{{ __('Permissions tab') }}"
-                       class="bar-item tab-switcher fs-14"
+                       class="bar-item tab-switcher"
                        @click="switchTab('Permissions')"
                        :class="{'tab-switcher-active': tabId === 'Permissions'}"
                     >

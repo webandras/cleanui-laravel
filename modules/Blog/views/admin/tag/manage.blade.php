@@ -34,7 +34,7 @@
                        href="#"
                        role="button"
                        aria-label="{{ __('Tags') }}"
-                       class="bar-item tab-switcher fs-14"
+                       class="bar-item tab-switcher"
                        @click="switchTab('Tags')"
                        :class="{'tab-switcher-active': tabId === 'Tags'}"
                     >
@@ -45,7 +45,7 @@
                        href="#"
                        role="button"
                        aria-label="{{ __('Archive') }}"
-                       class="bar-item tab-switcher fs-14"
+                       class="bar-item tab-switcher"
                        @click="switchTab('Archive')"
                        :class="{'tab-switcher-active': tabId === 'Archive'}"
                     >
