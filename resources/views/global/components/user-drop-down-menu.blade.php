@@ -13,7 +13,7 @@
             <i class="fa fa-caret-down"></i>
         </a>
 
-        <div x-show="openDropdown" x-cloak class="dropdown-content card padding-0-5">
+        <nav x-show="openDropdown" x-cloak class="dropdown-content card padding-0-5">
 
             <a class="dropdown-item margin-bottom-1 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                href="{{ route('dashboard') }}"
@@ -49,7 +49,7 @@
             >
                 @csrf
             </form>
-        </div>
+        </nav>
     </div>
 
 @else

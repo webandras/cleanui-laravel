@@ -659,7 +659,7 @@
                         <button @mouseover="toggleDropdown" class="black-button">
                             Hover Me! <i class="fa fa-caret-down"></i>
                         </button>
-                        <div x-show="openDropdown" class="dropdown-content bar-block border">
+                        <div x-show="openDropdown" class="dropdown-content bar-block border card card-4">
                             <a class="bar-item" href="javascript:void(0)">Link 1</a>
                             <a class="bar-item" href="javascript:void(0)">Link 2</a>
                             <a class="bar-item" href="javascript:void(0)">Link 3</a>

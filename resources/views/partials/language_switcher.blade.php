@@ -1,4 +1,4 @@
-<div x-data="dropdownData" class="dropdown" @click.outside="hideDropdown">
+<article x-data="dropdownData" class="dropdown" @click.outside="hideDropdown">
     <button @click="toggleDropdown" class="button transparent"
             style="width: 60px; display: flex; padding: 2px; margin-top: 0;">
         @foreach ($available_locales as $locale_name => $available_locale)
@@ -15,7 +15,7 @@
         @endforeach
 
     </button>
-    <div x-cloak x-show="openDropdown" class="dropdown-content bar-block"
+    <nav x-cloak x-show="openDropdown" class="dropdown-content bar-block"
          style="width: 48px; min-width: 48px; margin-left: 3px; margin-top: 8px; background-color: transparent;">
         @foreach ($available_locales as $locale_name => $available_locale)
             @if ($available_locale !== $current_locale)
@@ -25,6 +25,6 @@
                 </a>
             @endif
         @endforeach
-    </div>
-</div>
+    </nav>
+</article>
 

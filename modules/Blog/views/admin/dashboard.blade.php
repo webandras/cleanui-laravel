@@ -5,7 +5,7 @@
     <main class="padding-1">
         <h1 class="h2 margin-top-0 text-center">{{ __('Dashboard') }}</h1>
 
-        <div class="dashboard-content">
+        <section class="dashboard-content">
 
             @auth
                 <h2 class="h4 margin-top-2 margin-bottom-0-5 text-center">{{ __('Contents & Taxonomies') }}</h2>
@@ -210,7 +210,7 @@
                 @endif
 
             @endauth
-        </div>
+        </section>
     </main>
 @endsection
 

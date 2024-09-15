@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-    <main class="padding-1" style="">
+    <main class="padding-1">
 
         <form action="{{ route('document.update', $document->id)}}"
               method="POST"
@@ -22,7 +22,7 @@
 
             <div class="row-padding margin-top-0">
 
-                <div class="col s12 m12 l8" style="padding-right: 1em">
+                <div class="col s12 m12 l8 padding-right-1">
 
                     <a href="{{ route('document.manage') }}" class="button fs-14 primary alt margin-bottom-1">
                         <i class="fa-solid fa-angles-left"></i>

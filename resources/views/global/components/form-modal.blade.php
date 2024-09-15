@@ -1,7 +1,7 @@
 @props(['trigger', 'title', 'id'])
 
 
-<div x-show="{{ $trigger }} == true"
+<dialog x-show="{{ $trigger }} == true"
      x-init="{ modalId: @js('#' . $id) }"
      x-on:keydown.escape.window="{{ $trigger }} = false"
      class="modal"
@@ -9,7 +9,7 @@
      x-cloak
 >
 
-    <div
+    <article
         id="{{ $id }}"
         x-trap="{{ $trigger }} == true"
         {{ $attributes->merge(
@@ -26,13 +26,13 @@
         </div>
 
         <!-- Modal body -->
-        <div class="box white padding-bottom-1">
+        <div class="box white padding-bottom-1 round-bottom">
             {{ $slot }}
         </div>
 
 
-    </div>
+    </article>
 
-</div>
+</dialog>
 
 

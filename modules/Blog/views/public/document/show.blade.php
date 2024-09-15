@@ -14,9 +14,9 @@
 
 
 @section('content')
-    <div x-data="{ showToc: true}" class="main-container container relative">
+    <div x-data="{ showToc: true}" x-cloak class="main-container container relative">
 
-        <article x-show="showToc" x-cloak x-transition class="toc round">
+        <article x-show="showToc" x-transition class="toc round">
             <h2 class="h4">{{ __('Table of Contents') }}</h2>
             <ul class="fs-14 padding-right-left-0 no-bullets margin-top-0">
                 <li><a href="{{ route('document.index') }}">{{ __('Get Started') }}</a></li>
@@ -28,7 +28,7 @@
             </ul>
         </article>
 
-        <main class="content round">
+        <main class="content round padding-top-0">
 
             <div>
                 <span @click="showToc = ! showToc" class="pointer absolute padding-0 topright margin-top-1-5 margin-right-1" role="button"

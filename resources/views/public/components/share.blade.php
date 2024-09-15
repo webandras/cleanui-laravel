@@ -8,7 +8,7 @@
 @endphp
 
     <!-- AddToAny BEGIN -->
-<section class="a2a_buttons {{ $className }}">
+<nav class="a2a_buttons {{ $className }}">
     <a class="a2a_button_facebook"
        title="{{ __('Share on Facebook') }}"
        href="https://www.addtoany.com/add_to/facebook?linkurl={{ $url }}&amp;linkname={{ $title }}"
@@ -38,5 +38,5 @@
        title="{{ __('Print it') }}"
        href="https://www.addtoany.com/add_to/print?linkurl={{ $url }}&amp;linkname={{ $title }}"
        target="_blank"><img src="https://static.addtoany.com/buttons/print.svg" alt="Print" width="32" height="32"></a>
-</section>
+</nav>
 <!-- AddToAny END -->

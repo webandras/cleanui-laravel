@@ -21,7 +21,7 @@
 
             <div class="row-padding margin-top-0">
 
-                <div class="col s12 m8 l8" style="padding-right: 1em">
+                <div class="col s12 m8 l8 padding-right-1">
 
                     <a href="{{ route('post.manage') }}" class="button fs-14 primary alt margin-bottom-1">
                         <i class="fa-solid fa-angles-left"></i>

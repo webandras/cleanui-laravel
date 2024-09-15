@@ -15,8 +15,8 @@
             <h1 class="text-left margin-0 single-post-title">{{ $post->title }}</h1>
 
             <div class="flex post-header-meta">
-                <div class="text-gray-60 post-date fs-14">
-                    {{ Carbon\Carbon::parse($post->created_at)->translatedFormat($dtFormat) }}
+                <div class="text-muted post-date fs-14">
+                    <time>{{ Carbon\Carbon::parse($post->created_at)->translatedFormat($dtFormat) }}</time>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <div class="flex flex-row margin-top-0-5">
                         @foreach($post->categories as $category)
                             <a href="{{ route('blog.category', $category->slug) }}"
-                               class="badge round-1 fs-14 padding-0-25 margin-top-0-5">
+                               class="badge border round-1 fs-14 padding-0-25 margin-top-0-5">
                                 <i class="fa-solid fa-folder-open"></i>
                                 {{ $category->name }}</a>
                         @endforeach

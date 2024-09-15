@@ -13,11 +13,11 @@
 >
 
     @if ($hasSmallButton)
-        <button @click="isModalOpen = true" class="success alt" title="{{ __('Subcategory') }}">
+        <button @click="isModalOpen = true" class="success" title="{{ __('Subcategory') }}">
             <i class="fa fa-plus"></i>
         </button>
     @else
-        <button @click="isModalOpen = true" class="success alt">
+        <button @click="isModalOpen = true" class="success">
             <i class="fa fa-plus"></i>{{ __('Subcategory') }}
         </button>
     @endif

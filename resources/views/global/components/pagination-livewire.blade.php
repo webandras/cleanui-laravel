@@ -2,7 +2,7 @@
     @php $paginator->setPageName($pageName);
     @endphp
 
-    <div class="bar pagination fs-14 margin-top-bottom-1">
+    <nav class="bar pagination fs-14 margin-top-bottom-1">
 
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
@@ -56,6 +56,6 @@
             </a>
         @endif
 
-    </div>
+    </nav>
 
 @endif

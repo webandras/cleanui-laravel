@@ -1,6 +1,6 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
-<div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
+<article x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
      class="alert notification padding-top-bottom-0"
      :class="{ 'success': style === 'success', 'danger': style === 'danger', 'info': style !== 'success' && style !== 'danger' }"
      style="display: none;"
@@ -39,4 +39,4 @@
         </div>
     </div>
 
-</div>
+</article>

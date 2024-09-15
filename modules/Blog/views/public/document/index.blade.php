@@ -14,9 +14,9 @@
 
 
 @section('content')
-    <div x-data="{ showToc: true}" class="main-container container relative">
+    <div x-data="{ showToc: true}" x-cloak class="main-container container relative">
 
-        <article x-show="showToc" x-cloak x-transition class="toc round">
+        <article x-show="showToc" x-transition class="toc round">
             <h2 class="h4">{{ __('Table of Contents') }}</h2>
 
             <ul class="padding-right-left-0 no-bullets margin-top-0 fs-16">
@@ -29,9 +29,8 @@
             </ul>
         </article>
 
-        <main class="content round">
-            <h1 class="text-center h1 margin-top-0 margin-bottom-0-5"
-                style="margin-top: 0">{{ __('Documentation') }}</h1>
+        <main class="content round padding-top-0">
+            <h1 class="text-center h1 margin-top-0 margin-bottom-0-5">{{ __('Documentation') }}</h1>
             <p class="bold fs-18 text-center text-gray-60">This is the index page of the documentation.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius aliquam egestas. Cras posuere libero
                 sed quam sollicitudin vestibulum. Cras pharetra, velit eu tristique viverra, lacus sem aliquet ligula,

@@ -4,7 +4,7 @@
             <article class="post-item card">
                 <a href="{{ route('blog.show', $post->slug) }}" class="no-underline">
                     <div class="relative cover-image-container">
-                        <time class="badge fs-12 round-1 absolute topleft margin-left-0-5 margin-top-0-5 z-10">
+                        <time class="badge fs-12 round-1 absolute topleft margin-left-1 margin-top-0-5 z-10">
                             {{ Carbon\Carbon::parse($post->created_at)->translatedFormat($dtFormat) }}
                         </time>
                         <img class="round-top hover-opacity" src="{{ asset($post->cover_image_url) }}"

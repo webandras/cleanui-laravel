@@ -1,6 +1,6 @@
-<div id="calendar-container" wire:ignore>
+<section id="calendar-container" wire:ignore>
     <div id="calendar" class="padding-1"></div>
-</div>
+</section>
 
 @push('scripts')
     <!-- include moment and one of the moment-timezone builds -->

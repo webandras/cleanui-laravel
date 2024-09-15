@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="card white padding-bottom-3">
+    <section class="card white padding-bottom-3">
 
         <x-public::breadcrumb title="{{ $category->name }}" :centerAlign="true"></x-public::breadcrumb>
 
@@ -17,7 +17,7 @@
 
         <hr>
 
-        <div class="public-post-grid">
+        <section class="public-post-grid">
 
             @foreach($posts as $post)
                 <article class="post-item card primary-dark">
@@ -30,17 +30,18 @@
                                  src="{{ asset($post->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                  alt="{{ $post->title }}">
                         </div>
-                        <div class="padding-left-right-0-5 padding-top-bottom-1">
+                        <div class="padding-left-right-1 padding-top-bottom-1">
                             <h2 class="margin-top-bottom-0 text-white fs-22">{{ $post->title }}</h2>
+                            <p class="text-gray-10">{{ $post->excerpt }}</p>
                         </div>
                     </a>
 
                 </article>
             @endforeach
-        </div>
+        </section>
 
         {{ $posts->links('global.components.pagination') }}
 
-    </div>
+    </section>
 
 @endsection
