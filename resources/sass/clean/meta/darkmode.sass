@@ -53,19 +53,19 @@ html.dark,
         background: $bg-dark
         border-color: $gray-10
 
-        &:disabled
-            cursor: not-allowed
-            background: $gray-40
-            border-color: $gray-40
-
-            &:focus,&:hover,&:active
-                background: $gray-40
-                border-color: $gray-40
-
         &:focus
             border-color: $gray-10
             //background-color: rgba(255, 255, 225, 0.85)
             background-color: rgb(33, 37, 41)
+
+        &:disabled
+            cursor: not-allowed
+            background: $gray-40 !important
+            border-color: $gray-40
+
+            &:focus,&:hover,&:active
+                background-color: $gray-40 !important
+                border-color: $gray-40 !important
     /* Forms END */
 
 
@@ -93,6 +93,9 @@ html.dark,
         .card-body
             color: $gray-10
             background-color: $bg-content
+
+            .badge
+                color: $gray-10
 
             .post-header-meta
                 .post-date
@@ -370,3 +373,9 @@ html.dark,
                 time
                     color: #d8d8d8
     /* Frontpage END */
+
+    .text-muted
+        color: $gray-40 !important
+
+    .next-prev-navigation
+        background-color: $bg-content
