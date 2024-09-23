@@ -59,7 +59,7 @@
                 </div>
             @endif
 
-            <img src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
+            <img src="{{ asset($event->event_detail?->cover_image_url) ?? asset('/images/placeholder.png') }}"
                  alt="{{ $event->title }}"
                  class="event-cover-image {{ $event->status === 'cancelled' ? 'grayscale-60' : 'grayscale-0' }}"
             >

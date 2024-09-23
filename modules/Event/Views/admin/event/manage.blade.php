@@ -60,7 +60,7 @@
 
                             @isset ($event->event_detail->cover_image_url)
                                 <img
-                                    src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                    src="{{ asset($event->event_detail?->cover_image_url) ?? asset('/images/placeholder.png') }}"
                                     alt="{{__('Cover image preview') }}"
                                     class="hover-opacity border margin-bottom-0-5" width="140px">
                             @endisset

@@ -128,7 +128,7 @@
                         @endif
                         <img
                             class="round-top event-item-image {{ $event->status === 'cancelled' ? 'event-image-grayscale' : '' }}"
-                            src="{{ asset($event->event_detail->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                            src="{{ asset($event->event_detail?->cover_image_url) ?? asset('/images/placeholder.png') }}"
                             alt="{{ $event->title }}">
                     </figure>
                     <article class="padding-1">
