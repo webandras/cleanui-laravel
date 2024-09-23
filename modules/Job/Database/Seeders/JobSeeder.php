@@ -58,8 +58,8 @@ class JobSeeder extends Seeder
             [
                 'id'          => 3,
                 'client_id'   => 3,
-                'start'       => ($currentDateTime->modify('+1 days -5 hours'))->format(DateTimeInterface::ATOM),
-                'end'         => ($currentDateTime->modify('+5 hours'))->format(DateTimeInterface::ATOM),
+                'start'       => ($currentDateTime->modify('+1 days -5 hours'))->format($format),
+                'end'         => ($currentDateTime->modify('+5 hours'))->format($format),
                 'description' => 'necessitatibus interdum voluptatibus magna nominavi delenit',
                 'status'      => 'completed',
             ],
