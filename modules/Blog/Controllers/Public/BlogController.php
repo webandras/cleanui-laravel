@@ -96,7 +96,7 @@ class BlogController extends Controller
     {
         $category = Category::where('slug', '=', $slug)
             ->with('posts')
-            ->first();
+            ->firstOrFail();
 
         return view('blog::public.blog.category')->with([
             'category' => $category,
@@ -115,7 +115,7 @@ class BlogController extends Controller
     {
         $tag = Tag::where('slug', '=', strip_tags($slug))
             ->with('posts')
-            ->first();
+            ->firstOrFail();
 
         return view('blog::public.blog.tag')->with([
             'tag' => $tag,
