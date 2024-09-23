@@ -6,7 +6,6 @@
      x-on:keydown.escape.window="{{ $trigger }} = false"
      class="modal"
      :class="{'show': {{ $trigger }} == true}"
-     x-cloak
 >
 
     <article
