@@ -26,8 +26,6 @@ found the way to fully modularize the Livewire parts yet.
 
 However, it will not contain more example modules to keep this starter slim.
 
-_This project is under development, so no stable version is available yet._
-
 ## News
 
 - This project supports Laravel 11. Livewire was updated to version 3 (with all the necessary changes in components).
