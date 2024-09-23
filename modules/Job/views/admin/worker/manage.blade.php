@@ -41,8 +41,7 @@
                             <td><b>{{ $worker->name }}</b><br>{{ $worker->email }}</td>
                             <td>{{ $worker->phone }}</td>
                             <td>
-                                {{ $worker->bank_account_name }}
-                                <br>
+                                <div>{{ $worker->bank_account_name }}</div>
                                 <b>{{ $worker->bank_account_number }}</b>
                             </td>
                             <td>
