@@ -207,7 +207,7 @@ return [
         \Modules\Auth\Providers\PermissionServiceProvider::class, // add permissions to @can directive
         \Modules\Blog\Providers\BlogModuleProvider::class,
         \Modules\Event\Providers\EventModuleProvider::class,
-        \Modules\job\Providers\JobModuleProvider::class,
+        \Modules\Job\Providers\JobModuleProvider::class,
     ])->toArray(),
 
     /*
