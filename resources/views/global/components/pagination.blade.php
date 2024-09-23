@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    @php $paginator->setPageName($pageName);
+    @php $paginator->setPageName($pageName ?? 'page');
     @endphp
 
     <nav class="bar pagination fs-14 margin-top-bottom-1">
@@ -43,7 +43,7 @@
         @endforeach
 
         {{-- Next Page Link --}}
-        @if ($paginator->hasMorePages())
+        @if (!$paginator->onLastPage())
             <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"
                class="bar-item button transparent">&raquo;</a>
         @else

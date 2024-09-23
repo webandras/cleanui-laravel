@@ -86,8 +86,6 @@ class Widget extends Component
             $this->events = Event::newerThanPaginated($lastDay->toDateString());
         }
 
-        $this->resetPage();
-
         return view('public.livewire.event.widget')->with([
             'events' => $this->events,
             'dtFormat' => Event::getLocaleDateTimeFormat(),

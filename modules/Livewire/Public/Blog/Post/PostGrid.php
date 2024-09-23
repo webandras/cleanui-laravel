@@ -31,9 +31,7 @@ class PostGrid extends Component
         $this->posts = Post::where('status', '=', 'published')
             ->with('categories', 'tags')
             ->orderByDesc('created_at')
-            ->paginate(Post::RECORDS_PER_PAGE);;
-
-        $this->resetPage();
+            ->paginate(Post::RECORDS_PER_PAGE);
 
         return view('public.livewire.post.post-grid')->with([
             'posts'    => $this->posts,

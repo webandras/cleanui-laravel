@@ -31,7 +31,7 @@
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
-                    @if ($page == $paginator->currentPage() && $paginator->getPageName() == $pageName)
+                    @if ($page === $paginator->currentPage() && $paginator->getPageName() === $pageName)
                         <a class="bar-item button primary active gray-button" aria-current="page"
                            href="#">
                             <span>{{ $page }}</span>
@@ -45,7 +45,7 @@
         @endforeach
 
         {{-- Next Page Link --}}
-        @if ($paginator->hasMorePages())
+        @if (!$paginator->onLastPage())
             <button wire:click="nextPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" rel="next" aria-label="@lang('pagination.next')"
                     class="bar-item button transparent">&raquo;
             </button>
