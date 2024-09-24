@@ -15,12 +15,10 @@
         </h1>
 
         @if ($newestPosts->count() === 0)
-            <p>
-                No posts in the database. Run the seeder.
-            </p>
+            <p>No posts in the database.</p>
         @else
             <section class="intro">
-                <section class="left-panel-1">
+                <section class="left-panel">
                     <article class="card margin-bottom-0">
                         <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
                             <figure class="relative cover-image-container margin-0">
@@ -29,10 +27,10 @@
                             </figure>
                         </a>
                         <section class="padding-left-right-1">
-                            <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
+                            <time class="date" datetime="{{ $newestPosts[0]->created_at }}">
                                 {{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}
                             </time>
-                            <h2 class="margin-top-0 h4 text-white fs-24 margin-bottom-1">
+                            <h2 class="margin-top-0 text-white margin-bottom-1">
                                 <a href="{{ route('blog.show', $newestPosts[0]->slug) }}" class="no-underline">
                                     {{ $newestPosts[0]->title }}
                                 </a>
@@ -45,50 +43,55 @@
                                 {{ __('Read more') }}<i class="fa-solid fa-angles-right margin-left-0-5"></i>
                             </a>
                         </section>
+                        <br>
                     </article>
                 </section>
 
-                <section class="right-panel-2">
-                    @for($i = 1; $i <= 2; $i++)
-                        <article class="card">
-                            <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
-                                <figure class="relative cover-image-container margin-0">
-                                    <img class="round-top hover-opacity"
-                                         src="{{ asset($newestPosts[$i]->cover_image_url) ?? asset('/images/placeholder.png') }}"
-                                         alt="{{ $newestPosts[0]->title }}"
-                                    >
-                                </figure>
-                            </a>
-                            <section class="padding-0-5">
-                                <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
-                                    {{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}
-                                </time>
-                                <h2 class="margin-top-bottom-0 h4 fs-20">
-                                    <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
-                                        {{ $newestPosts[$i]->title }}
-                                    </a>
-                                </h2>
-                            </section>
-                        </article>
-                    @endfor
-                </section>
-                <section class="side-panel-4">
-                    <ul class="no-bullets">
-                        @for($i = 3; $i < $newestPosts->count(); $i++)
-                            <li>
-                                <article>
-                                    <time class="date fs-14" datetime="{{ $newestPosts[0]->created_at }}">
-                                        {{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}
+                <div class="right-panel">
+                    <section class="right-panel-1">
+                        @for($i = 1; $i <= 2; $i++)
+                            <article class="card">
+                                <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline block">
+                                    <figure class="relative cover-image-container margin-0">
+                                        <img class="round-top hover-opacity"
+                                             src="{{ asset($newestPosts[$i]->cover_image_url) ?? asset('/images/placeholder.png') }}"
+                                             alt="{{ $newestPosts[0]->title }}"
+                                        >
+                                    </figure>
+                                </a>
+                                <div class="padding-0-5">
+                                    <time class="date" datetime="{{ $newestPosts[0]->created_at }}">
+                                        {{ Carbon\Carbon::parse($newestPosts[0]->created_at)->translatedFormat($dtFormat) }}
                                     </time>
-                                    <h3 class="fs-20">
+                                    <h2 class="margin-top-bottom-0 fs-24">
                                         <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
-                                            {{$newestPosts[$i]->title }}</a>
-                                    </h3>
-                                </article>
-                            </li>
+                                            {{ $newestPosts[$i]->title }}
+                                        </a>
+                                    </h2>
+                                    <br>
+                                </div>
+                            </article>
                         @endfor
-                    </ul>
-                </section>
+                    </section>
+                    <section class="right-panel-2">
+                        <ul class="no-bullets">
+                            @for($i = 3; $i < $newestPosts->count(); $i++)
+                                <li>
+                                    <article>
+                                        <time class="date" datetime="{{ $newestPosts[0]->created_at }}">
+                                            {{ Carbon\Carbon::parse($newestPosts[$i]->created_at)->translatedFormat($dtFormat) }}
+                                        </time>
+                                        <h3 class="fs-24">
+                                            <a href="{{ route('blog.show', $newestPosts[$i]->slug) }}" class="no-underline">
+                                                {{$newestPosts[$i]->title }}</a>
+                                        </h3>
+                                    </article>
+                                </li>
+                            @endfor
+                        </ul>
+                    </section>
+                </div>
+
             </section>
         @endif
 

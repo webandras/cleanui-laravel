@@ -1,5 +1,6 @@
 html.dark,
 .dark
+    color-scheme: dark
     background-color: $bg-dark !important
     color: $gray-20
 
@@ -363,18 +364,16 @@ html.dark,
     .frontpage .public-content > .card
         background-color: $bg-content
 
-    .frontpage .intro .side-panel-4 article h3 a,
-    .frontpage .intro .right-panel-2 h2 a
-        color: $gray-0
-
     .frontpage .highlighted-posts-container .highlighted .highlighted-post-item span,
-    .frontpage .intro .side-panel-4 article .date
+    .frontpage .intro .right-panel-2 article .date
         color: $gray-20
 
-    .frontpage .intro .side-panel-4 h2
-        color: $pale-dark
+    .frontpage .intro .right-panel .right-panel-2 article h3 a
+        color: $gray-0
+        &:hover
+            color: white
 
-    .frontpage .intro .side-panel-4 h2:before
+    .frontpage .intro .right-panel-2 h2:before
         background: $pale-dark
 
     .frontpage

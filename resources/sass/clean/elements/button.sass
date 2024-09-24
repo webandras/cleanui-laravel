@@ -1,5 +1,8 @@
 .button, button
     @include button()
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-size: 13px
     background-color: $primary-light
     border: 1px solid $primary-light
     color: #fff
@@ -7,9 +10,6 @@
     &:hover
         background-color: $primary-dark
         border: 1px solid $primary-dark
-
-    /*&:focus
-        //outline: none*/
 
     &:focus-visible
         box-shadow: $primary-light-shadow

@@ -20,7 +20,7 @@
                 &:hover, &:focus
                     text-decoration: underline
 
-                @media screen and (max-width: $s-600)
+                @media screen and (max-width: 600px)
                     font-size: 20px
 
             @media screen and (max-width: $s-800)
@@ -40,16 +40,16 @@
 
                 time
                     position: relative
-                    color: rgba(0, 0, 0, 0.7)
-                    font-size: 14px
-                    font-weight: 500
+                    color: rgba(0, 0, 0, 0.6)
+                    font-size: 12px
+                    font-weight: 700
                     letter-spacing: 1px
                     padding-left: 1em
 
                     &:before
                         position: absolute
                         left: 0
-                        top: 4px
+                        top: 2px
                         content: ""
                         width: 8px
                         height: 8px
@@ -61,9 +61,8 @@
                     color: rgba(0, 0, 0, 0.80)
                     font-size: 24px
                     line-height: 120%
-                    letter-spacing: 1px
 
-                    @media screen and (max-width: $s-600)
+                    @media screen and (max-width: 600px)
                         font-size: 18px
 
                 img
@@ -82,11 +81,11 @@
     row-gap: 1.5em
     column-gap: 1em
 
-    @media screen and (max-width: $s-600)
+    @media screen and (max-width: 600px)
         grid-template-columns: repeat(auto-fill, minmax(248px, 1fr))
 
     article
-        @include primary-muted-gradient()
+        @include primary-gradient()
 
         &.card:hover,
         &.card:active
@@ -103,10 +102,10 @@
                 width: 100%
 
                 .badge
-                    background-color: rgba(255, 255, 255, 0.8)
+                    background-color: rgba(255, 255, 255, 0.7)
                     color: black
-                    font-size: 14px
-                    font-weight: 500
+                    font-size: 12px
+                    font-weight: 700
                     text-transform: none
                     line-height: 150%
                     letter-spacing: 1px
@@ -128,7 +127,7 @@
 
         > .card
             border-radius: 0
-            max-width: 1120px
+            max-width: 1200px
             margin: 0 auto
             padding: 20px 20px 4em
             background-color: white
@@ -139,21 +138,18 @@
         grid-template-columns: 475px 1fr
         align-items: center
 
-        h2
-            font-family: $serif
-
         .separator
             height: 1px
             background-color: #E0E0E0
 
-            @media screen and (max-width: $s-600)
+            @media screen and (max-width: 600px)
                 display: none
 
 
         @media screen and (max-width: $s-800)
             grid-template-columns: 425px 1fr
 
-        @media screen and (max-width: $s-600)
+        @media screen and (max-width: 600px)
             grid-template-columns: 1fr
 
             h2
@@ -172,7 +168,7 @@
             position: relative
             width: fit-content
 
-            @media screen and (max-width: $s-960)
+            @media screen and (max-width: 960px)
                 margin-right: 0
 
     .title
@@ -184,35 +180,29 @@
         letter-spacing: 1px
         text-transform: uppercase
 
-        @media screen and (max-width: $s-600)
+        @media screen and (max-width: 600px)
             font-size: 24px
 
 
     .intro
         display: grid
-        grid-template-columns: 2fr 1fr 1fr
+        grid-template-columns: 1fr 1fr
         grid-auto-rows: min-content
-        grid-template-areas: "left-panel-1 right-panel-2 side-panel-4"
+        grid-template-areas: "left-panel right-panel"
         column-gap: 20px
-        row-gap: 40px
+        row-gap: 1rem
         margin-bottom: 2em
 
-        @media screen and (max-width: $s-960)
-            grid-auto-rows: min-content
-            grid-template-columns: 1fr 1fr
-            grid-template-areas: "left-panel-1 right-panel-2" "side-panel-4 side-panel-4"
-
-        @media screen and (max-width: $s-600)
-            grid-auto-rows: min-content
+        @media screen and (max-width: 900px)
             grid-template-columns: 100%
-            grid-template-areas: "left-panel-1" "right-panel-2" "side-panel-4"
+            grid-template-areas: "left-panel" "right-panel"
 
-
-        .left-panel-1
-            grid-area: left-panel-1
+        .left-panel
+            grid-area: left-panel
+            display: grid
 
             .card
-                @include primary-muted-gradient
+                @include primary-gradient
 
                 &:hover, &:focus, &:active
                     transition: 0.35s all
@@ -220,15 +210,9 @@
 
             .cover-image-container
                 img
-                    height: 372px
                     width: 100%
-                    object-fit: cover
-
-                    @media screen and (max-width: $s-960)
-                        height: 280px
-
-                    @media screen and (max-width: $s-600)
-                        height: 186px
+                    max-width: 100%
+                    height: auto
 
             .date
                 display: block
@@ -236,29 +220,28 @@
                 margin-top: 10px
                 padding-left: 1em
                 margin-bottom: 1px
-                color: rgba(255, 255, 255, 0.90)
-                font-size: 14px
-                font-weight: 500
-                line-height: 150%
+                color: rgba(255, 255, 255, 0.7)
+                font-size: 12px
+                font-weight: 700
+                line-height: 110%
                 letter-spacing: 1px
+                padding-bottom: 4px
 
                 &:before
                     position: absolute
                     left: 0
-                    top: 6px
+                    top: 2px
                     content: ""
                     width: 8px
                     height: 8px
                     border-radius: 8px
-                    background: #fec23b
+                    background: $pale-dark
 
             a.read-more
-                display: inline-block !important
-                width: auto !important
                 margin-bottom: 1rem
-                border: 1px solid $pale-dark
+                border: 1px solid $pale-light
                 background: transparent
-                color: $pale-light
+                color: $pale-dark
                 font-size: 12px
                 font-weight: 700
                 line-height: 120%
@@ -273,13 +256,8 @@
 
             h2
                 color: #FFF
-                font-size: 30px
-                font-family: $sans
+                font-size: 34px
                 line-height: 120%
-                letter-spacing: 1px
-
-                @media screen and (max-width: $s-960)
-                    font-size: 24px
 
                 a
                     color: white
@@ -289,130 +267,149 @@
                         color: white
                         text-decoration: underline !important
 
+        .right-panel
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            grid-area: right-panel
+            column-gap: 1rem
+            row-gap: 1.5rem
 
-        .right-panel-2
-            grid-area: right-panel-2
-            display: flex
-            flex-direction: column
-            row-gap: 20px
+            @media screen and (max-width: $s-800)
+                grid-template-columns: 1fr
 
-            article.card
-                &:hover, &:focus, &:active
-                    transition: 0.35s all
-                    box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
+            .right-panel-1
+                display: grid
+                row-gap: 1rem
 
-            .cover-image-container
-                margin-bottom: 0
+                article.card
+                    @include primary-gradient
+                    &:hover, &:focus, &:active
+                        transition: 0.35s all
+                        box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px, rgba(0, 0, 0, 0.22) 0 2px 5px
 
-                img
-                    height: 186px
-                    width: 100%
-                    object-fit: cover
+                .cover-image-container
+                    margin-bottom: 0
 
-            h2
-                position: relative
-                margin-bottom: 0.1rem
-                font-size: 20px
-                line-height: 120%
-                font-family: $sans
-                letter-spacing: 1px
-                padding-bottom: 5px
+                    img
+                        width: 100%
+                        max-width: 100%
+                        height: auto
 
-                a
-                    color: black
-                    word-break: break-word
-
-                    &:hover, &:focus
-                        color: black
-                        text-decoration: underline !important
-
-            .date
-                display: block
-                position: relative
-                margin-top: 1px
-                padding-left: 1em
-                margin-bottom: 5px
-                font-size: 14px
-                font-weight: 500
-                line-height: 150%
-                letter-spacing: 1px
-
-                &:before
-                        position: absolute
-                        left: 0
-                        top: 6px
-                        content: ""
-                        width: 8px
-                        height: 8px
-                        border-radius: 8px
-                        background: #fec23b
-
-
-        .side-panel-4
-            grid-area: side-panel-4
-
-            @media screen and (max-width: $s-600)
-                margin-top: 1em
-
-            ul
-                margin-top: 0
-                margin-bottom: 0
-                padding-right: 0.5em
-                padding-left: 0
-
-                li
-
+                h2
                     position: relative
-                    padding-bottom: 25px
+                    margin-bottom: 0.1rem
+                    font-size: 24px
+                    line-height: 120%
+                    padding-bottom: 5px
 
                     a
+                        color: $gray-0
                         word-break: break-word
 
-                    &:after
-                        position: absolute
-                        bottom: 0
-                        left: 0
-                        content: ""
-                        height: 1px
-                        width: 240px
-                        background: #E0E0E0
+                        &:hover, &:focus
+                            color: white
+                            text-decoration: underline !important
 
-                        @media screen and (max-width: $s-600)
-                            width: 100%
-
-                li:last-child
-                    padding-bottom: 0
-
-                    &:after
-                        content: none
-
-            article
                 .date
-                    padding-left: 1em
+                    display: block
                     position: relative
-                    margin-top: 10px
-                    color: rgba(0, 0, 0, 0.65)
-                    font-size: 14px
-                    font-weight: 500
-                    line-height: 150%
+                    margin-top: 1px
+                    padding-left: 1em
+                    margin-bottom: 5px
+                    color: rgba(255, 255, 255, 0.7)
+                    font-size: 12px
+                    font-weight: 700
+                    line-height: 110%
                     letter-spacing: 1px
+                    padding-bottom: 4px
 
                     &:before
-                        position: absolute
-                        left: 0
-                        top: 6px
-                        content: ""
-                        width: 8px
-                        height: 8px
-                        border-radius: 8px
-                        background: $accent-light
+                            position: absolute
+                            left: 0
+                            top: 2px
+                            content: ""
+                            width: 8px
+                            height: 8px
+                            border-radius: 8px
+                            background: $pale-dark
 
-                h3
-                    margin-top: 3px
+
+            .right-panel-2
+                ul
+                    margin-top: 0
                     margin-bottom: 0
-                    color: rgba(0, 0, 0, 0.80)
-                    line-height: 120%
+                    padding-right: 0.5em
+                    padding-left: 0
+
+                    li
+
+                        position: relative
+                        padding-bottom: 25px
+
+                        a
+                            word-break: break-word
+
+                        &:after
+                            position: absolute
+                            bottom: 0
+                            left: 0
+                            content: ""
+                            height: 1px
+                            width: 240px
+                            background: #E0E0E0
+
+                            @media screen and (max-width: $s-960)
+                                width: 100%
+
+                    li:last-child
+                        padding-bottom: 0
+
+                        &:after
+                            content: none
+
+                article
+                    .date
+                        display: block
+                        padding-left: 1em
+                        position: relative
+                        margin-top: 10px
+                        color: rgba(0, 0, 0, 0.6)
+                        font-size: 12px
+                        font-weight: 700
+                        line-height: 110%
+                        letter-spacing: 1px
+                        padding-bottom: 4px
+
+                        &:before
+                            position: absolute
+                            left: 0
+                            top: 2px
+                            content: ""
+                            width: 8px
+                            height: 8px
+                            border-radius: 8px
+                            background: $pale-dark
+
+                    h3
+                        margin-top: 0
+                        margin-bottom: 0
+                        color: rgba(0, 0, 0, 0.80)
+                        line-height: 120%
+
+                        a:hover, a:focus
+                            text-decoration: underline !important
+
+
+                h2
+                    margin-top: 0
+                    padding-top: 8px
+                    margin-bottom: 13px
+                    position: relative
+                    color: $primary-dark
+                    font-size: 16px
+                    line-height: 150%
                     letter-spacing: 1px
+                    text-transform: uppercase
 
                     a
                         color: black
@@ -421,33 +418,14 @@
                             color: black
                             text-decoration: underline !important
 
-
-            h2
-                margin-top: 0
-                padding-top: 8px
-                margin-bottom: 13px
-                position: relative
-                color: $primary-dark
-                font-size: 16px
-                line-height: 150%
-                letter-spacing: 1px
-                text-transform: uppercase
-
-                a
-                    color: black
-
-                    &:hover, &:focus
-                        color: black
-                        text-decoration: underline !important
-
-                &:before
-                    position: absolute
-                    top: 0
-                    left: 0
-                    content: ""
-                    width: 100%
-                    height: 3px
-                    background: $primary-dark
+                    &:before
+                        position: absolute
+                        top: 0
+                        left: 0
+                        content: ""
+                        width: 100%
+                        height: 3px
+                        background: $primary-dark
 
 article
     .post-date
