@@ -17,7 +17,6 @@
 
 
             <h3>1. Accordion</h3>
-            <p>Just because you have the emotional range of a teaspoon doesn’t mean we all have.</p>
 
             <div class="accordion" x-data="accordionData">
 
@@ -106,8 +105,7 @@
 
 
             <h3>2. Alert</h3>
-            <p>The <a href="#">alert</a>
-                class can also be used for all kinds of alerts:</p>
+
             <div x-data="alertData" x-show="openAlert" role="alert" class="alert danger relative">
                 <button @click="hideAlert()" class="close-button topright">
                     <i class="fa-solid fa-xmark"></i>
@@ -175,8 +173,7 @@
 
 
             <h3>3. Badge</h3>
-            <p>The <a href="#">badge</a>
-                classes are capable of displaying all kinds of tags, labels, badges and signs:</p>
+
             <p><span class="badge fs-14 circle gray-60 text-white">2</span>
                 <span class="badge fs-14 circle primary text-white">8</span>
                 <span class="badge fs-14 circle red text-white">A</span>
@@ -214,8 +211,6 @@
 
 
             <h3>4. Bar (navbar)</h3>
-            <p>The <b>bar</b> class can be used to create a horizontal bar:
-            </p>
 
             <div class="bar">
                 <a href="javascript:void(0)" class="bar-item">Home</a>
@@ -275,8 +270,7 @@
 
 
             <h3>5. Box</h3>
-            <p>The <a href="#">box</a> class is the most important of the
-                Clean.CSS classes. It provides equality like:</p>
+
             <ul>
                 <li>Common margins</li>
                 <li>Common paddings</li>
@@ -285,11 +279,6 @@
                 <li>Common fonts</li>
                 <li>Common colors</li>
             </ul>
-
-            <p>The box class is typically used with HTML container elements, like:</p>
-            <p>&lt;div&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt;, &lt;blockquote&gt;, &lt;form&gt;,
-                and
-                more.</p>
 
             <article class="section">
                 <div class="box gray-60 round-top">
@@ -435,8 +424,7 @@
 
 
             <h3>7. Button</h3>
-            <p>Disputationi dicam vulputate fusce detracto suavitate. Fabulas nisi mnesarchum meliore saperet. Audire et
-                mattis option usu morbi.</p>
+
             <div class="section">
                 <button class="primary">Primary</button>
                 <button class="secondary">Secondary</button>
@@ -551,8 +539,6 @@
 
 
             <h3>8. Card</h3>
-            <p>The <a href="#">card</a>
-                classes are suitable for both images and notes:</p>
 
             <div class="card card-4 content-600">
                 <div class="box round-top primary">
@@ -651,8 +637,7 @@
 
 
             <h3>9. Dropdown</h3>
-            <p>The <a href="#"><strong>dropdown</strong></a>
-                classes provide dropdowns:</p>
+
             <div class="row">
                 <div class="col s6">
                     <div x-data="dropdownData" class="dropdown" @click.outside="hideDropdown">
@@ -713,8 +698,6 @@
 
 
             <h3>10. Filter</h3>
-            <p>Use <a href="#">Clean.CSS Filters</a> to search for a specific element inside a list, table, dropdown,
-                etc.:</p>
 
             <div x-data="filterData" x-init="dataType = 'table'; sourceId = 'filter-table';">
                 <label for="name-search" class="sr-only">Search for names</label>
@@ -770,7 +753,6 @@
 
 
             <h3>11. Form</h3>
-            <p>Happiness can be found even in the darkest of times if only one remembers to turn on the light.</p>
 
             <div class="row-padding">
                 <div class="third">
@@ -926,7 +908,6 @@
 
 
             <h3>13. Image</h3>
-            <p>Styling <a href="#">images</a> in Clean.CSS is easy:</p>
 
             <div class="row-padding">
                 <div class="col m3 s4">
@@ -957,9 +938,7 @@
 
 
             <h3>14. Lightbox (deprecated)</h3>
-            <p>Combine <a href="#">Modals</a> and <a href="#">Slideshows</a> to create a
-                lightbox
-                (modal image gallery):</p>
+
             <div x-data="lightboxData">
                 <div x-show="openLighbox" class="gallery-modal black" :class="{'show': openLighbox }">
                 <span class="text-white white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
@@ -1065,8 +1044,6 @@
 
 
             <h3>16. Modal</h3>
-            <p>The <a href="#">modal</a>
-                class provides modal dialog in pure HTML:</p>
 
             <div x-data="modalData">
                 <button @click="openModal()"
@@ -1115,7 +1092,6 @@
 
 
             <h3>17. Pagination</h3>
-            <p>Clean.CSS provides simple ways for <a href="#">page pagination</a>.</p>
 
             <div class="bar pagination margin-top-bottom-1">
                 <a class="bar-item button transparent" href="javascript:void(0)">&laquo;</a>
@@ -1137,8 +1113,6 @@
 
 
             <h3>18. Person</h3>
-            <p>We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we
-                really are.</p>
 
             <div class="card relative padding-1 hover-gray-20 ">
                 <img src="{{ url('/images/img_avatar2.png') }}"
@@ -1191,8 +1165,6 @@
 
 
             <h3>19. Progress Bar</h3>
-            <p>Utamur liber parturient eget elaboraret ridiculus nullam facilisis. Enim errem pericula consectetur
-                evertitur erat wisi praesent.</p>
 
             <div class="gray-20">
                 <div class="box green center" style="width:25%">25%</div>
@@ -1222,9 +1194,6 @@
 
 
             <h3>20. Slideshow (deprecated)</h3>
-            <p>Clean.CSS provide <a href="#">slideshows</a> for cycling through images or
-                other
-                content:</p>
 
             <div x-data="sliderData" x-init="slideItemClass = 'slide-item'; slideDotsClass = 'slide-dots';"
                  class="content-960 margin-left-right-auto relative">
@@ -1276,9 +1245,7 @@
 
 
             <h3>21. Tab</h3>
-            <p><a href="#">Tabs</a> are perfect for single page web applications, or for
-                web
-                pages capable of displaying different subjects.</p>
+
             <div x-data="tabsData" class="border round">
                 <div class="bar">
                     <a href="javascript:void(0)" class="bar-item tab-switcher"
@@ -1380,8 +1347,6 @@
 
 
             <h3>22. Table</h3>
-            <p>No need to add any class. Aeque tempus vulputate voluptatibus iusto nobis. Consequat mediocrem mollis
-                ornatus conubia class.</p>
 
             <table>
                 <thead>
@@ -1419,9 +1384,6 @@
 
 
             <h3>23. Tooltip</h3>
-            <p>The <strong>tooltip</strong>
-                class can display all kinds of tooltips:</p>
-
 
             <p class="tooltip">
                 Hover over this text!
@@ -1466,8 +1428,6 @@
 
 
             <h3>1. Animation</h3>
-            <p>The <a href="#">animate</a>
-                classes provide an easy way to slide and fade in elements:</p>
 
             <div x-data="animateData">
                 <div class="center">
@@ -1504,8 +1464,7 @@
 
 
             <h3>2. Color</h3>
-            <p>Quam mandamus ocurreret sonet urna nihil explicari. Laudem fames intellegebat natoque repudiandae
-                consectetur.</p>
+
             <div class="row">
                 <div class="quarter">
                     <div class="box primary center padding-1"><p>&nbsp;</p></div>
@@ -1530,9 +1489,8 @@
 
 
             <h3>3. Display</h3>
-            <p>Display HTML elements in specific positions:</p>
-            <div class="row-padding">
 
+            <div class="row-padding">
                 <div class="half">
                     <div class="relative green thumbnail">
                         <div class="topleft padding-1">Top Left</div>
@@ -1547,18 +1505,19 @@
                     </div>
                 </div>
                 <div class="half">
-                    <p class="margin-top-1 hide-tablet hide-desktop">
-                    <div class="relative green">
-                        <img src="{{ url('/images/img_lights.jpg') }}" alt="Lights" class="thumbnail">
-                        <div class="topleft padding-1">Top Left</div>
-                        <div class="topright padding-1">Top Right</div>
-                        <div class="bottomleft padding-1">Bottom Left</div>
-                        <div class="bottomright padding-1">Bottom Right</div>
-                        <div class="left padding-1">Left</div>
-                        <div class="right padding-1">Right</div>
-                        <div class="middle padding-1">Middle</div>
-                        <div class="topmiddle hide-mobile padding-1">Top Middle</div>
-                        <div class="bottommiddle hide-mobile padding-1">Bottom Middle</div>
+                    <div class="margin-top-1 hide-tablet hide-desktop">
+                        <div class="relative green">
+                            <img src="{{ url('/images/img_lights.jpg') }}" alt="Lights" class="thumbnail">
+                            <div class="topleft padding-1">Top Left</div>
+                            <div class="topright padding-1">Top Right</div>
+                            <div class="bottomleft padding-1">Bottom Left</div>
+                            <div class="bottomright padding-1">Bottom Right</div>
+                            <div class="left padding-1">Left</div>
+                            <div class="right padding-1">Right</div>
+                            <div class="middle padding-1">Middle</div>
+                            <div class="topmiddle hide-mobile padding-1">Top Middle</div>
+                            <div class="bottommiddle hide-mobile padding-1">Bottom Middle</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1568,37 +1527,32 @@
 
 
             <h3>4. Effect</h3>
-            <p>Add special <strong>effects</strong> to any element:</p>
-            <div class="row-padding center">
 
+            <div class="row-padding center">
                 <div class="col m3 hide-mobile">
                     <img src="{{ url('/images/img_workshop.jpg') }}" alt="Workshop">
                     <div class="red box">
                         <p>Normal</p>
                     </div>
                 </div>
-
                 <div class="col m3 s4 opacity">
                     <img src="{{ url('/images/img_workshop.jpg') }}" alt="Workshop">
                     <div class="red box">
                         <p>Opacity</p>
                     </div>
                 </div>
-
                 <div class="col m3 s4 grayscale">
                     <img src="{{ url('/images/img_workshop.jpg') }}" alt="Workshop">
                     <div class="red box">
                         <p>Grayscale</p>
                     </div>
                 </div>
-
                 <div class="col m3 s4 sepia">
                     <img src="{{ url('/images/img_workshop.jpg') }}" alt="Workshop">
                     <div class="red box">
                         <p>Sepia</p>
                     </div>
                 </div>
-
             </div>
 
 
@@ -1606,8 +1560,6 @@
 
 
             <h3>5. Responsive Grid</h3>
-            <p>The <a href="#">Responsive Grid</a>
-                classes provide responsiveness for all device types: PC, laptop, tablet, and mobile.</p>
 
             <!-- First row -->
             <div class="row-padding">
@@ -1814,10 +1766,6 @@
                 </div>
 
             </div>
-
-            <p>Clean.CSS also supports a
-                <a href="#">12 column mobile-first fluid grid</a>
-                with small, medium, and large classes.</p>
 
         </div>
     </main>
