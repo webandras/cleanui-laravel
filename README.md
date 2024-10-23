@@ -1,5 +1,7 @@
 # Clean.UI Laravel starter
 
+DO NOT FORK IT! IT IS ONLY A DEMO FOR MY JOB APPLICATIONS! NOT YET PRODUCTION READY EITHER!
+
 Provides a simple starter pack that is a great starting point for my Laravel apps. Use it on your responsibility.
 
 Laravel Clean.UI is Laravel blog starter project that includes the Laravel UI package for authentication with 2fa and
